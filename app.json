@@ -1,0 +1,10 @@
+{
+  "buildpacks": [
+    {
+      "url": "heroku/node.js"
+    },
+    {
+      "url": "https://github.com/WindAid-Institution/WindAid-Website"
+    }
+  ]
+}
