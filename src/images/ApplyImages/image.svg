@@ -1,0 +1,10 @@
+Each page of the application will have their own Image folder including all images for that page.
+
+Could also include a subfolder specifying the section of the page the images are used for 
+if the page has a lot of images 
+
+Breakdown Example: 
+
+Images/
+    PageName/
+        ImageName.svg
