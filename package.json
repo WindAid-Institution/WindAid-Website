@@ -4,6 +4,9 @@
   "private": true,
   "description": "WindaidInstitute",
   "author": "David Ghazi",
+  "engines": {
+    "node": "12.x"
+  },
   "keywords": [
     "gatsby"
   ],
