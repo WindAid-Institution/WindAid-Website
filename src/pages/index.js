@@ -3,10 +3,10 @@ and render everything to the DOM */
 
 import * as React from "react";
 
-import Welcome from "./Apply/index";
+import Apply from "./Apply/index";
 
 const IndexPage = () => {
-  return <Welcome />;
+  return <Apply />;
 };
 
 export default IndexPage;

@@ -24,9 +24,15 @@ Section2/
 import React from "react";
 
 import Welcome from "./Welcome/Welcome";
+import OurMission from "./OurMission/OurMission";
 
 const Apply = () => {
-  return <Welcome />;
+  return (
+    <>
+      <Welcome />
+      <OurMission />
+    </>
+  );
 };
 
 export default Apply;

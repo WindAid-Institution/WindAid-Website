@@ -1,0 +1,28 @@
+.mission {
+  position: absolute;
+  background-color: #056839;
+  height: 394px;
+  width: 100%;
+}
+
+.group-one {
+  position: absolute;
+  /* margin: 43px 0px 0px 152px; */
+  margin: 43px 0px 0px 10.5%;
+  width: 272px;
+  height: 304px;
+}
+
+.group-two {
+  position: absolute;
+  margin: 43px 0px 0px 440px;
+  width: 560px;
+  height: 304px;
+}
+
+.group-three {
+  position: absolute;
+  margin: 43px 0px 0px 1016px;
+  width: 272px;
+  height: 304px;
+}
