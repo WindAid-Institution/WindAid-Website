@@ -1,9 +1,9 @@
 import React from "react";
 
-import "./MissionImages.css";
-import Group1 from "../../../../images/ApplyImages/OurMission/group1.svg";
-import Group2 from "../../../../images/ApplyImages/OurMission/group2.svg";
-import Group3 from "../../../../images/ApplyImages/OurMission/group3.svg";
+import "../../styles/OurMission/MissionImages.css";
+import Group1 from "../../images/ApplyImages/OurMission/group1.svg";
+import Group2 from "../../images/ApplyImages/OurMission/group2.svg";
+import Group3 from "../../images/ApplyImages/OurMission/group3.svg";
 
 const MissionImages = () => {
   return (

@@ -1,10 +1,10 @@
 import React from "react";
 
-import Header from "../../../components/Header/Header";
-import Title from "../../../components/Title/Title";
-import Body from "../../../components/Body/Body";
-import MissionImages from "./MissionImages/MissionImages";
-import "./OurMission.css";
+import Header from "../../shared/Header/Header";
+import Title from "../../shared/Title/Title";
+import Body from "../../shared/Body/Body";
+import MissionImages from "./MissionImages";
+import "../../styles/OurMission/OurMission.css";
 
 const OurMission = () => {
   const headerText = "Our Mission";
@@ -16,16 +16,13 @@ const OurMission = () => {
     <>
       <div className="container">
         <div className="header-style">
-          {/* <Header header={headerText} style={{ width: "100%" }} /> */}
           <Header header={headerText} style={{ width: "108px" }} />
         </div>
         <div className="title-style">
-          {/* <Title title={titleText} style={{ width: "100%" }} /> */}
-          <Title title={titleText} style={{ width: "656px" }} />
+          <Title title={titleText} style={{ width: "65%" }} />
         </div>
         <div className="body-style">
-          {/* <Body body={bodyText} style={{ width: "100%" }} /> */}
-          <Body body={bodyText} style={{ width: "752px" }} />
+          <Body body={bodyText} style={{ width: "68%" }} />
         </div>
       </div>
       <MissionImages />

@@ -1,0 +1,19 @@
+.container {
+  height: 431px;
+  width: 100%;
+}
+
+.header-style {
+  position: absolute;
+  margin: 96px 0px 0px 0px;
+}
+
+.title-style {
+  position: absolute;
+  margin: 126px 0px 0px 0px;
+}
+
+.body-style {
+  position: absolute;
+  margin: 210px 0px 0px 0px;
+}
