@@ -7,8 +7,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Open Sans\::300,400,500,600,700,800,900`],
-        display: "swap",
+        fonts: [`Open Sans\:300,400,500,600,700,800,900`],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /(navbar)/,
+        },
       },
     },
   ],
