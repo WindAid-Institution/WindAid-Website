@@ -15,14 +15,10 @@ const OurMission = () => {
   return (
     <>
       <div className="container">
-        <div className="header-style">
+        <div className="text-style">
           <Header header={headerText} style={{ width: "108px" }} />
-        </div>
-        <div className="title-style">
-          <Title title={titleText} style={{ width: "65%" }} />
-        </div>
-        <div className="body-style">
-          <Body body={bodyText} style={{ width: "68%" }} />
+          <Title title={titleText} style={{ width: "calc(30.4vw + 219px)" }} />
+          <Body body={bodyText} style={{ width: "calc(41.1vw + 160px" }} />
         </div>
       </div>
       <MissionImages />
