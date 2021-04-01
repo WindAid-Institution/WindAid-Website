@@ -12,7 +12,7 @@ export default function OurCoreWork() {
       <h3 className="core-header">Our Core Work</h3>
       <Grid container className="core-content">
         {/* <ReactPlayer className="video" url={videoURL} /> */}
-        <img className="video" src={Ghandi} />
+        <img className="video" src={Ghandi} alt="ghandi-video" />
 
         <ul className="content-text-container">
           <li>
