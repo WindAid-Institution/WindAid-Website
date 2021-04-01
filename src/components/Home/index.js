@@ -2,6 +2,7 @@ import React from "react";
 
 import BigBanner from "./BigBanner";
 import OurMission from "./OurMission";
+import OurApproach from "./OurApproach";
 import OurCoreWork from "./OurCoreWork";
 
 export default function LandingPage() {
@@ -9,6 +10,7 @@ export default function LandingPage() {
     <>
       <BigBanner />
       <OurMission />
+      <OurApproach />
       <OurCoreWork />
     </>
   );
