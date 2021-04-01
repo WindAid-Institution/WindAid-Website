@@ -1,19 +1,9 @@
 .container {
-  height: 431px;
+  height: 520px;
   width: 100%;
 }
 
-.header-style {
+.text-style {
   position: absolute;
-  margin: 96px 0px 0px 0px;
-}
-
-.title-style {
-  position: absolute;
-  margin: 126px 0px 0px 0px;
-}
-
-.body-style {
-  position: absolute;
-  margin: 210px 0px 0px 0px;
+  margin-top: calc(2.96vw + 21.3px);
 }

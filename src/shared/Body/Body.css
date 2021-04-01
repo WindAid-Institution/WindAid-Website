@@ -6,3 +6,16 @@
   line-height: 28px;
   color: #282828;
 }
+
+@media only screen and (max-width: 1000px) {
+  .body-text {
+    line-height: 29px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .body-text {
+    font-size: 14px;
+    line-height: 28px;
+  }
+}

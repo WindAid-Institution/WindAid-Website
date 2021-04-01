@@ -1,27 +1,111 @@
-.mission {
-  position: absolute;
+.mission-container {
   background-color: #056839;
-  height: 394px;
+  height: 368px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .group-one {
-  position: absolute;
-  margin: 43px 0px 0px 11.5%;
-  width: 18.8%;
+  width: 272px;
   height: 304px;
 }
 
 .group-two {
-  position: absolute;
-  margin: 43px 0px 0px 31.5%;
-  width: 38.8%;
+  width: 560px;
+  height: 304px;
+  margin-left: 16px;
+}
+
+.group-two-mobile {
+  display: none;
+  width: 272px;
   height: 304px;
 }
 
 .group-three {
-  position: absolute;
-  margin: 43px 0px 0px 71.5%;
-  width: 18.8%;
+  width: 272px;
   height: 304px;
+  margin-left: 16px;
+}
+
+@media only screen and (max-width: 1150px) {
+  .group-one {
+    margin-left: 10px;
+  }
+  .group-two {
+    display: none;
+    height: 0px;
+    width: 0px;
+  }
+  .group-two-mobile {
+    display: flex;
+    margin-left: 16px;
+  }
+  .group-three {
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 865px) {
+  .mission-container {
+    height: 336px;
+  }
+  .group-one {
+    margin-left: auto;
+  }
+  .group-two-mobile {
+    margin-left: auto;
+  }
+  .group-three {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 825px) {
+  .group-one {
+    width: 232px;
+  }
+  .group-two-mobile {
+    width: 232px;
+  }
+  .group-three {
+    width: 232px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .group-one {
+    width: 328px;
+    height: 204px;
+  }
+  .group-two-mobile {
+    width: 328px;
+    height: 204px;
+  }
+  .group-three {
+    width: 328px;
+    height: 204px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .mission-container {
+    height: 708px;
+    align-items: flex-start;
+  }
+  .group-one {
+    position: absolute;
+    margin: 32px 0px 0px 0px;
+  }
+  .group-two-mobile {
+    position: absolute;
+    margin: 252px 0px 0px 0px;
+  }
+  .group-three {
+    position: absolute;
+    margin: 472px 0px 0px 0px;
+  }
 }

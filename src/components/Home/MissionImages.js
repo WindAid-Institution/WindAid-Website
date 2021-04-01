@@ -1,20 +1,22 @@
 import React from "react";
+import Grid from "@material-ui/core/Grid";
 
+import Group1 from "../../images/LandingPage/OurMission/group1.svg";
+import Group2 from "../../images/LandingPage/OurMission/group2.svg";
+import Group2Mobile from "../../images/LandingPage/OurMission/group2mobile.svg";
+import Group3 from "../../images/LandingPage/OurMission/group3.svg";
 import "../../styles/OurMission/MissionImages.css";
-import Group1 from "../../images/ApplyImages/OurMission/group1.svg";
-import Group2 from "../../images/ApplyImages/OurMission/group2.svg";
-import Group3 from "../../images/ApplyImages/OurMission/group3.svg";
 
-const MissionImages = () => {
+export default function MissionImages() {
   return (
-    <div className="mission">
-      <div>
+    <Grid container alignItems="center" justify="center">
+      <Grid className="mission-container">
         <img src={Group1} className="group-one" />
         <img src={Group2} className="group-two" />
+        {/* <img src={Group2Mobile} className="group-two-mobile" /> */}
+        <img src={Group3} className="group-two-mobile" />
         <img src={Group3} className="group-three" />
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
-};
-
-export default MissionImages;
+}
