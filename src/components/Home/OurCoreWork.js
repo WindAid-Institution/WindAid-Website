@@ -1,16 +1,19 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 
 import "../../styles/OurCoreWork/CoreWork.css";
+import Ghandi from "../../images/LandingPage/OurCoreWork/ghandi-video.svg";
 
 export default function OurCoreWork() {
-  const videoURL = "https://www.youtube.com/watch?v=ug50zmP9I7s";
+  //   const videoURL = "";
   return (
     <Grid container className="core-container">
       <h3 className="core-header">Our Core Work</h3>
-      <Grid className="core-content">
-        <ReactPlayer className="video" url={videoURL} />
+      <Grid container className="core-content">
+        {/* <ReactPlayer className="video" url={videoURL} /> */}
+        <img className="video" src={Ghandi} />
+
         <ul className="content-text-container">
           <li>
             Building and installing wind turbines or other renewable energy
@@ -32,7 +35,7 @@ export default function OurCoreWork() {
         </ul>
       </Grid>
 
-      <Grid>
+      <Grid container className="impact-container">
         <h3 className="impact-header">
           You could be a huge part of this impact!
         </h3>
