@@ -1,13 +1,80 @@
-import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import { Link } from "gatsby"
-import Button from "react-bootstrap/Button";
+import React, { useState, useEffect } from "react";
+import { AppBar, Toolbar, Box } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "gatsby";
+
 import Logo from "../../images/navbar/logo.svg";
+import Toggle from "../../images/navbar/toggle.svg";
+import NavLinks from "./Navlinks";
+import DonateButton from "./DonateButton";
+import Sidebar from "./Sidebar";
+import useWindowSize from "../../hooks/useWindowSize";
+
 import "../../styles/navbar.css";
-import navbarRoutes from "../../data/navbarRoutesConfig"
 
+const useStyles = makeStyles({
+  root: {
+    width: "auto",
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  itemsContainer: {
+    maxHeight: "80px",
+  },
+});
 
+export default function StickyNavbar() {
+  const classes = useStyles();
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { width } = useWindowSize();
+
+  const handleSidebarOpen = () => setIsSidebarOpen(true);
+  const handleSidebarClose = () => setIsSidebarOpen(false);
+
+  useEffect(() => {
+    console.log("here");
+
+    if (isSidebarOpen && width > 1158) {
+      handleSidebarClose();
+    }
+  }, [width]);
+
+  return (
+    <>
+      <AppBar
+        position="sticky"
+        color="default"
+        className="navbar-whole-container"
+      >
+        <Toolbar className={classes.root} variant="dense" disableGutters>
+          <Link to="/">
+            <Logo alt="windaid logo" className="nav-logo" />
+          </Link>
+          <Box
+            className={classes.itemsContainer}
+            display="flex"
+            alignItems="center"
+          >
+            <NavLinks />
+
+            <div className="button-div">
+              <DonateButton />
+              <Toggle
+                role="button"
+                className="toggle-button"
+                onClick={handleSidebarOpen}
+              />
+            </div>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      <Sidebar isOpen={isSidebarOpen} handleSidebarClose={handleSidebarClose} />
+    </>
+  );
+}
+/*
 export default function StickyNavbar() {
   return (
     <>
@@ -38,3 +105,4 @@ export default function StickyNavbar() {
     </>
   );
 }
+*/
