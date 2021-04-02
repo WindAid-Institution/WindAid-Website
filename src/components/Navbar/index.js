@@ -33,8 +33,6 @@ export default function StickyNavbar() {
   const handleSidebarClose = () => setIsSidebarOpen(false);
 
   useEffect(() => {
-    console.log("here");
-
     if (isSidebarOpen && width > 1158) {
       handleSidebarClose();
     }
