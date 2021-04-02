@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { NavLink } from "react-router-dom";
+import { Link } from "gatsby"
 import Button from "react-bootstrap/Button";
 import Logo from "../../images/navbar/logo.svg";
 import "../../styles/navbar.css";
@@ -11,46 +11,46 @@ export default function StickyNavbar() {
     <>
       <Navbar bg="light" sticky="top" className="navbar-whole-container">
         <Navbar.Brand>
-          <NavLink to="/">
+          <Link to="/">
             <Logo alt="windaid logo" />{" "}
-          </NavLink>
+          </Link>
         </Navbar.Brand>
         <Nav className="navitems-container">
-          <NavLink
+          <Link
             className="nav-item"
             activeClassName="nav-item-active"
             to="/who-we-are"
           >
             Who We Are
-          </NavLink>
-          <NavLink
+          </Link>
+          <Link
             className="nav-item"
             activeClassName="nav-item-active"
             to="/our-work"
           >
             Our Work
-          </NavLink>
-          <NavLink
+          </Link>
+          <Link
             className="nav-item"
             activeClassName="nav-item-active"
             to="/join-us"
           >
             Join Us
-          </NavLink>
-          <NavLink
+          </Link>
+          <Link
             className="nav-item"
             activeClassName="nav-item-active"
             to="/contact"
           >
             Contact Us
-          </NavLink>
-          <NavLink
+          </Link>
+          <Link
             className="nav-item"
             activeClassName="nav-item-active"
             to="/apply"
           >
             Apply
-          </NavLink>
+          </Link>
           <div className="button-div">
             <Button variant="primary" size="lg" className="donate-button">
               Donate
