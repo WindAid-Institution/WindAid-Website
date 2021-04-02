@@ -7,6 +7,7 @@ import { Switch, Route, BrowserRouter} from "react-router-dom";
 import { MainLayout } from "../layout";
 import Home from "../components/Home";
 import WhoWeAre from "../components/WhoWeAre";
+import "../styles/global.css"
 
 export default function App() {
   return (
