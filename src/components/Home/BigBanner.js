@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import FullpageBanner from '../FullpageBanner'
+import FullpageBanner from "../FullpageBanner";
 
 export default function BigBanner() {
-    return (
-        <FullpageBanner />
-    );
+  return <FullpageBanner />;
 }

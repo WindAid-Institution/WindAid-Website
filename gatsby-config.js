@@ -5,9 +5,9 @@ module.exports = {
   plugins: [
     "gatsby-plugin-styled-components",
     {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: "gatsby-plugin-google-fonts",
       options: {
-        fonts: [`Open Sans\:300,400,500,600,700,800,900`],
+        fonts: ["Open Sans:300,400,500,600,700,800,900"],
       },
     },
     {

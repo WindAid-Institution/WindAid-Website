@@ -39,7 +39,9 @@ export default function OurCoreWork() {
         <h3 className="impact-header">
           You could be a huge part of this impact!
         </h3>
-        <button className="impact-button">Read About Our Impact</button>
+        <button className="impact-button" type="button">
+          Read About Our Impact
+        </button>
       </Grid>
     </Grid>
   );
