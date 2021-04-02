@@ -5,6 +5,8 @@ import { Link } from "gatsby"
 import Button from "react-bootstrap/Button";
 import Logo from "../../images/navbar/logo.svg";
 import "../../styles/navbar.css";
+import navbarRoutes from "../../data/navbarRoutesConfig"
+
 
 export default function StickyNavbar() {
   return (
@@ -16,41 +18,16 @@ export default function StickyNavbar() {
           </Link>
         </Navbar.Brand>
         <Nav className="navitems-container">
-          <Link
-            className="nav-item"
-            activeClassName="nav-item-active"
-            to="/who-we-are"
-          >
-            Who We Are
-          </Link>
-          <Link
-            className="nav-item"
-            activeClassName="nav-item-active"
-            to="/our-work"
-          >
-            Our Work
-          </Link>
-          <Link
-            className="nav-item"
-            activeClassName="nav-item-active"
-            to="/join-us"
-          >
-            Join Us
-          </Link>
-          <Link
-            className="nav-item"
-            activeClassName="nav-item-active"
-            to="/contact"
-          >
-            Contact Us
-          </Link>
-          <Link
-            className="nav-item"
-            activeClassName="nav-item-active"
-            to="/apply"
-          >
-            Apply
-          </Link>
+          {navbarRoutes.map((route, index) => 
+            <Link
+              key={index}
+              className="nav-item"
+              activeClassName="nav-item-active"
+              to={route.path}
+            >
+              {route.name}
+            </Link>)
+          }
           <div className="button-div">
             <Button variant="primary" size="lg" className="donate-button">
               Donate
