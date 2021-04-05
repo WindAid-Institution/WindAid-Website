@@ -1,6 +1,6 @@
 import React from "react";
 
-import ClientSideRendering from "../utils/ClientRendering"
+import ClientSideRendering from "../utils/ClientRendering";
 import NavBar from "../components/Navbar";
 // import Footer from "../components/Footer";
 

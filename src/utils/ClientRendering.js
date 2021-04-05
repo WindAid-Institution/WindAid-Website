@@ -1,9 +1,9 @@
-import React from "react"
+import React from "react";
 
-import Home from "../components/Home/index.js"
+import Home from "../components/Home/index";
 
 function ClientSideRendering({ children, ...delegated }) {
-  const [hasMounted, setHasMounted] = React.useState(false)
+  const [hasMounted, setHasMounted] = React.useState(false);
 
   const WebFontConfig = {
     google: {
@@ -12,21 +12,21 @@ function ClientSideRendering({ children, ...delegated }) {
     classes: false,
     timeout: 1000,
     active: Home, // invoked when fonts are active
-  }
+  };
 
-  import("webfontloader").then(WebFontLoader => {
-    WebFontLoader.load(WebFontConfig)
-  })
+  import("webfontloader").then((WebFontLoader) => {
+    WebFontLoader.load(WebFontConfig);
+  });
 
   React.useEffect(() => {
-    setHasMounted(true)
-  }, [])
+    setHasMounted(true);
+  }, []);
 
   if (!hasMounted) {
-    return null
+    return null;
   }
 
-  return <div {...delegated}>{children}</div>
+  return <div {...delegated}>{children}</div>;
 }
 
-export default ClientSideRendering
+export default ClientSideRendering;
