@@ -1,8 +1,8 @@
-import { Toolbar } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import TopFooter from "./TopFooter";
+import BottomFooter from "./BottomFooter";
 
 const useStyles = makeStyles(() => ({
   footer: {
@@ -17,10 +17,7 @@ const Footer = () => {
   return (
     <footer className={classes.footer}>
       <TopFooter />
-      <Toolbar>
-        © 2021 WindAid Institute Registered NGO | Privacy Statement Terms and
-        Conditions | All rights reserved
-      </Toolbar>
+      <BottomFooter />
     </footer>
   );
 };

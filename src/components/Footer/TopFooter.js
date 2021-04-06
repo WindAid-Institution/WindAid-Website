@@ -14,11 +14,20 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     fontSize: "18px",
     lineHeight: "32px",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "24px",
+      lineHeight: "36px",
+    },
   },
   linkText: {
     fontWeight: "normal",
     fontSize: "14px",
     lineHeight: "16px",
+
+    [theme.breakpoints.down("md")]: {
+      fontSize: "18px",
+      lineHeight: "22px",
+    },
   },
   padding: {
     padding: "0",
@@ -29,24 +38,34 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     margin: "auto",
     [theme.breakpoints.down("md")]: {
-      padding: "40px 16px",
+      padding: "40px 15px",
     },
     [theme.breakpoints.up("md")]: {
-      padding: "80px 0",
-      maxWidth: "1140px",
+      padding: "80px 15px",
+      maxWidth: "1110px",
     },
   },
   socialsLink: {
-    width: "32px",
-    height: "32px",
-    padding: "4px",
-    margin: "4px",
+    display: "flex",
+    width: "24px",
+    height: "24px",
+    padding: "3px",
+    margin: "3px",
     borderRadius: "50%",
     background: "#056839",
     color: "#fff",
     [theme.breakpoints.up("lg")]: {
       padding: "4px",
       margin: "4px",
+    },
+
+    "&:hover": {
+      color: "#fff",
+      background: "#04522d",
+    },
+
+    "& *": {
+      margin: "auto",
     },
   },
 }));
@@ -88,7 +107,7 @@ const TopFooter = () => {
         <h5 className={`${classes.linksHeader} ${classes.topFooterText}`}>
           {FOOTER_SOCIALS.name}
         </h5>
-        <div className={classes.paddingHorizontal}>
+        <div className={`${classes.paddingHorizontal} ${classes.socials}`}>
           {FOOTER_SOCIALS.links.map((item) => (
             <Link
               key={item.name}
