@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     fontSize: "18px",
     lineHeight: "32px",
-    padding: "0 16px",
   },
   linkText: {
     fontWeight: "normal",
@@ -22,17 +21,32 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "16px",
   },
   padding: {
-    paddingTop: "0",
-    paddingBottom: "0",
+    padding: "0",
+  },
+  spacingBottom: {
+    marginBottom: "16px",
   },
   grid: {
-    maxWidth: "1140px",
     margin: "auto",
     [theme.breakpoints.down("md")]: {
-      padding: "40px 0",
+      padding: "40px 16px",
     },
     [theme.breakpoints.up("md")]: {
       padding: "80px 0",
+      maxWidth: "1140px",
+    },
+  },
+  socialsLink: {
+    width: "32px",
+    height: "32px",
+    padding: "4px",
+    margin: "4px",
+    borderRadius: "50%",
+    background: "#056839",
+    color: "#fff",
+    [theme.breakpoints.up("lg")]: {
+      padding: "4px",
+      margin: "4px",
     },
   },
 }));
@@ -41,9 +55,16 @@ const TopFooter = () => {
   const classes = useStyles();
 
   return (
-    <Grid container span={2} className={classes.grid}>
+    <Grid container span={1} className={classes.grid}>
       {FOOTER_LINKS.map((item) => (
-        <Grid item key={item.name} sm={6} md={2}>
+        <Grid
+          item
+          key={item.name}
+          xs={6}
+          sm={4}
+          md={2}
+          className={classes.spacingBottom}
+        >
           <div>
             <h5 className={`${classes.linksHeader} ${classes.topFooterText}`}>
               {item.name}
@@ -63,10 +84,21 @@ const TopFooter = () => {
           </div>
         </Grid>
       ))}
-      <Grid item sm={6} md={2}>
+      <Grid item xs={6} sm={4} md={4}>
         <h5 className={`${classes.linksHeader} ${classes.topFooterText}`}>
           {FOOTER_SOCIALS.name}
         </h5>
+        <div className={classes.paddingHorizontal}>
+          {FOOTER_SOCIALS.links.map((item) => (
+            <Link
+              key={item.name}
+              to={item.link}
+              className={classes.socialsLink}
+            >
+              {item.icon}
+            </Link>
+          ))}
+        </div>
       </Grid>
     </Grid>
   );

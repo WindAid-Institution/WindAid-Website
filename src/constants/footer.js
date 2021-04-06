@@ -1,3 +1,10 @@
+import React from "react";
+import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
+import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter";
+import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
+import { FaLinkedinIn } from "@react-icons/all-files/fa/FaLinkedinIn";
+import { FaYoutube } from "@react-icons/all-files/fa/FaYoutube";
+
 const LINKS = {
   WHO_WE_ARE: {
     name: "Who We Are",
@@ -69,30 +76,31 @@ export const FOOTER_LINKS = [WHO_WE_ARE, OUR_WORK, JOIN_US, CONTACT_US];
 
 export const FOOTER_SOCIALS = {
   name: "Socials",
-  links: {
-    INSTAGRAM: {
-      icon: "",
+  links: [
+    {
+      name: "instagram",
+      icon: <FaInstagram />,
       link: "",
     },
-
-    TWITTER: {
-      icon: "",
+    {
+      name: "Twitter",
+      icon: <FaTwitter />,
       link: "",
     },
-
-    FACEBOOK: {
-      icon: "",
+    {
+      name: "Facebook",
+      icon: <FaFacebookF />,
       link: "",
     },
-
-    LIKEDIN: {
-      icon: "",
+    {
+      name: "Linkedin",
+      icon: <FaLinkedinIn />,
       link: "",
     },
-
-    YOUTUBE: {
-      icon: "",
+    {
+      name: "YouTube",
+      icon: <FaYoutube />,
       link: "",
     },
-  },
+  ],
 };
