@@ -3,7 +3,7 @@ import React from "react";
 import { Box } from "@material-ui/core";
 
 import GroupImage from "../../images/LandingPage/OurPrograms/group_image.svg";
-import TwoPropleImage from "../../images/LandingPage/OurPrograms/two_people_image.svg";
+import TwoPeopleImage from "../../images/LandingPage/OurPrograms/two_people_image.svg";
 import MountainsImage from "../../images/LandingPage/OurPrograms/mountains.svg";
 import Header from "../../shared/Header/Header";
 import Title from "../../shared/Title/Title";
@@ -58,7 +58,7 @@ const OurPrograms = () => {
         style={{ backgroundImage: `url(${MountainsImage})` }}
       >
         <img
-          src={TwoPropleImage}
+          src={TwoPeopleImage}
           alt="Two people"
           className="our-programs__image our-programs__image-two-people"
         />
