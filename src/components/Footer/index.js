@@ -8,6 +8,10 @@ const useStyles = makeStyles(() => ({
   footer: {
     borderTop: "1px solid #056839",
     background: "#FBF6EE",
+
+    "& a:hover": {
+      textDecoration: "none",
+    },
   },
 }));
 

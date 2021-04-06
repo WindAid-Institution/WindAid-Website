@@ -12,14 +12,17 @@ const LINKS = {
       {
         name: "About Us",
         path: "/",
+        external: false,
       },
       {
         name: "Ambassadors",
         path: "/",
+        external: false,
       },
       {
         name: "FAQ",
         path: "/",
+        external: false,
       },
     ],
   },
@@ -29,10 +32,12 @@ const LINKS = {
       {
         name: "Our Impact",
         path: "/",
+        external: false,
       },
       {
         name: "Projects",
         path: "/",
+        external: false,
       },
     ],
   },
@@ -42,18 +47,22 @@ const LINKS = {
       {
         name: "Volunteer Programs",
         path: "/",
+        external: false,
       },
       {
         name: "Partnerships",
         path: "/",
+        external: false,
       },
       {
         name: "Careers",
         path: "/",
+        external: false,
       },
       {
         name: "Living in Trujillo",
         path: "/",
+        external: false,
       },
     ],
   },
@@ -63,10 +72,12 @@ const LINKS = {
       {
         name: "General Contact",
         path: "/",
+        external: false,
       },
       {
         name: "Program Application",
         path: "/",
+        external: false,
       },
     ],
   },

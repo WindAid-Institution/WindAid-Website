@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { FOOTER_SOCIALS, FOOTER_LINKS } from "../../constants/footer";
 
 const useStyles = makeStyles((theme) => ({
-  topFooterText: {
+  footerText: {
     fontFamily: "Open Sans",
     fontStyle: "normal",
   },
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "18px",
       lineHeight: "22px",
     },
+    color: "#000",
   },
   padding: {
     padding: "0",
@@ -73,6 +74,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const ExternalLink = (props) => <a href={props.to}>{props.children}</a>;
+
 const TopFooter = () => {
   const classes = useStyles();
 
@@ -88,37 +91,42 @@ const TopFooter = () => {
           className={classes.spacingBottom}
         >
           <div>
-            <h5 className={`${classes.linksHeader} ${classes.topFooterText}`}>
+            <h5 className={`${classes.linksHeader} ${classes.footerText}`}>
               {item.name}
             </h5>
             <List className={classes.padding}>
-              {item.links.map((link) => (
-                <ListItem className={classes.padding}>
-                  <Link key={item.name} to={item.links.path}>
-                    <ListItemText
-                      primary={link.name}
-                      className={`${classes.linkText} ${classes.topFooterText}`}
-                    />
-                  </Link>
-                </ListItem>
-              ))}
+              {item.links.map((link) => {
+                const LinkComponent = link?.external ? ExternalLink : Link;
+
+                return (
+                  <ListItem className={classes.padding} key={link.name}>
+                    <LinkComponent key={link.name} to={link.path}>
+                      <ListItemText
+                        primary={link.name}
+                        className={`${classes.linkText} ${classes.footerText}`}
+                      />
+                    </LinkComponent>
+                  </ListItem>
+                );
+              })}
             </List>
           </div>
         </Grid>
       ))}
       <Grid item xs={6} sm={4} md={4}>
-        <h5 className={`${classes.linksHeader} ${classes.topFooterText}`}>
+        <h5 className={`${classes.linksHeader} ${classes.footerText}`}>
           {FOOTER_SOCIALS.name}
         </h5>
         <div className={classes.socials}>
           {FOOTER_SOCIALS.links.map((item) => (
-            <Link
+            <a
               key={item.name}
-              to={item.link}
+              href={item.link}
               className={classes.socialsLink}
+              target="blank"
             >
               {item.icon}
-            </Link>
+            </a>
           ))}
         </div>
       </Grid>
