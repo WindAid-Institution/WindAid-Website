@@ -36,7 +36,7 @@ export default function StickyNavbar() {
     if (isSidebarOpen && width > 1158) {
       handleSidebarClose();
     }
-  }, [width]);
+  }, [isSidebarOpen, width]);
 
   return (
     <>
