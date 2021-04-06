@@ -68,6 +68,9 @@ const useStyles = makeStyles((theme) => ({
       margin: "auto",
     },
   },
+  socials: {
+    display: "flex",
+  },
 }));
 
 const TopFooter = () => {
@@ -107,7 +110,7 @@ const TopFooter = () => {
         <h5 className={`${classes.linksHeader} ${classes.topFooterText}`}>
           {FOOTER_SOCIALS.name}
         </h5>
-        <div className={`${classes.paddingHorizontal} ${classes.socials}`}>
+        <div className={classes.socials}>
           {FOOTER_SOCIALS.links.map((item) => (
             <Link
               key={item.name}

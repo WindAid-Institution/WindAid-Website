@@ -36,13 +36,13 @@ const useStyles = makeStyles((theme) => ({
 
 const BottomFooter = () => {
   const classes = useStyles();
-
+  const year = new Date().getFullYear();
   return (
     <div className={classes.bar}>
       <div className={classes.privacyText}>
-        <p> © 2021 WindAid Institute Registered NGO </p>
+        <p> {`© ${year} WindAid Institute Registered NGO`}</p>
         <p> | Privacy Statement Terms and Conditions </p>
-        <p> | All rights reserved</p>
+        <p> | All rights reserved`</p>
       </div>
     </div>
   );

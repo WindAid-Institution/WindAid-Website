@@ -90,7 +90,7 @@ export const FOOTER_SOCIALS = {
     {
       name: "Facebook",
       icon: <FaFacebookF />,
-      link: "",
+      link: "https://www.facebook.com/WindAidInstitute",
     },
     {
       name: "Linkedin",
