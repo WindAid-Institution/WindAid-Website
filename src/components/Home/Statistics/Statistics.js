@@ -1,44 +1,44 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles"
-import Title from "../../../shared/Title/Title"
+import { makeStyles } from "@material-ui/core/styles";
+import Title from "../../../shared/Title/Title";
 import Body from "../../../shared/Body/Body";
 import Turbine from "../../../images/LandingPage/Statistics/WindTurbine.svg";
 import Book from "../../../images/LandingPage/Statistics/Book.svg";
 import House from "../../../images/LandingPage/Statistics/House.svg";
-import StatisticsItem from "./StatisticsItem"
+import StatisticsItem from "./StatisticsItem";
 import "../../../styles/Statistics/stats.css";
 
 const statsData = [
   {
     icon: <Turbine />,
-    numberStats: '50',
-    iconText: 'Installed Turbines around Peru'
+    numberStats: "50",
+    iconText: "Installed Turbines around Peru",
   },
   {
     icon: <Book />,
-    numberStats: '100+',
-    iconText: 'Educational workshops held in schools, universitites',
+    numberStats: "100+",
+    iconText: "Educational workshops held in schools, universitites",
   },
   {
     icon: <House />,
-    numberStats: '30',
-    iconText: 'Communities in 6 different regions'
-  }
-]
+    numberStats: "30",
+    iconText: "Communities in 6 different regions",
+  },
+];
 
-const useStyles = makeStyles((theme)=>({
+const useStyles = makeStyles((theme) => ({
   iconRow: {
     width: "100%",
   },
   mainWrapper: {
     maxWidth: "870px",
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }));
 
 export default function Stats() {
-  const classes = useStyles()
+  const classes = useStyles();
   const titleText = "Ensuring electricity is something for everyone.";
   const bodyText =
     "Since our inception in 2007, we have worked relentlessly with rural communities to tackle energy poverty in Peru, and make a positive impact on the electrification, economic and educational needs of the most vulnerable";
@@ -68,10 +68,11 @@ export default function Stats() {
             justify="space-between"
             alignItems="stretch"
           >
-            {statsData.map((stats, index) => 
-              <Grid item sm={3} xs={12} key={index}>
+            {statsData.map((stats) => (
+              <Grid item sm={3} xs={12} key={stats.iconText}>
                 <StatisticsItem {...stats} />
-              </Grid>)}
+              </Grid>
+            ))}
           </Grid>
         </Grid>
       </Grid>
