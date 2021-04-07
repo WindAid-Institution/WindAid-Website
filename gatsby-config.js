@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   siteMetadata: {
     title: "WindaidInstitute",
@@ -25,7 +27,17 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: `${__dirname}/src/images/`,
+        path: path.join(__dirname, "src/images"),
+      },
+    },
+    {
+      resolve: "gatsby-plugin-root-import",
+      options: {
+        src: path.join(__dirname, "src"),
+        pages: path.join(__dirname, "src/pages"),
+        components: path.join(__dirname, "src/components"),
+        images: path.join(__dirname, "src/images"),
+        styles: path.join(__dirname, "src/styles"),
       },
     },
   ],

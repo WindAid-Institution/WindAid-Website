@@ -11,21 +11,6 @@ import Body from "../../shared/Body/Body";
 import useWindowSize from "../../hooks/useWindowSize";
 import "../../styles/OurPrograms/OurPrograms.css";
 
-const GROUP_IMAGE_NAME = "group";
-const TWO_PEOPLE_IMAGE_NAME = "two_people";
-
-const commonClassName = "our-programs__image";
-const imageInfo = {
-  group: {
-    className: `${commonClassName} our-programs__image-group`,
-    alt: "People group",
-  },
-  two_people: {
-    className: `${commonClassName} our-programs__image-two-people`,
-    alt: "Two people",
-  },
-};
-
 const pageData = {
   sectionOne: {
     header: "Our Programs",
@@ -45,17 +30,19 @@ const pageData = {
 
 const query = graphql`
   {
-    images: allFile(
-      filter: {
-        relativeDirectory: { eq: "LandingPage/OurPrograms" }
-        ext: { eq: ".png" }
-      }
+    groupImage: file(
+      relativePath: { eq: "LandingPage/OurPrograms/group.png" }
     ) {
-      nodes {
-        name
-        childImageSharp {
-          gatsbyImageData(quality: 100, placeholder: BLURRED)
-        }
+      childImageSharp {
+        gatsbyImageData(quality: 100, placeholder: BLURRED)
+      }
+    }
+
+    twoPeopleImage: file(
+      relativePath: { eq: "LandingPage/OurPrograms/two_people.png" }
+    ) {
+      childImageSharp {
+        gatsbyImageData(quality: 100, placeholder: BLURRED)
       }
     }
   }
@@ -66,17 +53,8 @@ const OurPrograms = () => {
   const { width } = useWindowSize();
 
   const data = useStaticQuery(query);
-  const imagesData = data?.images?.nodes.map((imageData) => ({
-    image: imageData.childImageSharp.gatsbyImageData,
-    className: imageInfo[imageData.name].className,
-    alt: imageInfo[imageData.name].alt,
-    name: imageData.name,
-  }));
-
-  const groupImage = imagesData.find(({ name }) => name === GROUP_IMAGE_NAME);
-  const twoPeopleImage = imagesData.find(
-    ({ name }) => name === TWO_PEOPLE_IMAGE_NAME
-  );
+  const groupImage = getImage(data.groupImage);
+  const twoPeopleImage = getImage(data.twoPeopleImage);
 
   return (
     <section className="our-programs__container container">
@@ -92,9 +70,9 @@ const OurPrograms = () => {
           <Body body={sectionOne.body} />
         </Box>
         <GatsbyImage
-          image={groupImage.image}
-          alt={groupImage.alt}
-          className={groupImage.className}
+          image={groupImage}
+          alt="Group of people"
+          className="our-programs__image our-programs__image-group"
         />
       </Box>
       <Box
@@ -105,9 +83,9 @@ const OurPrograms = () => {
         style={{ backgroundImage: `url(${MountainsImage})` }}
       >
         <GatsbyImage
-          image={twoPeopleImage.image}
-          alt={twoPeopleImage.alt}
-          className={twoPeopleImage.className}
+          image={twoPeopleImage}
+          alt="Two people"
+          className="our-programs__image our-programs__image-two-people"
         />
         <Box
           display="flex"
