@@ -12,17 +12,18 @@ import "../../../styles/Statistics/stats.css";
 const statsData = [
   {
     icon: <Turbine />,
-    numberStats: "50",
+    numberStats: 50,
     iconText: "Installed Turbines around Peru",
   },
   {
     icon: <Book />,
-    numberStats: "100+",
+    numberStats: 100,
     iconText: "Educational workshops held in schools, universitites",
+    isPlusSign: true,
   },
   {
     icon: <House />,
-    numberStats: "30",
+    numberStats: 30,
     iconText: "Communities in 6 different regions",
   },
 ];

@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
+import { useCountUp } from "react-countup";
+import VisibilitySensor from "react-visibility-sensor";
 
 const useStyles = makeStyles((theme) => ({
   numbers: {
@@ -28,19 +30,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function StatisticsItem({ icon, numberStats, iconText }) {
+export default function StatisticsItem({
+  icon,
+  numberStats,
+  iconText,
+  isPlusSign,
+}) {
   const classes = useStyles();
+  const [isElementVisible, setIsElementVisible] = useState(false);
 
+  const { countUp, start } = useCountUp({
+    end: numberStats,
+    delay: 1000,
+    duration: 5,
+  });
+
+  const handleVisiblityChange = (isVisible) => {
+    if (isVisible && !isElementVisible) {
+      setIsElementVisible(true);
+      start();
+    }
+  };
   return (
-    <Box
-      flexDirection="column"
-      alignItems="center"
-      display="flex"
-      className={classes.contentContainer}
-    >
-      {icon}
-      <p className={classes.numbers}>{numberStats}</p>
-      <p className={classes.iconText}>{iconText}</p>
-    </Box>
+    <VisibilitySensor onChange={handleVisiblityChange}>
+      <Box
+        flexDirection="column"
+        alignItems="center"
+        display="flex"
+        className={classes.contentContainer}
+      >
+        {icon}
+        <p className={classes.numbers}>
+          {countUp} {isPlusSign && "+"}
+        </p>
+        <p className={classes.iconText}>{iconText}</p>
+      </Box>
+    </VisibilitySensor>
   );
 }
