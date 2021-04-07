@@ -1,15 +1,30 @@
 /* eslint-disable max-len */
 import React from "react";
 import { Box } from "@material-ui/core";
+import { graphql, useStaticQuery } from "gatsby";
+import { getImage, GatsbyImage } from "gatsby-plugin-image";
 
-import GroupImage from "../../images/LandingPage/OurPrograms/group_image.svg";
-import TwoPeopleImage from "../../images/LandingPage/OurPrograms/two_people_image.svg";
 import MountainsImage from "../../images/LandingPage/OurPrograms/mountains.svg";
 import Header from "../../shared/Header/Header";
 import Title from "../../shared/Title/Title";
 import Body from "../../shared/Body/Body";
 import useWindowSize from "../../hooks/useWindowSize";
 import "../../styles/OurPrograms/OurPrograms.css";
+
+const GROUP_IMAGE_NAME = "group";
+const TWO_PEOPLE_IMAGE_NAME = "two_people";
+
+const commonClassName = "our-programs__image";
+const imageInfo = {
+  group: {
+    className: `${commonClassName} our-programs__image-group`,
+    alt: "People group",
+  },
+  two_people: {
+    className: `${commonClassName} our-programs__image-two-people`,
+    alt: "Two people",
+  },
+};
 
 const pageData = {
   sectionOne: {
@@ -28,9 +43,41 @@ const pageData = {
   },
 };
 
+const query = graphql`
+  {
+    images: allFile(
+      filter: {
+        relativeDirectory: { eq: "LandingPage/OurPrograms" }
+        ext: { eq: ".png" }
+      }
+    ) {
+      nodes {
+        name
+        childImageSharp {
+          gatsbyImageData(quality: 100, placeholder: BLURRED)
+        }
+      }
+    }
+  }
+`;
+
 const OurPrograms = () => {
   const { sectionOne, sectionTwo } = pageData;
   const { width } = useWindowSize();
+
+  const data = useStaticQuery(query);
+  const imagesData = data?.images?.nodes.map((imageData) => ({
+    image: imageData.childImageSharp.gatsbyImageData,
+    className: imageInfo[imageData.name].className,
+    alt: imageInfo[imageData.name].alt,
+    name: imageData.name,
+  }));
+
+  const groupImage = imagesData.find(({ name }) => name === GROUP_IMAGE_NAME);
+  const twoPeopleImage = imagesData.find(
+    ({ name }) => name === TWO_PEOPLE_IMAGE_NAME
+  );
+
   return (
     <section className="our-programs__container container">
       <Box
@@ -44,10 +91,10 @@ const OurPrograms = () => {
           <Title title={sectionOne.title} />
           <Body body={sectionOne.body} />
         </Box>
-        <img
-          src={GroupImage}
-          alt="People group"
-          className="our-programs__image our-programs__image-group"
+        <GatsbyImage
+          image={groupImage.image}
+          alt={groupImage.alt}
+          className={groupImage.className}
         />
       </Box>
       <Box
@@ -57,10 +104,10 @@ const OurPrograms = () => {
         flexDirection={width > 991 ? "row" : "column"}
         style={{ backgroundImage: `url(${MountainsImage})` }}
       >
-        <img
-          src={TwoPeopleImage}
-          alt="Two people"
-          className="our-programs__image our-programs__image-two-people"
+        <GatsbyImage
+          image={twoPeopleImage.image}
+          alt={twoPeopleImage.alt}
+          className={twoPeopleImage.className}
         />
         <Box
           display="flex"

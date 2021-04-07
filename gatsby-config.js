@@ -4,6 +4,9 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-styled-components",
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
     {
       resolve: "gatsby-plugin-google-fonts",
       options: {
@@ -16,6 +19,13 @@ module.exports = {
         rule: {
           include: /(navbar|Statistics)/,
         },
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: `${__dirname}/src/images/`,
       },
     },
   ],
