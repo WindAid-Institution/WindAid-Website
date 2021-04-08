@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from "react";
-import { Box } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 import { graphql, useStaticQuery } from "gatsby";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 

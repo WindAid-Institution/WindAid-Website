@@ -61,7 +61,8 @@ export default function StatisticsItem({
       >
         {icon}
         <p className={classes.numbers}>
-          {countUp} {isPlusSign && "+"}
+          {countUp}
+          {isPlusSign && "+"}
         </p>
         <p className={classes.iconText}>{iconText}</p>
       </Box>
