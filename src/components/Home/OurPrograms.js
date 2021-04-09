@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from "react";
-import { Box } from "@material-ui/core";
-import { graphql, useStaticQuery } from "gatsby";
+import Box from "@material-ui/core/Box";
+import { graphql, useStaticQuery, Link } from "gatsby";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 
 import MountainsImage from "../../images/LandingPage/OurPrograms/mountains.svg";
@@ -101,9 +101,11 @@ const OurPrograms = () => {
               textAlign: width > 600 ? "left" : "center",
             }}
           />
-          <button type="button" className="our-programs__button">
-            View Our Programs
-          </button>
+          <Link to="/">
+            <button type="button" className="our-programs__button">
+              View Our Programs
+            </button>
+          </Link>
         </Box>
       </Box>
     </section>
