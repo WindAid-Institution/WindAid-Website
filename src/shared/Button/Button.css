@@ -1,0 +1,28 @@
+.custom-button {
+  background-color: #056839;
+  border-radius: 30px;
+  padding: 16px 32px;
+  font-family: "Open Sans";
+  color: #ffffff;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 13px;
+  line-height: 16px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: fit-content;
+}
+
+@media only screen and (min-width: 600px) {
+  .custom-button {
+    padding: 16px 48px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .custom-button {
+    padding: 16px 64px;
+  }
+}

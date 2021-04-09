@@ -58,8 +58,9 @@ const useStyles = makeStyles((theme) => ({
   articleBody: {
     width: "100%",
     maxWidth: "100%",
+    paddingBottom: "32px",
     [theme.breakpoints.up("sm")]: {
-      width: "90",
+      width: "90%",
     },
     [theme.breakpoints.up("md")]: {
       width: "calc(28vw + 400px)",
@@ -79,10 +80,10 @@ const ExperienceSection = () => {
       <Body body={sectionData.body} className={classes.articleBody} />
       <Grid container spacing={2}>
         <Grid item md={6} xs={12}>
-          <GatsbyImage image={firstImg} alt="" />
+          <GatsbyImage image={firstImg} alt="" width="100%" />
         </Grid>
         <Grid item md={6} xs={12}>
-          <GatsbyImage image={secImg} alt="" />
+          <GatsbyImage image={secImg} alt="" width="100%" />
         </Grid>
       </Grid>
     </Box>
