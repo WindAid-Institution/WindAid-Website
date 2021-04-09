@@ -1,11 +1,8 @@
 {
-  "extends": ["react-app", "airbnb", "prettier" ],
+  "extends": ["react-app", "airbnb", "prettier"],
   "parser": "@babel/eslint-parser",
   "rules": {
-    "react/jsx-filename-extension": [
-      1,
-      { "extensions": [".js", ".jsx"] }
-    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": "off",
     "react/destructuring-assignment": "off",
     "no-underscore-dangle": 0,
@@ -29,6 +26,16 @@
   },
   "settings": {
     "import/resolver": {
+      "alias": {
+        "map": [
+          ["src", "./src"],
+          ["pages", "./src/pages"],
+          ["components", "./src/components"],
+          ["images", "./src/images"],
+          ["styles", "./src/styles"]
+        ],
+        "extensions": [".js", ".jsx"]
+      },
       "node": {
         "extensions": [".js", ".jsx"]
       }

@@ -14,7 +14,8 @@
     ],
     "plugins": [
       "@babel/plugin-transform-arrow-functions",
-      "@babel/plugin-proposal-class-properties"
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-transform-runtime"
     ]
   },
   "scripts": {
@@ -35,15 +36,21 @@
     "bootstrap": "^4.6.0",
     "gatsby": "^3.0.1",
     "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-plugin-image": "^1.2.0",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
     "gatsby-plugin-react-svg": "^3.0.0",
+    "gatsby-plugin-sharp": "^3.2.0",
     "gatsby-plugin-styled-components": "^4.0.0",
+    "gatsby-source-filesystem": "^3.2.0",
+    "gatsby-transformer-sharp": "^3.2.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.2",
+    "react-countup": "^4.3.3",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
     "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
+    "react-visibility-sensor": "^5.1.1",
     "styled-components": "^5.2.1",
     "webfontloader": "^1.6.28"
   },
@@ -52,13 +59,16 @@
     "@babel/core": "^7.13.14",
     "@babel/eslint-parser": "^7.13.14",
     "@babel/preset-react": "^7.13.13",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "eslint": "^7.23.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.1.0",
+    "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "gatsby-plugin-root-import": "^2.0.6",
     "husky": "^4.2.3",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1"

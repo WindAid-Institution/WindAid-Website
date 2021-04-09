@@ -31,7 +31,7 @@ const LINKS = {
     links: [
       {
         name: "Our Impact",
-        path: "/",
+        path: "/our-impact",
         external: false,
       },
       {

@@ -70,14 +70,16 @@
 
   .our-programs__image-group {
     margin-left: 26px !important;
+    min-width: 472px;
   }
 
   .our-programs__image-two-people {
     margin-right: 26px !important;
+    min-width: 390px;
   }
 
   .our-programs__image {
-    width: auto;
+    height: 304px;
     margin: 0;
   }
 
@@ -89,9 +91,11 @@
 @media only screen and (min-width: 1200px) {
   .our-programs__image-group {
     height: 352px;
+    min-width: 547px;
   }
 
   .our-programs__image-two-people {
     height: 315px;
+    min-width: 406px;
   }
 }

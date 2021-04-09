@@ -73,6 +73,10 @@ li {
   margin-top: 100px;
 }
 
+.impact-link {
+  display: contents;
+}
+
 @media only screen and (max-width: 915px) {
   .core-container {
     justify-content: left;

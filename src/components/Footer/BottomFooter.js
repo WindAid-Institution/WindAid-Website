@@ -42,7 +42,7 @@ const BottomFooter = () => {
       <div className={classes.privacyText}>
         <p> {`© ${year} WindAid Institute Registered NGO`}</p>
         <p> | Privacy Statement Terms and Conditions </p>
-        <p> | All rights reserved`</p>
+        <p> | All rights reserved</p>
       </div>
     </div>
   );
