@@ -11,7 +11,7 @@ const BackgroundSeparator = ({ imageSrc, headingText, paragraphText }) => (
       <div className="background-separator__text-container container">
         <h3>{headingText}</h3>
         <p>{paragraphText}</p>
-      </div>{" "}
+      </div>
     </div>
   </div>
 );

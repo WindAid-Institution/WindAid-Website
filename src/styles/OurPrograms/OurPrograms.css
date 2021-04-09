@@ -5,7 +5,7 @@
 
 .our-programs__section-one,
 .our-programs__section-two {
-  flex-direction: "column";
+  flex-direction: column;
 }
 
 .our-programs__section-one {
@@ -33,13 +33,18 @@
   width: 200px;
   height: 46px;
   font-family: "Open Sans";
-  color: #ffffff;
+  color: #fff;
   font-weight: 700;
   font-style: normal;
   font-size: 13px;
   line-height: 16px;
   margin: 0 auto;
   transition: all 0.2s ease;
+}
+
+.our-programs__button--reverse {
+  background-color: #fff;
+  color: #056839;
 }
 
 @media only screen and (min-width: 600px) {

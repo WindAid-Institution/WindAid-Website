@@ -9,6 +9,9 @@ import WhoWereServing from "components/OurImpact/WhoWereServing/index";
 // eslint-disable-next-line max-len
 import BackgroundSeparator from "components/BackgroundSeparator/BackgroundSeparator";
 import Community from "components/OurImpact/Community/index";
+import JoinProgram from "components/OurImpact/JoinProgram";
+import PartnerWithUs from "components/OurImpact/PartnerWithUs";
+import SpreadTheWord from "components/OurImpact/SpreadTheWord";
 
 import OUR_IMPACT_DATA from "./data";
 
@@ -17,8 +20,6 @@ const { PROBLEM, ELECTRICITY } = OUR_IMPACT_DATA;
 const OurImpact = ({ data: { heroImage, sunsetImage } }) => {
   const heroImageData = getImage(heroImage);
   const sunsetImageSrc = getSrc(sunsetImage);
-
-  console.log(sunsetImageSrc);
   return (
     <MainLayout>
       <Hero image={heroImageData} alt="hero image" title="Our Impact" />
@@ -35,6 +36,9 @@ const OurImpact = ({ data: { heroImage, sunsetImage } }) => {
           paragraphText={ELECTRICITY.PARAGRAPH}
         />
         <Community />
+        <JoinProgram />
+        <PartnerWithUs />
+        <SpreadTheWord />
       </>
     </MainLayout>
   );

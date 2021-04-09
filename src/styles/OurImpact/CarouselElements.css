@@ -1,0 +1,45 @@
+.arrow,
+.buttom-group,
+.screen-arrow {
+  position: absolute;
+}
+
+.screen-arrow {
+  width: 50%;
+  height: 100%;
+  outline: none;
+}
+
+.screen-arrow__right {
+  right: 0;
+}
+
+.arrow {
+  width: 60px;
+  height: 60px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.buttom-group {
+  left: 50%;
+  display: flex;
+  align-items: center;
+  width: 160px;
+  height: auto;
+  transform: translateX(-50%);
+  margin-top: 24px;
+}
+
+.button-group__count {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.arrow__right {
+  right: 0;
+}
