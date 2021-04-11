@@ -21,7 +21,7 @@
 .group-two-mobile {
   display: none;
   width: 272px;
-  height: 304px;
+  height: 260px;
 }
 
 .group-three {
@@ -33,6 +33,8 @@
 @media only screen and (max-width: 1150px) {
   .group-one {
     margin-left: 10px;
+    width: 232px;
+    height: 304px;
   }
   .group-two {
     display: none;
@@ -45,6 +47,8 @@
   }
   .group-three {
     margin-right: 10px;
+    width: 232px;
+    height: 304px;
   }
 }
 
@@ -78,34 +82,67 @@
 
 @media only screen and (max-width: 720px) {
   .group-one {
+    /* width: 328px;
+    height: 204px; */
     width: 328px;
-    height: 204px;
+    height: 250px;
   }
   .group-two-mobile {
+    /* width: 328px;
+    height: 204px; */
     width: 328px;
-    height: 204px;
+    height: 250px;
   }
   .group-three {
+    /* width: 328px;
+    height: 204px; */
     width: 328px;
-    height: 204px;
+    height: 250px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .group-one {
+    /* width: 328px;
+    height: 204px; */
+    width: 200px;
+    height: auto;
+  }
+  .group-two-mobile {
+    /* width: 328px;
+    height: 204px; */
+    width: 200px;
+    height: 225px;
+  }
+  .group-three {
+    /* width: 328px;
+    height: 204px; */
+    width: 200px;
+    height: auto;
   }
 }
 
 @media only screen and (max-width: 600px) {
   .mission-container {
-    height: 708px;
+    height: 948px;
     align-items: flex-start;
   }
   .group-one {
     position: absolute;
-    margin: 32px 0px 0px 0px;
+    padding-top: 32px;
+    width: 100%;
+    height: 300px;
   }
   .group-two-mobile {
     position: absolute;
-    margin: 252px 0px 0px 0px;
+    margin: 316px 0px 0px 0px;
+    width: 100%;
+    height: 315px;
   }
   .group-three {
     position: absolute;
-    margin: 472px 0px 0px 0px;
+    margin: 646px 0px 0px 0px;
+    width: 100%;
+    height: 270px;
   }
 }
