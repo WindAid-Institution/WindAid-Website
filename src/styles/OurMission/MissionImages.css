@@ -82,20 +82,14 @@
 
 @media only screen and (max-width: 720px) {
   .group-one {
-    /* width: 328px;
-    height: 204px; */
     width: 328px;
     height: 250px;
   }
   .group-two-mobile {
-    /* width: 328px;
-    height: 204px; */
     width: 328px;
     height: 250px;
   }
   .group-three {
-    /* width: 328px;
-    height: 204px; */
     width: 328px;
     height: 250px;
   }
@@ -103,20 +97,14 @@
 
 @media only screen and (max-width: 650px) {
   .group-one {
-    /* width: 328px;
-    height: 204px; */
     width: 200px;
     height: auto;
   }
   .group-two-mobile {
-    /* width: 328px;
-    height: 204px; */
     width: 200px;
     height: 225px;
   }
   .group-three {
-    /* width: 328px;
-    height: 204px; */
     width: 200px;
     height: auto;
   }
