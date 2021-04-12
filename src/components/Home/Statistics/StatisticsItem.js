@@ -31,16 +31,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function StatisticsItem({
-  icon,
-  numberStats,
-  iconText,
+  title,
+  statsNumbers,
+  file,
   isPlusSign,
 }) {
   const classes = useStyles();
   const [isElementVisible, setIsElementVisible] = useState(false);
 
   const { countUp, start } = useCountUp({
-    end: numberStats,
+    end: parseInt(statsNumbers, 10),
     delay: 1000,
     duration: 5,
   });
@@ -59,12 +59,12 @@ export default function StatisticsItem({
         display="flex"
         className={classes.contentContainer}
       >
-        {icon}
+        <img src={file.url} alt={title} />
         <p className={classes.numbers}>
           {countUp}
           {isPlusSign && "+"}
         </p>
-        <p className={classes.iconText}>{iconText}</p>
+        <p className={classes.iconText}>{title}</p>
       </Box>
     </VisibilitySensor>
   );

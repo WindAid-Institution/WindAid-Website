@@ -1,4 +1,7 @@
 const path = require("path");
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
   siteMetadata: {
@@ -38,6 +41,13 @@ module.exports = {
         components: path.join(__dirname, "src/components"),
         images: path.join(__dirname, "src/images"),
         styles: path.join(__dirname, "src/styles"),
+      },
+    },
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
   ],

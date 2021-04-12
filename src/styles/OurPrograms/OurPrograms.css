@@ -67,7 +67,7 @@
 @media only screen and (min-width: 992px) {
   .our-programs__section-one,
   .our-programs__section-two {
-    flex-direction: "row";
+    flex-direction: row;
   }
   .our-programs__section-two {
     padding-bottom: 90px;

@@ -1,32 +1,13 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import Title from "../../../shared/Title/Title";
-import Body from "../../../shared/Body/Body";
-import Turbine from "../../../images/LandingPage/Statistics/WindTurbine.svg";
-import Book from "../../../images/LandingPage/Statistics/Book.svg";
-import House from "../../../images/LandingPage/Statistics/House.svg";
-import StatisticsItem from "./StatisticsItem";
-import "../../../styles/Statistics/stats.css";
 
-const statsData = [
-  {
-    icon: <Turbine />,
-    numberStats: 50,
-    iconText: "Installed Turbines around Peru",
-  },
-  {
-    icon: <Book />,
-    numberStats: 100,
-    iconText: "Educational workshops held in schools, universitites",
-    isPlusSign: true,
-  },
-  {
-    icon: <House />,
-    numberStats: 30,
-    iconText: "Communities in 6 different regions",
-  },
-];
+import "styles/Statistics/stats.css";
+import Title from "src/shared/Title/Title";
+import Body from "src/shared/Body/Body";
+import { useHomepageData } from "src/hooks/queries/homepage";
+
+import StatisticsItem from "./StatisticsItem";
 
 const useStyles = makeStyles((theme) => ({
   iconRow: {
@@ -38,11 +19,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Stats() {
+const Stats = () => {
+  const {
+    statistics: {
+      body: { body },
+      title,
+      images,
+    },
+  } = useHomepageData();
+
   const classes = useStyles();
-  const titleText = "Ensuring electricity is something for everyone.";
-  const bodyText =
-    "Since our inception in 2007, we have worked relentlessly with rural communities to tackle energy poverty in Peru, and make a positive impact on the electrification, economic and educational needs of the most vulnerable";
   return (
     <div className="main-container">
       <Grid
@@ -54,12 +40,12 @@ export default function Stats() {
       >
         <Grid item>
           <div className="row-content">
-            <Title title={titleText} style={{ marginBottom: "0" }} />
+            <Title title={title} style={{ marginBottom: "0" }} />
           </div>
         </Grid>
         <Grid item>
           <div className="row-content">
-            <Body body={bodyText} style={{ marginTop: "8px" }} />
+            <Body body={body} style={{ marginTop: "8px" }} />
           </div>
         </Grid>
         <Grid item className={classes.iconRow}>
@@ -69,9 +55,9 @@ export default function Stats() {
             justify="space-between"
             alignItems="stretch"
           >
-            {statsData.map((stats) => (
-              <Grid item sm={3} xs={12} key={stats.iconText}>
-                <StatisticsItem {...stats} />
+            {images.map((stats, index) => (
+              <Grid item sm={3} xs={12} key={stats.title}>
+                <StatisticsItem {...stats} isPlusSign={index === 1} />
               </Grid>
             ))}
           </Grid>
@@ -79,4 +65,5 @@ export default function Stats() {
       </Grid>
     </div>
   );
-}
+};
+export default Stats;
