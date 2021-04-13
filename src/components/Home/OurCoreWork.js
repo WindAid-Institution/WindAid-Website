@@ -1,6 +1,8 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "gatsby";
+import { useHomepageData } from "src/hooks/queries/homepage";
+import { splitQueriedList } from "src/utils/utils";
 
 import { ROUTES } from "../../constants/routes";
 // import ReactPlayer from "react-player";
@@ -8,40 +10,35 @@ import { ROUTES } from "../../constants/routes";
 import "../../styles/OurCoreWork/CoreWork.css";
 import Ghandi from "../../images/LandingPage/OurCoreWork/ghandi-video.svg";
 
-export default function OurCoreWork() {
+const OurCoreWork = () => {
   //   const videoURL = "";
+
+  const {
+    ourCoreWork: {
+      header,
+      title,
+      listItems: { listItems },
+    },
+  } = useHomepageData();
+
+  const ourCoreWorkList = splitQueriedList(listItems);
+
   return (
     <Grid container className="core-container">
-      <h3 className="core-header">Our Core Work</h3>
+      <h3 className="core-header">{header}</h3>
       <Grid container className="core-content">
         {/* <ReactPlayer className="video" url={videoURL} /> */}
         <img className="video" src={Ghandi} alt="ghandi-video" />
 
         <ul className="content-text-container">
-          <li>
-            Building and installing wind turbines or other renewable energy
-          </li>
-          <li>Training local technicians to operate and maintain the system</li>
-          <li>
-            Education communities and schools on the importance, use and care of
-            renewable energies
-          </li>
-          <li>
-            Appointing an executive board of community members to become the
-            guardians of the future of the project
-          </li>
-          <li>
-            Creating alliances with other organizations such as universities and
-            local government to improve our engineering process and further our
-            outreach
-          </li>
+          {ourCoreWorkList.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
         </ul>
       </Grid>
 
       <Grid container className="impact-container">
-        <h3 className="impact-header">
-          You could be a huge part of this impact!
-        </h3>
+        <h3 className="impact-header">{title}</h3>
         <Link to={ROUTES.OUT_IMPACT.path} className="impact-link">
           <button className="impact-button" type="button">
             Read About Our Impact
@@ -50,4 +47,6 @@ export default function OurCoreWork() {
       </Grid>
     </Grid>
   );
-}
+};
+
+export default OurCoreWork;

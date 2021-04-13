@@ -51,9 +51,66 @@ export const useHomepageData = () => {
           body
         }
       }
+
+      ourProgramsOne: contentfulSection(
+        contentId: { eq: "homepage-our-programs-one" }
+      ) {
+        header
+        title
+        body {
+          body
+        }
+        image {
+          title
+          description
+          gatsbyImageData(quality: 100, placeholder: BLURRED)
+        }
+      }
+      ourProgramsTwo: contentfulSection(
+        contentId: { eq: "homepage-our-programs-two" }
+      ) {
+        header
+        body {
+          body
+        }
+        bodyTwo {
+          bodyTwo
+        }
+        image {
+          title
+          description
+          gatsbyImageData(quality: 100, placeholder: BLURRED)
+        }
+      }
+
+      ourCoreWork: contentfulSection(
+        contentId: { eq: "homepage-our-core-work" }
+      ) {
+        header
+        title
+        listItems {
+          listItems
+        }
+      }
     }
   `);
 
-  const { hero, ourMission, statistics, ourApproach } = data;
-  return { hero, ourMission, statistics, ourApproach };
+  const {
+    hero,
+    ourMission,
+    statistics,
+    ourApproach,
+    ourProgramsOne,
+    ourProgramsTwo,
+    ourCoreWork,
+  } = data;
+  return {
+    hero,
+    ourMission,
+    statistics,
+    ourApproach,
+    ourProgramsOne,
+    ourProgramsTwo,
+    ourCoreWork,
+  };
 };
