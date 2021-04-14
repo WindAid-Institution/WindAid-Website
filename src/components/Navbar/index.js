@@ -3,17 +3,25 @@ import { AppBar, Toolbar, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "gatsby";
 
-import Logo from "../../images/navbar/logo.svg";
-import Toggle from "../../images/navbar/toggle.svg";
+import Logo from "images/navbar/logo.svg";
+import Toggle from "images/navbar/toggle.svg";
+import useWindowSize from "hooks/useWindowSize";
+
 import NavLinks from "./Navlinks";
 import DonateButton from "./DonateButton";
 import Sidebar from "./Sidebar";
-import useWindowSize from "../../hooks/useWindowSize";
 
-import "../../styles/navbar.css";
-
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
+    maxHeight: "80px",
+    padding: "0 12px 0 12px",
+    backgroundColor: theme.palette.primary.main,
+
+    [theme.breakpoints.up("xl")]: {
+      padding: "0 calc(12.6vw - 29.3px) 0 calc(12.6vw - 29.3px)",
+    },
+  },
+  toolbar: {
     width: "auto",
     display: "flex",
     justifyContent: "space-between",
@@ -21,9 +29,35 @@ const useStyles = makeStyles({
   itemsContainer: {
     maxHeight: "80px",
   },
-});
 
-export default function StickyNavbar() {
+  logo: {
+    height: "48px",
+
+    [theme.breakpoints.up("sm")]: {
+      height: "auto",
+    },
+  },
+
+  buttonsContainer: {
+    display: "flex",
+    alignItems: "center",
+    paddingTop: "16px",
+    paddingBottom: "16px",
+    marginRight: "26px",
+
+    [theme.breakpoints.up("lg")]: {
+      marginRight: 0,
+    },
+  },
+
+  toggleButton: {
+    [theme.breakpoints.up("lg")]: {
+      display: "none",
+    },
+  },
+}));
+
+const Navbar = () => {
   const classes = useStyles();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -33,21 +67,17 @@ export default function StickyNavbar() {
   const handleSidebarClose = () => setIsSidebarOpen(false);
 
   useEffect(() => {
-    if (isSidebarOpen && width > 1158) {
+    if (isSidebarOpen && width >= 1200) {
       handleSidebarClose();
     }
   }, [isSidebarOpen, width]);
 
   return (
     <>
-      <AppBar
-        position="sticky"
-        color="default"
-        className="navbar-whole-container"
-      >
-        <Toolbar className={classes.root} variant="dense" disableGutters>
+      <AppBar position="sticky" color="default" className={classes.root}>
+        <Toolbar className={classes.toolbar} variant="dense" disableGutters>
           <Link to="/">
-            <Logo alt="windaid logo" className="nav-logo" />
+            <Logo alt="windaid logo" className={classes.logo} />
           </Link>
           <Box
             className={classes.itemsContainer}
@@ -56,14 +86,14 @@ export default function StickyNavbar() {
           >
             <NavLinks />
 
-            <div className="button-div">
+            <Box className={classes.buttonsContainer}>
               <DonateButton />
               <Toggle
                 role="button"
-                className="toggle-button"
+                className={classes.toggleButton}
                 onClick={handleSidebarOpen}
               />
-            </div>
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>
@@ -71,36 +101,6 @@ export default function StickyNavbar() {
       <Sidebar isOpen={isSidebarOpen} handleSidebarClose={handleSidebarClose} />
     </>
   );
-}
-/*
-export default function StickyNavbar() {
-  return (
-    <>
-      <Navbar bg="light" sticky="top" className="navbar-whole-container">
-        <Navbar.Brand>
-          <Link to="/">
-            <Logo alt="windaid logo" />{" "}
-          </Link>
-        </Navbar.Brand>
-        <Nav className="navitems-container">
-          {navbarRoutes.map((route, index) => 
-            <Link
-              key={index}
-              className="nav-item"
-              activeClassName="nav-item-active"
-              to={route.path}
-            >
-              {route.name}
-            </Link>)
-          }
-          <div className="button-div">
-            <Button variant="primary" size="lg" className="donate-button">
-              Donate
-            </Button>{" "}
-          </div>
-        </Nav>
-      </Navbar>
-    </>
-  );
-}
-*/
+};
+
+export default Navbar;

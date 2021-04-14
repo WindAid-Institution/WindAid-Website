@@ -1,17 +1,35 @@
 import React from "react";
-import { Drawer, Box } from "@material-ui/core";
+import Drawer from "@material-ui/core/Drawer";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { AiOutlineClose } from "@react-icons/all-files/ai/AiOutlineClose";
 
 import DonateButton from "./DonateButton";
 import NavLinks from "./Navlinks";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  root: {
+    paper: {
+      backgroundColor: theme.palette.primary.main,
+    },
+  },
   itemsContainer: {
     width: "325px",
     paddingTop: "42px",
   },
-});
+  navClose: {
+    position: "absolute",
+    width: "24px",
+    height: "24px",
+    right: "16px",
+    top: "16px",
+  },
+  navCopyRight: {
+    position: "absolute",
+    bottom: "16px",
+  },
+}));
 
 const Sidebar = ({ isOpen, handleSidebarClose }) => {
   const classes = useStyles();
@@ -20,7 +38,7 @@ const Sidebar = ({ isOpen, handleSidebarClose }) => {
       <AiOutlineClose
         onClick={handleSidebarClose}
         type="button"
-        className="nav-close"
+        className={classes.navClose}
       />
       <Box
         className={classes.itemsContainer}
@@ -30,9 +48,9 @@ const Sidebar = ({ isOpen, handleSidebarClose }) => {
       >
         <NavLinks isSidebar />
         <DonateButton isSidebar />
-        <span className="nav-copyright">
-          <p>&copy; WindAid Institure {new Date().getFullYear()}</p>
-        </span>
+        <Typography className={classes.navCopyRight} variant="subtitle1">
+          &copy; WindAid Institure {new Date().getFullYear()}
+        </Typography>
       </Box>
     </Drawer>
   );

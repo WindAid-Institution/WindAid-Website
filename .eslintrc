@@ -31,6 +31,9 @@
           ["src", "./src"],
           ["pages", "./src/pages"],
           ["components", "./src/components"],
+          ["shared", "./src/shared"],
+          ["hooks", "./src/hooks"],
+          ["queries", "./src/hooks/queries"],
           ["images", "./src/images"],
           ["styles", "./src/styles"]
         ],
