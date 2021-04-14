@@ -1,26 +1,56 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
+import { graphql, useStaticQuery } from "gatsby";
+import { getImage, GatsbyImage } from "gatsby-plugin-image";
 
-import Group1 from "../../images/LandingPage/OurMission/group1.svg";
-import Group2 from "../../images/LandingPage/OurMission/group2.svg";
-// import Group2Mobile from "../../images/LandingPage/OurMission/group2mobile.svg";
-import Group3 from "../../images/LandingPage/OurMission/group3.svg";
 import "../../styles/OurMission/MissionImages.css";
 
-export default function MissionImages() {
+const imageInfo = {
+  0: {
+    className: "group-one",
+    alt: "first-group",
+  },
+  1: {
+    className: "group-two",
+    alt: "second-group",
+  },
+  2: {
+    className: "group-three",
+    alt: "third-group",
+  },
+};
+
+const query = graphql`
+  {
+    images: allFile(
+      filter: { relativeDirectory: { eq: "LandingPage/OurMission" } }
+      sort: { order: ASC, fields: name }
+    ) {
+      nodes {
+        childImageSharp {
+          gatsbyImageData(quality: 100, placeholder: BLURRED)
+        }
+      }
+    }
+  }
+`;
+
+const MissionImages = () => {
+  const data = useStaticQuery(query);
+  const imagesData = data?.images?.nodes.map((imageData, index) => ({
+    image: getImage(imageData),
+    className: imageInfo[index].className,
+    alt: imageInfo[index].alt,
+  }));
+
   return (
     <Grid container alignItems="center" justify="center">
       <Grid className="mission-container">
-        <img src={Group1} className="group-one" alt="first-group" />
-        <img src={Group2} className="group-two" alt="second-group" />
-        {/* <img src={Group2Mobile} className="group-two-mobile" /> */}
-        <img
-          src={Group3}
-          className="group-two-mobile"
-          alt="third-group-mobile"
-        />
-        <img src={Group3} className="group-three" alt="third-group" />
+        {imagesData.map((imageData) => (
+          <GatsbyImage {...imageData} key={imageData.alt} />
+        ))}
       </Grid>
     </Grid>
   );
-}
+};
+export default MissionImages;

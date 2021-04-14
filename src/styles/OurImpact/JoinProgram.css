@@ -1,0 +1,48 @@
+.join-program {
+  background-color: #056839;
+  padding-top: calc(2.96vw + 21.3px);
+}
+
+.join-program--reverse {
+  background-color: #fff;
+}
+
+.join-program__container {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 992px) {
+  .join-program {
+    padding-top: 0;
+  }
+  .join-program__container {
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  .join-program__container--reverse {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .join-program__content {
+    padding-left: 62px;
+  }
+  .join-program__content--reverse {
+    padding-right: 62px;
+  }
+
+  .join-program__image {
+    height: 368px;
+    min-width: 464px;
+  }
+}
+
+.join-program__button {
+  margin: 8px 0;
+}
+.join-program__image {
+  margin: 32px 0;
+}

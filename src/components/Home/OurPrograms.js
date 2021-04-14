@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 import React from "react";
-import { Box } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
+import { graphql, useStaticQuery, Link } from "gatsby";
+import { getImage, GatsbyImage } from "gatsby-plugin-image";
 
-import GroupImage from "../../images/LandingPage/OurPrograms/group_image.svg";
-import TwoPeopleImage from "../../images/LandingPage/OurPrograms/two_people_image.svg";
 import MountainsImage from "../../images/LandingPage/OurPrograms/mountains.svg";
 import Header from "../../shared/Header/Header";
 import Title from "../../shared/Title/Title";
@@ -28,9 +28,34 @@ const pageData = {
   },
 };
 
+const query = graphql`
+  {
+    groupImage: file(
+      relativePath: { eq: "LandingPage/OurPrograms/group.png" }
+    ) {
+      childImageSharp {
+        gatsbyImageData(quality: 100, placeholder: BLURRED)
+      }
+    }
+
+    twoPeopleImage: file(
+      relativePath: { eq: "LandingPage/OurPrograms/two_people.png" }
+    ) {
+      childImageSharp {
+        gatsbyImageData(quality: 100, placeholder: BLURRED)
+      }
+    }
+  }
+`;
+
 const OurPrograms = () => {
   const { sectionOne, sectionTwo } = pageData;
   const { width } = useWindowSize();
+
+  const data = useStaticQuery(query);
+  const groupImage = getImage(data.groupImage);
+  const twoPeopleImage = getImage(data.twoPeopleImage);
+
   return (
     <section className="our-programs__container container">
       <Box
@@ -44,9 +69,9 @@ const OurPrograms = () => {
           <Title title={sectionOne.title} />
           <Body body={sectionOne.body} />
         </Box>
-        <img
-          src={GroupImage}
-          alt="People group"
+        <GatsbyImage
+          image={groupImage}
+          alt="Group of people"
           className="our-programs__image our-programs__image-group"
         />
       </Box>
@@ -57,8 +82,8 @@ const OurPrograms = () => {
         flexDirection={width > 991 ? "row" : "column"}
         style={{ backgroundImage: `url(${MountainsImage})` }}
       >
-        <img
-          src={TwoPeopleImage}
+        <GatsbyImage
+          image={twoPeopleImage}
           alt="Two people"
           className="our-programs__image our-programs__image-two-people"
         />
@@ -76,9 +101,11 @@ const OurPrograms = () => {
               textAlign: width > 600 ? "left" : "center",
             }}
           />
-          <button type="button" className="our-programs__button">
-            View Our Programs
-          </button>
+          <Link to="/">
+            <button type="button" className="our-programs__button">
+              View Our Programs
+            </button>
+          </Link>
         </Box>
       </Box>
     </section>

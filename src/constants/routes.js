@@ -19,6 +19,10 @@ export const ROUTES = {
     name: "Apply",
     path: "/apply",
   },
+  OUT_IMPACT: {
+    name: "Our impact",
+    path: "/our-impact",
+  },
 };
 
 const { WHO_WE_ARE, OUR_WORK, JOIN_US, CONTACT_US, APPLY } = ROUTES;

@@ -14,9 +14,11 @@ function ClientSideRendering({ children, ...delegated }) {
     active: Home, // invoked when fonts are active
   };
 
-  import("webfontloader").then((WebFontLoader) => {
-    WebFontLoader.load(WebFontConfig);
-  });
+  if (typeof window !== "undefined") {
+    import("webfontloader").then((WebFontLoader) => {
+      WebFontLoader.load(WebFontConfig);
+    });
+  }
 
   React.useEffect(() => {
     setHasMounted(true);

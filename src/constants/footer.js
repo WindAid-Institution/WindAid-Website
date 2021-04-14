@@ -31,7 +31,7 @@ const LINKS = {
     links: [
       {
         name: "Our Impact",
-        path: "/",
+        path: "/our-impact",
         external: false,
       },
       {
@@ -85,33 +85,41 @@ const LINKS = {
 const { WHO_WE_ARE, OUR_WORK, JOIN_US, CONTACT_US } = LINKS;
 export const FOOTER_LINKS = [WHO_WE_ARE, OUR_WORK, JOIN_US, CONTACT_US];
 
+export const BASIC_SOCIAL_LINKS = [
+  {
+    name: "instagram",
+    accName: "@windaidinstitute",
+    icon: <FaInstagram />,
+    link: "https://www.instagram.com/windaidinstitute",
+  },
+  {
+    name: "Twitter",
+    accName: "@WindAid",
+    icon: <FaTwitter />,
+    link: "https://twitter.com/windaid?",
+  },
+  {
+    name: "Facebook",
+    accName: "@WindAidInstitute",
+    icon: <FaFacebookF />,
+    link: "https://www.facebook.com/WindAidInstitute",
+  },
+  {
+    name: "Linkedin",
+    accName: "WindAid Institute",
+    icon: <FaLinkedinIn />,
+    link: "https://www.linkedin.com/company/windaid/",
+  },
+];
+
 export const FOOTER_SOCIALS = {
   name: "Socials",
   links: [
-    {
-      name: "instagram",
-      icon: <FaInstagram />,
-      link: "",
-    },
-    {
-      name: "Twitter",
-      icon: <FaTwitter />,
-      link: "",
-    },
-    {
-      name: "Facebook",
-      icon: <FaFacebookF />,
-      link: "https://www.facebook.com/WindAidInstitute",
-    },
-    {
-      name: "Linkedin",
-      icon: <FaLinkedinIn />,
-      link: "",
-    },
+    ...BASIC_SOCIAL_LINKS,
     {
       name: "YouTube",
       icon: <FaYoutube />,
-      link: "",
+      link: "https://www.youtube.com/channel/UCsUgpazA2kMQ6DoHGq_5fuA",
     },
   ],
 };

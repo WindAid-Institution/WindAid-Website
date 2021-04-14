@@ -1,6 +1,6 @@
 /* This is default route - home page */
 
-import * as React from "react";
+import React from "react";
 
 import { MainLayout } from "../layout";
 import Home from "../components/Home";
