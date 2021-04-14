@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import "styles/Statistics/stats.css";
 import Title from "src/shared/Title/Title";
 import Body from "src/shared/Body/Body";
-import { useHomepageData } from "src/hooks/queries/homepage";
+import useHomepageData from "src/hooks/queries/homepage";
 
 import StatisticsItem from "./StatisticsItem";
 

@@ -116,12 +116,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CommunityCard = ({ title, subTitle, date, text, subText, img }) => {
+const CommunityCard = ({
+  name,
+  location,
+  date,
+  body,
+  additionalText,
+  image,
+}) => {
   const classes = useStyles();
   return (
     <Grid container className={classes.root}>
       <Grid container className={classes.imageContainer}>
-        <GatsbyImage image={img} alt={title} className={classes.image} />
+        <GatsbyImage
+          image={image.gatsbyImageData}
+          alt={name}
+          className={classes.image}
+        />
       </Grid>
 
       <Grid className={classes.contentContainer} container>
@@ -130,7 +141,7 @@ const CommunityCard = ({ title, subTitle, date, text, subText, img }) => {
           xs={12}
           className={clsx(classes.leftAlign, classes.boldFont, classes.title)}
         >
-          {title}
+          {name}
         </Grid>
         <Grid container>
           <Grid
@@ -140,7 +151,7 @@ const CommunityCard = ({ title, subTitle, date, text, subText, img }) => {
             md={3}
             className={(classes.leftAlign, classes.boldFont, classes.subTitle)}
           >
-            {subTitle}
+            {location}
           </Grid>
           <Grid
             item
@@ -158,14 +169,14 @@ const CommunityCard = ({ title, subTitle, date, text, subText, img }) => {
             xs={12}
             className={clsx(classes.leftAlign, classes.marginTop)}
           >
-            {text}
+            {body.text}
           </Grid>
           <Grid
             item
             xs={12}
             className={clsx(classes.rightAlign, classes.subText)}
           >
-            <i>{subText}</i>
+            <i>{additionalText}</i>
           </Grid>
         </Grid>
       </Grid>

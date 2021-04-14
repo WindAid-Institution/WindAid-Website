@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "styles/backgroundSeparator.css";
 
@@ -15,5 +16,15 @@ const BackgroundSeparator = ({ imageSrc, headingText, paragraphText }) => (
     </div>
   </div>
 );
+
+BackgroundSeparator.propTypes = {
+  imageSrc: PropTypes.string.isRequired,
+  headingText: PropTypes.string,
+  paragraphText: PropTypes.string,
+};
+BackgroundSeparator.defaultProps = {
+  headingText: "",
+  paragraphText: "",
+};
 
 export default BackgroundSeparator;

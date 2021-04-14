@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "gatsby";
-import { useHomepageData } from "src/hooks/queries/homepage";
+import useHomepageData from "src/hooks/queries/homepage";
 import { splitQueriedList } from "src/utils/utils";
 
 import { ROUTES } from "../../constants/routes";

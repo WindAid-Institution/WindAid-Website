@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Header from "src/shared/Header/Header";
 import Title from "src/shared/Title/Title";
@@ -6,12 +7,7 @@ import Body from "src/shared/Body/Body";
 
 import "styles/wideText.css";
 
-const WideText = ({
-  headerText,
-  titleText,
-  bodyText,
-  customClassName = "",
-}) => (
+const WideText = ({ headerText, titleText, bodyText, customClassName }) => (
   <div className={`wide-text__container container ${customClassName}`}>
     <div className="wide-text__text-style">
       <Header header={headerText} style={{ width: "240px" }} />
@@ -20,5 +16,15 @@ const WideText = ({
     </div>
   </div>
 );
+
+WideText.propTypes = {
+  headerText: PropTypes.string.isRequired,
+  titleText: PropTypes.string.isRequired,
+  bodyText: PropTypes.string.isRequired,
+  customClassName: PropTypes.string,
+};
+WideText.defaultProps = {
+  customClassName: "",
+};
 
 export default WideText;

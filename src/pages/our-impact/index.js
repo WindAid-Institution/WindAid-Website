@@ -1,6 +1,6 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { getImage, getSrc } from "gatsby-plugin-image";
+import { getSrc } from "gatsby-plugin-image";
 
 import MainLayout from "src/layout/MainLayout";
 import Hero from "components/Hero/Hero";
@@ -13,27 +13,36 @@ import JoinProgram from "components/OurImpact/JoinProgram";
 import PartnerWithUs from "components/OurImpact/PartnerWithUs";
 import SpreadTheWord from "components/OurImpact/SpreadTheWord";
 
-import OUR_IMPACT_DATA from "./data";
-
-const { PROBLEM, ELECTRICITY } = OUR_IMPACT_DATA;
-
-const OurImpact = ({ data: { heroImage, sunsetImage } }) => {
-  const heroImageData = getImage(heroImage);
+const OurImpact = ({
+  data: {
+    hero: { title, image },
+    separationElement: {
+      sunsetHeading,
+      body: { sunsetParagraph },
+      sunsetImage,
+    },
+    theProblem: {
+      problemHeader,
+      problemTitle,
+      body: { problemBody },
+    },
+  },
+}) => {
   const sunsetImageSrc = getSrc(sunsetImage);
   return (
     <MainLayout>
-      <Hero image={heroImageData} alt="hero image" title="Our Impact" />
+      <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
       <>
         <WideText
-          headerText={PROBLEM.HEADER}
-          titleText={PROBLEM.TITLE}
-          bodyText={PROBLEM.BODY}
+          headerText={problemHeader}
+          titleText={problemTitle}
+          bodyText={problemBody}
         />
         <WhoWereServing />
         <BackgroundSeparator
           imageSrc={sunsetImageSrc}
-          headingText={ELECTRICITY.HEADING}
-          paragraphText={ELECTRICITY.PARAGRAPH}
+          headingText={sunsetHeading}
+          paragraphText={sunsetParagraph}
         />
         <Community />
         <JoinProgram />
@@ -46,25 +55,38 @@ const OurImpact = ({ data: { heroImage, sunsetImage } }) => {
 
 export const query = graphql`
   {
-    heroImage: file(relativePath: { eq: "OurImpact/hero.png" }) {
-      childImageSharp {
+    hero: contentfulPageHero(contentId: { eq: "ourImpact" }) {
+      title
+      image {
         gatsbyImageData(
-          layout: FULL_WIDTH
-          placeholder: TRACED_SVG
           quality: 100
-          tracedSVGOptions: { color: "#056839" }
+          placeholder: TRACED_SVG
+          layout: FULL_WIDTH
         )
       }
     }
 
-    sunsetImage: file(relativePath: { eq: "OurImpact/sunset.png" }) {
-      childImageSharp {
+    separationElement: contentfulSeparationImage(
+      contentId: { eq: "ourImpact-electricity" }
+    ) {
+      sunsetHeading: title
+      body {
+        sunsetParagraph: body
+      }
+      sunsetImage: image {
         gatsbyImageData(
           quality: 100
           placeholder: TRACED_SVG
-          tracedSVGOptions: { color: "#056839" }
           layout: FULL_WIDTH
         )
+      }
+    }
+
+    theProblem: contentfulSection(contentId: { eq: "ourImpact-the-problem" }) {
+      problemHeader: header
+      problemTitle: title
+      body {
+        problemBody: body
       }
     }
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useHomepageData } from "src/hooks/queries/homepage";
+import useHomepageData from "src/hooks/queries/homepage";
 import Header from "src/shared/Header/Header";
 import Title from "src/shared/Title/Title";
 import Body from "src/shared/Body/Body";

@@ -4,7 +4,7 @@ import Header from "src/shared/Header/Header";
 import Title from "src/shared/Title/Title";
 import Body from "src/shared/Body/Body";
 import "styles/OurMission/OurMission.css";
-import { useHomepageData } from "src/hooks/queries/homepage";
+import useHomepageData from "src/hooks/queries/homepage";
 
 const OurApproach = () => {
   const {

@@ -2,7 +2,7 @@ import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Grid from "@material-ui/core/Grid";
 
-import { useHomepageData } from "src/hooks/queries/homepage";
+import useHomepageData from "src/hooks/queries/homepage";
 
 import "../../styles/banner.css";
 

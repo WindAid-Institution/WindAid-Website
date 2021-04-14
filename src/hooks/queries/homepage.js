@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby";
 
-export const useHomepageData = () => {
+const useHomepageData = () => {
   const data = useStaticQuery(graphql`
     {
       hero: contentfulPageHero(contentId: { eq: "homepage" }) {
@@ -114,3 +114,5 @@ export const useHomepageData = () => {
     ourCoreWork,
   };
 };
+
+export default useHomepageData;

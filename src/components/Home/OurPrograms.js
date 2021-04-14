@@ -4,7 +4,7 @@ import Box from "@material-ui/core/Box";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
-import { useHomepageData } from "src/hooks/queries/homepage";
+import useHomepageData from "src/hooks/queries/homepage";
 import MountainsImage from "images/LandingPage/OurPrograms/mountains.svg";
 import Header from "src/shared/Header/Header";
 import Title from "src/shared/Title/Title";
