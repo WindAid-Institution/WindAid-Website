@@ -22,7 +22,7 @@ const getBoxSize = (size) => {
       return "auto";
 
     default:
-      return "auto";
+      return size;
   }
 };
 

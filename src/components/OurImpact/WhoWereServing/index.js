@@ -1,12 +1,26 @@
 import React from "react";
+import Box from "@material-ui/core/Box";
+import { makeStyles } from "@material-ui/core/styles";
 
-import Header from "shared/Header";
-import Title from "shared/Title";
 import Body from "shared/Body";
+import SectionWrapper from "shared/SectionWrapper";
+import TextSection from "shared/TextSection";
 import useOurImpactData from "queries/ourImpact";
-import "styles/OurImpact/WhoWereServings.css";
 
 import ImagesWithText from "./ImagesWithText";
+
+const useStyles = makeStyles((theme) => ({
+  textContainer: {
+    paddingBottom: "24px",
+  },
+  bodyTwoContainer: {
+    display: "none",
+
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+    },
+  },
+}));
 
 const WhoWereServing = () => {
   const {
@@ -18,19 +32,24 @@ const WhoWereServing = () => {
     },
   } = useOurImpactData();
 
-  return (
-    <section className="who_were_serving">
-      <div className="who_were_serving__container container">
-        <Header header={header} style={{ width: "240px" }} />
-        <Title title={title} style={{ width: "calc(30.4vw + 219px)" }} />
-        <Body body={body} style={{ width: "calc(41.1vw + 160px" }} />
-        <div className="who_were_serving__body-second">
-          <Body body={bodyTwo} style={{ width: "calc(41.1vw + 160px" }} />
-        </div>
+  const classes = useStyles();
 
-        <ImagesWithText />
-      </div>
-    </section>
+  return (
+    <SectionWrapper bgColor="secondary">
+      <Box className={classes.textContainer}>
+        <TextSection
+          header={header}
+          title={title}
+          body={body}
+          bodyTwo={bodyTwo}
+          size="lg"
+        />
+      </Box>
+      <Box className={classes.bodyTwoContainer}>
+        <Body body={bodyTwo} size="lg" />
+      </Box>
+      <ImagesWithText />
+    </SectionWrapper>
   );
 };
 

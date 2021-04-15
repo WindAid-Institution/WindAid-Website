@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -7,7 +8,7 @@ import clsx from "clsx";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    background: "#FFF9F5",
+    background: theme.palette.secondary.dark,
     "-webkit-touch-callout": "none",
     "-webkit-user-select": "none",
     "-khtml-user-select": "none",
@@ -20,14 +21,16 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    background: "#056839",
+    background: theme.palette.primary.main,
     height: "236px",
     padding: "8px",
+
     [theme.breakpoints.up("md")]: {
       height: "340px",
       width: "33%",
       padding: "16px",
     },
+
     [theme.breakpoints.up("lg")]: {
       height: "308px",
     },
@@ -51,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
       height: "280px",
       width: "66%",
     },
+
     [theme.breakpoints.up("lg")]: {
       height: "308px",
     },
@@ -69,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "18px",
     lineHeight: "24px",
     paddingBottom: "6px",
+
     [theme.breakpoints.up("md")]: {
       fontSize: "24px",
       lineHeight: "36px",
@@ -78,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
   subTitle: {
     fontSize: "16px",
     lineHeight: "24px",
+
     [theme.breakpoints.up("md")]: {
       fontSize: "18px",
     },
@@ -86,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
   date: {
     fontSize: "16px",
     lineHeight: "24px",
+
     [theme.breakpoints.up("md")]: {
       fontSize: "18px",
     },
@@ -98,11 +105,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "right",
   },
   boldFont: {
-    fontWeight: 700,
+    fontWeight: theme.typography.fontWeightBold,
   },
 
   thinFont: {
-    fontWeight: 300,
+    fontWeight: theme.typography.fontWeightLight,
   },
 
   marginTop: {
@@ -112,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
   subText: {
     margin: "16px 6px 6px 0",
     alignSelf: "flex-end",
-    fontWeight: 300,
+    fontWeight: theme.typography.fontWeightLight,
   },
 }));
 
@@ -182,6 +189,21 @@ const CommunityCard = ({
       </Grid>
     </Grid>
   );
+};
+
+CommunityCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  body: PropTypes.shape({
+    text: PropTypes.string.isRequired,
+  }).isRequired,
+  additionalText: PropTypes.string,
+  image: PropTypes.object.isRequired,
+};
+
+CommunityCard.defaultProps = {
+  additionalText: "",
 };
 
 export default CommunityCard;

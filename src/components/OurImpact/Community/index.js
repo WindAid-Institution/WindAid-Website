@@ -1,9 +1,9 @@
 import React from "react";
 
+import SectionWrapper from "shared/SectionWrapper";
 import Title from "shared/Title";
 import useWindowSize from "hooks/useWindowSize";
 import useOurImpactData from "queries/ourImpact";
-import "styles/OurImpact/Community.css";
 
 import ComminutyCarousel from "./Carousel/ComminutyCarousel";
 
@@ -13,20 +13,25 @@ const Community = () => {
   } = useOurImpactData();
 
   const { width: windowWidth } = useWindowSize();
-  const isLgScreen = windowWidth >= 992;
+  const isMdScreen = windowWidth >= 992;
+
+  const textStyle = {
+    textAlign: isMdScreen ? "left" : "center",
+    marginBottom: "calc(2.96vw + 21.3px)",
+  };
+
+  console.log(isMdScreen);
   return (
-    <section className="community container">
+    <SectionWrapper style={{ sectionStyle: { paddingBottom: "110px" } }}>
       <Title
         title={title}
+        size={isMdScreen ? "lg" : "auto"}
         style={{
-          width: isLgScreen ? "calc(30.4vw + 219px)" : "auto",
-          textAlign: isLgScreen ? "left" : "center",
-          marginTop: "calc(2.96vw + 21.3px)",
-          marginBottom: "calc(2.96vw + 21.3px)",
+          textStyle,
         }}
       />
       <ComminutyCarousel />
-    </section>
+    </SectionWrapper>
   );
 };
 

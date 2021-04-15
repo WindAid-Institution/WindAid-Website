@@ -1,10 +1,13 @@
-import  React from "react";
+/* eslint-disable react/prop-types */
+import React from "react";
 import { graphql } from "gatsby";
 import { getSrc } from "gatsby-plugin-image";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 import MainLayout from "src/layout/MainLayout";
+
+import TheProblem from "components/OurImpact/TheProblem";
 import Hero from "components/Hero/Hero";
-import WideText from "components/WideText/WideText";
 import WhoWereServing from "components/OurImpact/WhoWereServing/index";
 // eslint-disable-next-line max-len
 import BackgroundSeparator from "components/BackgroundSeparator/BackgroundSeparator";
@@ -12,6 +15,8 @@ import Community from "components/OurImpact/Community/index";
 import JoinProgram from "components/OurImpact/JoinProgram";
 import PartnerWithUs from "components/OurImpact/PartnerWithUs";
 import SpreadTheWord from "components/OurImpact/SpreadTheWord";
+
+import theme from "../../../theme";
 
 const OurImpact = ({
   data: {
@@ -21,35 +26,28 @@ const OurImpact = ({
       body: { sunsetParagraph },
       sunsetImage,
     },
-    theProblem: {
-      problemHeader,
-      problemTitle,
-      body: { problemBody },
-    },
   },
 }) => {
   const sunsetImageSrc = getSrc(sunsetImage);
   return (
-    <MainLayout>
-      <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
-      <>
-        <WideText
-          headerText={problemHeader}
-          titleText={problemTitle}
-          bodyText={problemBody}
-        />
-        <WhoWereServing />
-        <BackgroundSeparator
-          imageSrc={sunsetImageSrc}
-          headingText={sunsetHeading}
-          paragraphText={sunsetParagraph}
-        />
-        <Community />
-        <JoinProgram />
-        <PartnerWithUs />
-        <SpreadTheWord />
-      </>
-    </MainLayout>
+    <ThemeProvider theme={theme}>
+      <MainLayout>
+        <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
+        <>
+          <TheProblem />
+          <WhoWereServing />
+          <BackgroundSeparator
+            imageSrc={sunsetImageSrc}
+            headingText={sunsetHeading}
+            paragraphText={sunsetParagraph}
+          />
+          <Community />
+          <JoinProgram />
+          <PartnerWithUs />
+          <SpreadTheWord />
+        </>
+      </MainLayout>
+    </ThemeProvider>
   );
 };
 
@@ -79,14 +77,6 @@ export const query = graphql`
           placeholder: TRACED_SVG
           layout: FULL_WIDTH
         )
-      }
-    }
-
-    theProblem: contentfulSection(contentId: { eq: "ourImpact-the-problem" }) {
-      problemHeader: header
-      problemTitle: title
-      body {
-        problemBody: body
       }
     }
   }

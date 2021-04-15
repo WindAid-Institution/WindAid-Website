@@ -13,15 +13,15 @@ const useStyles = makeStyles((theme) => {
       return theme.palette.secondary.dark;
     }
 
+    if (bgColor.includes("#")) {
+      return bgColor;
+    }
+
     return theme.palette.secondary.main;
   };
 
   return {
     root: ({ bgColor, sectionStyle }) => ({
-      color:
-        bgColor === "primary"
-          ? theme.palette.secondary.main
-          : theme.palette.primary.dark,
       backgroundColor: getBackgroundColor(bgColor),
       padding: "calc(2.96vw + 21.3px) 0",
       ...sectionStyle,
@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => {
 
 const SectionWrapper = ({ children, style, bgColor }) => {
   const { sectionStyle, containerStyle } = style || {};
-  console.log(sectionStyle);
   const classes = useStyles({ bgColor, sectionStyle });
 
   return (

@@ -1,11 +1,59 @@
 import React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
+
 import useOurImpactData from "queries/ourImpact";
-import Title from "shared/Title";
-import Body from "shared/Body";
-import "styles/OurImpact/JoinProgram.css";
-import "styles/OurPrograms/OurPrograms.css";
+import SectionWrapper from "shared/SectionWrapper";
+import TextSection from "shared/TextSection";
+import Button from "shared/Button";
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: "flex",
+    flexDirection: "column",
+
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row-reverse",
+      alignItems: "center",
+    },
+  },
+
+  contentContainer: {
+    [theme.breakpoints.up("md")]: {
+      paddingLeft: "62px",
+      alignItems: "center",
+    },
+  },
+
+  image: {
+    objectFit: "cover",
+    objectPosition: "center",
+    width: "100%",
+    height: "204px",
+    margin: "32px 0",
+    transition: "height 0.2s ease",
+
+    [theme.breakpoints.up("sm")]: {
+      height: "304px",
+    },
+
+    [theme.breakpoints.up("md")]: {
+      minWidth: "464px",
+      height: "368px",
+    },
+  },
+
+  link: {
+    display: "inline-block",
+    marginTop: "26px",
+
+    "&:hover": {
+      textDecoration: "none",
+    },
+  },
+}));
 
 const JoinProgram = () => {
   const {
@@ -16,30 +64,33 @@ const JoinProgram = () => {
     },
   } = useOurImpactData();
 
+  const classes = useStyles();
+
   return (
-    <section className="join-program ">
-      <div className="join-program__container container">
-        <div className="join-program__content">
-          <Title title={title} style={{ color: "#fff" }} />
-          <Body body={body} style={{ color: "#fff" }} />
-          <Link to="/">
-            <button
-              type="button"
-              // eslint-disable-next-line max-len
-              className="join-program__button our-programs__button our-programs__button--reverse"
-            >
-              View Our Programs
-            </button>
+    <SectionWrapper bgColor="primary">
+      <Box className={classes.container}>
+        <Box className={classes.contentContainer}>
+          <TextSection
+            title={title}
+            body={body}
+            size="auto"
+            style={{
+              bodyStyle: { textStyle: { color: "#fff" } },
+              titleStyle: { textStyle: { color: "#fff" } },
+            }}
+          />
+          <Link className={classes.link} to="/">
+            <Button text="View Our Programs" inverted />
           </Link>
-        </div>
+        </Box>
 
         <GatsbyImage
           image={image.gatsbyImageData}
           alt={image.description}
-          className="join-program__image our-programs__image"
+          className={classes.image}
         />
-      </div>
-    </section>
+      </Box>
+    </SectionWrapper>
   );
 };
 export default JoinProgram;

@@ -3,6 +3,16 @@ import { graphql, useStaticQuery } from "gatsby";
 const useOurImpactData = () => {
   const data = useStaticQuery(graphql`
     {
+      theProblem: contentfulSection(
+        contentId: { eq: "ourImpact-the-problem" }
+      ) {
+        header
+        title
+        body {
+          body
+        }
+      }
+
       whoWereServing: contentfulSection(
         contentId: { eq: "ourImpact-who-were-serving" }
       ) {
@@ -83,6 +93,7 @@ const useOurImpactData = () => {
   `);
 
   const {
+    theProblem,
     whoWereServing,
     community,
     communityCards: { communityCardsContent },
@@ -91,6 +102,7 @@ const useOurImpactData = () => {
     spreadTheWord,
   } = data;
   return {
+    theProblem,
     whoWereServing,
     community,
     communityCardsContent,

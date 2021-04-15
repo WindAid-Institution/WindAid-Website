@@ -1,8 +1,8 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import useOurImpactData from "src/hooks/queries/ourImpact";
 
+import useOurImpactData from "src/hooks/queries/ourImpact";
 import { CustomRightArrow, CustomLeftArrow } from "./CustomArrows";
 import CustomButtonGroup from "./CustomButtonGroup";
 import CommunityCard from "./CommunityCard";
