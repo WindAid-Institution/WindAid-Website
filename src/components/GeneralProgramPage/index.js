@@ -4,6 +4,7 @@ import Impact from "./Impact";
 import CommunitiesImageBanner from "./CommunitiesImageBanner";
 import ExperienceSection from "./ExperienceSection";
 import AdventureSection from "./AdventureSection";
+import VolunteerProgram from "./VolunteerProgram";
 
 export default function GeneralProgram() {
   return (
@@ -12,6 +13,7 @@ export default function GeneralProgram() {
       <Impact />
       <CommunitiesImageBanner />
       <ExperienceSection />
+      <VolunteerProgram />
       <AdventureSection />
     </>
   );
