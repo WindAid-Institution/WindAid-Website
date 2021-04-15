@@ -3,17 +3,27 @@
 import React from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-import theme from "../../theme";
+import { MainLayout } from "src/layout";
+import BigBanner from "components/Home/BigBanner";
+import OurMission from "components/Home/OurMission";
+import Stats from "components/Home/Statistics/Statistics";
+import OurApproach from "components/Home/OurApproach";
+import OurCoreWork from "components/Home/OurCoreWork";
+import OurPrograms from "components/Home/OurPrograms";
 
-import { MainLayout } from "../layout";
-import Home from "../components/Home";
+import theme from "../../theme";
 import "../styles/global.css";
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <MainLayout>
-        <Home />
+        <BigBanner />
+        <OurMission />
+        <Stats />
+        <OurApproach />
+        <OurCoreWork />
+        <OurPrograms />
       </MainLayout>
     </ThemeProvider>
   );

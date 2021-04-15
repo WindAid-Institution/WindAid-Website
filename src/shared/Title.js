@@ -15,6 +15,12 @@ const getBoxSize = (size) => {
     case "lg":
       return "calc(30.4vw + 219px)";
 
+    case "full":
+      return "100%";
+
+    case "auto":
+      return "auto";
+
     default:
       return "calc(18.1vw + 263px)";
   }
@@ -31,16 +37,19 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "30px",
     color: theme.palette.primary.main,
     fontWeight: theme.typography.fontWeightBold,
+    marginBottom: theme.spacing(1),
     ...textStyle,
 
     [theme.breakpoints.up("sm")]: {
       fontSize: "26px",
       lineHeight: "36px",
+      ...textStyle,
     },
 
     [theme.breakpoints.up("md")]: {
       fontSize: "28px",
       lineHeight: "40px",
+      ...textStyle,
     },
   }),
 }));
@@ -60,10 +69,11 @@ const Title = ({ title, style, size }) => {
 
 Title.propTypes = {
   title: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
+  size: PropTypes.string,
   style: PropTypes.object,
 };
 Title.defaultProps = {
+  size: "auto",
   style: {},
 };
 

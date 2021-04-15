@@ -42,7 +42,7 @@ const theme = createMuiTheme({
         width: "180px",
         textTransform: "none",
         fontWeight: 700,
-        fontSize: "16px",
+        fontSize: "13px",
         lineHeight: "13px",
         [breakpoints.up("sm")]: {
           width: "320px",
@@ -57,6 +57,7 @@ const theme = createMuiTheme({
         paddingLeft: "15px",
         marginRight: "auto",
         marginLeft: "auto",
+        transition: "max-width 0.2s ease",
         [breakpoints.up("sm")]: {
           maxWidth: "540px",
         },

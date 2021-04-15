@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -8,7 +9,7 @@ import { NAVBAR_ROUTES } from "src/constants/routes";
 const useStyles = makeStyles((theme) => ({
   navItem: {
     maxHeight: "80px",
-    fontWeight: "700",
+    fontWeight: theme.typography.fontWeightBold,
     fontSize: "16px",
     color: theme.palette.secondary.main,
     padding: "28px 32px 32px 32px",
@@ -19,8 +20,11 @@ const useStyles = makeStyles((theme) => ({
     },
 
     "&:hover": {
-      color: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
       textDecoration: "none",
+      [theme.breakpoints.up("lg")]: {
+        color: theme.palette.secondary.main,
+      },
     },
   },
 
@@ -52,6 +56,10 @@ const NavLinks = ({ isSidebar }) => {
       ))}
     </>
   );
+};
+
+NavLinks.propTypes = {
+  isSidebar: PropTypes.bool.isRequired,
 };
 
 export default NavLinks;

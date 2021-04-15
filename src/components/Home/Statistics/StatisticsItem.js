@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import { useCountUp } from "react-countup";
@@ -30,12 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function StatisticsItem({
-  title,
-  statsNumbers,
-  file,
-  isPlusSign,
-}) {
+const StatisticsItem = ({ title, statsNumbers, file, isPlusSign }) => {
   const classes = useStyles();
   const [isElementVisible, setIsElementVisible] = useState(false);
 
@@ -68,4 +64,19 @@ export default function StatisticsItem({
       </Box>
     </VisibilitySensor>
   );
-}
+};
+
+StatisticsItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  statsNumbers: PropTypes.string.isRequired,
+  file: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+  isPlusSign: PropTypes.bool,
+};
+
+StatisticsItem.defaultProps = {
+  isPlusSign: false,
+};
+
+export default StatisticsItem;

@@ -21,22 +21,25 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       fontSize: "16px",
       lineHeight: "24px",
+      ...textStyle,
     },
 
     [theme.breakpoints.up("md")]: {
       fontSize: "18px",
       lineHeight: "32px",
+      ...textStyle,
     },
   }),
 }));
 
 const Header = ({ header, style }) => {
   const { rootStyle, textStyle } = style || {};
+  console.log(textStyle);
   const classes = useStyles({ rootStyle, textStyle });
 
   return (
     <Box className={classes.root}>
-      <Typography variant="h2" className={classes.text} style={style}>
+      <Typography variant="h2" className={classes.text}>
         {header}
       </Typography>
     </Box>

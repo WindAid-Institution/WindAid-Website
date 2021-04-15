@@ -2,7 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
-import "styles/Statistics/stats.css";
+import SectionWrapper from "shared/SectionWrapper";
 import Title from "shared/Title";
 import Body from "shared/Body";
 import useHomepageData from "queries/homepage";
@@ -10,12 +10,17 @@ import useHomepageData from "queries/homepage";
 import StatisticsItem from "./StatisticsItem";
 
 const useStyles = makeStyles((theme) => ({
-  iconRow: {
-    width: "100%",
-  },
   mainWrapper: {
     maxWidth: "870px",
     padding: theme.spacing(2),
+  },
+
+  row: {
+    textAlign: "center",
+  },
+
+  iconRow: {
+    width: "100%",
   },
 }));
 
@@ -30,7 +35,10 @@ const Stats = () => {
 
   const classes = useStyles();
   return (
-    <div className="main-container">
+    <SectionWrapper
+      style={{ containerStyle: { display: "flex", justifyContent: "center" } }}
+      bgColor="secondary"
+    >
       <Grid
         container
         direction="column"
@@ -38,15 +46,11 @@ const Stats = () => {
         alignItems="center"
         className={classes.mainWrapper}
       >
-        <Grid item>
-          <div className="row-content">
-            <Title title={title} style={{ marginBottom: "0" }} />
-          </div>
+        <Grid item className={classes.row}>
+          <Title title={title} />
         </Grid>
-        <Grid item>
-          <div className="row-content">
-            <Body body={body} style={{ marginTop: "8px" }} />
-          </div>
+        <Grid item className={classes.row}>
+          <Body body={body} />
         </Grid>
         <Grid item className={classes.iconRow}>
           <Grid
@@ -63,7 +67,7 @@ const Stats = () => {
           </Grid>
         </Grid>
       </Grid>
-    </div>
+    </SectionWrapper>
   );
 };
 export default Stats;

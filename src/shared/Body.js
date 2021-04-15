@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 const getBoxSize = (size) => {
@@ -11,13 +10,19 @@ const getBoxSize = (size) => {
       return "calc(20vw + 219px)";
 
     case "md":
-      return "calc(30.4vw + 219px";
+      return "calc(30.4vw + 219px)";
 
     case "lg":
-      return "calc(41.1vw + 160px";
+      return "calc(41.1vw + 160px)";
+
+    case "full":
+      return "100%";
+
+    case "auto":
+      return "auto";
 
     default:
-      return "calc(30.4vw + 219px";
+      return "auto";
   }
 };
 
@@ -28,35 +33,40 @@ const useStyles = makeStyles((theme) => ({
   }),
 
   text: ({ textStyle }) => ({
-    fontSize: "14px",
-    lineHeight: "28px",
-    color: "#282828",
-    ...textStyle,
+    "& > p": {
+      fontFamily: "Open Sans",
+      fontSize: "14px",
+      lineHeight: "28px",
+      color: "#282828",
+      marginBottom: 0,
+      ...textStyle,
 
-    [theme.breakpoints.up("sm")]: {
-      fontSize: "16px",
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "16px",
+        ...textStyle,
+      },
     },
   }),
 }));
 
 const Body = ({ body, style, size }) => {
   const { rootStyle, textStyle } = style || {};
+
   const classes = useStyles({ size, rootStyle, textStyle });
   return (
     <Box className={classes.root}>
-      <Typography className={classes.text} style={style}>
-        <ReactMarkdown>{body}</ReactMarkdown>
-      </Typography>
+      <ReactMarkdown className={classes.text}>{body}</ReactMarkdown>
     </Box>
   );
 };
 
 Body.propTypes = {
   body: PropTypes.string.isRequired,
+  size: PropTypes.string,
   style: PropTypes.object,
-  size: PropTypes.string.isRequired,
 };
 Body.defaultProps = {
+  size: "auto",
   style: {},
 };
 

@@ -32,7 +32,7 @@ TextSection.propTypes = {
   title: PropTypes.string,
   body: PropTypes.string,
   bodyTwo: PropTypes.string,
-  size: PropTypes.string.isRequired,
+  size: PropTypes.string,
   style: PropTypes.object,
 };
 TextSection.defaultProps = {
@@ -40,5 +40,8 @@ TextSection.defaultProps = {
   title: "",
   body: "",
   bodyTwo: "",
+  size: "auto",
   style: {},
 };
+
+export default TextSection;

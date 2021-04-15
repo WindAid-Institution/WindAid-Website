@@ -57,6 +57,7 @@ const Hero = ({ image, alt, title }) => {
 };
 
 Hero.propTypes = {
+  image: PropTypes.object.isRequired,
   alt: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };

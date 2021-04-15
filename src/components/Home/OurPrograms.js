@@ -3,72 +3,156 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
 
 import useHomepageData from "queries/homepage";
 import MountainsImage from "images/LandingPage/OurPrograms/mountains.svg";
+import SectionWrapper from "shared/SectionWrapper";
+import TextSection from "shared/TextSection";
+import Button from "shared/Button";
 import Header from "shared/Header";
-import Title from "shared/Title";
 import Body from "shared/Body";
 import useWindowSize from "hooks/useWindowSize";
-import "styles/OurPrograms/OurPrograms.css";
+
+const useStyles = makeStyles((theme) => ({
+  section: {
+    flexDirection: "column",
+
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row",
+    },
+  },
+
+  sectionTwo: {
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "right bottom",
+    paddingBottom: "130px",
+    transition: "padding 0.2s ease",
+
+    [theme.breakpoints.up("sm")]: {
+      paddingBottom: "200px",
+    },
+
+    [theme.breakpoints.up("md")]: {
+      paddingBottom: "90px",
+      marginTop: "calc(2.96vw + 21.3px)",
+    },
+  },
+
+  image: {
+    objectFit: "cover",
+    objectPosition: "center",
+    width: "100%",
+    height: "204px",
+    margin: "16px 0",
+    transition: "height 0.2s ease",
+
+    [theme.breakpoints.up("sm")]: {
+      height: "304px",
+    },
+
+    [theme.breakpoints.up("md")]: {
+      margin: 0,
+    },
+  },
+
+  groupImage: {
+    [theme.breakpoints.up("md")]: {
+      marginLeft: "26px !important",
+      minWidth: "472px",
+    },
+
+    [theme.breakpoints.up("lg")]: {
+      height: "352px",
+      minWidth: "547px",
+    },
+  },
+
+  twoPeopleImage: {
+    [theme.breakpoints.up("md")]: {
+      marginRight: "26px !important",
+      minWidth: "390px",
+    },
+
+    [theme.breakpoints.up("lg")]: {
+      height: "315px",
+      minWidth: "406px",
+    },
+  },
+
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "center",
+
+    [theme.breakpoints.up("sm")]: {
+      justifyContent: "flex-start",
+    },
+  },
+}));
 
 const OurPrograms = () => {
+  const classes = useStyles();
   const { ourProgramsOne, ourProgramsTwo } = useHomepageData();
   const { width } = useWindowSize();
 
   return (
-    <section className="our-programs__container container">
+    <SectionWrapper style={{ sectionStyle: { paddingBottom: 0 } }}>
       <Box
         display="flex"
         alignItems="center"
         flexDirection={width > 991 ? "row" : "column"}
-        className="our-programs__section-one"
+        className={classes.section}
       >
-        <Box>
-          <Header header={ourProgramsOne.header} style={{ width: "126px" }} />
-          <Title title={ourProgramsOne.title} />
-          <Body body={ourProgramsOne.body.body} />
-        </Box>
+        <TextSection
+          header={ourProgramsOne.header}
+          title={ourProgramsOne.title}
+          body={ourProgramsOne.body.body}
+        />
         <GatsbyImage
           image={ourProgramsOne.image.gatsbyImageData}
           alt={ourProgramsOne.image.description}
-          className="our-programs__image our-programs__image-group"
+          className={clsx(classes.image, classes.groupImage)}
         />
       </Box>
       <Box
         display="flex"
         alignItems="center"
-        className="our-programs__section-two"
+        className={clsx(classes.section, classes.sectionTwo)}
         flexDirection={width > 991 ? "row" : "column"}
         style={{ backgroundImage: `url(${MountainsImage})` }}
       >
         <GatsbyImage
           image={ourProgramsTwo.image.gatsbyImageData}
           alt={ourProgramsTwo.image.description}
-          className="our-programs__image our-programs__image-two-people"
+          className={clsx(classes.image, classes.twoPeopleImage)}
         />
         <Box
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
+          // alignItems="center"
         >
           <Body body={ourProgramsTwo.body.body} />
           <Body body={ourProgramsTwo.bodyTwo.bodyTwo} />
           <Header
             header={ourProgramsTwo.header}
             style={{
-              fontSize: width > 600 ? "24px" : "18px",
-              textAlign: width > 600 ? "left" : "center",
+              textStyle: {
+                fontSize: width > 600 ? "24px" : "18px",
+                textAlign: width > 600 ? "left" : "center",
+                margin: "24px 0 !important",
+              },
             }}
           />
-          <Link to="/">
-            <button type="button" className="our-programs__button">
-              View Our Programs
-            </button>
-          </Link>
+          <Box className={classes.buttonContainer}>
+            <Link to="/">
+              <Button text="View Our Programs" />
+            </Link>
+          </Box>
         </Box>
       </Box>
-    </section>
+    </SectionWrapper>
   );
 };
 

@@ -1,23 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button as MuiButton } from "@material-ui/core/Button";
+// eslint-disable-next-line import/no-named-default
+import { default as MuiButton } from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: (inverted) => ({
-    color: inverted ? theme.palette.primary : theme.palette.secondary,
-    backgroundColor: inverted ? theme.palette.secondary : theme.palette.primary,
+    color: inverted ? theme.palette.primary.main : theme.palette.secondary.main,
+    backgroundColor: inverted
+      ? theme.palette.secondary.main
+      : theme.palette.primary.main,
+    textDecoration: "none",
+
+    "&:hover": {
+      backgroundColor: inverted
+        ? theme.palette.secondary.main
+        : theme.palette.primary.main,
+    },
   }),
 }));
 
 const Button = ({ text, inverted }) => {
   const classes = useStyles(inverted);
 
-  return (
-    <MuiButton fullWidth className={classes.root}>
-      {text}
-    </MuiButton>
-  );
+  return <MuiButton className={classes.root}>{text}</MuiButton>;
 };
 
 Button.propTypes = {
