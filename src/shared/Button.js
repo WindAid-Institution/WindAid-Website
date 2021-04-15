@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Button as MuiButton } from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -9,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 }));
 
-const Button = ({ inverted, text }) => {
+const Button = ({ text, inverted }) => {
   const classes = useStyles(inverted);
 
   return (
@@ -17,6 +18,14 @@ const Button = ({ inverted, text }) => {
       {text}
     </MuiButton>
   );
+};
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+  inverted: PropTypes.bool,
+};
+Button.defaultProps = {
+  inverted: false,
 };
 
 export default Button;

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import useOurImpactData from "src/hooks/queries/ourImpact";
-import Title from "src/shared/Title/Title";
-import Body from "src/shared/Body/Body";
+import useOurImpactData from "queries/ourImpact";
+import Title from "shared/Title";
+import Body from "shared/Body";
 import "styles/OurImpact/JoinProgram.css";
 import "styles/OurPrograms/OurPrograms.css";
 

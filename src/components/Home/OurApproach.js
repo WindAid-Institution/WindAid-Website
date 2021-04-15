@@ -1,10 +1,10 @@
 import React from "react";
 
-import Header from "src/shared/Header/Header";
-import Title from "src/shared/Title/Title";
-import Body from "src/shared/Body/Body";
+import Header from "shared/Header";
+import Title from "shared/Title";
+import Body from "shared/Body";
 import "styles/OurMission/OurMission.css";
-import useHomepageData from "src/hooks/queries/homepage";
+import useHomepageData from "queries/homepage";
 
 const OurApproach = () => {
   const {

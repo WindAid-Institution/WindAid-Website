@@ -1,8 +1,8 @@
 import React from "react";
-import useHomepageData from "src/hooks/queries/homepage";
-import Header from "src/shared/Header/Header";
-import Title from "src/shared/Title/Title";
-import Body from "src/shared/Body/Body";
+import useHomepageData from "hooks/queries/homepage";
+import Header from "shared/Header";
+import Title from "shared/Title";
+import Body from "shared/Body";
 import MissionImages from "./MissionImages";
 import "../../styles/OurMission/OurMission.css";
 

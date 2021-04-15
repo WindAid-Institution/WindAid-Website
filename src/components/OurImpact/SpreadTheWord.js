@@ -1,8 +1,8 @@
 import React from "react";
-import useOurImpactData from "src/hooks/queries/ourImpact";
+import useOurImpactData from "queries/ourImpact";
 import { BASIC_SOCIAL_LINKS } from "src/constants/footer";
-import Title from "src/shared/Title/Title";
-import Body from "src/shared/Body/Body";
+import Title from "shared/Title";
+import Body from "shared/Body";
 
 import "styles/OurImpact/SpreadTheWord.css";
 

@@ -1,8 +1,8 @@
 import React from "react";
 
-import Title from "src/shared/Title/Title";
-import useWindowSize from "src/hooks/useWindowSize";
-import useOurImpactData from "src/hooks/queries/ourImpact";
+import Title from "shared/Title";
+import useWindowSize from "hooks/useWindowSize";
+import useOurImpactData from "queries/ourImpact";
 import "styles/OurImpact/Community.css";
 
 import ComminutyCarousel from "./Carousel/ComminutyCarousel";

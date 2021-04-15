@@ -1,12 +1,14 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
   bar: {
     display: "flex",
     justifyContent: "center",
-    background: "#056839",
-    color: "#fff",
+    background: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
     padding: "16px",
 
     "& p": {
@@ -23,13 +25,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   privacyText: {
-    background: "#056839",
-    color: "#fff",
+    background: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
     display: "flex",
     maxWidth: "1110px",
     width: "100%",
     [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
+    },
+
+    "& > p": {
+      color: theme.palette.secondary.main,
     },
   },
 }));
@@ -38,13 +44,13 @@ const BottomFooter = () => {
   const classes = useStyles();
   const year = new Date().getFullYear();
   return (
-    <div className={classes.bar}>
-      <div className={classes.privacyText}>
-        <p> {`© ${year} WindAid Institute Registered NGO`}</p>
-        <p> | Privacy Statement Terms and Conditions </p>
-        <p> | All rights reserved</p>
-      </div>
-    </div>
+    <Box className={classes.bar}>
+      <Box className={classes.privacyText}>
+        <Typography> {`© ${year} WindAid Institute Registered NGO`}</Typography>
+        <Typography> | Privacy Statement Terms and Conditions </Typography>
+        <Typography> | All rights reserved</Typography>
+      </Box>
+    </Box>
   );
 };
 

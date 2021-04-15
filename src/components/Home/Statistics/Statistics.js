@@ -3,9 +3,9 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
 import "styles/Statistics/stats.css";
-import Title from "src/shared/Title/Title";
-import Body from "src/shared/Body/Body";
-import useHomepageData from "src/hooks/queries/homepage";
+import Title from "shared/Title";
+import Body from "shared/Body";
+import useHomepageData from "queries/homepage";
 
 import StatisticsItem from "./StatisticsItem";
 

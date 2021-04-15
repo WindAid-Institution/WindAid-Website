@@ -1,7 +1,10 @@
 import { List, ListItem, ListItemText } from "@material-ui/core";
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { FOOTER_SOCIALS, FOOTER_LINKS } from "../../constants/footer";
 
@@ -74,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ExternalLink = (props) => <a href={props.to}>{props.children}</a>;
+const ExternalLink = ({ to, children }) => <a href={to}>{children}</a>;
 
 const TopFooter = () => {
   const classes = useStyles();
@@ -90,10 +93,13 @@ const TopFooter = () => {
           md={2}
           className={classes.spacingBottom}
         >
-          <div>
-            <h5 className={`${classes.linksHeader} ${classes.footerText}`}>
+          <Box>
+            <Typography
+              variant="h5"
+              className={`${classes.linksHeader} ${classes.footerText}`}
+            >
               {item.name}
-            </h5>
+            </Typography>
             <List className={classes.padding}>
               {item.links.map((link) => {
                 const LinkComponent = link?.external ? ExternalLink : Link;
@@ -110,14 +116,17 @@ const TopFooter = () => {
                 );
               })}
             </List>
-          </div>
+          </Box>
         </Grid>
       ))}
       <Grid item xs={6} sm={4} md={4}>
-        <h5 className={`${classes.linksHeader} ${classes.footerText}`}>
+        <Typography
+          variant="h5"
+          className={`${classes.linksHeader} ${classes.footerText}`}
+        >
           {FOOTER_SOCIALS.name}
-        </h5>
-        <div className={classes.socials}>
+        </Typography>
+        <Box className={classes.socials}>
           {FOOTER_SOCIALS.links.map((item) => (
             <a
               key={item.name}
@@ -128,10 +137,15 @@ const TopFooter = () => {
               {item.icon}
             </a>
           ))}
-        </div>
+        </Box>
       </Grid>
     </Grid>
   );
+};
+
+ExternalLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
 };
 
 export default TopFooter;

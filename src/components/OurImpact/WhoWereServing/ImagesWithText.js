@@ -2,8 +2,8 @@ import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import useOurImpactData from "src/hooks/queries/ourImpact";
-import Body from "src/shared/Body/Body";
+import useOurImpactData from "queries/ourImpact";
+import Body from "shared/Body";
 
 const useStyles = makeStyles((theme) => ({
   item: {

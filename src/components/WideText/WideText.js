@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Header from "src/shared/Header/Header";
-import Title from "src/shared/Title/Title";
-import Body from "src/shared/Body/Body";
+import Header from "shared/Header";
+import Title from "shared/Title";
+import Body from "shared/Body";
 
 import "styles/wideText.css";
 

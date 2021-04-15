@@ -4,12 +4,12 @@ import Box from "@material-ui/core/Box";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
-import useHomepageData from "src/hooks/queries/homepage";
+import useHomepageData from "queries/homepage";
 import MountainsImage from "images/LandingPage/OurPrograms/mountains.svg";
-import Header from "src/shared/Header/Header";
-import Title from "src/shared/Title/Title";
-import Body from "src/shared/Body/Body";
-import useWindowSize from "src/hooks/useWindowSize";
+import Header from "shared/Header";
+import Title from "shared/Title";
+import Body from "shared/Body";
+import useWindowSize from "hooks/useWindowSize";
 import "styles/OurPrograms/OurPrograms.css";
 
 const OurPrograms = () => {

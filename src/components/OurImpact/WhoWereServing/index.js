@@ -1,9 +1,9 @@
 import React from "react";
 
-import Header from "src/shared/Header/Header";
-import Title from "src/shared/Title/Title";
-import Body from "src/shared/Body/Body";
-import useOurImpactData from "src/hooks/queries/ourImpact";
+import Header from "shared/Header";
+import Title from "shared/Title";
+import Body from "shared/Body";
+import useOurImpactData from "queries/ourImpact";
 import "styles/OurImpact/WhoWereServings.css";
 
 import ImagesWithText from "./ImagesWithText";
