@@ -7,13 +7,14 @@ import Box from "@material-ui/core/Box";
 import Body from "../../shared/Body/Body";
 
 const sectionData = {
-  body: `This program also offers a focus on education by 
+  body1: `This program also offers a focus on education by 
     helping Peruvian communities understand the benefits of 
     renewable energy. You will have the opportunity to contribute 
     to our educational impact by demonstrating the importance and use of clean, 
-    sustainable energy sources. Finally, we are sure you will come to see 
-    participation in the program as an inspiration for the potential and 
-    power of renewable energies on both a local and global scale. `,
+    sustainable energy sources. `,
+  body2: `Finally, we are sure you will come to see 
+  participation in the program as an inspiration for the potential and 
+  power of renewable energies on both a local and global scale. `,
 };
 
 const query = graphql`
@@ -36,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
   },
   body: {
     height: "auto",
-    padding: "calc(6vw + 32px) 0",
+    paddingTop: "calc(6vw + 32px)",
+    paddingBottom: "calc(6vw + 32px)",
 
     "& .body-text": {
       color: "#fff",
@@ -56,7 +58,10 @@ const CommunitiesImageBanner = () => {
   return (
     <Box component="section" flex position="relative" className={classes.box}>
       <GatsbyImage image={background} alt="" className={classes.background} />
-      <Body body={sectionData.body} className={`container ${classes.body}`} />
+      <div className={`container ${classes.body}`}>
+        <Body body={sectionData.body1} />
+        <Body body={sectionData.body2} />
+      </div>
     </Box>
   );
 };

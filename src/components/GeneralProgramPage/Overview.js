@@ -11,14 +11,15 @@ import Body from "../../shared/Body/Body";
 const sectionData = {
   section: {
     header: "Overview",
-    title:
-      "Our programs are designed to accomplish our goal of providing clean energy to many Peruvian communitites most in need.",
-    body: `We are always looking for people to join us in this mission who share our 
-      passion and enthsuiasm for renewable energy and come together with people 
-      all over the world in making a difference. Our programs allow families 
-      and communities to access not only a clean source of energy but a 
-      quality of life that will see them able to live, study and socialise 
-      in a way that is befitting of the modern world.`,
+    title: `Our programs are designed to accomplish our goal of providing 
+      clean energy to many Peruvian communitites most in need.`,
+    body1: `We are always looking for people to join us in this mission 
+    who share our passion and enthsuiasm for renewable energy and come together 
+    with people all over the world in making a difference.`,
+    body2: `Our programs allow families 
+    and communities to access not only a clean source of energy but a 
+    quality of life that will see them able to live, study and socialise 
+    in a way that is befitting of the modern world.`,
   },
 };
 
@@ -31,6 +32,11 @@ const query = graphql`
     }
 
     group2: file(relativePath: { eq: "GeneralProgram/Overview/group2.png" }) {
+      childImageSharp {
+        gatsbyImageData(quality: 100, placeholder: BLURRED)
+      }
+    }
+    group3: file(relativePath: { eq: "GeneralProgram/Overview/group3.png" }) {
       childImageSharp {
         gatsbyImageData(quality: 100, placeholder: BLURRED)
       }
@@ -75,9 +81,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   img: {
-    height: "calc(5vw + 200px)",
     marginTop: theme.spacing(2),
-    display: "flex",
+    width: "100%",
+    "& div": {
+      width: "100%",
+    },
   },
   header: {
     width: "108px",
@@ -107,6 +115,7 @@ const Overview = () => {
   const data = useStaticQuery(query);
   const group1 = getImage(data.group1);
   const group2 = getImage(data.group2);
+  const group3 = getImage(data.group3);
   const classes = useStyles();
 
   return (
@@ -126,7 +135,11 @@ const Overview = () => {
           className={`${classes.title}`}
         />
         <Body
-          body={sectionData.section.body}
+          body={sectionData.section.body1}
+          className={`${classes.articleBody}`}
+        />
+        <Body
+          body={sectionData.section.body2}
           className={`${classes.articleBody}`}
         />
       </Grid>
@@ -147,7 +160,7 @@ const Overview = () => {
         sm={12}
         className={`${classes.spacingLeft} ${classes.img}`}
       >
-        <GatsbyImage image={group2} alt="" />
+        <GatsbyImage image={group3} alt="" />
       </Grid>
     </Grid>
   );

@@ -11,14 +11,14 @@ import Title from "../../shared/Title/Title";
 const sectionData = {
   title:
     "Creating memorable experiences and incredibly strong bonds between each other, the communities and Peru! ",
-  body: `Working with WindAid Institute provides an ideal opportunity 
+  body1: `Working with WindAid Institute provides an ideal opportunity 
       for you to gain experience working on sustainable projects, 
       helping encourage conservation and educating people on the 
-      benefits of appropriate and renewable technologies. 
-      You will be interacting and working with a Peruvian team in 
+      benefits of appropriate and renewable technologies.`,
+  body2: `You will be interacting and working with a Peruvian team in 
       the city of Trujillo by building a wind turbine from scratch 
-      (previous engineering experience is not a requirement to participate 
-        in this program).`,
+      previous engineering experience is not a requirement to participate 
+      in this program).`,
 };
 
 const query = graphql`
@@ -58,13 +58,17 @@ const useStyles = makeStyles((theme) => ({
   articleBody: {
     width: "100%",
     maxWidth: "100%",
-    paddingBottom: "32px",
+    paddingBottom: "8px",
     [theme.breakpoints.up("sm")]: {
       width: "90%",
     },
     [theme.breakpoints.up("md")]: {
       width: "calc(28vw + 400px)",
     },
+  },
+  img: {
+    minHeight: "230px",
+    width: "100%",
   },
 }));
 
@@ -77,13 +81,14 @@ const ExperienceSection = () => {
   return (
     <Box component="section" className={`${classes.wrapper} container`}>
       <Title title={sectionData.title} className={classes.title} />
-      <Body body={sectionData.body} className={classes.articleBody} />
+      <Body body={sectionData.body1} className={classes.articleBody} />
+      <Body body={sectionData.body2} className={classes.articleBody} />
       <Grid container spacing={2}>
-        <Grid item md={6} xs={12}>
-          <GatsbyImage image={firstImg} alt="" width="100%" />
+        <Grid item md={6} sm={6} xs={12}>
+          <GatsbyImage image={firstImg} alt="" className={classes.img} />
         </Grid>
-        <Grid item md={6} xs={12}>
-          <GatsbyImage image={secImg} alt="" width="100%" />
+        <Grid item md={6} sm={6} xs={12}>
+          <GatsbyImage image={secImg} alt="" className={classes.img} />
         </Grid>
       </Grid>
     </Box>
