@@ -1,8 +1,9 @@
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { graphql, useStaticQuery } from "gatsby";
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Body from "../../shared/Body/Body";
 import Title from "../../shared/Title/Title";
 import Button from "../../shared/Button/Button";
@@ -33,39 +34,20 @@ const query = graphql`
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     height: "auto",
-    padding: "16px 0",
+    paddingTop: theme.spacing(3),
     [theme.breakpoints.only("xs")]: {
       background: "#FFF9F5",
     },
-    [theme.breakpoints.only("s")]: {},
-    [theme.breakpoints.up("md")]: {
-      margin: "calc(4vw + 24px) auto",
-      zIndex: 2,
-    },
   },
   spacing: {
-    marginTop: "32px",
-    marginBottom: "32px",
+    [theme.breakpoints.up("sm")]: {
+      marginTop: "32px",
+      marginBottom: "32px",
+    },
   },
   content: {
+    height: "auto",
     zIndex: 2,
-  },
-  backgroundGreen: {
-    background: "#056839",
-  },
-  greenBackgroundS: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "flex",
-      position: "absolute",
-      height: "100%",
-      width: "100%",
-      background: "#056839",
-    },
-
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    },
   },
   gridLayout: {
     display: "grid",
@@ -76,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     "img"
     "body"`,
     [theme.breakpoints.up("sm")]: {
+      marginTop: theme.spacing(2),
       gridColumn: 1,
       gridTemplateAreas: `
     "title"
@@ -93,15 +76,22 @@ const useStyles = makeStyles((theme) => ({
   },
   gridAreaImg: {
     gridArea: "img",
-    margin: "auto 0",
+    [theme.breakpoints.only("sm")]: {
+      background: "#056839",
+    },
   },
   gridAreaTitle: {
     gridArea: "title",
-    margin: "auto 0",
     position: "relative",
   },
   gridAreaBody: {
     gridArea: "body",
+    paddingBottom: theme.spacing(3),
+  },
+  img: {
+    [theme.breakpoints.only("sm")]: {
+      width: "100%",
+    },
   },
 }));
 
@@ -109,23 +99,32 @@ const ShortTimeVolunteer = () => {
   const classes = useStyles();
   const data = useStaticQuery(query);
   const teamPhoto = getImage(data.teamPhoto);
+  const theme = useTheme();
+  const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <div
       container
       spacing={2}
-      className={`container ${classes.wrapper} ${classes.gridLayout}`}
+      className={`${isUpMd && "container"} ${classes.wrapper} ${
+        classes.gridLayout
+      }`}
     >
-      <div className={`${classes.content} ${classes.gridAreaTitle}`}>
-        <Title title={sectionData.title} className={classes.contrast} />
+      <div className={`container ${classes.content} ${classes.gridAreaTitle}`}>
+        <Title title={sectionData.title} />
       </div>
-      <div
-        className={`${classes.content} ${classes.gridAreaBody} ${classes.buttonContrast} ${classes.spacing}`}
-      >
-        <Body body={sectionData.body} className={classes.contrast} />
+      <div className={`container ${classes.content} ${classes.gridAreaBody}`}>
+        <Body body={sectionData.body} />
         <Button>{sectionData.buttonText}</Button>
       </div>
       <div className={classes.gridAreaImg}>
-        <GatsbyImage image={teamPhoto} alt="" className={classes.spacing} />
+        <div className={`container ${classes.content}`}>
+          <GatsbyImage
+            image={teamPhoto}
+            alt=""
+            className={`${classes.spacing} ${classes.img}`}
+          />
+        </div>
       </div>
     </div>
   );
