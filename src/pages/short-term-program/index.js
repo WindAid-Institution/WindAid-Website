@@ -18,7 +18,7 @@ import BackgroundSeparator from "components/BackgroundSeparator/BackgroundSepara
 
 import theme from "../../../theme";
 
-const OurImpact = ({
+const ShortTermProgram = ({
   data: {
     hero: { title, image },
     separationElement: { workshopImage },
@@ -70,4 +70,4 @@ export const query = graphql`
   }
 `;
 
-export default OurImpact;
+export default ShortTermProgram;

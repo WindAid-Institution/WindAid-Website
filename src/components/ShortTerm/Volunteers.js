@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
-import Button from "shared/Button";
+import ApplyButton from "components/ApplyButton";
 
 import useShortTermData from "queries/shortTerm";
 
@@ -29,16 +29,11 @@ const Volunteers = () => {
 
   const classes = useStyles();
 
-  const currentYear = new Date().getFullYear();
-
   return (
     <SectionWrapper style={{ sectionStyle: { paddingTop: "0" } }}>
       <TextSection subHeader={header} body={body} size="md" />
       <Box className={classes.buttonContainer}>
-        <Button
-          text={`Apply now for the ${currentYear} programs`}
-          style={{ marginTop: "32px" }}
-        />
+        <ApplyButton />
       </Box>
     </SectionWrapper>
   );

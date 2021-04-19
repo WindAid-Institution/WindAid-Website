@@ -10,7 +10,7 @@ import { FOOTER_SOCIALS, FOOTER_LINKS } from "../../constants/footer";
 
 const useStyles = makeStyles((theme) => ({
   footerText: {
-    fontFamily: "Open Sans",
+    fontFamily: theme.typography.fontFamily,
     fontStyle: "normal",
   },
   linksHeader: {

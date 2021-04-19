@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
       margin: 0,
       marginLeft: "4px",
 
-      fontFamily: "Open Sans",
+      fontFamily: theme.typography.fontFamily,
       fontSize: "14px",
       lineHeight: "16px",
 
