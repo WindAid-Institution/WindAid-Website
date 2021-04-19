@@ -5,6 +5,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
+import clsx from "clsx";
+
+const container = {
+  width: "100%",
+  height: "100%",
+  display: "flex",
+};
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,11 +35,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  container,
+
   filter: {
-    width: "100%",
-    height: "100%",
+    ...container,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    display: "flex",
   },
 
   textContainer: {
@@ -89,14 +96,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const BackgroundSeparator = ({ imageSrc, headingText, paragraphText }) => {
+const BackgroundSeparator = ({
+  imageSrc,
+  headingText,
+  paragraphText,
+  isFilter,
+}) => {
   const classes = useStyles();
   return (
     <Box
       style={{ backgroundImage: `url(${imageSrc})` }}
       className={classes.root}
     >
-      <Box className={classes.filter}>
+      <Box className={clsx(isFilter ? classes.filter : classes.container)}>
         <Container className={classes.textContainer}>
           <Typography variant="h3" className={classes.header}>
             {headingText}
@@ -112,10 +124,12 @@ BackgroundSeparator.propTypes = {
   imageSrc: PropTypes.string.isRequired,
   headingText: PropTypes.string,
   paragraphText: PropTypes.string,
+  isFilter: PropTypes.bool,
 };
 BackgroundSeparator.defaultProps = {
   headingText: "",
   paragraphText: "",
+  isFilter: true,
 };
 
 export default BackgroundSeparator;

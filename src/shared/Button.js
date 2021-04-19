@@ -5,12 +5,13 @@ import { default as MuiButton } from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  root: (inverted) => ({
+  root: ({ inverted, style }) => ({
     color: inverted ? theme.palette.primary.main : theme.palette.secondary.main,
     backgroundColor: inverted
       ? theme.palette.secondary.main
       : theme.palette.primary.main,
     textDecoration: "none",
+    ...style,
 
     "&:hover": {
       backgroundColor: inverted
@@ -20,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
   }),
 }));
 
-const Button = ({ text, inverted }) => {
-  const classes = useStyles(inverted);
+const Button = ({ text, inverted, style }) => {
+  const classes = useStyles({ inverted, style });
 
   return <MuiButton className={classes.root}>{text}</MuiButton>;
 };
@@ -29,9 +30,11 @@ const Button = ({ text, inverted }) => {
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   inverted: PropTypes.bool,
+  style: PropTypes.object,
 };
 Button.defaultProps = {
   inverted: false,
+  style: {},
 };
 
 export default Button;

@@ -8,14 +8,18 @@ import clsx from "clsx";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    background: theme.palette.secondary.dark,
+
     "-webkit-touch-callout": "none",
     "-webkit-user-select": "none",
     "-khtml-user-select": "none",
     "-moz-user-select": "none",
     "-ms-user-select": "none",
     "user-select": "none",
-    cursor: "pointer",
+
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+      alignItems: "center",
+    },
   },
   imageContainer: {
     width: "100%",
@@ -42,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   contentContainer: {
+    background: theme.palette.secondary.dark,
     width: "100%",
     padding: "16px",
     position: "relative",
@@ -49,14 +54,18 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: "normal",
     fontFamily: "Open Sans",
     transition: "height 0.2s ease",
+    marginTop: theme.spacing(2),
 
     [theme.breakpoints.up("md")]: {
-      height: "280px",
-      width: "66%",
+      minHeight: "340px",
+      width: "60%",
+      marginTop: 0,
+      marginLeft: theme.spacing(2),
+      overflow: "auto",
     },
 
     [theme.breakpoints.up("lg")]: {
-      height: "308px",
+      minHeight: "308px",
     },
   },
 
@@ -92,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
   date: {
     fontSize: "16px",
     lineHeight: "24px",
-
+    paddingLeft: theme.spacing(3),
     [theme.breakpoints.up("md")]: {
       fontSize: "18px",
     },
@@ -153,21 +162,11 @@ const CommunityCard = ({
         <Grid container>
           <Grid
             item
-            xs={6}
-            sm={4}
-            md={3}
+            xs={12}
             className={(classes.leftAlign, classes.boldFont, classes.subTitle)}
           >
-            {location}
-          </Grid>
-          <Grid
-            item
-            xs={6}
-            sm={8}
-            md={9}
-            className={clsx(classes.leftAlign, classes.date)}
-          >
-            {date}
+            <span className={classes.boldFont}>{location}</span>
+            <span className={classes.date}>{date}</span>
           </Grid>
         </Grid>
         <Grid item container className={classes.textContainer}>

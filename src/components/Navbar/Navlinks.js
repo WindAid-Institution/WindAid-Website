@@ -59,7 +59,10 @@ const NavLinks = ({ isSidebar }) => {
 };
 
 NavLinks.propTypes = {
-  isSidebar: PropTypes.bool.isRequired,
+  isSidebar: PropTypes.bool,
+};
+NavLinks.defaultProps = {
+  isSidebar: false,
 };
 
 export default NavLinks;

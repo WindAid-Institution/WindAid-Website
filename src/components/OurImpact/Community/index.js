@@ -20,7 +20,6 @@ const Community = () => {
     marginBottom: "calc(2.96vw + 21.3px)",
   };
 
-  console.log(isMdScreen);
   return (
     <SectionWrapper style={{ sectionStyle: { paddingBottom: "110px" } }}>
       <Title

@@ -11,47 +11,40 @@ const useStyles = makeStyles((theme) => ({
     ...rootStyle,
   }),
   text: ({ textStyle }) => ({
-    width: "auto",
-    fontSize: "14px",
-    lineHeight: "20px",
-    color: "#1d1d1d",
+    fontSize: "18px",
+    lineHeight: "24px",
+    color: theme.palette.primary.dark,
     fontWeight: theme.typography.fontWeightBold,
+    marginBottom: theme.spacing(1),
     ...textStyle,
 
     [theme.breakpoints.up("sm")]: {
-      fontSize: "16px",
-      lineHeight: "24px",
-      ...textStyle,
-    },
-
-    [theme.breakpoints.up("md")]: {
-      fontSize: "18px",
-      lineHeight: "32px",
+      fontSize: "24px",
+      lineHeight: "36px",
       ...textStyle,
     },
   }),
 }));
 
-const Header = ({ header, style }) => {
+const SubHeader = ({ subHeader, style }) => {
   const { rootStyle, textStyle } = style || {};
-
   const classes = useStyles({ rootStyle, textStyle });
 
   return (
-    <Box className={classes.root}>
-      <Typography variant="h2" className={classes.text}>
-        {header}
+    <Box className={classes.root} style={style}>
+      <Typography variant="h3" className={classes.text}>
+        {subHeader}
       </Typography>
     </Box>
   );
 };
 
-Header.propTypes = {
-  header: PropTypes.string.isRequired,
+SubHeader.propTypes = {
+  subHeader: PropTypes.string.isRequired,
   style: PropTypes.object,
 };
-Header.defaultProps = {
+SubHeader.defaultProps = {
   style: {},
 };
 
-export default Header;
+export default SubHeader;

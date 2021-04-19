@@ -1,16 +1,17 @@
 import React from "react";
+import propTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
-const yelloColor = "#ffde15";
+const yellowColor = "#ffde15";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: yelloColor,
+    backgroundColor: yellowColor,
     color: theme.palette.primary.dark,
     height: "48px",
-    width: "187px",
+    minWidth: "220px",
     border: "none",
     display: "none",
     marginRight: "16px",
@@ -20,10 +21,11 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("lg")]: {
       marginRight: 0,
+      minWidth: "260px",
     },
 
     "&:hover": {
-      backgroundColor: yelloColor,
+      backgroundColor: yellowColor,
     },
   },
 
@@ -49,6 +51,14 @@ const DonateButton = ({ isSidebar }) => {
       Donate
     </Button>
   );
+};
+
+DonateButton.propTypes = {
+  isSidebar: propTypes.bool,
+};
+
+DonateButton.defaultProps = {
+  isSidebar: false,
 };
 
 export default DonateButton;

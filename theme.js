@@ -39,17 +39,15 @@ const theme = createMuiTheme({
     MuiButton: {
       root: {
         height: "48px",
-        width: "180px",
+        minWidth: "180px",
         textTransform: "none",
         fontWeight: 700,
         fontSize: "13px",
         lineHeight: "13px",
         [breakpoints.up("sm")]: {
-          width: "320px",
+          minWidth: "320px",
           fontSize: "16px",
         },
-
-        
       },
     },
     MuiContainer: {
