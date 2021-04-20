@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { AppBar, Toolbar, Box } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Link } from "gatsby";
 
 import Logo from "images/navbar/logo.svg";
 import Toggle from "images/navbar/toggle.svg";
-import useWindowSize from "hooks/useWindowSize";
 
 import NavLinks from "./Navlinks";
 import DonateButton from "./DonateButton";
@@ -62,12 +62,11 @@ const Navbar = () => {
   const theme = useTheme();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { width } = useWindowSize();
 
   const handleSidebarOpen = () => setIsSidebarOpen(true);
   const handleSidebarClose = () => setIsSidebarOpen(false);
 
-  const isLgScreen = width >= theme.breakpoints.values.lg;
+  const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   useEffect(() => {
     if (isSidebarOpen && isLgScreen) {

@@ -2,12 +2,12 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import clsx from "clsx";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useShortTermData from "queries/shortTerm";
-import useWindowSize from "hooks/useWindowSize";
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -74,9 +74,7 @@ const Day21To27 = () => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const { width } = useWindowSize();
-
-  const isMdScreen = width >= theme.breakpoints.values.md;
+  const isMdScreen = useMediaQuery(theme.breakpoints.up("md"));
 
   const groupOnePicture = images.find((img) => img.title === "group 1");
   const groupTwoPicture = images.find((img) => img.title === "group 2");

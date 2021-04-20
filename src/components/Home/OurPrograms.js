@@ -4,6 +4,7 @@ import Box from "@material-ui/core/Box";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import clsx from "clsx";
 
 import useHomepageData from "queries/homepage";
@@ -13,7 +14,6 @@ import TextSection from "shared/TextSection";
 import Button from "shared/Button";
 import SubHeader from "shared/SubHeader";
 import Body from "shared/Body";
-import useWindowSize from "hooks/useWindowSize";
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -95,10 +95,9 @@ const OurPrograms = () => {
   const classes = useStyles();
   const theme = useTheme();
   const { ourProgramsOne, ourProgramsTwo } = useHomepageData();
-  const { width } = useWindowSize();
 
-  const isSmScreen = width >= theme.breakpoints.values.sm;
-  const isMdScreen = width >= theme.breakpoints.values.md;
+  const isSmScreen = useMediaQuery(theme.breakpoints.up("sm"));
+  const isMdScreen = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <SectionWrapper style={{ sectionStyle: { paddingBottom: 0 } }}>

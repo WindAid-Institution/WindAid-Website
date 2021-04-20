@@ -1,9 +1,9 @@
 import React from "react";
 import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import TextSection from "shared/TextSection";
 import useLongTermData from "queries/longTerm";
-import useWindowSize from "hooks/useWindowSize";
 
 const OfferingText = () => {
   const {
@@ -15,8 +15,7 @@ const OfferingText = () => {
   } = useLongTermData();
 
   const theme = useTheme();
-  const { width } = useWindowSize();
-  const isLgScreen = width >= theme.breakpoints.values.lg;
+  const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <TextSection
