@@ -113,7 +113,15 @@ const BackgroundSeparator = ({
           <Typography variant="h3" className={classes.header}>
             {headingText}
           </Typography>
-          <Typography className={classes.paragraph}>{paragraphText}</Typography>
+          {Array.isArray(paragraphText) ? (
+            paragraphText.map((paragraph) => (
+              <Typography className={classes.paragraph}>{paragraph}</Typography>
+            ))
+          ) : (
+            <Typography className={classes.paragraph}>
+              {paragraphText}
+            </Typography>
+          )}
         </Container>
       </Box>
     </Box>
@@ -123,7 +131,7 @@ const BackgroundSeparator = ({
 BackgroundSeparator.propTypes = {
   imageSrc: PropTypes.string.isRequired,
   headingText: PropTypes.string,
-  paragraphText: PropTypes.string,
+  paragraphText: PropTypes.oneOf(PropTypes.string, PropTypes.array),
   isFilter: PropTypes.bool,
 };
 BackgroundSeparator.defaultProps = {
