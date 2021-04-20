@@ -76,7 +76,7 @@ const Overview = () => {
             title={textTitle}
             body={body}
             bodyTwo={bodyTwo}
-            size="lg"
+            size="sm"
           />
         </Grid>
         <Grid item sm={12} md={5} className={classes.smallImageBox}>

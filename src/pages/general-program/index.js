@@ -27,15 +27,16 @@ function GeneralProgram({
   },
 }) {
   const separationImageSrc = getSrc(separationImage);
-  const separationParagraph = `
-    ${separationBody}
-    
-    ${separationBodyTwo}
-  `;
+  const separationParagraph = [separationBody, separationBodyTwo];
+
   return (
     <ThemeProvider theme={theme}>
       <MainLayout>
-        <Hero image={image} alt="Peru Electrification Program" title={title} />
+        <Hero
+          image={image.gatsbyImageData}
+          alt="Peru Electrification Program"
+          title={title}
+        />
         <>
           <Overview />
           <Impact />
@@ -69,7 +70,7 @@ export const query = graphql`
       contentId: { eq: "generalProgram-focus" }
     ) {
       body {
-        sepatationBody: body
+        separationBody: body
       }
       bodyTwo {
         separationBodyTwo: bodyTwo

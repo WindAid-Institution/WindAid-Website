@@ -21,14 +21,14 @@ const Impact = () => {
 
   const dataList = splitQueriedList(listItems);
   return (
-    <SectionWrapper>
+    <SectionWrapper bgColor="secondary">
       <TextSection title={title} subHeader={subHeader} size="lg" />
       <Grid
         container
         component="ul"
         spacing={theme.breakpoints.up("md") ? 6 : false}
       >
-        {dataList.bodyList.map((data) => (
+        {dataList.map((data) => (
           <Grid item component="li" md={6} sm={12} key={data}>
             {data}
           </Grid>
