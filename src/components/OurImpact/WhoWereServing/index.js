@@ -1,38 +1,56 @@
 import React from "react";
+import Box from "@material-ui/core/Box";
+import { makeStyles } from "@material-ui/core/styles";
 
-import Header from "src/shared/Header/Header";
-import Title from "src/shared/Title/Title";
-import Body from "src/shared/Body/Body";
-
-import OUR_IMPACT_DATA from "pages/our-impact/data";
-import "styles/OurImpact/WhoWereServings.css";
+import Body from "shared/Body";
+import SectionWrapper from "shared/SectionWrapper";
+import TextSection from "shared/TextSection";
+import useOurImpactData from "queries/ourImpact";
 
 import ImagesWithText from "./ImagesWithText";
 
-const { WHO_WERE_SERVING } = OUR_IMPACT_DATA;
+const useStyles = makeStyles((theme) => ({
+  textContainer: {
+    paddingBottom: "24px",
+  },
+  bodyTwoContainer: {
+    display: "none",
 
-const WhoWereServing = () => (
-  <section className="who_were_serving">
-    <div className="who_were_serving__container container">
-      <Header header={WHO_WERE_SERVING.HEADER} style={{ width: "240px" }} />
-      <Title
-        title={WHO_WERE_SERVING.TITLE}
-        style={{ width: "calc(30.4vw + 219px)" }}
-      />
-      <Body
-        body={WHO_WERE_SERVING.BODY_ONE}
-        style={{ width: "calc(41.1vw + 160px" }}
-      />
-      <div className="who_were_serving__body-second">
-        <Body
-          body={WHO_WERE_SERVING.BODY_TWO}
-          style={{ width: "calc(41.1vw + 160px" }}
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+    },
+  },
+}));
+
+const WhoWereServing = () => {
+  const {
+    whoWereServing: {
+      header,
+      title,
+      body: { body },
+      bodyTwo: { bodyTwo },
+    },
+  } = useOurImpactData();
+
+  const classes = useStyles();
+
+  return (
+    <SectionWrapper bgColor="secondary">
+      <Box className={classes.textContainer}>
+        <TextSection
+          header={header}
+          title={title}
+          body={body}
+          bodyTwo={bodyTwo}
+          size="lg"
         />
-      </div>
-
+      </Box>
+      <Box className={classes.bodyTwoContainer}>
+        <Body body={bodyTwo} size="lg" />
+      </Box>
       <ImagesWithText />
-    </div>
-  </section>
-);
+    </SectionWrapper>
+  );
+};
 
 export default WhoWereServing;

@@ -1,114 +1,158 @@
 /* eslint-disable max-len */
 import React from "react";
 import Box from "@material-ui/core/Box";
-import { graphql, useStaticQuery, Link } from "gatsby";
-import { getImage, GatsbyImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
 
-import MountainsImage from "../../images/LandingPage/OurPrograms/mountains.svg";
-import Header from "../../shared/Header/Header";
-import Title from "../../shared/Title/Title";
-import Body from "../../shared/Body/Body";
-import useWindowSize from "../../hooks/useWindowSize";
-import "../../styles/OurPrograms/OurPrograms.css";
+import useHomepageData from "queries/homepage";
+import MountainsImage from "images/LandingPage/OurPrograms/mountains.svg";
+import SectionWrapper from "shared/SectionWrapper";
+import TextSection from "shared/TextSection";
+import Button from "shared/Button";
+import Header from "shared/Header";
+import Body from "shared/Body";
+import useWindowSize from "hooks/useWindowSize";
 
-const pageData = {
-  sectionOne: {
-    header: "Our Programs",
-    title:
-      "Our work cannot happen without the generosity and spirit of every single person we have welcomed out to Peru to get involved in what we do.",
-    body:
-      "Our projects always place community members at the heart of your stay with us, and by working alongside them you will be offered the chance to see the results of your work firsthand, ensuring that you will be left in no doubt of the vital contribution you have made to the lives of those most in need of access to clean energy.",
+const useStyles = makeStyles((theme) => ({
+  section: {
+    flexDirection: "column",
+
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row",
+    },
   },
+
   sectionTwo: {
-    header: "Interested in learning more the programs?",
-    bodyOne:
-      "Our programs provide a great opportunity to travel and get to know a vibrant and exciting new culture, and also allow you to develop your skills working together as part of an international team. You will learn from scratch  the intricate processes involved in the construction, installation and operation of a wind turbine.",
-    bodyTwo:
-      "Many who have come have built lifelong friendships and some continue to work with us in various capacities, even after leaving South America. We would love you to be a part of our WindAid family!",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "right bottom",
+    paddingBottom: "130px",
+    transition: "padding 0.2s ease",
+
+    [theme.breakpoints.up("sm")]: {
+      paddingBottom: "200px",
+    },
+
+    [theme.breakpoints.up("md")]: {
+      paddingBottom: "90px",
+      marginTop: "calc(2.96vw + 21.3px)",
+    },
   },
-};
 
-const query = graphql`
-  {
-    groupImage: file(
-      relativePath: { eq: "LandingPage/OurPrograms/group.png" }
-    ) {
-      childImageSharp {
-        gatsbyImageData(quality: 100, placeholder: BLURRED)
-      }
-    }
+  image: {
+    objectFit: "cover",
+    objectPosition: "center",
+    width: "100%",
+    height: "204px",
+    margin: "16px 0",
+    transition: "height 0.2s ease",
 
-    twoPeopleImage: file(
-      relativePath: { eq: "LandingPage/OurPrograms/two_people.png" }
-    ) {
-      childImageSharp {
-        gatsbyImageData(quality: 100, placeholder: BLURRED)
-      }
-    }
-  }
-`;
+    [theme.breakpoints.up("sm")]: {
+      height: "304px",
+    },
+
+    [theme.breakpoints.up("md")]: {
+      margin: 0,
+    },
+  },
+
+  groupImage: {
+    [theme.breakpoints.up("md")]: {
+      marginLeft: "26px !important",
+      minWidth: "472px",
+    },
+
+    [theme.breakpoints.up("lg")]: {
+      height: "352px",
+      minWidth: "547px",
+    },
+  },
+
+  twoPeopleImage: {
+    [theme.breakpoints.up("md")]: {
+      marginRight: "26px !important",
+      minWidth: "390px",
+    },
+
+    [theme.breakpoints.up("lg")]: {
+      height: "315px",
+      minWidth: "406px",
+    },
+  },
+
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "center",
+
+    [theme.breakpoints.up("sm")]: {
+      justifyContent: "flex-start",
+    },
+  },
+}));
 
 const OurPrograms = () => {
-  const { sectionOne, sectionTwo } = pageData;
+  const classes = useStyles();
+  const { ourProgramsOne, ourProgramsTwo } = useHomepageData();
   const { width } = useWindowSize();
 
-  const data = useStaticQuery(query);
-  const groupImage = getImage(data.groupImage);
-  const twoPeopleImage = getImage(data.twoPeopleImage);
-
   return (
-    <section className="our-programs__container container">
+    <SectionWrapper style={{ sectionStyle: { paddingBottom: 0 } }}>
       <Box
         display="flex"
         alignItems="center"
         flexDirection={width > 991 ? "row" : "column"}
-        className="our-programs__section-one"
+        className={classes.section}
       >
-        <Box>
-          <Header header={sectionOne.header} style={{ width: "126px" }} />
-          <Title title={sectionOne.title} />
-          <Body body={sectionOne.body} />
-        </Box>
+        <TextSection
+          header={ourProgramsOne.header}
+          title={ourProgramsOne.title}
+          body={ourProgramsOne.body.body}
+        />
         <GatsbyImage
-          image={groupImage}
-          alt="Group of people"
-          className="our-programs__image our-programs__image-group"
+          image={ourProgramsOne.image.gatsbyImageData}
+          alt={ourProgramsOne.image.description}
+          className={clsx(classes.image, classes.groupImage)}
         />
       </Box>
       <Box
         display="flex"
         alignItems="center"
-        className="our-programs__section-two"
+        className={clsx(classes.section, classes.sectionTwo)}
         flexDirection={width > 991 ? "row" : "column"}
         style={{ backgroundImage: `url(${MountainsImage})` }}
       >
         <GatsbyImage
-          image={twoPeopleImage}
-          alt="Two people"
-          className="our-programs__image our-programs__image-two-people"
+          image={ourProgramsTwo.image.gatsbyImageData}
+          alt={ourProgramsTwo.image.description}
+          className={clsx(classes.image, classes.twoPeopleImage)}
         />
         <Box
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
+          // alignItems="center"
         >
-          <Body body={sectionTwo.bodyOne} />
-          <Body body={sectionTwo.bodyTwo} />
+          <Body body={ourProgramsTwo.body.body} />
+          <Body body={ourProgramsTwo.bodyTwo.bodyTwo} />
           <Header
-            header={sectionTwo.header}
+            header={ourProgramsTwo.header}
             style={{
-              fontSize: width > 600 ? "24px" : "18px",
-              textAlign: width > 600 ? "left" : "center",
+              textStyle: {
+                fontSize: width > 600 ? "24px" : "18px",
+                textAlign: width > 600 ? "left" : "center",
+                margin: "24px 0 !important",
+              },
             }}
           />
-          <Link to="/">
-            <button type="button" className="our-programs__button">
-              View Our Programs
-            </button>
-          </Link>
+          <Box className={classes.buttonContainer}>
+            <Link to="/">
+              <Button text="View Our Programs" />
+            </Link>
+          </Box>
         </Box>
       </Box>
-    </section>
+    </SectionWrapper>
   );
 };
 

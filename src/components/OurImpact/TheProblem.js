@@ -1,23 +1,23 @@
 import React from "react";
 
-import useHomepageData from "queries/homepage";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 
-const OurApproach = () => {
+import useOurImpactData from "queries/ourImpact";
+
+const TheProblem = () => {
   const {
-    ourApproach: {
+    theProblem: {
       header,
       title,
       body: { body },
     },
-  } = useHomepageData();
+  } = useOurImpactData();
 
   return (
     <SectionWrapper>
-      <TextSection header={header} title={title} body={body} size="md" />
+      <TextSection header={header} title={title} body={body} size="lg" />
     </SectionWrapper>
   );
 };
-
-export default OurApproach;
+export default TheProblem;

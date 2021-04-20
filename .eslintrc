@@ -3,7 +3,8 @@
   "parser": "@babel/eslint-parser",
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/prop-types": "off",
+    // "react/prop-types": "on",
+    "react/forbid-prop-types": "off",
     "react/destructuring-assignment": "off",
     "no-underscore-dangle": 0,
     "import/imports-first": ["error", "absolute-first"],
@@ -31,6 +32,9 @@
           ["src", "./src"],
           ["pages", "./src/pages"],
           ["components", "./src/components"],
+          ["shared", "./src/shared"],
+          ["hooks", "./src/hooks"],
+          ["queries", "./src/hooks/queries"],
           ["images", "./src/images"],
           ["styles", "./src/styles"]
         ],

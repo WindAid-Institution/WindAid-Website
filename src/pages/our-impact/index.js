@@ -1,10 +1,13 @@
-import * as React from "react";
+/* eslint-disable react/prop-types */
+import React from "react";
 import { graphql } from "gatsby";
-import { getImage, getSrc } from "gatsby-plugin-image";
+import { getSrc } from "gatsby-plugin-image";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 import MainLayout from "src/layout/MainLayout";
+
+import TheProblem from "components/OurImpact/TheProblem";
 import Hero from "components/Hero/Hero";
-import WideText from "components/WideText/WideText";
 import WhoWereServing from "components/OurImpact/WhoWereServing/index";
 // eslint-disable-next-line max-len
 import BackgroundSeparator from "components/BackgroundSeparator/BackgroundSeparator";
@@ -13,56 +16,65 @@ import JoinProgram from "components/OurImpact/JoinProgram";
 import PartnerWithUs from "components/OurImpact/PartnerWithUs";
 import SpreadTheWord from "components/OurImpact/SpreadTheWord";
 
-import OUR_IMPACT_DATA from "./data";
+import theme from "../../../theme";
 
-const { PROBLEM, ELECTRICITY } = OUR_IMPACT_DATA;
-
-const OurImpact = ({ data: { heroImage, sunsetImage } }) => {
-  const heroImageData = getImage(heroImage);
+const OurImpact = ({
+  data: {
+    hero: { title, image },
+    separationElement: {
+      sunsetHeading,
+      body: { sunsetParagraph },
+      sunsetImage,
+    },
+  },
+}) => {
   const sunsetImageSrc = getSrc(sunsetImage);
   return (
-    <MainLayout>
-      <Hero image={heroImageData} alt="hero image" title="Our Impact" />
-      <>
-        <WideText
-          headerText={PROBLEM.HEADER}
-          titleText={PROBLEM.TITLE}
-          bodyText={PROBLEM.BODY}
-        />
-        <WhoWereServing />
-        <BackgroundSeparator
-          imageSrc={sunsetImageSrc}
-          headingText={ELECTRICITY.HEADING}
-          paragraphText={ELECTRICITY.PARAGRAPH}
-        />
-        <Community />
-        <JoinProgram />
-        <PartnerWithUs />
-        <SpreadTheWord />
-      </>
-    </MainLayout>
+    <ThemeProvider theme={theme}>
+      <MainLayout>
+        <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
+        <>
+          <TheProblem />
+          <WhoWereServing />
+          <BackgroundSeparator
+            imageSrc={sunsetImageSrc}
+            headingText={sunsetHeading}
+            paragraphText={sunsetParagraph}
+          />
+          <Community />
+          <JoinProgram />
+          <PartnerWithUs />
+          <SpreadTheWord />
+        </>
+      </MainLayout>
+    </ThemeProvider>
   );
 };
 
 export const query = graphql`
   {
-    heroImage: file(relativePath: { eq: "OurImpact/hero.png" }) {
-      childImageSharp {
+    hero: contentfulPageHero(contentId: { eq: "ourImpact" }) {
+      title
+      image {
         gatsbyImageData(
-          layout: FULL_WIDTH
-          placeholder: TRACED_SVG
           quality: 100
-          tracedSVGOptions: { color: "#056839" }
+          placeholder: TRACED_SVG
+          layout: FULL_WIDTH
         )
       }
     }
 
-    sunsetImage: file(relativePath: { eq: "OurImpact/sunset.png" }) {
-      childImageSharp {
+    separationElement: contentfulSeparationImage(
+      contentId: { eq: "ourImpact-electricity" }
+    ) {
+      sunsetHeading: title
+      body {
+        sunsetParagraph: body
+      }
+      sunsetImage: image {
         gatsbyImageData(
           quality: 100
           placeholder: TRACED_SVG
-          tracedSVGOptions: { color: "#056839" }
           layout: FULL_WIDTH
         )
       }

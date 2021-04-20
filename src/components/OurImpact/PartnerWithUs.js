@@ -1,53 +1,87 @@
 import React from "react";
-import { useStaticQuery, graphql, Link } from "gatsby";
-import { getImage, GatsbyImage } from "gatsby-plugin-image";
-import Title from "src/shared/Title/Title";
-import Body from "src/shared/Body/Body";
-import "styles/OurImpact/JoinProgram.css";
-import "styles/OurPrograms/OurPrograms.css";
+import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
 
-import OUR_IMPACT_DATA from "pages/our-impact/data";
+import useOurImpactData from "queries/ourImpact";
+import SectionWrapper from "shared/SectionWrapper";
+import TextSection from "shared/TextSection";
+import Button from "shared/Button";
 
-const { PARTNER_WITH_US } = OUR_IMPACT_DATA;
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: "flex",
+    flexDirection: "column",
 
-const imageQuery = graphql`
-  {
-    partnerWithUs: file(relativePath: { eq: "OurImpact/partner_with_us.png" }) {
-      name
-      childImageSharp {
-        gatsbyImageData(placeholder: BLURRED, quality: 100)
-      }
-    }
-  }
-`;
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row",
+      alignItems: "center",
+    },
+  },
+
+  contentContainer: {
+    [theme.breakpoints.up("md")]: {
+      paddingRight: "62px",
+      alignItems: "center",
+    },
+  },
+
+  image: {
+    objectFit: "cover",
+    objectPosition: "center",
+    width: "100%",
+    height: "204px",
+    margin: "32px 0",
+    transition: "height 0.2s ease",
+
+    [theme.breakpoints.up("sm")]: {
+      height: "304px",
+    },
+
+    [theme.breakpoints.up("md")]: {
+      minWidth: "464px",
+      height: "368px",
+    },
+  },
+
+  link: {
+    display: "inline-block",
+    marginTop: "26px",
+
+    "&:hover": {
+      textDecoration: "none",
+    },
+  },
+}));
 
 const PartnerWithUs = () => {
-  const data = useStaticQuery(imageQuery);
-  const imageData = getImage(data.partnerWithUs);
+  const {
+    partnerWithUs: {
+      title,
+      body: { body },
+      image,
+    },
+  } = useOurImpactData();
+
+  const classes = useStyles();
   return (
-    <section className="join-program join-program--reverse">
-      <div className="join-program__container join-program__container--reverse container">
-        <div className="join-program__content--reverse">
-          <Title title={PARTNER_WITH_US.TITLE} />
-          <Body body={PARTNER_WITH_US.BODY} />
-          <Link to="/">
-            <button
-              type="button"
-              // eslint-disable-next-line max-len
-              className="join-program__button our-programs__button"
-            >
-              {PARTNER_WITH_US.BUTTON}
-            </button>
+    <SectionWrapper>
+      <Box className={classes.container}>
+        <Box className={classes.contentContainer}>
+          <TextSection title={title} body={body} size="auto" />
+          <Link className={classes.link} to="/">
+            <Button text="View Our Programs" />
           </Link>
-        </div>
+        </Box>
 
         <GatsbyImage
-          image={imageData}
-          alt="group of people"
-          className="join-program__image our-programs__image"
+          image={image.gatsbyImageData}
+          alt={image.description}
+          className={classes.image}
         />
-      </div>
-    </section>
+      </Box>
+    </SectionWrapper>
   );
 };
 export default PartnerWithUs;
