@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AppBar, Toolbar, Box } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Link } from "gatsby";
 
 import Logo from "images/navbar/logo.svg";
@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const theme = useTheme();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { width } = useWindowSize();
@@ -66,11 +67,13 @@ const Navbar = () => {
   const handleSidebarOpen = () => setIsSidebarOpen(true);
   const handleSidebarClose = () => setIsSidebarOpen(false);
 
+  const isLgScreen = width >= theme.breakpoints.values.lg;
+
   useEffect(() => {
-    if (isSidebarOpen && width >= 1200) {
+    if (isSidebarOpen && isLgScreen) {
       handleSidebarClose();
     }
-  }, [isSidebarOpen, width]);
+  }, [isSidebarOpen, isLgScreen]);
 
   return (
     <>

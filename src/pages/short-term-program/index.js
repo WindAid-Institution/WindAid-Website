@@ -6,7 +6,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 
 import MainLayout from "src/layout/MainLayout";
 
-import Overview from "components/ShortTerm/Overview";
+import Overview from "components/Overview";
 import Hero from "components/Hero/Hero";
 import Day1To3 from "components/ShortTerm/Day1To3";
 import Day4To20 from "components/ShortTerm/Day4To20";
@@ -22,6 +22,7 @@ const ShortTermProgram = ({
   data: {
     hero: { title, image },
     separationElement: { workshopImage },
+    overview,
   },
 }) => {
   const sunsetImageSrc = getSrc(workshopImage);
@@ -30,7 +31,11 @@ const ShortTermProgram = ({
       <MainLayout>
         <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
         <>
-          <Overview />
+          <Overview
+            header={overview.header}
+            title={overview.title}
+            body={overview.body.body}
+          />
           <Day1To3 />
           <Day4To20 />
           <Day21To27 />
@@ -53,6 +58,14 @@ export const query = graphql`
           placeholder: TRACED_SVG
           layout: FULL_WIDTH
         )
+      }
+    }
+
+    overview: contentfulSection(contentId: { eq: "shortTerm-overview" }) {
+      header
+      title
+      body {
+        body
       }
     }
 

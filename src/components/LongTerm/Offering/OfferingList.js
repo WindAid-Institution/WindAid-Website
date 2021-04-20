@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import Header from "shared/Header";
 import useLongTermData from "queries/longTerm";
@@ -21,6 +21,7 @@ const OfferingList = () => {
   } = useLongTermData();
 
   const classes = useStyles();
+  const theme = useTheme();
 
   const areasList = splitQueriedList(listItems);
   return (
@@ -28,7 +29,7 @@ const OfferingList = () => {
       <Header
         header={header}
         size="sm"
-        style={{ textStyle: { color: "#056839" } }}
+        style={{ textStyle: { color: theme.palette.primary.main } }}
       />
 
       <ul className={classes.list}>

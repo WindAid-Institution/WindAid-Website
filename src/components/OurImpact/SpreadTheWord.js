@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
 import TextSection from "shared/TextSection";
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     "& > a": {
-      color: "#000",
+      color: theme.palette.primary.dark,
       textDecoration: "none",
     },
   },
@@ -91,9 +91,10 @@ const SpreadTheWord = () => {
   } = useOurImpactData();
 
   const classes = useStyles();
+  const theme = useTheme();
 
   return (
-    <SectionWrapper bgColor="#fff9f5">
+    <SectionWrapper bgColor={theme.palette.secondary.dark}>
       <Box className={classes.container}>
         <Box className={classes.textContainer}>
           <TextSection title={title} body={body} bodyTwo={bodyTwo} />

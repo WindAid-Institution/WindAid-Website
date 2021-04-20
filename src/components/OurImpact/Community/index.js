@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@material-ui/core/styles";
 
 import SectionWrapper from "shared/SectionWrapper";
 import Title from "shared/Title";
@@ -12,8 +13,10 @@ const Community = () => {
     community: { title },
   } = useOurImpactData();
 
+  const theme = useTheme();
+
   const { width: windowWidth } = useWindowSize();
-  const isMdScreen = windowWidth >= 992;
+  const isMdScreen = windowWidth >= theme.breakpoints.values.md;
 
   const textStyle = {
     textAlign: isMdScreen ? "left" : "center",

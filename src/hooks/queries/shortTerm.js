@@ -3,14 +3,6 @@ import { graphql, useStaticQuery } from "gatsby";
 const useShortTermData = () => {
   const data = useStaticQuery(graphql`
     {
-      overview: contentfulSection(contentId: { eq: "shortTerm-overview" }) {
-        header
-        title
-        body {
-          body
-        }
-      }
-
       day1to3: contentfulSection(contentId: { eq: "shortTerm-day-1-3" }) {
         header
         title

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTheme } from "@material-ui/core/styles";
 
 import TextSection from "shared/TextSection";
 import useLongTermData from "queries/longTerm";
@@ -13,8 +14,9 @@ const OfferingText = () => {
     },
   } = useLongTermData();
 
-  const { width: windowWidth } = useWindowSize();
-  const isLgScreen = windowWidth >= 1200;
+  const theme = useTheme();
+  const { width } = useWindowSize();
+  const isLgScreen = width >= theme.breakpoints.values.lg;
 
   return (
     <TextSection

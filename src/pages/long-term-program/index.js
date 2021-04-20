@@ -5,9 +5,9 @@ import { ThemeProvider } from "@material-ui/core/styles";
 
 import MainLayout from "src/layout/MainLayout";
 
-import Overview from "components/LongTerm/Overview";
+import Overview from "components/Overview";
 import Offering from "components/LongTerm/Offering/index";
-import ExampleProjects from "components/LongTerm/ExampleProjects";
+import ExampleProjects from "components/LongTerm/ExampleProjects/index";
 import ApplyNow from "components/LongTerm/ApplyNow";
 import Hero from "components/Hero/Hero";
 
@@ -16,13 +16,18 @@ import theme from "../../../theme";
 const LongTermProgram = ({
   data: {
     hero: { title, image },
+    overview,
   },
 }) => (
   <ThemeProvider theme={theme}>
     <MainLayout>
       <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
       <>
-        <Overview />
+        <Overview
+          header={overview.header}
+          title={overview.title}
+          body={overview.body.body}
+        />
         <Offering />
         <ExampleProjects />
         <ApplyNow />
@@ -41,6 +46,14 @@ export const query = graphql`
           placeholder: TRACED_SVG
           layout: FULL_WIDTH
         )
+      }
+    }
+
+    overview: contentfulSection(contentId: { eq: "longTerm-overview" }) {
+      header
+      title
+      body {
+        body
       }
     }
   }

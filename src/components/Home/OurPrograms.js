@@ -3,7 +3,7 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import clsx from "clsx";
 
 import useHomepageData from "queries/homepage";
@@ -93,15 +93,19 @@ const useStyles = makeStyles((theme) => ({
 
 const OurPrograms = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const { ourProgramsOne, ourProgramsTwo } = useHomepageData();
   const { width } = useWindowSize();
+
+  const isSmScreen = width >= theme.breakpoints.values.sm;
+  const isMdScreen = width >= theme.breakpoints.values.md;
 
   return (
     <SectionWrapper style={{ sectionStyle: { paddingBottom: 0 } }}>
       <Box
         display="flex"
         alignItems="center"
-        flexDirection={width > 991 ? "row" : "column"}
+        flexDirection={isMdScreen ? "row" : "column"}
         className={classes.section}
       >
         <TextSection
@@ -119,7 +123,7 @@ const OurPrograms = () => {
         display="flex"
         alignItems="center"
         className={clsx(classes.section, classes.sectionTwo)}
-        flexDirection={width > 991 ? "row" : "column"}
+        flexDirection={isMdScreen ? "row" : "column"}
         style={{ backgroundImage: `url(${MountainsImage})` }}
       >
         <GatsbyImage
@@ -131,7 +135,6 @@ const OurPrograms = () => {
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
-          // alignItems="center"
         >
           <Body body={ourProgramsTwo.body.body} />
           <Body body={ourProgramsTwo.bodyTwo.bodyTwo} />
@@ -139,7 +142,7 @@ const OurPrograms = () => {
             subHeader={ourProgramsTwo.header}
             style={{
               textStyle: {
-                textAlign: width > 600 ? "left" : "center",
+                textAlign: isSmScreen ? "left" : "center",
                 margin: "24px 0 !important",
               },
             }}

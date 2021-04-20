@@ -3,14 +3,6 @@ import { graphql, useStaticQuery } from "gatsby";
 const useLongTermData = () => {
   const data = useStaticQuery(graphql`
     {
-      overview: contentfulSection(contentId: { eq: "longTerm-overview" }) {
-        header
-        title
-        body {
-          body
-        }
-      }
-
       offering: contentfulSection(contentId: { eq: "longTerm-offering" }) {
         title: header
         body {
@@ -53,22 +45,25 @@ const useLongTermData = () => {
         }
       }
 
-      volunteersCards: allContentfulCard(
-        filter: { contentId: { eq: "shortTerm-volunteers-card" } }
+      projectsCards: allContentfulCard(
+        filter: { contentId: { eq: "longTerm-projects-card" } }
         sort: { fields: orderNumber }
         limit: 3
       ) {
-        volunteersCardsContent: nodes {
+        projectsCardsContent: nodes {
           name
           location
           date
           body {
             text: body
           }
+          bodyTwo {
+            text: bodyTwo
+          }
           image {
             gatsbyImageData(quality: 100, placeholder: BLURRED)
+            description
           }
-          additionalText
         }
       }
     }
@@ -81,7 +76,7 @@ const useLongTermData = () => {
     exampleProjects,
     apply,
     hearFromPrev,
-    volunteersCards: { volunteersCardsContent },
+    projectsCards: { projectsCardsContent },
   } = data;
   return {
     overview,
@@ -90,7 +85,7 @@ const useLongTermData = () => {
     exampleProjects,
     apply,
     hearFromPrev,
-    volunteersCardsContent,
+    projectsCardsContent,
   };
 };
 

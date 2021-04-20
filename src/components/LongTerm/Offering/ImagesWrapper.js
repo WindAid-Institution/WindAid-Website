@@ -82,8 +82,6 @@ const ImagesWrapper = ({ children }) => {
   const groupOnePicture = images.find(({ title }) => title === "group 1");
   const groupTwoPicture = images.find(({ title }) => title === "group 2");
   const groupThreePicture = images.find(({ title }) => title === "group 3");
-  console.log(images);
-  console.log(groupTwoPicture);
 
   return (
     <Box className={classes.root}>

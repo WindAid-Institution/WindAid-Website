@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "18px",
       lineHeight: "22px",
     },
-    color: "#000",
+    color: theme.palette.primary.dark,
   },
   padding: {
     padding: "0",
@@ -56,16 +56,16 @@ const useStyles = makeStyles((theme) => ({
     padding: "3px",
     margin: "3px",
     borderRadius: "50%",
-    background: "#056839",
-    color: "#fff",
+    background: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
     [theme.breakpoints.up("lg")]: {
       padding: "4px",
       margin: "4px",
     },
 
     "&:hover": {
-      color: "#fff",
-      background: "#04522d",
+      color: theme.palette.secondary.main,
+      background: theme.palette.primary.main,
     },
 
     "& *": {
