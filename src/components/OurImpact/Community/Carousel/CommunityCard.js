@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
       padding: "16px",
     },
 
+    [theme.breakpoints.up("xmd")]: {
+      height: "368px",
+    },
+
     [theme.breakpoints.up("lg")]: {
       height: "308px",
     },
