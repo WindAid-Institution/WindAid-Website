@@ -11,7 +11,7 @@ import useGeneralProgramData from "queries/generalProgram";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    marginTop: "calc(4vw + 24px)",
+    // marginTop: "calc(4vw + 24px)",
     height: "auto",
     position: "relative",
     backgroundPosition: "bottom",

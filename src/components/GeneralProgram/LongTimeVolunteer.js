@@ -1,13 +1,13 @@
 import React from "react";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { GatsbyImage } from "gatsby-plugin-image";
 import clsx from "clsx";
 
 import Body from "shared/Body";
 import Title from "shared/Title";
 import Button from "shared/Button";
+import SectionWrapper from "shared/SectionWrapper";
 import useGeneralProgramData from "queries/generalProgram";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
   },
   wrapper: {
     height: "auto",
-    paddingTop: theme.spacing(3),
     [theme.breakpoints.only("xs")]: {
       background: theme.palette.primary.main,
     },
@@ -34,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       marginTop: "32px",
       marginBottom: "32px",
+    },
+
+    [theme.breakpoints.up("md")]: {
+      margin: 0,
     },
   },
   content: {
@@ -69,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
     gridArea: "img",
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
 
     [theme.breakpoints.only("sm")]: {
       background: theme.palette.secondary.dark,
@@ -86,13 +90,16 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.only("sm")]: {
       width: "100%",
     },
+
+    [theme.breakpoints.up("md")]: {
+      maxWidth: "560px",
+    },
   },
 }));
 
 const LongTimeVolunteer = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const whiteTextStyle = { textStyle: { color: theme.palette.secondary.main } };
 
@@ -105,44 +112,44 @@ const LongTimeVolunteer = () => {
   } = useGeneralProgramData();
 
   return (
-    <div
-      spacing={2}
-      className={clsx(
-        isUpMd && "container",
-        classes.wrapper,
-        classes.gridLayout
-      )}
-    >
-      <div
-        className={clsx("container", classes.content, classes.gridAreaTitle)}
-      >
-        <Title
-          title={title}
-          className={classes.contrast}
-          style={whiteTextStyle}
-        />
-      </div>
-      <div
-        className={clsx(
-          "container",
-          classes.content,
-          classes.gridAreaBody,
-          classes.buttonContrast
-        )}
-      >
-        <Body body={body} className={classes.contrast} style={whiteTextStyle} />
-        <Button inverted text="Learn about the program" />
-      </div>
-      <div className={classes.gridAreaImg}>
-        <div className={clsx("container", classes.content)}>
-          <GatsbyImage
-            image={image.gatsbyImageData}
-            alt={image.description}
-            className={clsx(classes.spacing, classes.img)}
+    <SectionWrapper bgColor="primary">
+      <div spacing={2} className={clsx(classes.wrapper, classes.gridLayout)}>
+        <div className={clsx(classes.content, classes.gridAreaTitle)}>
+          <Title
+            title={title}
+            className={classes.contrast}
+            style={whiteTextStyle}
           />
         </div>
+        <div
+          className={clsx(
+            classes.content,
+            classes.gridAreaBody,
+            classes.buttonContrast
+          )}
+        >
+          <Body
+            body={body}
+            className={classes.contrast}
+            style={whiteTextStyle}
+          />
+          <Button
+            inverted
+            text="Learn about the program"
+            style={{ marginTop: theme.spacing(2) }}
+          />
+        </div>
+        <div className={classes.gridAreaImg}>
+          <div className={clsx(classes.content)}>
+            <GatsbyImage
+              image={image.gatsbyImageData}
+              alt={image.description}
+              className={clsx(classes.spacing, classes.img)}
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    </SectionWrapper>
   );
 };
 
