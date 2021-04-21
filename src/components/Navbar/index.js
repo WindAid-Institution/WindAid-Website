@@ -14,11 +14,11 @@ import Sidebar from "./Sidebar";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxHeight: "80px",
-    padding: "0 12px 0 12px",
+    padding: "0 12px",
     backgroundColor: theme.palette.primary.main,
 
     [theme.breakpoints.up("xl")]: {
-      padding: "0 calc(12.6vw - 29.3px) 0 calc(12.6vw - 29.3px)",
+      padding: "0 calc(12.6vw - 42px)",
     },
   },
   toolbar: {
