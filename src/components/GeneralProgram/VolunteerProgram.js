@@ -4,14 +4,25 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import clsx from "clsx";
 
-import SectionWrapper from "shared/SectionWrapper";
 import Title from "shared/Title";
-import useGeneralProgramData from "queries/generalProgram";
-
+import SectionWrapper from "shared/SectionWrapper";
 import ShortTimeVolunteer from "./ShortTimeVolunteer";
 import LongTimeVolunteer from "./LongTimeVolunteer";
 
+const sectionData = {
+  title1: "We offer two types of volunteer program:",
+  title2: "Short-term & Long-term volunteer opportunities",
+};
+
 const useStyles = makeStyles((theme) => ({
+  wrapperBox: {
+    [theme.breakpoints.up("sm")]: {
+      marginBottom: theme.spacing(4),
+    },
+    [theme.breakpoints.up("lg")]: {
+      marginBottom: theme.spacing(6),
+    },
+  },
   title: {
     width: "100%",
     [theme.breakpoints.up("sm")]: {
@@ -19,11 +30,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   titleBlack: {
-    color: theme.palette.primary.dark,
+    color: "#000",
   },
   box: {
-    marginTop: theme.spacing(4),
     position: "relative",
+  },
+  wrapper: {
+    margin: "auto",
+    height: "auto",
   },
   leftBackground: {
     height: "100%",
@@ -35,6 +49,14 @@ const useStyles = makeStyles((theme) => ({
   },
   backgroundBeige: {
     background: theme.palette.secondary.dark,
+  },
+  upperRightBackground: {
+    height: "100%",
+    width: "0",
+    [theme.breakpoints.up("md")]: {
+      right: 0,
+      width: "calc(42% - 8px)",
+    },
   },
   rightBackground: {
     height: "100%",
@@ -70,20 +92,20 @@ const VolunteerProgram = () => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const {
-    volunteerMain: { titleOne, titleTwo },
-  } = useGeneralProgramData();
-
   return (
-    <SectionWrapper style={{ sectionStyle: { paddingTop: 0 } }}>
-      <Title title={titleOne} className={classes.title} size="lg" />
-      <Title
-        title={titleTwo}
-        className={clsx(classes.title, classes.titleBlack)}
-        size="lg"
-        style={{ textStyle: { color: theme.palette.primary.dark } }}
-      />
-
+    <Box className={classes.wrapperBox}>
+      <SectionWrapper
+        style={{
+          sectionStyle: { paddingBottom: theme.spacing(4), paddingTop: 0 },
+        }}
+      >
+        <Title title={sectionData.title1} className={classes.title} />
+        <Title
+          title={sectionData.title2}
+          style={{ textStyle: { color: theme.palette.primary.dark } }}
+          className={clsx(classes.title, classes.titleBlack)}
+        />
+      </SectionWrapper>
       <Box className={clsx(classes.box, classes.mobileBeige)}>
         <Grid container className={classes.background} justify="space-between">
           <Grid
@@ -92,7 +114,10 @@ const VolunteerProgram = () => {
           />
           <Grid
             item
-            className={clsx(classes.rightBackground, classes.backgroundGreen)}
+            className={clsx(
+              classes.upperRightBackground,
+              classes.backgroundGreen
+            )}
           />
         </Grid>
         <ShortTimeVolunteer />
@@ -110,7 +135,7 @@ const VolunteerProgram = () => {
         </Grid>
         <LongTimeVolunteer />
       </Box>
-    </SectionWrapper>
+    </Box>
   );
 };
 
