@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import clsx from "clsx";
@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.dark,
   },
   box: {
+    marginTop: theme.spacing(4),
     position: "relative",
   },
   leftBackground: {
@@ -67,18 +68,20 @@ const useStyles = makeStyles((theme) => ({
 
 const VolunteerProgram = () => {
   const classes = useStyles();
+  const theme = useTheme();
 
   const {
     volunteerMain: { titleOne, titleTwo },
   } = useGeneralProgramData();
 
   return (
-    <SectionWrapper>
+    <SectionWrapper style={{ sectionStyle: { paddingTop: 0 } }}>
       <Title title={titleOne} className={classes.title} size="lg" />
       <Title
         title={titleTwo}
         className={clsx(classes.title, classes.titleBlack)}
         size="lg"
+        style={{ textStyle: { color: theme.palette.primary.dark } }}
       />
 
       <Box className={clsx(classes.box, classes.mobileBeige)}>

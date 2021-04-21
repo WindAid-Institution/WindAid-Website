@@ -55,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
   },
   gridAreaImg: {
     gridArea: "img",
+    display: "flex",
+    alignItems: "center",
     [theme.breakpoints.only("sm")]: {
       background: theme.palette.primary.main,
     },
@@ -89,7 +91,6 @@ const ShortTimeVolunteer = () => {
 
   return (
     <div
-      container
       spacing={2}
       className={clsx(
         isUpMd && "container",
@@ -100,11 +101,14 @@ const ShortTimeVolunteer = () => {
       <div
         className={clsx("container", classes.content, classes.gridAreaTitle)}
       >
-        <Title title={title} />
+        <Title
+          title={title}
+          style={{ textStyle: { color: theme.palette.primary.dark } }}
+        />
       </div>
       <div className={clsx("container", classes.content, classes.gridAreaBody)}>
         <Body body={body} />
-        <Button buttonText="Learn about the program" />
+        <Button text="Learn about the program" />
       </div>
       <div className={classes.gridAreaImg}>
         <div className={clsx("container", classes.content)}>

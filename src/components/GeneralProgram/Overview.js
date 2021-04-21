@@ -52,6 +52,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const textSectionStyle = {
+  titleStyle: { textStyle: { maxWidth: "740px" } },
+  bodyStyle: { textStyle: { maxWidth: "740px" } },
+};
+
 const Overview = () => {
   const {
     overview: {
@@ -80,6 +85,7 @@ const Overview = () => {
             title={textTitle}
             body={body}
             bodyTwo={bodyTwo}
+            style={textSectionStyle}
             size={isUpMd ? "md" : "lg"}
           />
         </Grid>
@@ -92,7 +98,6 @@ const Overview = () => {
         <Grid
           item
           md={6}
-          sm={0}
           className={clsx(classes.spacingRight, classes.img, classes.hideOnSm)}
         >
           <GatsbyImage

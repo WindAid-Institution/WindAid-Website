@@ -1,10 +1,10 @@
 import React from "react";
-import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles } from "@material-ui/core/styles";
+import { getSrc } from "gatsby-plugin-image";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
 import Body from "shared/Body";
-import Header from "shared/Header";
+import Title from "shared/Title";
 import SubHeader from "shared/SubHeader";
 import Button from "shared/Button";
 import useGeneralProgramData from "queries/generalProgram";
@@ -14,6 +14,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "calc(4vw + 24px)",
     height: "auto",
     position: "relative",
+    backgroundPosition: "bottom",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+
+    [theme.breakpoints.up("lg")]: {
+      height: "40vw",
+      maxHeight: "900px",
+    },
   },
   title: {
     width: "100%",
@@ -46,8 +54,14 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       paddingLeft: "32px",
     },
+    [theme.breakpoints.up("xmd")]: {
+      paddingLeft: "calc(35vw)",
+    },
     [theme.breakpoints.up("md")]: {
       paddingLeft: "calc(45vw)",
+    },
+    [theme.breakpoints.up("lg")]: {
+      paddingLeft: "calc(35vw)",
     },
   },
   background: {
@@ -61,31 +75,42 @@ const useStyles = makeStyles((theme) => ({
 
 const AdventureSection = () => {
   const classes = useStyles();
+  const theme = useTheme();
 
   const {
     adventure: {
-      header,
+      header: title,
       subHeader,
       body: { body },
       image,
     },
   } = useGeneralProgramData();
 
+  const blackTextStyle = { textStyle: { color: theme.palette.primary.dark } };
+  const imageSrc = getSrc(image);
   return (
-    <Box component="section" className={classes.wrapper}>
+    <Box
+      component="section"
+      style={{ backgroundImage: `url(${imageSrc})` }}
+      className={classes.wrapper}
+    >
       <Box className={classes.contentBox}>
         <Box className="container">
-          <Header header={header} className={classes.title} />
-          <Body body={body} className={classes.articleBody} />
+          <Title
+            title={title}
+            className={classes.title}
+            style={blackTextStyle}
+          />
+          <Body
+            body={body}
+            className={classes.articleBody}
+            size="md"
+            style={{ textStyle: { maxWidth: "600px" } }}
+          />
           <SubHeader subHeader={subHeader} className={classes.boldQuestion} />
           <Button text="Explore trujillo" />
         </Box>
       </Box>
-      <GatsbyImage
-        image={image.gatsbyImageData}
-        alt={image.description}
-        className={classes.background}
-      />
     </Box>
   );
 };

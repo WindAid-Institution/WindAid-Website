@@ -13,7 +13,7 @@ import useGeneralProgramData from "queries/generalProgram";
 const useStyles = makeStyles((theme) => ({
   contrast: {
     color: theme.palette.secondary.main,
-    "& .body-text": {
+    "& h3": {
       color: theme.palette.secondary.main,
     },
   },
@@ -67,6 +67,9 @@ const useStyles = makeStyles((theme) => ({
   },
   gridAreaImg: {
     gridArea: "img",
+    display: "flex",
+    alignItems: "center",
+
     [theme.breakpoints.only("sm")]: {
       background: theme.palette.secondary.dark,
     },
@@ -91,6 +94,8 @@ const LongTimeVolunteer = () => {
   const theme = useTheme();
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
 
+  const whiteTextStyle = { textStyle: { color: theme.palette.secondary.main } };
+
   const {
     volunteerLong: {
       title,
@@ -101,7 +106,6 @@ const LongTimeVolunteer = () => {
 
   return (
     <div
-      container
       spacing={2}
       className={clsx(
         isUpMd && "container",
@@ -112,7 +116,11 @@ const LongTimeVolunteer = () => {
       <div
         className={clsx("container", classes.content, classes.gridAreaTitle)}
       >
-        <Title title={title} className={classes.contrast} />
+        <Title
+          title={title}
+          className={classes.contrast}
+          style={whiteTextStyle}
+        />
       </div>
       <div
         className={clsx(
@@ -122,8 +130,8 @@ const LongTimeVolunteer = () => {
           classes.buttonContrast
         )}
       >
-        <Body body={body} className={classes.contrast} />
-        <Button text="Learn about the program" />
+        <Body body={body} className={classes.contrast} style={whiteTextStyle} />
+        <Button inverted text="Learn about the program" />
       </div>
       <div className={classes.gridAreaImg}>
         <div className={clsx("container", classes.content)}>
