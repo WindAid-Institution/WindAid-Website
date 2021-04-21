@@ -58,10 +58,10 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: "calc(35vw)",
     },
     [theme.breakpoints.up("md")]: {
-      paddingLeft: "calc(45vw)",
+      paddingLeft: "calc(40vw)",
     },
-    [theme.breakpoints.up("lg")]: {
-      paddingLeft: "calc(35vw)",
+    [theme.breakpoints.up("xl")]: {
+      paddingLeft: "calc(45vw)",
     },
   },
   background: {
@@ -95,7 +95,7 @@ const AdventureSection = () => {
       className={classes.wrapper}
     >
       <Box className={classes.contentBox}>
-        <Box className="container">
+        <Box>
           <Title
             title={title}
             className={classes.title}
@@ -108,7 +108,10 @@ const AdventureSection = () => {
             style={{ textStyle: { maxWidth: "600px" } }}
           />
           <SubHeader subHeader={subHeader} className={classes.boldQuestion} />
-          <Button text="Explore trujillo" />
+          <Button
+            text="Explore trujillo"
+            style={{ marginTop: theme.spacing(2) }}
+          />
         </Box>
       </Box>
     </Box>
