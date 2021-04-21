@@ -7,12 +7,20 @@ import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useGeneralProgramData from "queries/generalProgram";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   img: {
     minHeight: "230px",
     width: "100%",
   },
-});
+
+  imagesContainer: {
+    marginTop: theme.spacing(2),
+
+    [theme.breakpoints.up("md")]: {
+      marginTop: theme.spacing(3),
+    },
+  },
+}));
 
 const ExperienceSection = () => {
   const {
@@ -32,7 +40,7 @@ const ExperienceSection = () => {
   return (
     <SectionWrapper>
       <TextSection title={textTitle} body={body} bodyTwo={bodyTwo} size="lg" />
-      <Grid container spacing={2}>
+      <Grid className={classes.imagesContainer} container spacing={2}>
         <Grid item md={6} sm={6} xs={12}>
           <GatsbyImage
             image={groupOnePicture.gatsbyImageData}
