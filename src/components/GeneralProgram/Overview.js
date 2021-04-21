@@ -1,6 +1,7 @@
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Grid from "@material-ui/core/Grid";
 import clsx from "clsx";
 
@@ -20,11 +21,12 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("md")]: {
       width: "calc(10vw + 240px)",
-      marginTop: "calc(2.96vw + 21.3px)",
+      margin: 0,
+      height: "auto",
     },
   },
   text: {
-    marginTop: "calc(2.96vw + 21.3px)",
+    paddingBottom: theme.spacing(2),
   },
   spacingRight: {
     [theme.breakpoints.up("md")]: {
@@ -62,6 +64,8 @@ const Overview = () => {
   } = useGeneralProgramData();
 
   const classes = useStyles();
+  const theme = useTheme();
+  const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const groupOnePicture = images.find(({ title }) => title === "group 1");
   const groupTwoPicture = images.find(({ title }) => title === "group 2");
@@ -70,16 +74,16 @@ const Overview = () => {
   return (
     <SectionWrapper>
       <Grid container justify="space-between">
-        <Grid item className={classes.text} sm={12} md={7}>
+        <Grid item className={classes.text} sm={12} md={8}>
           <TextSection
             header={header}
             title={textTitle}
             body={body}
             bodyTwo={bodyTwo}
-            size="sm"
+            size={isUpMd ? "md" : "lg"}
           />
         </Grid>
-        <Grid item sm={12} md={5} className={classes.smallImageBox}>
+        <Grid item sm={12} md={4} className={classes.smallImageBox}>
           <GatsbyImage
             image={groupOnePicture.gatsbyImageData}
             alt={groupOnePicture.description}
