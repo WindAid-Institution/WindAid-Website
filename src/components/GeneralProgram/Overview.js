@@ -8,6 +8,7 @@ import clsx from "clsx";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useGeneralProgramData from "queries/generalProgram";
+import { getImage } from "src/utils/utils";
 
 const useStyles = makeStyles((theme) => ({
   smallImageBox: {
@@ -72,9 +73,9 @@ const Overview = () => {
   const theme = useTheme();
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
 
-  const groupOnePicture = images.find(({ title }) => title === "group 1");
-  const groupTwoPicture = images.find(({ title }) => title === "group 2");
-  const groupThreePicture = images.find(({ title }) => title === "group 3");
+  const groupOnePicture = getImage(images, "group 1");
+  const groupTwoPicture = getImage(images, "group 2");
+  const groupThreePicture = getImage(images, "group 3");
 
   return (
     <SectionWrapper>

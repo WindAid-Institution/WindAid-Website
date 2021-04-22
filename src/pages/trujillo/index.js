@@ -6,10 +6,15 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import MainLayout from "src/layout/MainLayout";
 
 import Hero from "components/Hero/Hero";
+import Spring from "components/Trujillo/Spring";
+import Explore from "components/Trujillo/Explore/index";
+import Beach from "components/Trujillo/Beach";
+import Immerse from "components/Trujillo/Immerse";
+import Accommodation from "components/Trujillo/Accommodation";
 
 import theme from "../../../theme";
 
-const LongTermProgram = ({
+const Trujillo = ({
   data: {
     hero: { title, image },
   },
@@ -17,7 +22,13 @@ const LongTermProgram = ({
   <ThemeProvider theme={theme}>
     <MainLayout>
       <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
-      <></>
+      <>
+        <Spring />
+        <Explore />
+        <Beach />
+        <Immerse />
+        <Accommodation />
+      </>
     </MainLayout>
   </ThemeProvider>
 );
@@ -37,4 +48,4 @@ export const query = graphql`
   }
 `;
 
-export default LongTermProgram;
+export default Trujillo;

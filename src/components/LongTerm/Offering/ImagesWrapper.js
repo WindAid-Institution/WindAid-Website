@@ -8,6 +8,7 @@ import clsx from "clsx";
 
 import useLongTermData from "queries/longTerm";
 import useWindowSize from "hooks/useWindowSize";
+import { getImage } from "src/utils/utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,9 +80,9 @@ const ImagesWrapper = ({ children }) => {
 
   const classes = useStyles();
 
-  const groupOnePicture = images.find(({ title }) => title === "group 1");
-  const groupTwoPicture = images.find(({ title }) => title === "group 2");
-  const groupThreePicture = images.find(({ title }) => title === "group 3");
+  const groupOnePicture = getImage(images, "group 1");
+  const groupTwoPicture = getImage(images, "group 2");
+  const groupThreePicture = getImage(images, "group 3");
 
   return (
     <Box className={classes.root}>

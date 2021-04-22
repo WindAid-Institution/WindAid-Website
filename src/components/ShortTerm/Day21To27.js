@@ -8,6 +8,7 @@ import clsx from "clsx";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useShortTermData from "queries/shortTerm";
+import { getImage } from "src/utils/utils";
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -76,11 +77,11 @@ const Day21To27 = () => {
 
   const isMdScreen = useMediaQuery(theme.breakpoints.up("md"));
 
-  const groupOnePicture = images.find((img) => img.title === "group 1");
-  const groupTwoPicture = images.find((img) => img.title === "group 2");
-  const groupThreePicture = images.find((img) => img.title === "group 3");
-  const groupFourPicture = images.find((img) => img.title === "group 4");
-  const groupFivePicture = images.find((img) => img.title === "group 5");
+  const groupOnePicture = getImage(images, "group 1");
+  const groupTwoPicture = getImage(images, "group 2");
+  const groupThreePicture = getImage(images, "group 3");
+  const groupFourPicture = getImage(images, "group 4");
+  const groupFivePicture = getImage(images, "group 5");
 
   return (
     <SectionWrapper>

@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useGeneralProgramData from "queries/generalProgram";
+import { getImage } from "src/utils/utils";
 
 const useStyles = makeStyles((theme) => ({
   img: {
@@ -32,8 +33,8 @@ const ExperienceSection = () => {
     },
   } = useGeneralProgramData();
 
-  const groupOnePicture = images.find(({ title }) => title === "group 1");
-  const groupTwoPicture = images.find(({ title }) => title === "group 2");
+  const groupOnePicture = getImage(images, "group 1");
+  const groupTwoPicture = getImage(images, "group 2");
 
   const classes = useStyles();
 
