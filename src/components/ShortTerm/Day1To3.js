@@ -5,8 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
-
 import useShortTermData from "queries/shortTerm";
+import { getImage } from "src/utils/utils";
 
 const useStyles = makeStyles((theme) => ({
   imagesContainer: {
@@ -48,9 +48,9 @@ const Day1To3 = () => {
 
   const classes = useStyles();
 
-  const groupOnePicture = images.find((img) => img.title === "group 1");
-  const groupTwoPicture = images.find((img) => img.title === "group 2");
-  const groupThreePicture = images.find((img) => img.title === "group 3");
+  const groupOnePicture = getImage(images, "group 1");
+  const groupTwoPicture = getImage(images, "group 2");
+  const groupThreePicture = getImage(images, "group 3");
 
   return (
     <SectionWrapper>

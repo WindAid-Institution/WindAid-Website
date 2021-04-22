@@ -21,19 +21,24 @@ const useStyles = makeStyles((theme) => {
   };
 
   return {
-    root: ({ bgColor, sectionStyle }) => ({
+    root: ({ bgColor, bgUrl, sectionStyle }) => ({
       backgroundColor: getBackgroundColor(bgColor),
       paddingTop: "calc(2.96vw + 21.3px)",
       paddingBottom: "calc(2.96vw + 21.3px)",
+      backgroundImage: bgUrl ? `url(${bgUrl})` : "",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      position: "relative",
       ...sectionStyle,
     }),
   };
 });
 
-const SectionWrapper = ({ children, style, bgColor }) => {
+const SectionWrapper = ({ children, style, bgColor, bgUrl }) => {
   const { sectionStyle, containerStyle } = style || {};
-  const classes = useStyles({ bgColor, sectionStyle });
-
+  const classes = useStyles({ bgColor, bgUrl, sectionStyle });
+  console.log(sectionStyle);
   return (
     <section className={classes.root}>
       <Container style={containerStyle}>{children}</Container>
@@ -45,11 +50,13 @@ SectionWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   style: PropTypes.object,
   bgColor: PropTypes.string,
+  bgUrl: PropTypes.string,
 };
 
 SectionWrapper.defaultProps = {
   style: {},
   bgColor: "",
+  bgUrl: "",
 };
 
 export default SectionWrapper;
