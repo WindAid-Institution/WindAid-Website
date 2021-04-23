@@ -25,6 +25,9 @@ const theme = createMuiTheme({
       main: "#ffffff",
       dark: "#fff9f5",
     },
+    info: {
+      main: "#015B90",
+    },
   },
   typography: {
     fontFamily: "Open Sans",

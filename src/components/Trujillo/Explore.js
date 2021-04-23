@@ -9,7 +9,7 @@ import TextSection from "shared/TextSection";
 import useTrujilloData from "hooks/queries/trujillo";
 import { getImage } from "src/utils/utils";
 
-import ExploreCarousel from "./ExploreCarousel";
+import ExploreCarousel from "./TrujilloCarousel/TrujilloCarousel";
 
 const useStyles = makeStyles((theme) => ({
   textContainer: {
@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("lg")]: {
       display: "flex",
       alignItems: "center",
+      position: "relative",
+      top: "-26px",
+      paddingRight: theme.spacing(4),
 
       "& > div > div > h3": {
         textAlign: "left",
@@ -42,12 +45,12 @@ const Explore = () => {
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const sectionStyle = {
-    height: "700px",
+    height: "760px",
     backgroundSize: "contain",
     backgroundPosition: "bottom",
 
     [theme.breakpoints.up("sm")]: {
-      height: "768px",
+      height: "820px",
     },
 
     [theme.breakpoints.up("md")]: {
@@ -55,7 +58,10 @@ const Explore = () => {
     },
 
     [theme.breakpoints.up("lg")]: {
-      height: "880px",
+      height: "920px",
+    },
+    [theme.breakpoints.up("xl")]: {
+      height: "1000px",
     },
   };
 
@@ -82,7 +88,7 @@ const Explore = () => {
             title={textTitle}
             body={body}
             style={textSectionStyle}
-            size={isUpLg ? "sm" : "full"}
+            size="full"
           />
         </Grid>
         <Grid item xs={12} lg={6}>

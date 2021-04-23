@@ -13,7 +13,7 @@ import TextSection from "shared/TextSection";
 import useTrujilloData from "hooks/queries/trujillo";
 import { getImage } from "src/utils/utils";
 
-const blueColor = "#015B90";
+import ExploreCarousel from "./TrujilloCarousel/TrujilloCarousel";
 
 const useStyles = makeStyles((theme) => ({
   backgroundFilter: {
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: theme.typography.fontWeightBold,
     fontSize: "16px",
     lineHeight: "28px",
-    color: blueColor,
+    color: theme.palette.info.main,
     paddingLeft: theme.spacing(1),
     textAlign: "center",
 
@@ -129,10 +129,10 @@ const Beach = () => {
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const sectionStyle = {
-    height: "768px",
+    height: "820px",
 
     [theme.breakpoints.up("sm")]: {
-      height: "784px",
+      height: "870px",
     },
 
     [theme.breakpoints.up("lg")]: {
@@ -149,52 +149,41 @@ const Beach = () => {
 
     titleStyle: {
       textStyle: {
-        color: blueColor,
+        color: theme.palette.info.main,
       },
     },
   };
 
+  console.log(images);
   const backgroundImage = getImage(images, "background-ocean");
   const surfersImage = getImage(images, "group 2");
   const pictures = images.filter(({ title }) => title.includes("group"));
-
   const imageSrc = getSrc(backgroundImage);
 
   return (
     <SectionWrapper bgUrl={imageSrc} style={{ sectionStyle }}>
-      <Box className={classes.contentContainer}>
-        <TextSection
-          title={textTitle}
-          body={body}
-          style={textSectionStyle}
-          size={isUpLg ? "lg" : "full"}
-        />
-
-        <Box className={classes.subHeaderContainer}>
-          <img className={classes.busIcon} src={BusIcon} alt="Bus sign" />
-          <Typography className={classes.subHeader} variant="h5">
-            {header}
-          </Typography>
-        </Box>
-        <Grid className={classes.imagesContainer} container spacing={3}>
-          {isUpLg ? (
-            <>
-              {pictures.map(({ gatsbyImageData, description }) => (
-                <GridItem
-                  key={description}
-                  image={gatsbyImageData}
-                  description={description}
-                />
-              ))}
-            </>
-          ) : (
-            <GridItem
-              image={surfersImage.gatsbyImageData}
-              description={surfersImage.description}
-            />
-          )}
+      <Grid className={classes.contentContainer} container>
+        <Grid item xs={12}>
+          <TextSection
+            title={textTitle}
+            body={body}
+            style={textSectionStyle}
+            size={isUpLg ? "lg" : "full"}
+          />
         </Grid>
-      </Box>
+
+        <Grid item xs={12}>
+          <Box className={classes.subHeaderContainer}>
+            <img className={classes.busIcon} src={BusIcon} alt="Bus sign" />
+            <Typography className={classes.subHeader} variant="h5">
+              {header}
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid className={classes.imagesContainer} item xs={12}>
+          <ExploreCarousel carouselImages={pictures} isBeachSection />
+        </Grid>
+      </Grid>
       <Box className={classes.backgroundFilter} />
     </SectionWrapper>
   );
