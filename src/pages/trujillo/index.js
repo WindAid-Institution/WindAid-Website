@@ -7,7 +7,7 @@ import MainLayout from "src/layout/MainLayout";
 
 import Hero from "components/Hero/Hero";
 import Spring from "components/Trujillo/Spring";
-import Explore from "components/Trujillo/Explore/index";
+import Explore from "components/Trujillo/Explore";
 import Beach from "components/Trujillo/Beach";
 import Immerse from "components/Trujillo/Immerse";
 import Accommodation from "components/Trujillo/Accommodation";

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => {
 const SectionWrapper = ({ children, style, bgColor, bgUrl }) => {
   const { sectionStyle, containerStyle } = style || {};
   const classes = useStyles({ bgColor, bgUrl, sectionStyle });
-  console.log(sectionStyle);
+
   return (
     <section className={classes.root}>
       <Container style={containerStyle}>{children}</Container>

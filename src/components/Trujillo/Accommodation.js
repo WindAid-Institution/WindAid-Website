@@ -18,6 +18,13 @@ const useStyles = makeStyles((theme) => ({
   image: {
     width: "100%",
     maxHeight: "380px",
+
+    [theme.breakpoints.up("sm")]: {
+      height: "244px",
+    },
+    [theme.breakpoints.up("md")]: {
+      height: "228px",
+    },
   },
 }));
 
