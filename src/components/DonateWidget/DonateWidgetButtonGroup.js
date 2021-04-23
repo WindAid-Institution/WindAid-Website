@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
@@ -81,7 +82,7 @@ const ValueButton = ({ value, handleButtonClick, isActive }) => {
 const ValueInput = ({ value, handleInputChange }) => {
   const classes = useStyles();
 
-  console.log("val", value);
+
   return (
     <TextField
       className={classes.textInput}
@@ -91,6 +92,11 @@ const ValueInput = ({ value, handleInputChange }) => {
       type="number"
       onChange={handleInputChange}
       value={value}
+      InputProps={{
+        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+        endAdornment: <InputAdornment position="end">USD</InputAdornment>,
+        pattern: "[0-9]",
+      }}
     />
   );
 };
@@ -133,7 +139,7 @@ ValueButton.defaultProps = {
 };
 
 ValueInput.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   handleInputChange: PropTypes.func,
 };
 
@@ -145,7 +151,8 @@ DonateWidgetButtonGroup.propTypes = {
   handleButtonClick: PropTypes.func,
   donationValue: PropTypes.number.isRequired,
   handleInputChange: PropTypes.func,
-  inputValue: PropTypes.string.isRequired,
+  inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
   buttonsValues: PropTypes.array.isRequired,
 };
 DonateWidgetButtonGroup.defaultProps = {

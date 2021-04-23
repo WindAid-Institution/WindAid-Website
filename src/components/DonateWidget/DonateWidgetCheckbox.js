@@ -24,9 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DonateWidgetCheckbox = () => {
-
-
+const DonateWidgetCheckbox = ({ handleCheckboxToggle, isChecked }) => {
   const classes = useStyles();
   return (
     <Box className={classes.container}>
@@ -34,8 +32,8 @@ const DonateWidgetCheckbox = () => {
         <FormControlLabel
           control={
             <Checkbox
-              checked={true}
-              // onChange={handleChange}
+              checked={isChecked}
+              onChange={handleCheckboxToggle}
               name="checkedB"
               color="primary"
             />
@@ -49,6 +47,15 @@ const DonateWidgetCheckbox = () => {
       </FormGroup>
     </Box>
   );
+};
+
+DonateWidgetCheckbox.propTypes = {
+  handleCheckboxToggle: PropTypes.func,
+  isChecked: PropTypes.bool.isRequired,
+};
+
+DonateWidgetCheckbox.defaultProps = {
+  handleCheckboxToggle: () => console.info("Function is not provided"),
 };
 
 export default DonateWidgetCheckbox;

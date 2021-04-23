@@ -35,8 +35,9 @@ const useStyles = makeStyles((theme) => ({
 const BUTTONS_VALUES = [10, 20, 40, 50];
 
 const DonateWidget = () => {
-  const [donationValue, setDonationValue] = useState("");
-  const [inputValue, setInputValue] = useState("nulklksas a");
+  const [donationValue, setDonationValue] = useState(0);
+  const [inputValue, setInputValue] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
 
   const classes = useStyles();
   const theme = useTheme();
@@ -45,23 +46,32 @@ const DonateWidget = () => {
     const value = parseInt(event.currentTarget.value, 10);
 
     if (donationValue === value) {
-      return setDonationValue(0);
+      setInputValue("");
+      setDonationValue(0);
+      return;
     }
-
-    return setDonationValue(value);
+    setInputValue("");
+    setDonationValue(value);
   };
 
   const handleInputChange = (event) => {
-    const value = parseInt(event.currentTarget.value, 10);
-    console.log(value);
+    const strValue = event.currentTarget.value;
+
+    if (strValue.startsWith("0")) {
+      return null;
+    }
+
+    const value = parseInt(strValue, 10);
 
     setDonationValue(value);
 
     if (BUTTONS_VALUES.includes(value)) {
       return setInputValue("");
     }
-    return setInputValue(event.currentTarget.value);
+    return setInputValue(value);
   };
+
+  const handleCheckboxToggle = (event) => setIsChecked(event.target.checked);
 
   return (
     <Box className={classes.container}>
@@ -82,7 +92,10 @@ const DonateWidget = () => {
             inputValue={inputValue}
             buttonsValues={BUTTONS_VALUES}
           />
-          <DonateWidgetCheckbox />
+          <DonateWidgetCheckbox
+            handleCheckboxToggle={handleCheckboxToggle}
+            isChecked={isChecked}
+          />
           <Box display="flex" justifyContent="center">
             <Button
               style={{
@@ -91,6 +104,7 @@ const DonateWidget = () => {
                 marginBottom: theme.spacing(2),
               }}
               text="Donate"
+              isDisabled={donationValue === 0 || Number.isNaN(donationValue)}
             />
           </Box>
         </CardContent>
