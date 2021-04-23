@@ -129,10 +129,10 @@ const Beach = () => {
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const sectionStyle = {
-    height: "820px",
+    height: "840px",
 
     [theme.breakpoints.up("sm")]: {
-      height: "870px",
+      height: "920px",
     },
 
     [theme.breakpoints.up("lg")]: {
@@ -154,9 +154,7 @@ const Beach = () => {
     },
   };
 
-  console.log(images);
   const backgroundImage = getImage(images, "background-ocean");
-  const surfersImage = getImage(images, "group 2");
   const pictures = images.filter(({ title }) => title.includes("group"));
   const imageSrc = getSrc(backgroundImage);
 
