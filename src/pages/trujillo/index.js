@@ -10,6 +10,7 @@ import Spring from "components/Trujillo/Spring";
 import Explore from "components/Trujillo/Explore";
 import Beach from "components/Trujillo/Beach";
 import Immerse from "components/Trujillo/Immerse";
+import Entertainment from "components/Trujillo/Entertainment";
 import Accommodation from "components/Trujillo/Accommodation";
 
 import theme from "../../../theme";
@@ -26,6 +27,7 @@ const Trujillo = ({
         <Spring />
         <Explore />
         <Beach />
+        <Entertainment />
         <Immerse />
         <Accommodation />
       </>

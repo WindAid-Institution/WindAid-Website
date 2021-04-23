@@ -11,9 +11,13 @@ import CustomButtonGroup from "./TrujilloButtonGroup";
 const useStyles = makeStyles((theme) => ({
   carouselContainer: ({ isBeachSection }) => ({
     paddingBottom: isBeachSection ? theme.spacing(5) : theme.spacing(2),
-    maxWidth: isBeachSection ? "100%" : "600px",
+    maxWidth: "600px",
     margin: "0 auto",
     width: "100%",
+
+    [theme.breakpoints.up("lg")]: {
+      maxWidth: isBeachSection ? "100%" : "600px",
+    },
   }),
   imageContainer: {
     width: "100%",
@@ -25,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
   image: ({ isBeachSection }) => ({
     width: "100%",
     height: "100%",
+    maxHeight: "250px",
+
+    [theme.breakpoints.up("sm")]: {
+      maxHeight: "360px",
+    },
 
     [theme.breakpoints.up("lg")]: {
       width: isBeachSection ? "368px" : "100%",
@@ -46,16 +55,9 @@ const TrujilloCarousel = ({ carouselImages, isBeachSection }) => {
           },
           items: isBeachSection ? 3 : 1,
         },
-        tablet: {
-          breakpoint: {
-            max: 1200,
-            min: 600,
-          },
-          items: isBeachSection ? 2 : 1,
-        },
         mobile: {
           breakpoint: {
-            max: 600,
+            max: 1200,
             min: 0,
           },
           items: 1,

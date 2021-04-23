@@ -61,7 +61,7 @@ const Explore = () => {
       height: "920px",
     },
     [theme.breakpoints.up("xl")]: {
-      height: "1000px",
+      height: "1100px",
     },
   };
 

@@ -66,16 +66,52 @@ const useTrujilloData = () => {
           gatsbyImageData(quality: 100, placeholder: BLURRED)
         }
       }
+
+      entertainmentOne: contentfulSection(
+        contentId: { eq: "trujillo-entertainment-one" }
+      ) {
+        title
+        body {
+          body
+        }
+        bodyTwo {
+          bodyTwo
+        }
+
+        images {
+          title
+          description
+          gatsbyImageData(quality: 100, placeholder: BLURRED)
+        }
+      }
+      entertainmentTwo: contentfulSection(
+        contentId: { eq: "trujillo-entertainment-two" }
+      ) {
+        title
+        body {
+          body
+        }
+      }
     }
   `);
 
-  const { spring, explore, beach, immerse, accommodation } = data;
+  const {
+    spring,
+    explore,
+    beach,
+    immerse,
+    accommodation,
+    entertainmentOne,
+    entertainmentTwo,
+  } = data;
   return {
     spring,
     explore,
     beach,
     immerse,
     accommodation,
+    entertainmentOne,
+    entertainmentTwo,
   };
 };
 

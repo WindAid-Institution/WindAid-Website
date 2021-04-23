@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => {
       backgroundSize: "cover",
       backgroundPosition: "center",
       position: "relative",
+      overflow: "hidden",
       ...sectionStyle,
     }),
   };

@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   buttonGroupContainer: ({ isBeachSection }) => ({
-    width: isBeachSection ? "1154px" : "100%",
+    width: "100%",
     height: "46px",
     display: "flex",
     justifyContent: "center",
@@ -42,6 +42,18 @@ const useStyles = makeStyles((theme) => ({
       ? "rgba(255, 255, 255, 0.5)"
       : "transparent",
     padding: "16px 0",
+
+    [theme.breakpoints.up("xmd")]: {
+      width: isBeachSection ? "calc(100% - 76px)" : "100%",
+    },
+
+    [theme.breakpoints.up("md")]: {
+      width: isBeachSection ? "calc(100% - 270px)" : "100%",
+    },
+
+    [theme.breakpoints.up("lg")]: {
+      width: isBeachSection ? "calc(100% - 16px)" : "100%",
+    },
   }),
 
   buttonGroup: {
@@ -92,7 +104,6 @@ const CustromButtonGroup = ({
   isBeachSection,
   ...rest
 }) => {
-  console.log("hello hello", isBeachSection);
   const classes = useStyles({ isBeachSection });
   const {
     carouselState: { totalItems, currentSlide, slidesToShow },
