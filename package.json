@@ -32,6 +32,8 @@
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@react-icons/all-files": "^4.1.0",
+    "ajv": "^8.1.0",
+    "ajv-formats": "^2.0.2",
     "babel-plugin-styled-components": "^1.12.0",
     "bootstrap": "^4.6.0",
     "clsx": "^1.1.1",
@@ -58,6 +60,9 @@
     "react-router-dom": "^5.2.0",
     "react-visibility-sensor": "^5.1.1",
     "styled-components": "^5.2.1",
+    "uniforms": "^3.3.0",
+    "uniforms-bridge-json-schema": "^3.3.0",
+    "uniforms-material": "^3.3.0",
     "webfontloader": "^1.6.28"
   },
   "main": "gatsby-browser.js",
