@@ -13,6 +13,14 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
+      resolve: "gatsby-plugin-recaptcha",
+      options: {
+        async: true,
+        defer: true,
+        args: "?onload=onloadCallback&render=explicit",
+      },
+    },
+    {
       resolve: "gatsby-plugin-google-fonts",
       options: {
         fonts: ["Open Sans:300,400,500,600,700,800,900"],

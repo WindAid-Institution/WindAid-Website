@@ -228,7 +228,6 @@ const applicationFormSchema = {
     },
     termAndConditions: {
       type: "boolean",
-
       uniforms: {
         label: (
           <span>
@@ -244,7 +243,6 @@ const applicationFormSchema = {
           </span>
         ),
         variant: "outlined",
-        InputLabelProps: { shrink: true },
         color: "primary",
       },
     },

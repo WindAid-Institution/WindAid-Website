@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import { navigate } from "gatsby";
+import axios from "axios";
 import {
   AutoForm,
   AutoField,
   SubmitField,
   RadioField,
-  DateField,
+  BoolField,
 } from "uniforms-material";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
+import Alert from "@material-ui/lab/Alert";
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Recaptcha from "react-recaptcha";
 
 import Title from "shared/Title";
 import { applicationFormSchemaBridge } from "src/schemas/applicationFormSchema";
@@ -51,6 +57,20 @@ const useStyles = makeStyles((theme) => ({
       display: "block",
     },
   },
+
+  error: {
+    padding: "16px 0",
+    color: "red",
+  },
+
+  recaptcha: {
+    margin: "16px 0",
+  },
+
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff",
+  },
 }));
 
 const titleStyle = {
@@ -60,11 +80,46 @@ const titleStyle = {
 };
 
 const ApplicationForm = () => {
-  const handleSubmit = (data) => {
-    console.log(data);
-  };
+  const [isVerified, setIsVerified] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const classes = useStyles();
+
+  const handleSubmit = async (data) => {
+    if (!isVerified) {
+      return setIsError(true);
+    }
+
+    setIsLoading(true);
+    try {
+      const result = await axios.post(
+        process.env.SPREADSHEET_CONNECTION_URL,
+        data
+      );
+
+      if (result?.status === 200) {
+        setIsError(false);
+        setIsLoading(false);
+        return navigate("/completed-registration");
+      }
+
+      setIsError(true);
+      return setIsLoading(false);
+    } catch (err) {
+      setIsError(true);
+      setIsLoading(false);
+      return console.error(err);
+    }
+  };
+
+  const handleCaptchaVerification = (response) => {
+    if (response) {
+      setIsVerified(true);
+      setIsError(false);
+    }
+  };
+
   return (
     <>
       <Title style={titleStyle} title={pageData.generalTitle} size="lg" />
@@ -191,11 +246,37 @@ const ApplicationForm = () => {
             <Typography>
               You must check this box to submit your application.
             </Typography>
-            <AutoField name="termAndConditions" />
+            <BoolField name="termAndConditions" required />
           </Grid>
         </Grid>
+
+        {!isVerified && isError && (
+          <Typography className={classes.error}>
+            Please check reCAPTHA to continue
+          </Typography>
+        )}
+
+        {isVerified && isError && (
+          <Alert severity="error">
+            <Typography className={classes.error}>
+              There is a problem with submitting your form. Please try again
+              later or contact us.
+            </Typography>
+          </Alert>
+        )}
+
+        <Recaptcha
+          sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+          render="explicit"
+          verifyCallback={handleCaptchaVerification}
+          className={classes.recaptcha}
+        />
+
         <SubmitField />
       </AutoForm>
+      <Backdrop className={classes.backdrop} open={isLoading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   );
 };
