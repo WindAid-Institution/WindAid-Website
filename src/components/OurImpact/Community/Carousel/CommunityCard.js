@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     height: "fit-content",
     fontStyle: "normal",
-    fontFamily: "Open Sans",
+    fontFamily: theme.typography.fontFamily,
     transition: "height 0.2s ease",
     marginTop: theme.spacing(2),
 

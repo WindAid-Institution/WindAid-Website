@@ -1,11 +1,11 @@
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Grid from "@material-ui/core/Grid";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
-import useWindowSize from "hooks/useWindowSize";
 import useShortTermData from "queries/shortTerm";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,10 +36,13 @@ const Day4To20 = () => {
   } = useShortTermData();
 
   const classes = useStyles();
+  const theme = useTheme();
 
-  const { width } = useWindowSize();
+  const isMdScreen = useMediaQuery(theme.breakpoints.up("md"));
 
-  const isMdScreen = width >= 960;
+  const whiteColorStyle = {
+    textStyle: { color: theme.palette.secondary.main },
+  };
 
   return (
     <SectionWrapper bgColor="primary">
@@ -51,9 +54,9 @@ const Day4To20 = () => {
             body={body}
             size={isMdScreen ? "sm" : "lg"}
             style={{
-              headerStyle: { textStyle: { color: "#fff" } },
-              titleStyle: { textStyle: { color: "#fff" } },
-              bodyStyle: { textStyle: { color: "#fff" } },
+              headerStyle: { ...whiteColorStyle },
+              titleStyle: { ...whiteColorStyle },
+              bodyStyle: { ...whiteColorStyle },
             }}
           />
         </Grid>

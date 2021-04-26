@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
     padding: "28px 32px 32px 32px",
     display: "none",
+    textDecoration: "none",
 
     [theme.breakpoints.up("lg")]: {
       display: "block",

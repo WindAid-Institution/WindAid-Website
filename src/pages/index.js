@@ -14,17 +14,17 @@ import OurPrograms from "components/Home/OurPrograms";
 import theme from "../../theme";
 import "../styles/global.css";
 
-export default function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <MainLayout>
-        <BigBanner />
-        <OurMission />
-        <Stats />
-        <OurApproach />
-        <OurCoreWork />
-        <OurPrograms />
-      </MainLayout>
-    </ThemeProvider>
-  );
-}
+const App = () => (
+  <ThemeProvider theme={theme}>
+    <MainLayout>
+      <BigBanner />
+      <OurMission />
+      <Stats />
+      <OurApproach />
+      <OurCoreWork />
+      <OurPrograms />
+    </MainLayout>
+  </ThemeProvider>
+);
+
+export default App;

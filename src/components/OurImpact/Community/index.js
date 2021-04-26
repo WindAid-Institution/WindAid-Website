@@ -1,8 +1,9 @@
 import React from "react";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import SectionWrapper from "shared/SectionWrapper";
 import Title from "shared/Title";
-import useWindowSize from "hooks/useWindowSize";
 import useOurImpactData from "queries/ourImpact";
 
 import ComminutyCarousel from "./Carousel/ComminutyCarousel";
@@ -12,8 +13,9 @@ const Community = () => {
     community: { title },
   } = useOurImpactData();
 
-  const { width: windowWidth } = useWindowSize();
-  const isMdScreen = windowWidth >= 992;
+  const theme = useTheme();
+
+  const isMdScreen = useMediaQuery(theme.breakpoints.up("md"));
 
   const textStyle = {
     textAlign: isMdScreen ? "left" : "center",

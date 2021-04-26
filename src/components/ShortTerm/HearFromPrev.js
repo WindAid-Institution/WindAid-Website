@@ -6,7 +6,7 @@ import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 // eslint-disable-next-line max-len
 import CommunityCard from "components/OurImpact/Community/Carousel/CommunityCard";
-import Button from "shared/Button";
+import ApplyButton from "components/ApplyButton";
 
 import useShortTermData from "queries/shortTerm";
 
@@ -29,8 +29,6 @@ const HearFromPrev = () => {
 
   const classes = useStyles();
 
-  const currentYear = new Date().getFullYear();
-
   return (
     <SectionWrapper>
       <TextSection title={header} size="lg" />
@@ -49,10 +47,7 @@ const HearFromPrev = () => {
       </Box>
 
       <Box className={classes.buttonContainer}>
-        <Button
-          text={`Apply now for the ${currentYear} programs`}
-          style={{ marginTop: "32px" }}
-        />
+        <ApplyButton />
       </Box>
     </SectionWrapper>
   );

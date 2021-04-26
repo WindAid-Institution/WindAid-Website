@@ -7,7 +7,7 @@ import VisibilitySensor from "react-visibility-sensor";
 
 const useStyles = makeStyles((theme) => ({
   numbers: {
-    fontFamily: "Open Sans",
+    fontFamily: theme.typography.fontFamily,
     fontSize: "60px",
     fontWeight: "600",
     margin: "0 0 0 0",
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   iconText: {
-    fontFamily: "Open Sans",
+    fontFamily: theme.typography.fontFamily,
     fontSize: "18px",
     fontWeight: "400",
     textAlign: "center",

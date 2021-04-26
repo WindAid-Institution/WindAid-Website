@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
 import useOurImpactData from "queries/ourImpact";
@@ -65,6 +65,7 @@ const JoinProgram = () => {
   } = useOurImpactData();
 
   const classes = useStyles();
+  const theme = useTheme();
 
   return (
     <SectionWrapper bgColor="primary">
@@ -75,8 +76,10 @@ const JoinProgram = () => {
             body={body}
             size="auto"
             style={{
-              bodyStyle: { textStyle: { color: "#fff" } },
-              titleStyle: { textStyle: { color: "#fff" } },
+              bodyStyle: { textStyle: { color: theme.palette.secondary.main } },
+              titleStyle: {
+                textStyle: { color: theme.palette.secondary.main },
+              },
             }}
           />
           <Link className={classes.link} to="/">

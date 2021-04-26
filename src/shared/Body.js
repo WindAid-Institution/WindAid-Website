@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
   text: ({ size, textStyle }) => ({
     "& > p": {
-      fontFamily: "Open Sans",
+      fontFamily: theme.typography.fontFamily,
       fontSize: "14px",
       lineHeight: "28px",
       maxWidth: size === "sm" ? "560px" : "none",
@@ -46,6 +46,10 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "16px",
         ...textStyle,
       },
+    },
+
+    "& > p > a": {
+      color: theme.palette.primary.main,
     },
   }),
 }));

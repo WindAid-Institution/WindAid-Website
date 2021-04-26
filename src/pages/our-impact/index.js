@@ -5,8 +5,7 @@ import { getSrc } from "gatsby-plugin-image";
 import { ThemeProvider } from "@material-ui/core/styles";
 
 import MainLayout from "src/layout/MainLayout";
-
-import TheProblem from "components/OurImpact/TheProblem";
+import Overview from "components/Overview";
 import Hero from "components/Hero/Hero";
 import WhoWereServing from "components/OurImpact/WhoWereServing/index";
 // eslint-disable-next-line max-len
@@ -26,15 +25,21 @@ const OurImpact = ({
       body: { sunsetParagraph },
       sunsetImage,
     },
+    theProblem,
   },
 }) => {
   const sunsetImageSrc = getSrc(sunsetImage);
+
   return (
     <ThemeProvider theme={theme}>
       <MainLayout>
         <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
         <>
-          <TheProblem />
+          <Overview
+            header={theProblem.header}
+            title={theProblem.title}
+            body={theProblem.body.body}
+          />
           <WhoWereServing />
           <BackgroundSeparator
             imageSrc={sunsetImageSrc}
@@ -61,6 +66,14 @@ export const query = graphql`
           placeholder: TRACED_SVG
           layout: FULL_WIDTH
         )
+      }
+    }
+
+    theProblem: contentfulSection(contentId: { eq: "ourImpact-the-problem" }) {
+      header
+      title
+      body {
+        body
       }
     }
 
