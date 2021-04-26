@@ -85,6 +85,11 @@ const theme = createMuiTheme({
         fontStyle: "normal",
       },
     },
+    MuiLink: {
+      root: {
+        fontWeight: 700,
+      },
+    },
   },
   props: {
     MuiButton: {

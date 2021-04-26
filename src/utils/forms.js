@@ -1,32 +1,27 @@
+import { JSONSchemaBridge } from "uniforms-bridge-json-schema";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import { JSONSchemaBridge } from "uniforms-bridge-json-schema";
 
-const ajv = new Ajv({
-  allErrors: true,
-  useDefaults: true,
-});
-
+const ajv = new Ajv({ allErrors: true, useDefaults: true });
+ajv.addKeyword("uniforms");
 addFormats(ajv);
 
-const createValidator = (schema, customValidation, onValidate) => {
+const createValidator = (schema) => {
   const validator = ajv.compile(schema);
 
   return (model) => {
     validator(model);
-    if (customValidation) {
-      customValidation(model);
-    }
     if (validator.errors && validator.errors.length) {
       const customErrors = validator.errors.map((error) => {
-        if (error.keyword === "minLength" || error.keyword === "required") {
-          if (error.dataPath === "/phoneNumber") {
-            return {
-              ...error,
-              message: "Phone number is required and must have 10 digits",
-            };
-          }
+        console.log(error);
+        if (error.keyword === "required") {
           return { ...error, message: "This field is required" };
+        }
+        if (error.keyword === "minLength") {
+          return {
+            ...error,
+            message: `This field must have at least ${error.params.limit} characters`,
+          };
         }
 
         if (error.keyword === "enum") {
@@ -46,12 +41,6 @@ const createValidator = (schema, customValidation, onValidate) => {
             message: "Provide email in email format",
           };
         }
-        if (error.keyword === "const") {
-          return {
-            ...error,
-            message: "Fields values doesn't match",
-          };
-        }
         if (error.keyword === "pattern") {
           return {
             ...error,
@@ -61,15 +50,7 @@ const createValidator = (schema, customValidation, onValidate) => {
 
         return error;
       });
-      if (onValidate) {
-        const details = onValidate(customErrors);
-        if (Array.isArray(details) && details.length > 0) {
-          return { details };
-        }
-        if (!details || !details.length) {
-          return null;
-        }
-      }
+
       return { details: customErrors };
     }
     return null;
