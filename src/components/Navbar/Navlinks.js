@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
     textDecoration: "none",
 
+    [theme.breakpoints.between(1200, 1251)]: {
+      paddingLeft: "26px",
+      paddingRight: "26px",
+    },
+
     [theme.breakpoints.up("lg")]: {
       display: "block",
     },

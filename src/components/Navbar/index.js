@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
 
     [theme.breakpoints.up("xl")]: {
-      padding: "0 calc(12.6vw - 45px)",
+      padding: "0 calc(12.6vw - 75px)",
     },
   },
   toolbar: {
