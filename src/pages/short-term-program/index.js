@@ -5,51 +5,43 @@ import { getSrc } from "gatsby-plugin-image";
 import { ThemeProvider } from "@material-ui/core/styles";
 
 import MainLayout from "src/layout/MainLayout";
+
 import Overview from "components/Overview";
 import Hero from "components/Hero/Hero";
-import WhoWereServing from "components/OurImpact/WhoWereServing/index";
+import Day1To3 from "components/ShortTerm/Day1To3";
+import Day4To20 from "components/ShortTerm/Day4To20";
+import Day21To27 from "components/ShortTerm/Day21To27";
+import Volunteers from "components/ShortTerm/Volunteers";
+import HearFromPrev from "components/ShortTerm/HearFromPrev";
 // eslint-disable-next-line max-len
 import BackgroundSeparator from "components/BackgroundSeparator/BackgroundSeparator";
-import Community from "components/OurImpact/Community/index";
-import JoinProgram from "components/OurImpact/JoinProgram";
-import PartnerWithUs from "components/OurImpact/PartnerWithUs";
-import SpreadTheWord from "components/OurImpact/SpreadTheWord";
 
 import theme from "../../../theme";
 
-const OurImpact = ({
+const ShortTermProgram = ({
   data: {
     hero: { title, image },
-    separationElement: {
-      sunsetHeading,
-      body: { sunsetParagraph },
-      sunsetImage,
-    },
-    theProblem,
+    separationElement: { workshopImage },
+    overview,
   },
 }) => {
-  const sunsetImageSrc = getSrc(sunsetImage);
-
+  const sunsetImageSrc = getSrc(workshopImage);
   return (
     <ThemeProvider theme={theme}>
       <MainLayout>
         <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
         <>
           <Overview
-            header={theProblem.header}
-            title={theProblem.title}
-            body={theProblem.body.body}
+            header={overview.header}
+            title={overview.title}
+            body={overview.body.body}
           />
-          <WhoWereServing />
-          <BackgroundSeparator
-            imageSrc={sunsetImageSrc}
-            headingText={sunsetHeading}
-            paragraphText={sunsetParagraph}
-          />
-          <Community />
-          <JoinProgram />
-          <PartnerWithUs />
-          <SpreadTheWord />
+          <Day1To3 />
+          <Day4To20 />
+          <Day21To27 />
+          <Volunteers />
+          <BackgroundSeparator imageSrc={sunsetImageSrc} isFilter={false} />
+          <HearFromPrev />
         </>
       </MainLayout>
     </ThemeProvider>
@@ -58,7 +50,7 @@ const OurImpact = ({
 
 export const query = graphql`
   {
-    hero: contentfulPageHero(contentId: { eq: "ourImpact" }) {
+    hero: contentfulPageHero(contentId: { eq: "shortTerm" }) {
       title
       image {
         gatsbyImageData(
@@ -69,7 +61,7 @@ export const query = graphql`
       }
     }
 
-    theProblem: contentfulSection(contentId: { eq: "ourImpact-the-problem" }) {
+    overview: contentfulSection(contentId: { eq: "shortTerm-overview" }) {
       header
       title
       body {
@@ -78,13 +70,9 @@ export const query = graphql`
     }
 
     separationElement: contentfulSeparationImage(
-      contentId: { eq: "ourImpact-electricity" }
+      contentId: { eq: "shortTerm-workshop" }
     ) {
-      sunsetHeading: title
-      body {
-        sunsetParagraph: body
-      }
-      sunsetImage: image {
+      workshopImage: image {
         gatsbyImageData(
           quality: 100
           placeholder: TRACED_SVG
@@ -95,4 +83,4 @@ export const query = graphql`
   }
 `;
 
-export default OurImpact;
+export default ShortTermProgram;

@@ -6,11 +6,13 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { FOOTER_SOCIALS, FOOTER_LINKS } from "../../constants/footer";
+import clsx from "clsx";
+
+import { FOOTER_SOCIALS, FOOTER_LINKS } from "src/constants/footer";
 
 const useStyles = makeStyles((theme) => ({
   footerText: {
-    fontFamily: "Open Sans",
+    fontFamily: theme.typography.fontFamily,
     fontStyle: "normal",
   },
   linksHeader: {
@@ -31,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "18px",
       lineHeight: "22px",
     },
-    color: "#000",
+    color: theme.palette.primary.dark,
   },
   padding: {
     padding: "0",
@@ -49,6 +51,11 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: "1110px",
     },
   },
+  listItem: {
+    "& > a": {
+      textDecoration: "none",
+    },
+  },
   socialsLink: {
     display: "flex",
     width: "24px",
@@ -56,16 +63,18 @@ const useStyles = makeStyles((theme) => ({
     padding: "3px",
     margin: "3px",
     borderRadius: "50%",
-    background: "#056839",
-    color: "#fff",
+    background: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
+    textDecoration: "none",
+
     [theme.breakpoints.up("lg")]: {
       padding: "4px",
       margin: "4px",
     },
 
     "&:hover": {
-      color: "#fff",
-      background: "#04522d",
+      color: theme.palette.secondary.main,
+      background: theme.palette.primary.main,
     },
 
     "& *": {
@@ -96,7 +105,7 @@ const TopFooter = () => {
           <Box>
             <Typography
               variant="h5"
-              className={`${classes.linksHeader} ${classes.footerText}`}
+              className={clsx(classes.linksHeader, classes.footerText)}
             >
               {item.name}
             </Typography>
@@ -105,11 +114,14 @@ const TopFooter = () => {
                 const LinkComponent = link?.external ? ExternalLink : Link;
 
                 return (
-                  <ListItem className={classes.padding} key={link.name}>
+                  <ListItem
+                    className={clsx(classes.padding, classes.listItem)}
+                    key={link.name}
+                  >
                     <LinkComponent key={link.name} to={link.path}>
                       <ListItemText
                         primary={link.name}
-                        className={`${classes.linkText} ${classes.footerText}`}
+                        className={clsx(classes.linkText, classes.footerText)}
                       />
                     </LinkComponent>
                   </ListItem>
@@ -122,7 +134,7 @@ const TopFooter = () => {
       <Grid item xs={6} sm={4} md={4}>
         <Typography
           variant="h5"
-          className={`${classes.linksHeader} ${classes.footerText}`}
+          className={clsx(classes.linksHeader, classes.footerText)}
         >
           {FOOTER_SOCIALS.name}
         </Typography>

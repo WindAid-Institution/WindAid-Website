@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => {
   return {
     root: ({ bgColor, sectionStyle }) => ({
       backgroundColor: getBackgroundColor(bgColor),
-      padding: "calc(2.96vw + 21.3px) 0",
+      paddingTop: "calc(2.96vw + 21.3px)",
+      paddingBottom: "calc(2.96vw + 21.3px)",
       ...sectionStyle,
     }),
   };

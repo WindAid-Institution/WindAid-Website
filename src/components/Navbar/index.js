@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { AppBar, Toolbar, Box } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Link } from "gatsby";
 
 import Logo from "images/navbar/logo.svg";
 import Toggle from "images/navbar/toggle.svg";
-import useWindowSize from "hooks/useWindowSize";
 
 import NavLinks from "./Navlinks";
 import DonateButton from "./DonateButton";
@@ -14,11 +14,11 @@ import Sidebar from "./Sidebar";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxHeight: "80px",
-    padding: "0 12px 0 12px",
+    padding: "0 12px",
     backgroundColor: theme.palette.primary.main,
 
     [theme.breakpoints.up("xl")]: {
-      padding: "0 calc(12.6vw - 29.3px) 0 calc(12.6vw - 29.3px)",
+      padding: "0 calc(12.6vw - 75px)",
     },
   },
   toolbar: {
@@ -59,18 +59,20 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const theme = useTheme();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { width } = useWindowSize();
 
   const handleSidebarOpen = () => setIsSidebarOpen(true);
   const handleSidebarClose = () => setIsSidebarOpen(false);
 
+  const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
+
   useEffect(() => {
-    if (isSidebarOpen && width >= 1200) {
+    if (isSidebarOpen && isLgScreen) {
       handleSidebarClose();
     }
-  }, [isSidebarOpen, width]);
+  }, [isSidebarOpen, isLgScreen]);
 
   return (
     <>

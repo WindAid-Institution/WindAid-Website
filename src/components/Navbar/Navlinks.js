@@ -14,6 +14,12 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
     padding: "28px 32px 32px 32px",
     display: "none",
+    textDecoration: "none",
+
+    [theme.breakpoints.between(1200, 1251)]: {
+      paddingLeft: "26px",
+      paddingRight: "26px",
+    },
 
     [theme.breakpoints.up("lg")]: {
       display: "block",
@@ -59,7 +65,10 @@ const NavLinks = ({ isSidebar }) => {
 };
 
 NavLinks.propTypes = {
-  isSidebar: PropTypes.bool.isRequired,
+  isSidebar: PropTypes.bool,
+};
+NavLinks.defaultProps = {
+  isSidebar: false,
 };
 
 export default NavLinks;

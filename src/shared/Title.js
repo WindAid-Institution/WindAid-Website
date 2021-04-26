@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 const Title = ({ title, style, size }) => {
   const { rootStyle, textStyle } = style || {};
   const classes = useStyles({ size, rootStyle, textStyle });
-  console.log(textStyle);
+
   return (
     <Box className={classes.root} style={style}>
       <Typography variant="h3" className={classes.text}>

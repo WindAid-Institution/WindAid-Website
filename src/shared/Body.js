@@ -32,11 +32,12 @@ const useStyles = makeStyles((theme) => ({
     ...rootStyle,
   }),
 
-  text: ({ textStyle }) => ({
+  text: ({ size, textStyle }) => ({
     "& > p": {
-      fontFamily: "Open Sans",
+      fontFamily: theme.typography.fontFamily,
       fontSize: "14px",
       lineHeight: "28px",
+      maxWidth: size === "sm" ? "560px" : "none",
       color: "#282828",
       marginBottom: 0,
       ...textStyle,
@@ -45,6 +46,10 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "16px",
         ...textStyle,
       },
+    },
+
+    "& > p > a": {
+      color: theme.palette.primary.main,
     },
   }),
 }));

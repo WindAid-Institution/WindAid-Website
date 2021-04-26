@@ -44,9 +44,6 @@ const useStyles = makeStyles((theme) => ({
     height: "276px",
     width: "100%",
 
-    [theme.breakpoints.up("md")]: {
-      width: "calc(17.8vw + 247px)",
-    },
   },
 
   list: {

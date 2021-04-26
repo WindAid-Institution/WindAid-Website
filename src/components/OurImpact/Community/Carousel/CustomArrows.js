@@ -55,11 +55,18 @@ const CustomLeftArrow = ({ onClick }) => {
 };
 
 CustomRightArrow.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 CustomLeftArrow.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+};
+
+CustomRightArrow.defaultProps = {
+  onClick: () => {},
+};
+CustomLeftArrow.defaultProps = {
+  onClick: () => {},
 };
 
 export { CustomLeftArrow, CustomRightArrow };

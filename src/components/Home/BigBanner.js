@@ -2,7 +2,7 @@ import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import useHomepageData from "src/hooks/queries/homepage";
 
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const BigBanner = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const {
     hero: {
       title,
@@ -42,7 +43,7 @@ const BigBanner = () => {
           image={gatsbyImageData}
           className={classes.picture}
           alt={description}
-          backgroundColor="#056839"
+          backgroundColor={theme.palette.primary.main}
         />
         <Typography variant="h1" className={classes.heading}>
           {title}

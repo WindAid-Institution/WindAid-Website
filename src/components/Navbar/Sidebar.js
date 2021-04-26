@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Drawer from "@material-ui/core/Drawer";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -54,6 +55,15 @@ const Sidebar = ({ isOpen, handleSidebarClose }) => {
       </Box>
     </Drawer>
   );
+};
+
+Sidebar.propTypes = {
+  isOpen: PropTypes.bool,
+  handleSidebarClose: PropTypes.func.isRequired,
+};
+
+Sidebar.defaultProps = {
+  isOpen: false,
 };
 
 export default Sidebar;

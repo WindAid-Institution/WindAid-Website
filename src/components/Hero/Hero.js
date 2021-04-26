@@ -17,9 +17,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     top: "50%",
     transform: "translateY(-50%)",
-    width: "200px",
+    width: "auto",
     height: "67px",
     paddingRight: "16px",
+    paddingLeft: "48px",
     zIndex: 99,
     color: theme.palette.secondary.main,
     background: "rgba(0, 0, 0, 0.4)",
@@ -27,16 +28,23 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "24px",
     lineHeight: "35px",
 
+    [theme.breakpoints.up("xs")]: {
+      paddingLeft: "calc(-0.036 * 100vw + 59.43px)",
+    },
+
     [theme.breakpoints.up("sm")]: {
-      width: "calc(0.251 * 100vw + 49.4px)",
       height: "calc(0.061 * 100vw + 30.4px)",
       paddingRight: "calc(0.019 * 100vw + 4.6px)",
       fontSize: "calc(0.02 * 100vw + 12px)",
       lineHeight: "calc(0.0226 * 100vw + 21.4px)",
     },
 
+    [theme.breakpoints.up("xmd")]: {
+      paddingLeft: "calc(0.155 * 100vw - 70.86px)",
+    },
+
     [theme.breakpoints.up("xl")]: {
-      width: "411px",
+      paddingLeft: "152px",
       height: "118px",
       paddingRight: "32px",
       fontSize: "40px",

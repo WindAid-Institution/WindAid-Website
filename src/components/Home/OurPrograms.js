@@ -3,7 +3,8 @@ import React from "react";
 import Box from "@material-ui/core/Box";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import clsx from "clsx";
 
 import useHomepageData from "queries/homepage";
@@ -11,9 +12,8 @@ import MountainsImage from "images/LandingPage/OurPrograms/mountains.svg";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import Button from "shared/Button";
-import Header from "shared/Header";
+import SubHeader from "shared/SubHeader";
 import Body from "shared/Body";
-import useWindowSize from "hooks/useWindowSize";
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -93,15 +93,18 @@ const useStyles = makeStyles((theme) => ({
 
 const OurPrograms = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const { ourProgramsOne, ourProgramsTwo } = useHomepageData();
-  const { width } = useWindowSize();
+
+  const isSmScreen = useMediaQuery(theme.breakpoints.up("sm"));
+  const isMdScreen = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <SectionWrapper style={{ sectionStyle: { paddingBottom: 0 } }}>
       <Box
         display="flex"
         alignItems="center"
-        flexDirection={width > 991 ? "row" : "column"}
+        flexDirection={isMdScreen ? "row" : "column"}
         className={classes.section}
       >
         <TextSection
@@ -119,7 +122,7 @@ const OurPrograms = () => {
         display="flex"
         alignItems="center"
         className={clsx(classes.section, classes.sectionTwo)}
-        flexDirection={width > 991 ? "row" : "column"}
+        flexDirection={isMdScreen ? "row" : "column"}
         style={{ backgroundImage: `url(${MountainsImage})` }}
       >
         <GatsbyImage
@@ -131,22 +134,20 @@ const OurPrograms = () => {
           display="flex"
           flexDirection="column"
           justifyContent="space-between"
-          // alignItems="center"
         >
           <Body body={ourProgramsTwo.body.body} />
           <Body body={ourProgramsTwo.bodyTwo.bodyTwo} />
-          <Header
-            header={ourProgramsTwo.header}
+          <SubHeader
+            subHeader={ourProgramsTwo.header}
             style={{
               textStyle: {
-                fontSize: width > 600 ? "24px" : "18px",
-                textAlign: width > 600 ? "left" : "center",
+                textAlign: isSmScreen ? "left" : "center",
                 margin: "24px 0 !important",
               },
             }}
           />
           <Box className={classes.buttonContainer}>
-            <Link to="/">
+            <Link to="/short-term-program">
               <Button text="View Our Programs" />
             </Link>
           </Box>
