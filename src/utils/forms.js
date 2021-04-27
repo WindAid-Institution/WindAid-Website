@@ -13,7 +13,6 @@ const createValidator = (schema) => {
     validator(model);
     if (validator.errors && validator.errors.length) {
       const customErrors = validator.errors.map((error) => {
-        console.log(error);
         if (error.keyword === "required") {
           return { ...error, message: "This field is required" };
         }

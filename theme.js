@@ -90,6 +90,11 @@ const theme = createMuiTheme({
         fontWeight: 700,
       },
     },
+    MuiRadio: {
+      root: {
+        color: "#056839",
+      },
+    },
   },
   props: {
     MuiButton: {

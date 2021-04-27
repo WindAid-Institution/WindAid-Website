@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "@material-ui/core/Link";
+import Typography from "@material-ui/core/Typography";
 
 import { createBridge } from "src/utils/forms";
 import {
@@ -13,6 +14,12 @@ import {
 } from "src/constants/formOptions";
 import { getFormatedDate } from "src/utils/utils";
 
+const intrestInfo = [
+  "What interested you in WindAid Institute?",
+  "Do you have any skills or experience relevant to renewable technologies or engineering?",
+  "What do you hope to gain from this experience?",
+];
+
 const applicationFormSchema = {
   title: "ApplicationForm",
   type: "object",
@@ -21,24 +28,24 @@ const applicationFormSchema = {
       type: "string",
       maxLength: 200,
       uniforms: {
+        label: "First name",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     lastName: {
       type: "string",
       maxLength: 200,
       uniforms: {
+        label: "Last name",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     emailAddress: {
       type: "string",
       format: "email",
       uniforms: {
+        label: "Email address",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     country: {
@@ -47,7 +54,6 @@ const applicationFormSchema = {
       uniforms: {
         label: "What country are you arriving from?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     passportNumber: {
@@ -56,7 +62,6 @@ const applicationFormSchema = {
       uniforms: {
         label: "What is your passport number?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     sex: {
@@ -65,7 +70,6 @@ const applicationFormSchema = {
       uniforms: {
         label: "What is your sex?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     spanishProfciency: {
@@ -74,7 +78,6 @@ const applicationFormSchema = {
       uniforms: {
         label: "What is your Spanish profciency?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     higherEducation: {
@@ -85,7 +88,6 @@ const applicationFormSchema = {
         label:
           "Have you completed or in the process of completing higher level education?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     fieldOfStudy: {
@@ -94,17 +96,14 @@ const applicationFormSchema = {
       uniforms: {
         label: "If other, please specify your what",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     isEmployeed: {
       type: "string",
       enum: YES_NO,
-
       uniforms: {
         label: "Are you currently employeed?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
         color: "primary",
       },
     },
@@ -114,7 +113,6 @@ const applicationFormSchema = {
       uniforms: {
         label: "If yes, please specify your field of occupation and role.",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     specialDietary: {
@@ -123,7 +121,6 @@ const applicationFormSchema = {
       uniforms: {
         label: "Do you have any special dietary requirements?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
         multiline: true,
         rows: 6,
       },
@@ -135,7 +132,6 @@ const applicationFormSchema = {
         label:
           "Do you suffer from any illness that may affect your participation in the program?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
         multiline: true,
         rows: 6,
       },
@@ -147,7 +143,6 @@ const applicationFormSchema = {
         label:
           "Are you currently taking any prescribed or non-prescribed medication?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
         multiline: true,
         rows: 6,
       },
@@ -159,7 +154,6 @@ const applicationFormSchema = {
       uniforms: {
         label: "What program are you applying for?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     startDateOne: {
@@ -169,7 +163,6 @@ const applicationFormSchema = {
         label: "Select first choice of start date",
         variant: "outlined",
         InputProps: { inputProps: { min: getFormatedDate() } },
-        InputLabelProps: { shrink: true },
       },
     },
     startDateTwo: {
@@ -179,7 +172,6 @@ const applicationFormSchema = {
         label: "Select second choice of start date",
         variant: "outlined",
         InputProps: { inputProps: { min: getFormatedDate() } },
-        InputLabelProps: { shrink: true },
       },
     },
     intrests: {
@@ -190,8 +182,16 @@ const applicationFormSchema = {
         label:
           "We would love to learn more about you and your interest in the program. Please answer the following questions provided and anything else you would like us to know about you.",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
-        helperText: "500 characters",
+        additionalinfo: (
+          <ul style={{ paddingLeft: "20px" }}>
+            {intrestInfo.map((item) => (
+              <li style={{ padding: "6px 0" }} key={item}>
+                <Typography>{item}</Typography>
+              </li>
+            ))}
+          </ul>
+        ),
+        helperText: "Minimum 500 characters",
         multiline: true,
         rows: 6,
       },
@@ -202,7 +202,6 @@ const applicationFormSchema = {
       uniforms: {
         label: "Do you have any questions about the volunteer program?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
         multiline: true,
         rows: 6,
       },
@@ -214,7 +213,6 @@ const applicationFormSchema = {
       uniforms: {
         label: "How did you first hear about WindAid?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     ambassadorName: {
@@ -223,7 +221,6 @@ const applicationFormSchema = {
       uniforms: {
         label: "If selected Ambassador, what was the name(s)?",
         variant: "outlined",
-        InputLabelProps: { shrink: true },
       },
     },
     termAndConditions: {

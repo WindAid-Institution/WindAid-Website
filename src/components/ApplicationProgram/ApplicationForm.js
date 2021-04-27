@@ -12,15 +12,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Alert from "@material-ui/lab/Alert";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Recaptcha from "react-recaptcha";
 
 import Title from "shared/Title";
+
 import { applicationFormSchemaBridge } from "src/schemas/applicationFormSchema";
-import TextInput from "components/forms/TextInput";
+import CustomAutoField from "components/forms/CustomAutoField";
 import DisplayIf from "./DisplayIf";
+import FormError from "./FormError";
 
 const pageData = {
   generalTitle: "General Information",
@@ -28,34 +29,38 @@ const pageData = {
   programInterest: "Program Interest",
 };
 
+const errorMessages = {
+  captcha: "Please check reCAPTHA to continue",
+  submit:
+    "There is a problem with submitting your form. Please try again later or contact us.",
+  form:
+    "There are errors in your form. Please follow instructions under the fields to send your form.",
+};
+
 const useStyles = makeStyles((theme) => ({
-  root: {
-    // input
-    "& > div > div > div ": {
-      minHeight: "60px",
-    },
-
-    // input wrapper
-    "& > div > div > div > div": {
-      borderRadius: "5px",
-      minHeight: "50px",
-    },
-
-    // input label
-    "& > div > div> div > label": {
-      top: "4px",
-    },
-    // text area input
-    "& > div > div > div > div > textarea": {
-      paddingTop: theme.spacing(2),
+  formSection: {
+    marginBottom: theme.spacing(6),
+  },
+  emptyItem: {
+    display: "none",
+    padding: 0,
+    [theme.breakpoints.up("md")]: {
+      display: "block",
     },
   },
 
-  emptyItem: {
-    display: "none",
+  employeedFieldContainer: {
+    "& > fieldset > legend": {
+      color: "#333333",
+      fontWeight: theme.typography.fontWeightBold,
+      fontSize: "13px",
 
-    [theme.breakpoints.up("md")]: {
-      display: "block",
+      lineHeight: "28px",
+      position: "relative",
+
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "16px",
+      },
     },
   },
 
@@ -64,8 +69,14 @@ const useStyles = makeStyles((theme) => ({
     color: "red",
   },
 
+  beforeCheckText: {
+    color: "#333333",
+    fontWeight: theme.typography.fontWeightBold,
+    marginTop: theme.spacing(2),
+  },
+
   recaptcha: {
-    margin: "16px 0",
+    margin: "16px 0 24px",
   },
 
   backdrop: {
@@ -123,44 +134,43 @@ const ApplicationForm = () => {
 
   return (
     <>
-      <Title style={titleStyle} title={pageData.generalTitle} size="lg" />
-
       <AutoForm
         schema={applicationFormSchemaBridge}
         onSubmit={handleSubmit}
         showInlineError
       >
         <Grid className={classes.root} container>
-          <Grid container spacing={3}>
+          <Title style={titleStyle} title={pageData.generalTitle} size="lg" />
+          <Grid container spacing={3} className={classes.formSection}>
             <Grid item xs={12} md={6}>
-              <AutoField name="firstName" />
+              <AutoField name="firstName" component={CustomAutoField} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <AutoField name="lastName" />
+              <AutoField name="lastName" component={CustomAutoField} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <AutoField name="emailAddress" />
-            </Grid>
-          </Grid>
-
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <AutoField name="country" />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <AutoField name="passportNumber" />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <AutoField name="sex" />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <AutoField name="spanishProfciency" />
+              <AutoField name="emailAddress" component={CustomAutoField} />
             </Grid>
           </Grid>
 
-          <Grid container spacing={3}>
+          <Grid container spacing={3} className={classes.formSection}>
+            <Grid item xs={12} md={6}>
+              <AutoField name="country" component={CustomAutoField} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <AutoField name="passportNumber" component={CustomAutoField} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <AutoField name="sex" component={CustomAutoField} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <AutoField name="spanishProfciency" component={CustomAutoField} />
+            </Grid>
+          </Grid>
+
+          <Grid container spacing={3} className={classes.formSection}>
             <Grid item xs={12} md={7}>
-              <AutoField name="higherEducation" />
+              <AutoField name="higherEducation" component={CustomAutoField} />
             </Grid>
 
             <Grid item xs={12} md={7}>
@@ -169,32 +179,33 @@ const ApplicationForm = () => {
                   context.model.higherEducation === "Other"
                 }
               >
-                <AutoField name="fieldOfStudy" />
+                <AutoField name="fieldOfStudy" component={CustomAutoField} />
               </DisplayIf>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} className={classes.employeedFieldContainer}>
               <RadioField name="isEmployeed" />
             </Grid>
-            <Grid item xs={12} md={7}>
-              <DisplayIf
-                condition={(context) => context.model.isEmployeed === "Yes"}
-              >
-                <AutoField name="occupation" />
-              </DisplayIf>
-            </Grid>
+
+            <DisplayIf
+              condition={(context) => context.model.isEmployeed === "Yes"}
+            >
+              <Grid item xs={12} md={7}>
+                <AutoField name="occupation" component={CustomAutoField} />
+              </Grid>
+            </DisplayIf>
           </Grid>
 
-          <Title style={titleStyle} title={pageData.generalTitle} size="lg" />
+          <Title style={titleStyle} title={pageData.health} size="lg" />
 
-          <Grid container spacing={3}>
+          <Grid container spacing={3} className={classes.formSection}>
             <Grid item xs={12} md={7}>
-              <AutoField name="specialDietary" />
+              <AutoField name="specialDietary" component={CustomAutoField} />
             </Grid>
             <Grid item xs={12} md={7}>
-              <AutoField name="ilness" />
+              <AutoField name="ilness" component={CustomAutoField} />
             </Grid>
             <Grid item xs={12} md={7}>
-              <AutoField name="medication" />
+              <AutoField name="medication" component={CustomAutoField} />
             </Grid>
           </Grid>
           <Title
@@ -203,36 +214,45 @@ const ApplicationForm = () => {
             size="lg"
           />
 
-          <Grid container spacing={3}>
+          <Grid container spacing={3} className={classes.formSection}>
             <Grid item xs={12} md={6}>
-              <AutoField name="programToApply" />
+              <AutoField name="programToApply" component={CustomAutoField} />
             </Grid>
             <Grid item xs={12} md={6} className={classes.emptyItem} />
             <Grid item xs={12} md={6}>
-              <AutoField name="startDateOne" type="date" format="DD-MM-YYYY" />
+              <AutoField
+                name="startDateOne"
+                component={CustomAutoField}
+                type="date"
+              />
             </Grid>
             <Grid item xs={12} md={6}>
-              <AutoField name="startDateTwo" type="date" format="DD-MM-YYYY" />
+              <AutoField
+                name="startDateTwo"
+                component={CustomAutoField}
+                type="date"
+              />
             </Grid>
             <Grid item xs={12} md={9}>
-              <AutoField name="intrests" />
+              <AutoField name="intrests" component={CustomAutoField} />
             </Grid>
             <Grid item xs={12} md={9}>
-              <AutoField name="questions" />
+              <AutoField name="questions" component={CustomAutoField} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <AutoField name="howHear" />
+              <AutoField name="howHear" component={CustomAutoField} />
             </Grid>
             <Grid item xs={12} md={6} className={classes.emptyItem} />
-            <Grid item xs={12} md={6}>
-              <DisplayIf
-                condition={(context) => context.model.howHear === "Ambassador"}
-              >
-                <AutoField name="ambassadorName" />
-              </DisplayIf>
-            </Grid>
+
+            <DisplayIf
+              condition={(context) => context.model.howHear === "Ambassador"}
+            >
+              <Grid item xs={12} md={6}>
+                <AutoField name="ambassadorName" component={CustomAutoField} />
+              </Grid>
+            </DisplayIf>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={8}>
             <Typography>
               {`We will respond to your request within a maximum period of 7 days.
             Please also check your spam folder. If submitting the application
@@ -244,35 +264,29 @@ const ApplicationForm = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography>
+            <Typography className={classes.beforeCheckText}>
               You must check this box to submit your application.
             </Typography>
             <BoolField name="termAndConditions" required />
           </Grid>
         </Grid>
 
-        {!isVerified && isError && (
-          <Typography className={classes.error}>
-            Please check reCAPTHA to continue
-          </Typography>
-        )}
-
-        {isVerified && isError && (
-          <Alert severity="error">
-            <Typography className={classes.error}>
-              There is a problem with submitting your form. Please try again
-              later or contact us.
-            </Typography>
-          </Alert>
-        )}
-
         <Recaptcha
-          sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+          sitekey={process.env.CAPTCHA_SITE_KEY}
           render="explicit"
           verifyCallback={handleCaptchaVerification}
           className={classes.recaptcha}
         />
 
+        {!isVerified && isError && (
+          <FormError isError={isError} errorMessage={errorMessages.captcha} />
+        )}
+
+        {isVerified && isError && (
+          <FormError isError={isError} errorMessage={errorMessages.submit} />
+        )}
+
+        <FormError errorMessage={errorMessages.form} />
         <SubmitField />
       </AutoForm>
       <Backdrop className={classes.backdrop} open={isLoading}>
