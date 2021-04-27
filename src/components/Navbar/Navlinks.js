@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "28px 32px 32px 32px",
     display: "none",
     textDecoration: "none",
+    position: "relative",
 
     [theme.breakpoints.between(1200, 1251)]: {
       paddingLeft: "26px",
@@ -22,7 +23,30 @@ const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.up("lg")]: {
-      display: "block",
+      display: "inline-block",
+    },
+
+    "&:after": {
+      transition: "all 0.5s ease",
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      margin: "auto",
+      width: "0%",
+      // eslint-disable-next-line quotes
+      content: '"."',
+      color: "transparent",
+      background: theme.palette.primary.main,
+      height: "3px",
+
+      [theme.breakpoints.up("lg")]: {
+        background: theme.palette.secondary.main,
+      },
+    },
+
+    "&:hover:after": {
+      width: "100%",
     },
 
     "&:hover": {
@@ -35,9 +59,24 @@ const useStyles = makeStyles((theme) => ({
   },
 
   navItemActive: {
-    color: theme.palette.secondary.main,
-    textDecoration: "none",
-    borderBottom: `3px solid ${theme.palette.secondary.main}`,
+    "&:after": {
+      transition: "all 0.5s ease",
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      margin: "auto",
+      width: "100%",
+      // eslint-disable-next-line quotes
+      content: '"."',
+      color: "transparent",
+      background: theme.palette.primary.main,
+      height: "3px",
+
+      [theme.breakpoints.up("lg")]: {
+        background: theme.palette.secondary.main,
+      },
+    },
   },
 
   navItemSidebar: {

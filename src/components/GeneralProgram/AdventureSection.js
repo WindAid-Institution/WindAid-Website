@@ -3,6 +3,7 @@ import { getSrc } from "gatsby-plugin-image";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
+import { ROUTES } from "src/constants/routes";
 import Body from "shared/Body";
 import Title from "shared/Title";
 import SubHeader from "shared/SubHeader";
@@ -110,6 +111,7 @@ const AdventureSection = () => {
           <SubHeader subHeader={subHeader} className={classes.boldQuestion} />
           <Button
             text="Explore trujillo"
+            route={ROUTES.TRUJILLO}
             style={{ marginTop: theme.spacing(2) }}
           />
         </Box>

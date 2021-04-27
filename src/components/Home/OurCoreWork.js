@@ -2,7 +2,6 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "gatsby";
 import clsx from "clsx";
 
 import Title from "shared/Title";
@@ -43,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
   image: {
     height: "276px",
     width: "100%",
-
   },
 
   list: {
@@ -85,7 +83,7 @@ const OurCoreWork = () => {
 
   return (
     <SectionWrapper bgColor="secondary">
-      <Grid >
+      <Grid>
         <Grid item xs={12} className={classes.center}>
           <Title title={header} />
         </Grid>
@@ -114,9 +112,7 @@ const OurCoreWork = () => {
             title={title}
             style={{ textStyle: { color: "#000", textAlign: "center" } }}
           />
-          <Link to={ROUTES.OUT_IMPACT.path}>
-            <Button text="View Our Impact" />
-          </Link>
+          <Button text="View Our Impact" route={ROUTES.OUR_IMPACT} />
         </Grid>
       </Grid>
     </SectionWrapper>

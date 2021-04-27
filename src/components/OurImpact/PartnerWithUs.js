@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
+import { ROUTES } from "src/constants/routes";
 import useOurImpactData from "queries/ourImpact";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
@@ -44,15 +44,6 @@ const useStyles = makeStyles((theme) => ({
       height: "368px",
     },
   },
-
-  link: {
-    display: "inline-block",
-    marginTop: "26px",
-
-    "&:hover": {
-      textDecoration: "none",
-    },
-  },
 }));
 
 const PartnerWithUs = () => {
@@ -70,9 +61,11 @@ const PartnerWithUs = () => {
       <Box className={classes.container}>
         <Box className={classes.contentContainer}>
           <TextSection title={title} body={body} size="auto" />
-          <Link className={classes.link} to="/">
-            <Button text="View Our Programs" />
-          </Link>
+          <Button
+            text="View Our Programs"
+            style={{ marginTop: "26px" }}
+            route={ROUTES.PARTNERSHIP}
+          />
         </Box>
 
         <GatsbyImage

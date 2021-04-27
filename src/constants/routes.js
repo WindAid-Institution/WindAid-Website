@@ -19,9 +19,33 @@ export const ROUTES = {
     name: "Apply",
     path: "/apply",
   },
-  OUT_IMPACT: {
+  OUR_IMPACT: {
     name: "Our impact",
     path: "/our-impact",
+  },
+  GENERAL_PROGRAM: {
+    name: "General program",
+    path: "/general-program",
+  },
+  TRUJILLO: {
+    name: "Trujillo",
+    path: "/trujillo",
+  },
+  APPLICATION_PROGRAM: {
+    name: "Application program",
+    path: "/application-program",
+  },
+  PARTNERSHIP: {
+    name: "Partnership",
+    path: "/partnership",
+  },
+  SHORT_TERM_PROGRAM: {
+    name: "Short Term Program",
+    path: "/short-term-program",
+  },
+  LONG_TERM_PROGRAM: {
+    name: "Long Term Program",
+    path: "/long-term-program",
   },
 };
 

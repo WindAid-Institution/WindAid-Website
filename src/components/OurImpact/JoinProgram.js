@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
+import { ROUTES } from "src/constants/routes";
 import useOurImpactData from "queries/ourImpact";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
@@ -44,15 +44,6 @@ const useStyles = makeStyles((theme) => ({
       height: "368px",
     },
   },
-
-  link: {
-    display: "inline-block",
-    marginTop: "26px",
-
-    "&:hover": {
-      textDecoration: "none",
-    },
-  },
 }));
 
 const JoinProgram = () => {
@@ -82,9 +73,12 @@ const JoinProgram = () => {
               },
             }}
           />
-          <Link className={classes.link} to="/">
-            <Button text="View Our Programs" inverted />
-          </Link>
+          <Button
+            text="View Our Programs"
+            inverted
+            style={{ marginTop: "26px" }}
+            route={ROUTES.APPLICATION_PROGRAM}
+          />
         </Box>
 
         <GatsbyImage
