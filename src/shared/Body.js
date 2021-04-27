@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: "28px",
       maxWidth: size === "sm" ? "560px" : "none",
       color: "#282828",
-      marginBottom: 0,
+      marginBottom: theme.spacing(1),
       ...textStyle,
 
       [theme.breakpoints.up("sm")]: {
