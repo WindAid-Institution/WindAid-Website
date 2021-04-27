@@ -19,6 +19,7 @@ import Recaptcha from "react-recaptcha";
 
 import Title from "shared/Title";
 import { applicationFormSchemaBridge } from "src/schemas/applicationFormSchema";
+import TextInput from "components/forms/TextInput";
 import DisplayIf from "./DisplayIf";
 
 const pageData = {
