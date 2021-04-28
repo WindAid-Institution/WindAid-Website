@@ -4,7 +4,9 @@ import { Link } from "gatsby";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
-import { NAVBAR_ROUTES } from "src/constants/routes";
+import { NAVBAR_ROUTES, MENU_ROUTES } from "src/constants/routes";
+
+import DropdownItem from "./DropdownItem";
 
 const useStyles = makeStyles((theme) => ({
   navItem: {
@@ -37,8 +39,8 @@ const useStyles = makeStyles((theme) => ({
       // eslint-disable-next-line quotes
       content: '"."',
       color: "transparent",
-      background: theme.palette.primary.main,
-      height: "3px",
+      background: "rgba(255, 255, 255, 0.7)",
+      height: "5px",
 
       [theme.breakpoints.up("lg")]: {
         background: theme.palette.secondary.main,
@@ -71,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
       content: '"."',
       color: "transparent",
       background: theme.palette.primary.main,
-      height: "3px",
+      height: "5px",
 
       [theme.breakpoints.up("lg")]: {
         background: theme.palette.secondary.main,
@@ -89,15 +91,8 @@ const NavLinks = ({ isSidebar }) => {
   const classes = useStyles();
   return (
     <>
-      {NAVBAR_ROUTES.map(({ name, path }) => (
-        <Link
-          key={name}
-          className={clsx(classes.navItem, isSidebar && classes.navItemSidebar)}
-          activeClassName={classes.navItemActive}
-          to={path}
-        >
-          {name}
-        </Link>
+      {MENU_ROUTES.map((item) => (
+        <DropdownItem route={item} key={item.main.name} isSidebar={isSidebar} />
       ))}
     </>
   );
