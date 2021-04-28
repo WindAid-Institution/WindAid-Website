@@ -1,13 +1,11 @@
-/* eslint-disable arrow-body-style */
-/* eslint-disable react/prop-types */
 import React, { useState, Fragment } from "react";
-import { Link } from "gatsby";
 import PropTypes from "prop-types";
+import { Link } from "gatsby";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
-
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   navItem: {
@@ -21,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     "& > p": {
       fontSize: "16px",
       color: theme.palette.secondary.main,
+      fontWeight: theme.typography.fontWeightBold,
     },
 
     [theme.breakpoints.between(1200, 1251)]: {
@@ -111,7 +110,6 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     left: "305px",
     width: "305px",
-    // height: "64px",
     display: "flex",
     flexDirection: "column",
   },
@@ -123,6 +121,7 @@ const useStyles = makeStyles((theme) => ({
 
     "& > p": {
       color: theme.palette.primary.dark,
+      fontWeight: theme.typography.fontWeightRegular,
     },
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
@@ -145,10 +144,11 @@ const useStyles = makeStyles((theme) => ({
 
     "& > p": {
       color: theme.palette.primary.dark,
+      fontWeight: theme.typography.fontWeightRegular,
     },
 
     "&:hover": {
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: "#FBF6EE",
     },
 
     "&:hover > p": {
@@ -164,6 +164,9 @@ const useStyles = makeStyles((theme) => ({
 const DropdownItem = ({ route, isSidebar }) => {
   const { main, submenu } = route || {};
   const classes = useStyles();
+  const theme = useTheme();
+  const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
+
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
   const [isSecondSubmenuOpen, setIsSecondSubmenuOpen] = useState(false);
 
@@ -174,51 +177,71 @@ const DropdownItem = ({ route, isSidebar }) => {
     setIsSubmenuOpen(false);
   };
   const handleSecondSubmenuOpen = () => {
-    console.log("in second");
     setIsSecondSubmenuOpen(true);
   };
   const handleSecondSubmenuClose = () => {
-    console.log("close");
     setIsSecondSubmenuOpen(false);
   };
 
-  const NavItem = ({ linkName, linkPath, isMain, isPrimary, isSecondary }) => {
-    return (
-      <Link
-        to={linkPath}
-        className={clsx(
-          classes.navItem,
-          isPrimary && classes.primary,
-          isSecondary && classes.secondary,
-          isSidebar && classes.navItemSidebar
-        )}
-        onMouseEnter={() => {
-          if (isMain) {
-            return handleSubmenuOpen();
-          }
-          if (isPrimary) {
-            return handleSecondSubmenuOpen();
-          }
-        }}
-        onMouseLeave={() => {
-          if (isMain) {
-            // return handleSubmenuClose();
-          }
-          if (isPrimary) {
-            console.log("here");
-            return handleSecondSubmenuClose();
-          }
-        }}
-      >
-        <Typography>{linkName}</Typography>
-      </Link>
-    );
+  const NavItem = ({
+    linkName,
+    linkPath,
+    isPrimary,
+    isSecondary,
+    hasSubmenu,
+  }) => (
+    <Link
+      to={linkPath}
+      className={clsx(
+        classes.navItem,
+        isPrimary && classes.primary,
+        isSecondary && classes.secondary,
+        isSidebar && classes.navItemSidebar
+      )}
+      activeClassName={classes.navItemActive}
+      onMouseEnter={() => {
+        if (isPrimary && hasSubmenu) {
+          return handleSecondSubmenuOpen();
+        }
+        if (isSecondary) {
+          handleSubmenuOpen();
+          return handleSecondSubmenuOpen();
+        }
+        return null;
+      }}
+      onMouseLeave={() => {
+        if (isPrimary && hasSubmenu) {
+          return handleSecondSubmenuClose();
+        }
+        return null;
+      }}
+    >
+      <Typography>{linkName}</Typography>
+    </Link>
+  );
+
+  NavItem.propTypes = {
+    linkName: PropTypes.string.isRequired,
+    linkPath: PropTypes.string.isRequired,
+    isPrimary: PropTypes.bool,
+    isSecondary: PropTypes.bool,
+    hasSubmenu: PropTypes.bool,
+  };
+
+  NavItem.defaultProps = {
+    isPrimary: false,
+    isSecondary: false,
+    hasSubmenu: false,
   };
 
   return (
-    <Box className={classes.root}>
+    <Box
+      className={classes.root}
+      onMouseEnter={handleSubmenuOpen}
+      onMouseLeave={handleSubmenuClose}
+    >
       <NavItem linkName={main.name} linkPath={main.path} isMain />
-      {isSubmenuOpen && submenu?.length && (
+      {isUpLg && isSubmenuOpen && submenu?.length && (
         <Box className={classes.subMenu} onMouseLeave={handleSubmenuClose}>
           {submenu.map((item) => {
             const isSubSubmenu = !!item?.subSubmenu?.length;
@@ -230,11 +253,8 @@ const DropdownItem = ({ route, isSidebar }) => {
                   linkPath={item.path}
                   isPrimary
                   onMouseEnter={isSubSubmenu ? handleSecondSubmenuOpen : null}
+                  hasSubmenu={isSubSubmenu}
                 />
-                {console.log(
-                  isSecondSubmenuOpen && isSubSubmenu,
-                  "IS THIS SHIT OPEN"
-                )}
                 {isSecondSubmenuOpen && isSubSubmenu && (
                   <Box
                     className={classes.subSubMenu}
@@ -257,6 +277,15 @@ const DropdownItem = ({ route, isSidebar }) => {
       )}
     </Box>
   );
+};
+
+DropdownItem.propTypes = {
+  route: PropTypes.object.isRequired,
+  isSidebar: PropTypes.bool,
+};
+
+DropdownItem.defaultProps = {
+  isSidebar: false,
 };
 
 export default DropdownItem;
