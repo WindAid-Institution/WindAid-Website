@@ -11,13 +11,22 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: inverted
       ? theme.palette.secondary.main
       : theme.palette.primary.main,
+    border: `3px solid ${
+      inverted ? theme.palette.secondary.main : theme.palette.primary.main
+    }`,
     textDecoration: "none",
     ...style,
 
     "&:hover": {
       backgroundColor: inverted
+        ? theme.palette.primary.main
+        : theme.palette.secondary.main,
+
+      color: inverted
         ? theme.palette.secondary.main
         : theme.palette.primary.main,
+
+      borderColor: theme.palette.primary.main,
     },
   }),
 

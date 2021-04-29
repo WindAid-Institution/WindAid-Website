@@ -12,9 +12,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.dark,
     height: "48px",
     minWidth: "220px",
-    border: "none",
+    // border: "none",
     display: "none",
     marginRight: "16px",
+    border: `4px solid ${yellowColor}`,
 
     [theme.breakpoints.up("sm")]: {
       display: "inline-flex",
@@ -25,7 +26,9 @@ const useStyles = makeStyles((theme) => ({
     },
 
     "&:hover": {
-      backgroundColor: yellowColor,
+      color: theme.palette.primary.dark,
+      borderColor: theme.palette.primary.dark,
+      backgroundColor: theme.palette.secondary.main,
     },
   },
 

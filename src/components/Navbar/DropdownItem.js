@@ -188,6 +188,7 @@ const DropdownItem = ({ route, isSidebar }) => {
     linkPath,
     isPrimary,
     isSecondary,
+    isFirstSubMenu,
     hasSubmenu,
   }) => (
     <Link
@@ -240,7 +241,12 @@ const DropdownItem = ({ route, isSidebar }) => {
       onMouseEnter={handleSubmenuOpen}
       onMouseLeave={handleSubmenuClose}
     >
-      <NavItem linkName={main.name} linkPath={main.path} isMain />
+      <NavItem
+        linkName={main.name}
+        linkPath={main.path}
+        isMain
+        isFirstSubMenu={!!submenu?.length}
+      />
       {isUpLg && isSubmenuOpen && submenu?.length && (
         <Box className={classes.subMenu} onMouseLeave={handleSubmenuClose}>
           {submenu.map((item) => {

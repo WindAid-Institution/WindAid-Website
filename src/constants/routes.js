@@ -83,11 +83,6 @@ export const ROUTES = {
 
   APPLY: {
     name: "Apply",
-    path: "/apply",
-  },
-
-  APPLICATION_PROGRAM: {
-    name: "Application program",
     path: "/application-program",
   },
 };
