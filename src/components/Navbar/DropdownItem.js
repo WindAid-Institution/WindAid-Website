@@ -9,9 +9,8 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   navItem: {
-    maxHeight: "80px",
-
-    padding: "28px 32px 32px 32px",
+    maxHeight: "40px",
+    padding: "16px 0",
     display: "none",
     textDecoration: "none",
     position: "relative",
@@ -29,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.up("lg")]: {
       display: "inline-block",
+      maxHeight: "80px",
+
+      padding: "28px 32px 32px 32px",
     },
 
     "&:after": {
@@ -95,33 +97,59 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     position: "relative",
+    flexDirection: "column",
+    width: "100%",
+    alignItems: "center",
+    [theme.breakpoints.up("lg")]: {
+      flexDirection: "row",
+      width: "auto",
+    },
   },
 
   subMenu: {
-    position: "absolute",
-    left: 0,
-    top: "80px",
-    width: "305px",
-    height: "64px",
+    position: "relative",
+
     display: "flex",
     flexDirection: "column",
+    width: "100%",
+
+    [theme.breakpoints.up("lg")]: {
+      position: "absolute",
+      left: 0,
+      top: "80px",
+      width: "305px",
+      height: "64px",
+    },
   },
   subSubMenu: {
-    position: "absolute",
-    left: "305px",
-    width: "305px",
+    position: "relative",
     display: "flex",
     flexDirection: "column",
+
+    [theme.breakpoints.up("lg")]: {
+      position: "absolute",
+      left: "305px",
+      width: "305px",
+    },
   },
 
   primary: {
-    color: theme.palette.primary.dark,
-    backgroundColor: theme.palette.secondary.main,
     cursor: "pointer",
+    paddingLeft: theme.spacing(2),
+    backgroundColor: theme.palette.primary.main,
+
+    [theme.breakpoints.up("lg")]: {
+      paddingLeft: theme.spacing(4),
+      backgroundColor: theme.palette.secondary.main,
+    },
 
     "& > p": {
-      color: theme.palette.primary.dark,
+      color: theme.palette.secondary.main,
       fontWeight: theme.typography.fontWeightRegular,
+
+      [theme.breakpoints.up("lg")]: {
+        color: theme.palette.primary.dark,
+      },
     },
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
@@ -139,8 +167,14 @@ const useStyles = makeStyles((theme) => ({
 
   secondary: {
     color: theme.palette.primary.dark,
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#FBF6EE",
     cursor: "pointer",
+    paddingLeft: theme.spacing(4),
+
+    [theme.breakpoints.up("lg")]: {
+      paddingLeft: "auto",
+      backgroundColor: theme.palette.secondary.main,
+    },
 
     "& > p": {
       color: theme.palette.primary.dark,
@@ -183,12 +217,11 @@ const DropdownItem = ({ route, isSidebar }) => {
     setIsSecondSubmenuOpen(false);
   };
 
-  const NavItem = ({
+  const NavItemLink = ({
     linkName,
     linkPath,
     isPrimary,
     isSecondary,
-    isFirstSubMenu,
     hasSubmenu,
   }) => (
     <Link
@@ -201,17 +234,17 @@ const DropdownItem = ({ route, isSidebar }) => {
       )}
       activeClassName={classes.navItemActive}
       onMouseEnter={() => {
-        if (isPrimary && hasSubmenu) {
+        if (isPrimary && hasSubmenu && isUpLg) {
           return handleSecondSubmenuOpen();
         }
-        if (isSecondary) {
+        if (isSecondary && isUpLg) {
           handleSubmenuOpen();
           return handleSecondSubmenuOpen();
         }
         return null;
       }}
       onMouseLeave={() => {
-        if (isPrimary && hasSubmenu) {
+        if (isPrimary && hasSubmenu && isUpLg) {
           return handleSecondSubmenuClose();
         }
         return null;
@@ -221,7 +254,7 @@ const DropdownItem = ({ route, isSidebar }) => {
     </Link>
   );
 
-  NavItem.propTypes = {
+  NavItemLink.propTypes = {
     linkName: PropTypes.string.isRequired,
     linkPath: PropTypes.string.isRequired,
     isPrimary: PropTypes.bool,
@@ -229,45 +262,91 @@ const DropdownItem = ({ route, isSidebar }) => {
     hasSubmenu: PropTypes.bool,
   };
 
-  NavItem.defaultProps = {
+  NavItemLink.defaultProps = {
     isPrimary: false,
     isSecondary: false,
     hasSubmenu: false,
   };
 
+  const NavItem = ({ linkName, hasSubmenu }) => (
+    <Box
+      className={clsx(classes.navItem, isSidebar && classes.navItemSidebar)}
+      onMouseEnter={() => {
+        if (hasSubmenu && isUpLg) {
+          return handleSubmenuOpen();
+        }
+        return null;
+      }}
+      onMouseLeave={() => {
+        if (hasSubmenu && isUpLg) {
+          return handleSubmenuClose();
+        }
+        return null;
+      }}
+    >
+      <Typography>{linkName}</Typography>
+    </Box>
+  );
+
+  NavItem.propTypes = {
+    linkName: PropTypes.string.isRequired,
+    hasSubmenu: PropTypes.bool,
+  };
+
+  NavItem.defaultProps = {
+    hasSubmenu: false,
+  };
+
+  const handleMainMouseEnter = isUpLg ? handleSubmenuOpen : null;
+  const handleMainMouseLeave = isUpLg ? handleSubmenuClose : null;
+  const handleMainClick = () => {
+    if (isUpLg) {
+      return null;
+    }
+
+    if (!isSubmenuOpen) {
+      return handleSubmenuOpen();
+    }
+
+    return handleSubmenuClose();
+  };
+
   return (
     <Box
       className={classes.root}
-      onMouseEnter={handleSubmenuOpen}
-      onMouseLeave={handleSubmenuClose}
+      onMouseEnter={handleMainMouseEnter}
+      onMouseLeave={handleMainMouseLeave}
+      onClick={handleMainClick}
     >
-      <NavItem
-        linkName={main.name}
-        linkPath={main.path}
-        isMain
-        isFirstSubMenu={!!submenu?.length}
-      />
-      {isUpLg && isSubmenuOpen && submenu?.length && (
-        <Box className={classes.subMenu} onMouseLeave={handleSubmenuClose}>
+      {submenu?.length ? (
+        <NavItem linkName={main.name} linkPath={main.path} isMain />
+      ) : (
+        <NavItemLink linkName={main.name} linkPath={main.path} isMain />
+      )}
+      {isSubmenuOpen && submenu?.length && (
+        <Box
+          className={classes.subMenu}
+          onMouseLeave={isUpLg ? handleSubmenuClose : null}
+        >
           {submenu.map((item) => {
             const isSubSubmenu = !!item?.subSubmenu?.length;
 
             return (
               <Fragment key={item.name}>
-                <NavItem
+                <NavItemLink
                   linkName={item.name}
                   linkPath={item.path}
                   isPrimary
                   onMouseEnter={isSubSubmenu ? handleSecondSubmenuOpen : null}
                   hasSubmenu={isSubSubmenu}
                 />
-                {isSecondSubmenuOpen && isSubSubmenu && (
+                {isSecondSubmenuOpen && isSubSubmenu && isUpLg && (
                   <Box
                     className={classes.subSubMenu}
                     onMouseLeave={handleSecondSubmenuClose}
                   >
                     {item.subSubmenu.map(({ name, path }) => (
-                      <NavItem
+                      <NavItemLink
                         linkName={name}
                         linkPath={path}
                         key={name}

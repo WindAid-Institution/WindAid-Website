@@ -17,7 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
   itemsContainer: {
     width: "325px",
-    paddingTop: "42px",
+    position: "relative",
+    padding: "42px 0",
+    height: "100%",
   },
   navClose: {
     position: "absolute",
@@ -28,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
   },
   navCopyRight: {
     position: "absolute",
-    bottom: "16px",
+    bottom: 0,
+    marginBottom: theme.spacing(2),
   },
 }));
 
