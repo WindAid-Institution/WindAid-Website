@@ -39,6 +39,14 @@ const useStyles = makeStyles((theme) => ({
   label: {
     marginBottom: theme.spacing(1),
     textTransform: "capitalize",
+
+    "& > p": {
+      fontSize: "16px",
+
+      [theme.breakpoints.up("md")]: {
+        fontSize: "22px",
+      },
+    },
   },
 
   logo: {

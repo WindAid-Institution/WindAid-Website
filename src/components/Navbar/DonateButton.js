@@ -33,8 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
   sidebar: {
     marginRight: 0,
-    // position: "absolute",
-    // bottom: "-360px",
     display: "block",
     margin: "32px 0",
 

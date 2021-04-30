@@ -28,9 +28,14 @@ const useStyles = makeStyles((theme) => ({
   field: {
     width: "100%",
     borderRadius: "5px",
-    backgroundColor: theme.palette.secondary.main,
+
     "& > div": {
       borderRadius: "inherit",
+      backgroundColor: theme.palette.secondary.main,
+    },
+
+    "& > p": {
+      marginLeft: 0,
     },
   },
 }));

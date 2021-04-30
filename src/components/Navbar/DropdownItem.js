@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     "&:after": {
       transition: "all 0.5s ease",
       position: "absolute",
-      bottom: 0,
+      bottom: "2px",
       left: 0,
       right: 0,
       margin: "auto",
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     "&:after": {
       transition: "all 0.5s ease",
       position: "absolute",
-      bottom: 0,
+      bottom: "2px",
       left: 0,
       right: 0,
       margin: "auto",
@@ -100,6 +100,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     width: "100%",
     alignItems: "center",
+    cursor: "pointer",
     [theme.breakpoints.up("lg")]: {
       flexDirection: "row",
       width: "auto",
@@ -116,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("lg")]: {
       position: "absolute",
       left: 0,
-      top: "80px",
+      top: "82px",
       width: "305px",
       height: "64px",
     },
@@ -175,7 +176,6 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: "auto",
       backgroundColor: theme.palette.secondary.main,
     },
-
     "& > p": {
       color: theme.palette.primary.dark,
       fontWeight: theme.typography.fontWeightRegular,
@@ -190,6 +190,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     "&:after": {
+      bottom: 0,
       background: theme.palette.primary.main,
     },
   },

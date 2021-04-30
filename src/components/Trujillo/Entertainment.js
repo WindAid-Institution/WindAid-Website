@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
     height: "260px",
   },
 
+  mediumSection: {
+    marginTop: theme.spacing(2),
+  },
+
   mdUpOnly: {
     display: "none",
 
@@ -96,7 +100,7 @@ const Entertainment = () => {
 
   return (
     <SectionWrapper>
-      <Grid container spacing={2}>
+      <Grid container>
         <Grid container spacing={2}>
           <Grid item xs={6} lg={5} className={classes.lgUpOnly}>
             <Image image={groupOnePicture} />
@@ -144,7 +148,7 @@ const Entertainment = () => {
             </Grid>
           </Grid>
 
-          <Grid container spacing={2}>
+          <Grid container spacing={2} className={classes.mediumSection}>
             <Grid item xs={3} className={classes.mdUpOnly}>
               <Image image={groupFivePicture} />
             </Grid>

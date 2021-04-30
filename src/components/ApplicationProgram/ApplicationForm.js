@@ -15,13 +15,12 @@ import Grid from "@material-ui/core/Grid";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Recaptcha from "react-recaptcha";
+import { applicationFormSchemaBridge } from "src/schemas/applicationFormSchema";
 
 import Title from "shared/Title";
-
-import { applicationFormSchemaBridge } from "src/schemas/applicationFormSchema";
 import CustomAutoField from "components/forms/CustomAutoField";
-import DisplayIf from "./DisplayIf";
-import FormError from "./FormError";
+import DisplayIf from "components/forms/DisplayIf";
+import FormError from "components/forms/FormError";
 
 const pageData = {
   generalTitle: "General Information",
@@ -64,6 +63,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  employeedField: {
+    color: "#BDBDBD",
+
+    "&:hover": {
+      color: theme.palette.primary.main,
+    },
+  },
+
   error: {
     padding: "16px 0",
     color: "red",
@@ -81,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
 
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
-    color: "#fff",
+    color: theme.palette.secondary.main,
   },
 }));
 
@@ -183,7 +190,10 @@ const ApplicationForm = () => {
               </DisplayIf>
             </Grid>
             <Grid item xs={12} className={classes.employeedFieldContainer}>
-              <RadioField name="isEmployeed" />
+              <RadioField
+                name="isEmployeed"
+                className={classes.employeedField}
+              />
             </Grid>
 
             <DisplayIf
