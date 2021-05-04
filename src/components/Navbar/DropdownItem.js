@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
       color: "transparent",
       background: theme.palette.primary.main,
       height: "5px",
+      zIndex: "-1",
 
       [theme.breakpoints.up("lg")]: {
         background: theme.palette.secondary.main,
@@ -206,6 +207,7 @@ const DropdownItem = ({ route, isSidebar }) => {
   const [isSecondSubmenuOpen, setIsSecondSubmenuOpen] = useState(false);
 
   const handleSubmenuOpen = () => {
+    console.log("here");
     setIsSubmenuOpen(true);
   };
   const handleSubmenuClose = () => {
@@ -298,7 +300,8 @@ const DropdownItem = ({ route, isSidebar }) => {
     hasSubmenu: false,
   };
 
-  const handleMainMouseEnter = isUpLg ? handleSubmenuOpen : null;
+  const handleMainMouseOver =
+    isUpLg && !isSubmenuOpen ? handleSubmenuOpen : null;
   const handleMainMouseLeave = isUpLg ? handleSubmenuClose : null;
   const handleMainClick = () => {
     if (isUpLg) {
@@ -315,7 +318,7 @@ const DropdownItem = ({ route, isSidebar }) => {
   return (
     <Box
       className={classes.root}
-      onMouseEnter={handleMainMouseEnter}
+      onMouseOver={handleMainMouseOver}
       onMouseLeave={handleMainMouseLeave}
       onClick={handleMainClick}
     >
