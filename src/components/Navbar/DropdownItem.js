@@ -46,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
       color: "transparent",
       background: theme.palette.primary.main,
       height: "5px",
-      zIndex: "-1",
 
       [theme.breakpoints.up("lg")]: {
         background: theme.palette.secondary.main,

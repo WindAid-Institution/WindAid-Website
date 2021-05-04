@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
+import { AiOutlineMinus } from "@react-icons/all-files/ai/AiOutlineMinus";
+import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
 
 import useFaqData from "queries/faq";
 import SectionWrapper from "shared/SectionWrapper";
@@ -40,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   accordionDetails: {
-    padding: "0 0 0 16px !important",
+    padding: "0 0 0 34px !important",
   },
 
   openIndicator: {
@@ -87,7 +89,11 @@ const Faq = () => {
                 className={classes.accordionSummary}
               >
                 <Typography variant="h5" className={classes.openIndicator}>
-                  {expanded === orderNumber ? "-" : "+"}
+                  {expanded === orderNumber ? (
+                    <AiOutlineMinus />
+                  ) : (
+                    <AiOutlinePlus />
+                  )}
                 </Typography>
                 <Typography variant="h6">{question}</Typography>
               </AccordionSummary>

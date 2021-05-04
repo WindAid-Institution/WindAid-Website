@@ -126,7 +126,7 @@ export const NAVBAR_ROUTES = [WHO_WE_ARE, OUR_WORK, JOIN_US, CONTACT_US, APPLY];
 export const MENU_ROUTES = [
   {
     main: WHO_WE_ARE,
-    submenu: [ABOUT_US, AMBASSADORS],
+    submenu: [ABOUT_US, AMBASSADORS, FAQ],
   },
   {
     main: OUR_WORK,
