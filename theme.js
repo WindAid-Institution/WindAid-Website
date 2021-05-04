@@ -33,6 +33,7 @@ const theme = createMuiTheme({
     fontFamily: "Open Sans",
     fontWeightLight: 300,
     fontWeightRegular: 400,
+    fontWeightMedium: 600,
     fontWeightBold: 700,
   },
   shape: {
