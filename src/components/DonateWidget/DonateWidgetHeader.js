@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   header: {
     backgroundColor: theme.palette.secondary.dark,
-    height: "72px",
+    maxHeight: "72px",
     textAlign: "center",
 
     "& > div > h6": {
@@ -34,26 +34,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DonateWidgetHeader = ({ donationValue, isFirstStep, goBack }) => {
+const DonateWidgetHeader = ({ donationValue, isFirstStep, goBack, isDone }) => {
   const classes = useStyles();
 
   return (
     <CardHeader
       className={classes.header}
       title={
-        <Typography className={classes.headerText} variant="h6">
-          {isFirstStep ? (
-            "Choose an amount to give"
-          ) : (
-            <>
-              {`Giving $${donationValue} `}
+        isDone ? (
+          <Typography className={classes.headerText} variant="h6">
+            Thank you!
+          </Typography>
+        ) : (
+          <Typography className={classes.headerText} variant="h6">
+            {isFirstStep ? (
+              "Choose an amount to give"
+            ) : (
+              <>
+                {`Giving $${donationValue} `}
 
-              <Box className={classes.editAmount} onClick={goBack}>
-                (<span className={classes.editAmountContent}>edit amount</span>)
-              </Box>
-            </>
-          )}
-        </Typography>
+                <Box className={classes.editAmount} onClick={goBack}>
+                  (
+                  <span className={classes.editAmountContent}>edit amount</span>
+                  )
+                </Box>
+              </>
+            )}
+          </Typography>
+        )
       }
     />
   );
@@ -63,6 +71,7 @@ DonateWidgetHeader.propTypes = {
   donationValue: PropTypes.number.isRequired,
   isFirstStep: PropTypes.bool.isRequired,
   goBack: PropTypes.func.isRequired,
+  isDone: PropTypes.bool.isRequired,
 };
 
 export default DonateWidgetHeader;

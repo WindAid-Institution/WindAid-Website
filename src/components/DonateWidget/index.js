@@ -1,5 +1,6 @@
+/* eslint-disable one-var */
 /* eslint-disable max-len */
-import React, { useState } from "react";
+import React, { useState, createRef } from "react";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -10,6 +11,30 @@ import DonateWidgetButton from "./DonateWidgetButton";
 
 import DonateWidgetFirstStep from "./Steps/DonateWidgetFirstStep";
 import DonateWidgetSecondStep from "./Steps/DonateWidgetSecondStep";
+import DonateWidgetThirdStep from "./Steps/DonateWidgetThirdStep";
+import DonateWidgetSuccess from "./Steps/DonateWidgetSuccess";
+
+const PAYPAL_INITIAL_DATA = {
+  email: undefined,
+};
+
+const CARD_INITIAL_DATA = {
+  CVC: undefined,
+  cardNumber: undefined,
+  expiryDate: undefined,
+  firstName: undefined,
+  lastName: undefined,
+};
+
+const CARD_ADDRESS_INITIAL_DATA = {
+  billingAddress: undefined,
+  city: undefined,
+  zipCode: undefined,
+  country: undefined,
+};
+// buttons dollars values
+
+const BUTTONS_VALUES = [10, 20, 40, 50];
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -32,10 +57,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// buttons dollars values
-
-const BUTTONS_VALUES = [10, 20, 40, 50];
-
 const DonateWidget = () => {
   const classes = useStyles();
 
@@ -47,6 +68,11 @@ const DonateWidget = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const [selectedProvider, setSelectedProvider] = useState("card");
+  const [paypalData, setPaypalData] = useState(PAYPAL_INITIAL_DATA);
+  const [cardData, setCardData] = useState(CARD_INITIAL_DATA);
+  const [cardAddressData, setCardAddressData] = useState(
+    CARD_ADDRESS_INITIAL_DATA
+  );
 
   // fnc to handle click on one of predefined amounts
   const handleButtonClick = (event) => {
@@ -94,12 +120,20 @@ const DonateWidget = () => {
 
   const goToNextStep = () => setCurrentStep((value) => value + 1);
   const goToFirstStep = () => setCurrentStep(1);
+
+  const formRef = createRef();
+  const addressFormRef = createRef();
+
+  const isDone =
+    (currentStep === 4 && selectedProvider === "card") ||
+    (currentStep === 3 && selectedProvider === "paypal");
   return (
     <Box className={classes.container}>
       <Card className={classes.card}>
         <DonateWidgetHeader
           donationValue={donationValue}
           isFirstStep={currentStep === 1}
+          isDone={isDone}
           goBack={goToFirstStep}
         />
         <CardContent>
@@ -119,13 +153,32 @@ const DonateWidget = () => {
             <DonateWidgetSecondStep
               selectedProvider={selectedProvider}
               handleProviderChange={handleProviderChange}
+              formRef={formRef}
+              setPaypalData={setPaypalData}
+              paypalData={paypalData}
+              setCardData={setCardData}
+              cardData={cardData}
+              goToNextStep={goToNextStep}
             />
           )}
-          <DonateWidgetButton
-            donationValue={donationValue}
-            currentStep={currentStep}
-            goToNextStep={goToNextStep}
-          />
+          {currentStep === 3 && selectedProvider === "card" && (
+            <DonateWidgetThirdStep
+              cardAddressData={cardAddressData}
+              setCardAddressData={setCardAddressData}
+              formRef={addressFormRef}
+              goToNextStep={goToNextStep}
+            />
+          )}
+          {isDone && <DonateWidgetSuccess />}
+          {!isDone && (
+            <DonateWidgetButton
+              donationValue={donationValue}
+              currentStep={currentStep}
+              goToNextStep={goToNextStep}
+              formRef={formRef}
+              addressFormRef={addressFormRef}
+            />
+          )}
         </CardContent>
       </Card>
     </Box>
