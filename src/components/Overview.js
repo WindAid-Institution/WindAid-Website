@@ -4,17 +4,10 @@ import PropTypes from "prop-types";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 
-import DonateWidget from "components/DonateWidget/index";
-
 const Overview = ({ header, title, body }) => (
-  <>
-    <SectionWrapper>
-      <TextSection header={header} title={title} body={body} size="lg" />
-    </SectionWrapper>
-    <SectionWrapper>
-      <DonateWidget />
-    </SectionWrapper>
-  </>
+  <SectionWrapper>
+    <TextSection header={header} title={title} body={body} size="lg" />
+  </SectionWrapper>
 );
 
 Overview.propTypes = {
