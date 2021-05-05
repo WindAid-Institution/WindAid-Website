@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -82,7 +82,9 @@ const ValueButton = ({ value, handleButtonClick, isActive }) => {
 const ValueInput = ({ value, handleInputChange }) => {
   const classes = useStyles();
 
-
+  const [isFocused, setIsFocused] = useState(false);
+  const isAdornmentVisible = isFocused || Number.isInteger(value);
+  
   return (
     <TextField
       className={classes.textInput}
@@ -90,11 +92,18 @@ const ValueInput = ({ value, handleInputChange }) => {
       label="Other Amount"
       variant="outlined"
       type="number"
+      // placeholder="Other Amount"
       onChange={handleInputChange}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
       value={value}
       InputProps={{
-        startAdornment: <InputAdornment position="start">$</InputAdornment>,
-        endAdornment: <InputAdornment position="end">USD</InputAdornment>,
+        startAdornment: isAdornmentVisible ? (
+          <InputAdornment position="start">$</InputAdornment>
+        ) : null,
+        endAdornment: isAdornmentVisible ? (
+          <InputAdornment position="end">USD</InputAdornment>
+        ) : null,
         pattern: "[0-9]",
       }}
     />
@@ -109,6 +118,7 @@ const DonateWidgetButtonGroup = ({
   buttonsValues,
 }) => {
   const classes = useStyles();
+
   return (
     <Grid container spacing={2}>
       {buttonsValues.map((val) => (

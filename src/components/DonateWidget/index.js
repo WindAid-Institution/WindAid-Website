@@ -1,15 +1,15 @@
+/* eslint-disable max-len */
 import React, { useState } from "react";
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
-import Button from "shared/Button";
+import DonateWidgetHeader from "./DonateWidgetHeader";
+import DonateWidgetButton from "./DonateWidgetButton";
 
-import DonateWidgetButtonGroup from "./DonateWidgetButtonGroup";
-import DonateWidgetCheckbox from "./DonateWidgetCheckbox";
+import DonateWidgetFirstStep from "./Steps/DonateWidgetFirstStep";
+import DonateWidgetSecondStep from "./Steps/DonateWidgetSecondStep";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -32,16 +32,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// buttons dollars values
+
 const BUTTONS_VALUES = [10, 20, 40, 50];
 
 const DonateWidget = () => {
-  const [donationValue, setDonationValue] = useState(0);
-  const [inputValue, setInputValue] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
-
   const classes = useStyles();
-  const theme = useTheme();
 
+  const [donationValue, setDonationValue] = useState(0);
+
+  // text value of custom amount input
+  const [inputValue, setInputValue] = useState("");
+  const [isMonthlyDonation, setIsMonthlyDonation] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const [selectedProvider, setSelectedProvider] = useState("card");
+
+  // fnc to handle click on one of predefined amounts
   const handleButtonClick = (event) => {
     const value = parseInt(event.currentTarget.value, 10);
 
@@ -54,11 +61,17 @@ const DonateWidget = () => {
     setDonationValue(value);
   };
 
+  // fnc to handle typing custom amount of donation
   const handleInputChange = (event) => {
     const strValue = event.currentTarget.value;
 
     if (strValue.startsWith("0")) {
       return null;
+    }
+
+    if (!strValue) {
+      setDonationValue(0);
+      return setInputValue("");
     }
 
     const value = parseInt(strValue, 10);
@@ -71,42 +84,48 @@ const DonateWidget = () => {
     return setInputValue(value);
   };
 
-  const handleCheckboxToggle = (event) => setIsChecked(event.target.checked);
+  // fnc to handle check of montly donation
+  const handleCheckboxToggle = (event) =>
+    setIsMonthlyDonation(event.target.checked);
 
+  const handleProviderChange = (_event, newValue) => {
+    setSelectedProvider(newValue);
+  };
+
+  const goToNextStep = () => setCurrentStep((value) => value + 1);
+  const goToFirstStep = () => setCurrentStep(1);
   return (
     <Box className={classes.container}>
       <Card className={classes.card}>
-        <CardHeader
-          className={classes.header}
-          title={
-            <Typography className={classes.headerText} variant="h6">
-              Choose an amount to give
-            </Typography>
-          }
+        <DonateWidgetHeader
+          donationValue={donationValue}
+          isFirstStep={currentStep === 1}
+          goBack={goToFirstStep}
         />
         <CardContent>
-          <DonateWidgetButtonGroup
-            handleButtonClick={handleButtonClick}
-            donationValue={donationValue}
-            handleInputChange={handleInputChange}
-            inputValue={inputValue}
-            buttonsValues={BUTTONS_VALUES}
-          />
-          <DonateWidgetCheckbox
-            handleCheckboxToggle={handleCheckboxToggle}
-            isChecked={isChecked}
-          />
-          <Box display="flex" justifyContent="center">
-            <Button
-              style={{
-                width: "187px",
-                minWidth: "auto",
-                marginBottom: theme.spacing(2),
-              }}
-              text="Donate"
-              isDisabled={donationValue === 0 || Number.isNaN(donationValue)}
+          {currentStep === 1 && (
+            <DonateWidgetFirstStep
+              handleButtonClick={handleButtonClick}
+              donationValue={donationValue}
+              handleInputChange={handleInputChange}
+              inputValue={inputValue}
+              buttonsValues={BUTTONS_VALUES}
+              handleCheckboxToggle={handleCheckboxToggle}
+              isMonthlyDonation={isMonthlyDonation}
             />
-          </Box>
+          )}
+
+          {currentStep === 2 && (
+            <DonateWidgetSecondStep
+              selectedProvider={selectedProvider}
+              handleProviderChange={handleProviderChange}
+            />
+          )}
+          <DonateWidgetButton
+            donationValue={donationValue}
+            currentStep={currentStep}
+            goToNextStep={goToNextStep}
+          />
         </CardContent>
       </Card>
     </Box>
