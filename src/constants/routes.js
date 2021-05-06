@@ -42,6 +42,10 @@ export const ROUTES = {
     path: "/join-us",
   },
 
+  VOLUNTEER_PROGRAMS: {
+    name: "Volunteer Programs",
+    path: "/general-program",
+  },
   GENERAL_PROGRAM: {
     name: "Peru Electrification Program",
     path: "/general-program",
@@ -81,6 +85,15 @@ export const ROUTES = {
     path: "/contact",
   },
 
+  GENERAL_CONTACT: {
+    name: "General contact",
+    path: "/contact",
+  },
+
+  PROGRAM_APPLICATION: {
+    name: "Program Application",
+    path: "/application-program",
+  },
   APPLY: {
     name: "Apply",
     path: "/application-program",
@@ -113,7 +126,7 @@ export const NAVBAR_ROUTES = [WHO_WE_ARE, OUR_WORK, JOIN_US, CONTACT_US, APPLY];
 export const MENU_ROUTES = [
   {
     main: WHO_WE_ARE,
-    submenu: [ABOUT_US, AMBASSADORS],
+    submenu: [ABOUT_US, AMBASSADORS, FAQ],
   },
   {
     main: OUR_WORK,
