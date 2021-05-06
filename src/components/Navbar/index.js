@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   toggleButton: {
+    cursor: "pointer",
     [theme.breakpoints.up("lg")]: {
       display: "none",
     },

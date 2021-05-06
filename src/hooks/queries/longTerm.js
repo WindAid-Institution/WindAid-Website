@@ -57,13 +57,12 @@ const useLongTermData = () => {
           body {
             text: body
           }
-          bodyTwo {
-            text: bodyTwo
-          }
           image {
             gatsbyImageData(quality: 100, placeholder: BLURRED)
             description
           }
+          url
+          email
         }
       }
     }

@@ -18,7 +18,6 @@ const ApplyNow = () => {
   return (
     <SectionWrapper>
       <TextSection title={title} body={body} bodyTwo={bodyTwo} size="lg" />
-
       <ApplyButton />
     </SectionWrapper>
   );

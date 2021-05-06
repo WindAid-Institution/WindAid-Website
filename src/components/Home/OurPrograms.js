@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
 import React from "react";
 import Box from "@material-ui/core/Box";
-import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import clsx from "clsx";
 
+import { ROUTES } from "src/constants/routes";
 import useHomepageData from "queries/homepage";
 import MountainsImage from "images/LandingPage/OurPrograms/mountains.svg";
 import SectionWrapper from "shared/SectionWrapper";
@@ -96,7 +96,6 @@ const OurPrograms = () => {
   const theme = useTheme();
   const { ourProgramsOne, ourProgramsTwo } = useHomepageData();
 
-  const isSmScreen = useMediaQuery(theme.breakpoints.up("sm"));
   const isMdScreen = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
@@ -141,15 +140,13 @@ const OurPrograms = () => {
             subHeader={ourProgramsTwo.header}
             style={{
               textStyle: {
-                textAlign: isSmScreen ? "left" : "center",
+                textAlign: "left",
                 margin: "24px 0 !important",
               },
             }}
           />
           <Box className={classes.buttonContainer}>
-            <Link to="/short-term-program">
-              <Button text="View Our Programs" />
-            </Link>
+            <Button text="View Our Programs" route={ROUTES.GENERAL_PROGRAM} />
           </Box>
         </Box>
       </Box>

@@ -4,6 +4,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { GatsbyImage } from "gatsby-plugin-image";
 import clsx from "clsx";
 
+import { ROUTES } from "src/constants/routes";
 import Body from "shared/Body";
 import Title from "shared/Title";
 import Button from "shared/Button";
@@ -137,6 +138,7 @@ const LongTimeVolunteer = () => {
             inverted
             text="Learn about the program"
             style={{ marginTop: theme.spacing(2) }}
+            route={ROUTES.LONG_TERM_PROGRAM}
           />
         </div>
         <div className={classes.gridAreaImg}>

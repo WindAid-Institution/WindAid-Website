@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
   image: {
     height: "calc(19.7vw + 329px)",
     maxHeight: "613px",
+    backgroundColor: theme.palette.primary.main,
   },
   title: {
     position: "absolute",

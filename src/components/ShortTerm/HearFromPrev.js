@@ -41,6 +41,7 @@ const HearFromPrev = () => {
               date={date}
               body={body}
               image={image}
+              isTopAligned
             />
           </Box>
         ))}

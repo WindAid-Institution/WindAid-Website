@@ -21,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
       alignItems: "center",
     },
   },
+
+  rootTopAligned: {
+    [theme.breakpoints.up("md")]: {
+      alignItems: "flex-start",
+    },
+  },
   imageContainer: {
     width: "100%",
     justifyContent: "center",
@@ -143,10 +149,14 @@ const CommunityCard = ({
   body,
   additionalText,
   image,
+  isTopAligned,
 }) => {
   const classes = useStyles();
   return (
-    <Grid container className={classes.root}>
+    <Grid
+      container
+      className={clsx(classes.root, isTopAligned && classes.rootTopAligned)}
+    >
       <Grid container className={classes.imageContainer}>
         <GatsbyImage
           image={image.gatsbyImageData}
@@ -203,10 +213,12 @@ CommunityCard.propTypes = {
   }).isRequired,
   additionalText: PropTypes.string,
   image: PropTypes.object.isRequired,
+  isTopAligned: PropTypes.bool,
 };
 
 CommunityCard.defaultProps = {
   additionalText: "",
+  isTopAligned: false,
 };
 
 export default CommunityCard;

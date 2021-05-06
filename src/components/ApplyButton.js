@@ -1,18 +1,17 @@
 import React from "react";
-import { Link } from "gatsby";
 
+import { ROUTES } from "src/constants/routes";
 import Button from "shared/Button";
 
 const ApplyButton = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Link to="/">
-      <Button
-        text={`Apply now for the ${currentYear} programs`}
-        style={{ marginTop: "32px" }}
-      />
-    </Link>
+    <Button
+      text={`Apply now for the ${currentYear} programs`}
+      style={{ marginTop: "32px" }}
+      route={ROUTES.APPLICATION_PROGRAM}
+    />
   );
 };
 export default ApplyButton;

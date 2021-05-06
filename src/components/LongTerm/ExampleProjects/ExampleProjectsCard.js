@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
+import { GrLinkedin } from "@react-icons/all-files/gr/GrLinkedin";
 
 import Body from "shared/Body";
 
@@ -24,15 +24,23 @@ const useStyles = makeStyles((theme) => ({
 
   image: {
     width: "100%",
-
-    height: "236px",
+    float: "left",
+    height: "320px",
+    marginBottom: theme.spacing(3),
 
     [theme.breakpoints.up("md")]: {
-      height: "340px",
-      width: "80%",
+      height: "460px",
+      width: "350px",
       paddingRight: theme.spacing(2),
+      marginRight: theme.spacing(3),
+      marginBottom: 0,
     },
   },
+
+  bodyContainer: ({ isCardExpanded }) => ({
+    height: isCardExpanded ? "auto" : "300px",
+    paddingTop: isCardExpanded ? theme.spacing(2) : 0,
+  }),
 
   title: {
     fontSize: "18px",
@@ -56,6 +64,32 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       fontSize: "18px",
     },
+  },
+
+  mediaContainer: {
+    marginTop: theme.spacing(2),
+    display: "flex",
+    alignItems: "center",
+  },
+
+  linkedIn: {
+    marginRight: theme.spacing(2),
+    width: "25px",
+    height: "25px",
+
+    "& > svg": {
+      width: "inherit",
+      height: "inherit",
+    },
+    "& > svg > path": {
+      color: theme.palette.secondary.main,
+    },
+  },
+
+  email: {
+    textDecoration: "none",
+    color: theme.palette.secondary.main,
+    fontWeight: theme.typography.fontWeightBold,
   },
 
   date: {
@@ -93,6 +127,7 @@ const useStyles = makeStyles((theme) => ({
   expand: {
     width: "100px",
     cursor: "pointer",
+    marginTop: theme.spacing(2),
 
     " & > p": {
       fontWeight: theme.typography.fontWeightBold,
@@ -106,68 +141,81 @@ const ExampleProjectsCard = ({
   location,
   date,
   body,
-  bodyTwo,
+  url,
+  email,
 }) => {
   const [isCardExpanded, setIsCardExpanded] = useState(false);
 
   const toggleCard = () => {
     setIsCardExpanded((value) => !value);
   };
-  const classes = useStyles();
+  const classes = useStyles({ isCardExpanded });
   const theme = useTheme();
 
+  const bodyTextStyle = {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    display: isCardExpanded ? "inline" : "-webkit-box",
+    "-webkit-line-clamp": 10,
+    "-webkit-box-orient": "vertical",
+    color: theme.palette.secondary.main,
+  };
+
   return (
-    <Grid container className={classes.root}>
-      <Grid item xs={12} md={4}>
-        <GatsbyImage
-          image={image.gatsbyImageData}
-          alt={image.description}
-          className={classes.image}
-        />
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <Grid className={classes.textContainer} container spacing={1}>
-          <Grid
-            item
-            xs={12}
+    <Box className={classes.root}>
+      <GatsbyImage
+        image={image.gatsbyImageData}
+        alt={image.description}
+        className={classes.image}
+      />
+      <Box item>
+        <Box className={classes.textContainer}>
+          <Box
             className={clsx(classes.leftAlign, classes.boldFont, classes.title)}
           >
             <Typography variant="h5" color="secondary">
               {name}
             </Typography>
-          </Grid>
-          <Grid item xs={12} className={(classes.leftAlign, classes.subTitle)}>
+          </Box>
+          <Box className={(classes.leftAlign, classes.subTitle)}>
             <span className={classes.boldFont}>{location}</span>
             <span className={classes.date}>{date}</span>
-          </Grid>
-          <Grid item xs={12}>
-            <Body
-              style={{ textStyle: { color: theme.palette.secondary.main } }}
-              body={body.text}
-              size="auto"
-            />
-          </Grid>
-        </Grid>
-      </Grid>
-      {isCardExpanded && (
-        <Grid className={classes.bodyTwo} item xs={12}>
-          <Body
-            style={{ textStyle: { color: theme.palette.secondary.main } }}
-            body={bodyTwo.text}
-            size="auto"
-          />
-        </Grid>
-      )}
-      <Grid xs={12} item className={classes.rightAlign}>
-        {bodyTwo.text && (
-          <Box className={classes.expand} onClick={toggleCard}>
-            <Typography color="secondary">
-              {isCardExpanded ? "Read Less" : "Read More"}
-            </Typography>
           </Box>
-        )}
-      </Grid>
-    </Grid>
+          {(url || email) && (
+            <Box className={(classes.leftAlign, classes.mediaContainer)}>
+              {url && (
+                <a href={url} className={classes.linkedIn}>
+                  <GrLinkedin />
+                </a>
+              )}
+              {email && (
+                <a className={classes.email} href={`mailto:${email}`}>
+                  {email}
+                </a>
+              )}
+            </Box>
+          )}
+          <Box>
+            <Box className={clsx(classes.bodyContainer)}>
+              <Body
+                style={{
+                  textStyle: bodyTextStyle,
+                }}
+                body={body.text}
+                size="auto"
+              />
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+      <Box className={classes.rightAlign}>
+        <Box className={classes.expand} onClick={toggleCard}>
+          <Typography color="secondary">
+            {isCardExpanded ? "Read Less" : "Read More"}
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
@@ -178,16 +226,14 @@ ExampleProjectsCard.propTypes = {
   body: PropTypes.shape({
     text: PropTypes.string.isRequired,
   }).isRequired,
-  bodyTwo: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-  }),
   image: PropTypes.object.isRequired,
+  url: PropTypes.string,
+  email: PropTypes.string,
 };
 
 ExampleProjectsCard.defaultProps = {
-  bodyTwo: {
-    text: "",
-  },
+  url: "",
+  email: "",
 };
 
 export default ExampleProjectsCard;

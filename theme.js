@@ -25,11 +25,15 @@ const theme = createMuiTheme({
       main: "#ffffff",
       dark: "#fff9f5",
     },
+    info: {
+      main: "#015B90",
+    },
   },
   typography: {
     fontFamily: "Open Sans",
     fontWeightLight: 300,
     fontWeightRegular: 400,
+    fontWeightMedium: 600,
     fontWeightBold: 700,
   },
   shape: {
@@ -80,6 +84,16 @@ const theme = createMuiTheme({
       root: {
         color: "#000000",
         fontStyle: "normal",
+      },
+    },
+    MuiLink: {
+      root: {
+        fontWeight: 700,
+      },
+    },
+    MuiRadio: {
+      root: {
+        color: "#056839",
       },
     },
   },
