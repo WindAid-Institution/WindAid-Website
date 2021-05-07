@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 const DonateWidget = () => {
   const classes = useStyles();
 
-  const [donationValue, setDonationValue] = useState(0);
+  const [donationValue, setDonationValue] = useState(10);
 
   // text value of custom amount input
   const [inputValue, setInputValue] = useState("");
@@ -119,6 +119,7 @@ const DonateWidget = () => {
   };
 
   const goToNextStep = () => setCurrentStep((value) => value + 1);
+  const goToPrevStep = () => setCurrentStep((value) => value - 1);
   const goToFirstStep = () => setCurrentStep(1);
 
   const formRef = createRef();
@@ -167,6 +168,7 @@ const DonateWidget = () => {
               setCardAddressData={setCardAddressData}
               formRef={addressFormRef}
               goToNextStep={goToNextStep}
+              goToPrevStep={goToPrevStep}
             />
           )}
           {isDone && <DonateWidgetSuccess />}

@@ -11,6 +11,8 @@ import OurApproach from "components/Home/OurApproach";
 import OurCoreWork from "components/Home/OurCoreWork";
 import OurPrograms from "components/Home/OurPrograms";
 
+import DonateWidget from "components/DonateWidget/index";
+
 import theme from "../../theme";
 import "../styles/global.css";
 
@@ -19,6 +21,7 @@ const App = () => (
     <MainLayout>
       <BigBanner />
       <OurMission />
+      <DonateWidget />
       <Stats />
       <OurApproach />
       <OurCoreWork />
