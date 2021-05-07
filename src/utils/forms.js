@@ -23,6 +23,13 @@ const createValidator = (schema) => {
           };
         }
 
+        if (error.keyword === "maxLength") {
+          return {
+            ...error,
+            message: `This field must have maximum ${error.params.limit} characters`,
+          };
+        }
+
         if (error.keyword === "enum") {
           return { ...error, message: "Select one of avaliable options" };
         }

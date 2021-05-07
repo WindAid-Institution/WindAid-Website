@@ -206,7 +206,6 @@ const DropdownItem = ({ route, isSidebar }) => {
   const [isSecondSubmenuOpen, setIsSecondSubmenuOpen] = useState(false);
 
   const handleSubmenuOpen = () => {
-    console.log("here");
     setIsSubmenuOpen(true);
   };
   const handleSubmenuClose = () => {

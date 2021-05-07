@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     height: "24px",
     right: "16px",
     top: "16px",
+    zIndex: 99,
   },
   navCopyRight: {
     position: "absolute",
