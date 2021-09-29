@@ -10,19 +10,32 @@ const useStyles = makeStyles((theme) => ({
   root: { position: "relative", height: "100%", width: "100%" },
   picture: {
     height: "calc(19.7vw + 329px)",
-    maxHeight: "613px",
+    maxHeight: "850px",
     width: "100%",
     objectFit: "cover",
   },
-  heading: {
+  textField: {
     position: "absolute",
-    top: "calc(4.17vw + 33px)",
-    left: "calc(16.9vw - 45px)",
+    top: "calc(7.7vw + 89.3px)",
+    padding: "0px 12px",
+    [theme.breakpoints.up("xl")]: {
+      padding: "0 calc(12.6vw - 75px)",
+    },
+  },
+  heading: {
     color: theme.palette.secondary.main,
     fontSize: "calc(1.48vw + 18.7px)",
     fontWeight: theme.typography.fontWeightBold,
     lineHeight: "calc(1.76vw + 28.7px)",
-    width: "calc(48.1vw + 155px)",
+    width: "calc(20.74vw + 201.33px)",
+  },
+  subtitle: {
+    color: theme.palette.secondary.main,
+    fontSize: "calc(0.37vw + 12.7px)",
+    fontWeight: theme.typography.fontWeightRegular,
+    lineHeight: "calc(0.09vw + 27.7px)",
+    width: "calc(20.74vw + 201.33px)",
+    margin: "8px 0px",
   },
 }));
 
@@ -32,6 +45,7 @@ const BigBanner = () => {
   const {
     hero: {
       title,
+      subtitle,
       image: { description, gatsbyImageData },
     },
   } = useHomepageData();
@@ -45,9 +59,18 @@ const BigBanner = () => {
           alt={description}
           backgroundColor={theme.palette.primary.main}
         />
-        <Typography variant="h1" className={classes.heading}>
-          {title}
-        </Typography>
+        <Grid item className={classes.textField}>
+          <Typography align="justify" variant="h1" className={classes.heading}>
+            {title}
+          </Typography>
+          <Typography
+            align="justify"
+            variant="subtitle1"
+            className={classes.subtitle}
+          >
+            {subtitle}
+          </Typography>
+        </Grid>
       </Grid>
     </Grid>
   );

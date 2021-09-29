@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.up("sm")]: {
       fontSize: "26px",
-      lineHeight: "36px",
+      lineHeight: "40px",
       ...textStyle,
     },
 

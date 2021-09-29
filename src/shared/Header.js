@@ -12,21 +12,21 @@ const useStyles = makeStyles((theme) => ({
   }),
   text: ({ textStyle }) => ({
     width: "auto",
-    fontSize: "14px",
-    lineHeight: "20px",
+    fontSize: "18px",
+    lineHeight: "24px",
     color: "#1d1d1d",
     fontWeight: theme.typography.fontWeightBold,
     ...textStyle,
 
     [theme.breakpoints.up("sm")]: {
-      fontSize: "16px",
-      lineHeight: "24px",
+      fontSize: "24px",
+      lineHeight: "36px",
       ...textStyle,
     },
 
     [theme.breakpoints.up("md")]: {
-      fontSize: "18px",
-      lineHeight: "32px",
+      fontSize: "24px",
+      lineHeight: "36px",
       ...textStyle,
     },
   }),

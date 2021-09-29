@@ -2,9 +2,11 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { ROUTES } from "src/constants/routes";
 import SectionWrapper from "shared/SectionWrapper";
+import Button from "shared/Button";
 import Title from "shared/Title";
-import Body from "shared/Body";
+import TextSection from "shared/TextSection";
 import useHomepageData from "queries/homepage";
 
 import StatisticsItem from "./StatisticsItem";
@@ -13,6 +15,11 @@ const useStyles = makeStyles((theme) => ({
   mainWrapper: {
     maxWidth: "870px",
     padding: theme.spacing(2),
+  },
+
+  text: {
+    textAlign: "center",
+    marginTop: "calc(5.28vw + 21px)",
   },
 
   row: {
@@ -29,6 +36,7 @@ const Stats = () => {
     statistics: {
       body: { body },
       title,
+      header,
       images,
     },
   } = useHomepageData();
@@ -49,9 +57,6 @@ const Stats = () => {
         <Grid item className={classes.row}>
           <Title title={title} />
         </Grid>
-        <Grid item className={classes.row}>
-          <Body body={body} />
-        </Grid>
         <Grid item className={classes.iconRow}>
           <Grid
             container
@@ -66,6 +71,14 @@ const Stats = () => {
             ))}
           </Grid>
         </Grid>
+        <Grid item className={classes.text}>
+          <TextSection body={body} header={header} />
+        </Grid>
+        <Button
+          text="Learn about our impact"
+          style={{ marginTop: "24px" }}
+          route={ROUTES.OUR_IMPACT}
+        />
       </Grid>
     </SectionWrapper>
   );
