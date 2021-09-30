@@ -53,42 +53,44 @@ const ProjectCard = ({ data }) => {
 
   return (
     <Card image={image} imageText={imageText} style={additionalStyle}>
-      <Grid item>
-        <Typography variant="body1">
-          <b>Status: </b>
-          {status}
-        </Typography>
-        <Typography variant="body1">
-          <b>About the community:</b>
-        </Typography>
-        <Typography variant="body1">{body}</Typography>
-      </Grid>
-      <Grid container className={classes.stats}>
-        <Grid item xs={2}>
-          <img src={householdImageUrl} alt="" />
-        </Grid>
-        <Grid item xs={9}>
+      <>
+        <Grid item>
           <Typography variant="body1">
-            <b>Households affected:</b>
+            <b>Status: </b>
+            {status}
           </Typography>
-        </Grid>
-        <Grid item xs={1}>
-          <Typography variant="body1">{householdNumber}</Typography>
-        </Grid>
-      </Grid>
-      <Grid container className={classes.stats}>
-        <Grid item xs={2}>
-          <img src={windturbineImageUrl} alt="" />
-        </Grid>
-        <Grid item xs={9}>
           <Typography variant="body1">
-            <b>Windturbine installed:</b>
+            <b>About the community:</b>
           </Typography>
+          <Typography variant="body1">{body}</Typography>
         </Grid>
-        <Grid item xs={1}>
-          <Typography variant="body1">{windturbineNumber}</Typography>
+        <Grid container className={classes.stats}>
+          <Grid item xs={2}>
+            <img src={householdImageUrl} alt="" />
+          </Grid>
+          <Grid item xs={9}>
+            <Typography variant="body1">
+              <b>Households affected:</b>
+            </Typography>
+          </Grid>
+          <Grid item xs={1}>
+            <Typography variant="body1">{householdNumber}</Typography>
+          </Grid>
         </Grid>
-      </Grid>
+        <Grid container className={classes.stats}>
+          <Grid item xs={2}>
+            <img src={windturbineImageUrl} alt="" />
+          </Grid>
+          <Grid item xs={9}>
+            <Typography variant="body1">
+              <b>Windturbine installed:</b>
+            </Typography>
+          </Grid>
+          <Grid item xs={1}>
+            <Typography variant="body1">{windturbineNumber}</Typography>
+          </Grid>
+        </Grid>
+      </>
     </Card>
   );
 };

@@ -1,53 +1,45 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Carousel from "react-multi-carousel";
-import { makeStyles } from "@material-ui/core/styles";
 
-import {
-  CustomLeftArrow,
-  CustomRightArrow,
-} from "../../OurImpact/Community/Carousel/CustomArrows";
-import CustomButtonGroup from "../../OurImpact/Community/Carousel/CustomButtonGroup";
 import ProjectCard from "./ProjectCard";
-
-const useStyles = makeStyles(() => ({
-  carouselContainer: {
-    height: "800px",
-  },
-}));
+import CustomCarousel from "../../../shared/Carousel/CustomCarousel";
 
 const ProjectsCarousel = ({ carouselData }) => {
-  const classes = useStyles();
+  const responsive = {
+    desktop: {
+      breakpoint: {
+        max: 10000,
+        min: 760,
+      },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: {
+        max: 760,
+        min: 0,
+      },
+      items: 1,
+    },
+  };
+
+  const additionalStyle = {
+    carouselContainerStyle: {
+      height: "800px",
+    },
+  };
+
   return (
-    <Carousel
-      responsive={{
-        desktop: {
-          breakpoint: {
-            max: 10000,
-            min: 760,
-          },
-          items: 2,
-        },
-        mobile: {
-          breakpoint: {
-            max: 760,
-            min: 0,
-          },
-          items: 1,
-        },
-      }}
+    <CustomCarousel
+      responsive={responsive}
+      style={additionalStyle}
       arrows={false}
-      customRightArrow={<CustomRightArrow />}
-      customLeftArrow={<CustomLeftArrow />}
-      customButtonGroup={<CustomButtonGroup />}
-      renderButtonGroupOutside
-      swipeable={false}
-      containerClass={classes.carouselContainer}
     >
-      {carouselData.map((projectData) => (
-        <ProjectCard key={projectData.orderNumber} data={projectData} />
-      ))}
-    </Carousel>
+      <>
+        {carouselData.map((projectData) => (
+          <ProjectCard key={projectData.orderNumber} data={projectData} />
+        ))}
+      </>
+    </CustomCarousel>
   );
 };
 

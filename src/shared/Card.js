@@ -106,13 +106,14 @@ const Card = ({ image, imageText, children, style }) => {
 
 Card.propTypes = {
   image: PropTypes.object.isRequired,
-  imageText: PropTypes.object.isRequired,
+  imageText: PropTypes.object,
   children: PropTypes.object.isRequired,
   style: PropTypes.object,
 };
 
 Card.defaultProps = {
   style: {},
+  imageText: undefined,
 };
 
 export default Card;
