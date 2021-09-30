@@ -34,7 +34,7 @@ const CustomCarousel = ({ responsive, children, style, arrows }) => {
 
 CustomCarousel.propTypes = {
   responsive: PropTypes.object.isRequired,
-  children: PropTypes.object.isRequired,
+  children: PropTypes.array.isRequired,
   style: PropTypes.object,
   arrows: PropTypes.bool,
 };

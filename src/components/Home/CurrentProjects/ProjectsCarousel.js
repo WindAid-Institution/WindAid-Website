@@ -34,11 +34,9 @@ const ProjectsCarousel = ({ carouselData }) => {
       style={additionalStyle}
       arrows={false}
     >
-      <>
-        {carouselData.map((projectData) => (
-          <ProjectCard key={projectData.orderNumber} data={projectData} />
-        ))}
-      </>
+      {carouselData.map((projectData) => (
+        <ProjectCard key={projectData.orderNumber} data={projectData} />
+      ))}
     </CustomCarousel>
   );
 };
