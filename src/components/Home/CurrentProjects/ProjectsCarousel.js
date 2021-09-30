@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
 import { makeStyles } from "@material-ui/core/styles";
 
 import {
@@ -13,7 +12,7 @@ import ProjectCard from "./ProjectCard";
 
 const useStyles = makeStyles(() => ({
   carouselContainer: {
-    height: "715px",
+    height: "800px",
   },
 }));
 

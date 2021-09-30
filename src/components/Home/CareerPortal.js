@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     left: "0",
     top: "64px",
     [theme.breakpoints.up("xl")]: {
-      left: "calc(12.6vw - 75px)",
+      left: "calc(12.6vw - 87px)",
     },
   },
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: "0px",
     right: "24px",
     [theme.breakpoints.up("xl")]: {
-      right: "calc(12.6vw - 75px)",
+      right: "calc(12.6vw - 87px)",
     },
     height: "70%",
   },
