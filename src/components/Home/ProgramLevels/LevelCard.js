@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "calc(4.16vw + 17px)",
     width: "100%",
     "&:hover": {
-      boxShadow: "0px 0px 35px 15px #BDBDBD",
+      boxShadow: "0px 0px 20px 3px #BDBDBD",
       "&:last-child > div:last-child > div:last-child": {
         fontWeight: "bold",
       },

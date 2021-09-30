@@ -27,20 +27,26 @@ const CurrentProjects = () => {
 
   return (
     <SectionWrapper
-      style={{ containerStyle: { display: "flex", justifyContent: "center" } }}
+      style={{
+        containerStyle: {
+          display: "flex",
+          justifyContent: "center",
+          paddingBottom: "30px",
+        },
+      }}
       bgColor="secondary"
     >
       <Grid
         container
-        direction="column"
+        direction="row"
         justify="center"
         alignItems="center"
         className={classes.mainWrapper}
       >
-        <Grid item className={classes.row}>
+        <Grid item xs={12} className={classes.row}>
           <TextSection title={title} body={body} />
         </Grid>
-        <Grid item className={classes.row}>
+        <Grid item xs={12} className={classes.row}>
           <ProjectsCarousel carouselData={currentProjectCardsContent} />
         </Grid>
       </Grid>

@@ -12,9 +12,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
     height: "460px",
-    backgroundPosition: "bottom",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
     borderBottom: "3px solid",
     borderBottomColor: theme.palette.primary.main,
     backgroundColor: theme.palette.secondary.dark,
@@ -22,14 +19,20 @@ const useStyles = makeStyles((theme) => ({
 
   container: {
     position: "absolute",
-    left: "116px",
+    left: "0",
     top: "64px",
+    [theme.breakpoints.up("xl")]: {
+      left: "calc(12.6vw - 75px)",
+    },
   },
 
   image: {
     position: "absolute",
     bottom: "0px",
-    right: "116px",
+    right: "24px",
+    [theme.breakpoints.up("xl")]: {
+      right: "calc(12.6vw - 75px)",
+    },
     height: "70%",
   },
 }));

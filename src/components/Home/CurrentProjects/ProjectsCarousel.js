@@ -1,18 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Carousel from "react-multi-carousel";
+// import "react-multi-carousel/lib/styles.css";
 import { makeStyles } from "@material-ui/core/styles";
 
-import CustomButtonGroup from "../../Trujillo/TrujilloCarousel/TrujilloButtonGroup";
+import {
+  CustomLeftArrow,
+  CustomRightArrow,
+} from "../../OurImpact/Community/Carousel/CustomArrows";
+import CustomButtonGroup from "../../OurImpact/Community/Carousel/CustomButtonGroup";
 import ProjectCard from "./ProjectCard";
 
 const useStyles = makeStyles(() => ({
   carouselContainer: {
-    maxWidth: "100%",
-
-    // [theme.breakpoints.up("sm")]: {
-    //   maxWidth: "700px",
-    // },
+    height: "715px",
   },
 }));
 
@@ -37,10 +38,12 @@ const ProjectsCarousel = ({ carouselData }) => {
         },
       }}
       arrows={false}
-      containerClass={classes.carouselContainer}
-      swipeable={false}
-      customButtonGroup={<CustomButtonGroup isBeachSection={false} />}
+      customRightArrow={<CustomRightArrow />}
+      customLeftArrow={<CustomLeftArrow />}
+      customButtonGroup={<CustomButtonGroup />}
       renderButtonGroupOutside
+      swipeable={false}
+      containerClass={classes.carouselContainer}
     >
       {carouselData.map((projectData) => (
         <ProjectCard key={projectData.orderNumber} data={projectData} />
