@@ -3,7 +3,6 @@ import Carousel from "react-multi-carousel";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { CustomRightArrow, CustomLeftArrow } from "./CustomArrows";
 import CustomButtonGroup from "./CustomButtonGroup";
 
 const useStyles = makeStyles(() => ({
@@ -20,8 +19,6 @@ const CustomCarousel = ({ responsive, children, style, arrows }) => {
     <Carousel
       responsive={responsive}
       arrows={arrows}
-      customRightArrow={<CustomRightArrow />}
-      customLeftArrow={<CustomLeftArrow />}
       customButtonGroup={<CustomButtonGroup />}
       renderButtonGroupOutside
       swipeable={false}

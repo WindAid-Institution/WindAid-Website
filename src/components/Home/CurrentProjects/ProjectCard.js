@@ -4,12 +4,28 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Card from "shared/Card";
-import useHomepageData from "../../../hooks/queries/homepage";
 import theme from "../../../../theme";
+import householdImage from "../../../shared/images/household.svg";
+import windturbineImage from "../../../shared/images/windturbine.svg";
 
 const useStyles = makeStyles(() => ({
+  status: {
+    marginBottom: "8px",
+  },
+  description: {
+    marginBottom: "32px",
+  },
   stats: {
     direction: "column",
+    justifyContent: "flex-start",
+  },
+  text: {
+    textAlign: "left",
+    fontWeight: "bold",
+    paddingLeft: "8px",
+  },
+  number: {
+    textAlign: "center",
   },
 }));
 
@@ -36,15 +52,6 @@ const ProjectCard = ({ data }) => {
     image,
   } = data;
 
-  const {
-    householdImage: {
-      file: { url: householdImageUrl },
-    },
-    windturbineImage: {
-      file: { url: windturbineImageUrl },
-    },
-  } = useHomepageData();
-
   const imageText = {
     header,
     location,
@@ -55,39 +62,45 @@ const ProjectCard = ({ data }) => {
     <Card image={image} imageText={imageText} style={additionalStyle}>
       <>
         <Grid item>
-          <Typography variant="body1">
+          <Typography variant="body1" className={classes.status}>
             <b>Status: </b>
             {status}
           </Typography>
           <Typography variant="body1">
             <b>About the community:</b>
           </Typography>
-          <Typography variant="body1">{body}</Typography>
+          <Typography variant="body1" className={classes.description}>
+            {body}
+          </Typography>
         </Grid>
         <Grid container className={classes.stats}>
-          <Grid item xs={2}>
-            <img src={householdImageUrl} alt="" />
+          <Grid item xs={1}>
+            <img src={householdImage} alt="" />
           </Grid>
-          <Grid item xs={9}>
-            <Typography variant="body1">
-              <b>Households affected:</b>
+          <Grid item xs={9} lg={5}>
+            <Typography variant="body1" className={classes.text}>
+              Households affected:
             </Typography>
           </Grid>
-          <Grid item xs={1}>
-            <Typography variant="body1">{householdNumber}</Typography>
+          <Grid item xs={2} lg={3}>
+            <Typography variant="body1" className={classes.number}>
+              {householdNumber}
+            </Typography>
           </Grid>
         </Grid>
         <Grid container className={classes.stats}>
-          <Grid item xs={2}>
-            <img src={windturbineImageUrl} alt="" />
+          <Grid item xs={1}>
+            <img src={windturbineImage} alt="" />
           </Grid>
-          <Grid item xs={9}>
-            <Typography variant="body1">
-              <b>Windturbine installed:</b>
+          <Grid item xs={9} lg={5}>
+            <Typography variant="body1" className={classes.text}>
+              Windturbine installed:
             </Typography>
           </Grid>
-          <Grid item xs={1}>
-            <Typography variant="body1">{windturbineNumber}</Typography>
+          <Grid item xs={2} lg={3}>
+            <Typography variant="body1" className={classes.number}>
+              {windturbineNumber}
+            </Typography>
           </Grid>
         </Grid>
       </>

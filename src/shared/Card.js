@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     marginTop: "calc(4.16vw + 17px)",
     "&:hover": {
-      boxShadow: "0px 0px 20px 3px #BDBDBD",
+      boxShadow: "0px 0px 30px 7px #BDBDBD",
       "&:last-child > div:last-child > div:last-child": {
         fontWeight: "bold",
       },
@@ -51,9 +51,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     ...textContainerStyle,
   }),
-  stats: {
-    direction: "column",
-  },
   textItem: {
     alignSelf: "end",
     width: "100%",
@@ -96,8 +93,8 @@ const Card = ({ image, imageText, children, style }) => {
       </Box>
       <Grid container className={classes.textContainer}>
         {children}
-        <Grid item className={classes.textItem}>
-          <TextSection body={"Find out more  &gt;"} style={{ bodyStyle }} />
+        <Grid className={classes.textItem}>
+          <TextSection body={"Find out more &gt;"} style={{ bodyStyle }} />
         </Grid>
       </Grid>
     </Grid>

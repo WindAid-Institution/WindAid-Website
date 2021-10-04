@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
-import { RiArrowRightSLine } from "@react-icons/all-files/ri/RiArrowRightSLine";
-import { RiArrowLeftSLine } from "@react-icons/all-files/ri/RiArrowLeftSLine";
+import rightArrowCircle from "../images/rightArrowCircle.svg";
+import arrowHover from "../images/arrowHover.svg";
 
 const useStyles = makeStyles({
   arrow: {
@@ -15,11 +15,17 @@ const useStyles = makeStyles({
     background: "transparent",
     fontSize: "24px",
     padding: "0",
-    color: "rgba(0, 0, 0, 0.54)",
+    "& img:hover": {
+      cursor: "pointer",
+    },
   },
 
   arrowRight: {
     right: 0,
+  },
+
+  arrowLeft: {
+    transform: "scaleX(-1)",
   },
 
   buttonGroup: {
@@ -30,7 +36,6 @@ const useStyles = makeStyles({
     width: "160px",
     height: "auto",
     transform: "translateX(-50%)",
-    marginTop: "24px",
   },
 
   counter: {
@@ -40,31 +45,25 @@ const useStyles = makeStyles({
   },
 });
 
-const RightArrow = ({ onClick }) => {
-  const classes = useStyles();
+const Arrow = ({ onClick, style, alt }) => {
+  const [arrowStyle, setArrowStyle] = useState(rightArrowCircle);
 
   return (
     <button
       type="button"
-      className={clsx(classes.arrow, classes.arrowRight)}
+      className={style}
       onClick={() => onClick()}
+      onMouseOver={() => setArrowStyle(arrowHover)}
+      onFocus={() => setArrowStyle(arrowHover)}
+      onMouseOut={() => setArrowStyle(rightArrowCircle)}
+      onBlur={() => setArrowStyle(rightArrowCircle)}
     >
-      <RiArrowRightSLine />
+      <img src={arrowStyle} alt={alt} />
     </button>
   );
 };
 
-const LeftArrow = ({ onClick }) => {
-  const classes = useStyles();
-
-  return (
-    <button type="button" className={classes.arrow} onClick={() => onClick()}>
-      <RiArrowLeftSLine />
-    </button>
-  );
-};
-
-const CustromButtonGroup = ({ next, previous, ...rest }) => {
+const CustomButtonGroup = ({ next, previous, ...rest }) => {
   const classes = useStyles();
 
   const {
@@ -73,30 +72,36 @@ const CustromButtonGroup = ({ next, previous, ...rest }) => {
 
   return (
     <div className={classes.buttonGroup}>
-      <LeftArrow onClick={() => previous()} />
+      <Arrow
+        onClick={() => previous()}
+        alt="Left arrow"
+        style={clsx(classes.arrow, classes.arrowLeft)}
+      />
       <div className={classes.counter}>
         {`${currentSlide + 1} / ${totalItems}`}
       </div>
-      <RightArrow onClick={() => next()} />
+      <Arrow
+        onClick={() => next()}
+        alt="Right arrow"
+        style={clsx(classes.arrow, classes.arrowRight)}
+      />
     </div>
   );
 };
 
-RightArrow.propTypes = {
+Arrow.propTypes = {
   onClick: PropTypes.func.isRequired,
+  style: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
 };
 
-LeftArrow.propTypes = {
-  onClick: PropTypes.func.isRequired,
-};
-
-CustromButtonGroup.propTypes = {
+CustomButtonGroup.propTypes = {
   next: PropTypes.func,
   previous: PropTypes.func,
 };
-CustromButtonGroup.defaultProps = {
+CustomButtonGroup.defaultProps = {
   next: () => {},
   previous: () => {},
 };
 
-export default CustromButtonGroup;
+export default CustomButtonGroup;

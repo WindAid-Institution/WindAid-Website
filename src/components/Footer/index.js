@@ -4,10 +4,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import TopFooter from "./TopFooter";
 import BottomFooter from "./BottomFooter";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   footer: {
     borderTop: "1px solid #056839",
-    background: "#FBF6EE",
+    background: theme.palette.secondary.dark,
 
     "& a:hover": {
       textDecoration: "none",

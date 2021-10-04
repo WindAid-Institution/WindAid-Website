@@ -169,18 +169,6 @@ const useHomepageData = () => {
           }
         }
       }
-
-      householdImage: contentfulAsset(title: { eq: "household" }) {
-        file {
-          url
-        }
-      }
-
-      windturbineImage: contentfulAsset(title: { eq: "windturbine" }) {
-        file {
-          url
-        }
-      }
     }
   `);
 
@@ -197,8 +185,6 @@ const useHomepageData = () => {
     currentProjects,
     currentProjectCards,
     careerPortal,
-    householdImage,
-    windturbineImage,
   } = data;
   return {
     hero,
@@ -213,8 +199,6 @@ const useHomepageData = () => {
     currentProjects,
     currentProjectCards,
     careerPortal,
-    householdImage,
-    windturbineImage,
   };
 };
 

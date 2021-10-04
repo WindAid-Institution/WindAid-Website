@@ -68,7 +68,7 @@ const Separator = ({ route, title, body, bodyTwo, image }) => {
 };
 
 Separator.propTypes = {
-  route: PropTypes.string.isRequired,
+  route: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   bodyTwo: PropTypes.string.isRequired,
