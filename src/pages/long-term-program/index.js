@@ -6,9 +6,9 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import MainLayout from "src/layout/MainLayout";
 
 import Overview from "components/Overview";
-import Offering from "components/LongTerm/Offering/index";
+import Offering from "components/LongTerm/Offering";
 import ExampleProjects from "components/LongTerm/ExampleProjects/index";
-import ApplyNow from "components/LongTerm/ApplyNow";
+import LevelInfo from "components/LongTerm/LevelInfo";
 import Hero from "components/Hero/Hero";
 
 import theme from "../../../theme";
@@ -24,13 +24,14 @@ const LongTermProgram = ({
       <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
       <>
         <Overview
-          header={overview.header}
+          header=""
           title={overview.title}
           body={overview.body.body}
+          bodyTwo={overview.bodyTwo.bodyTwo}
         />
         <Offering />
         <ExampleProjects />
-        <ApplyNow />
+        <LevelInfo />
       </>
     </MainLayout>
   </ThemeProvider>
@@ -54,6 +55,9 @@ export const query = graphql`
       title
       body {
         body
+      }
+      bodyTwo {
+        bodyTwo
       }
     }
   }

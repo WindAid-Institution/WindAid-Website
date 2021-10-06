@@ -11,7 +11,13 @@ const useStyles = makeStyles(() => ({
   }),
 }));
 
-const CustomCarousel = ({ responsive, children, style, arrows }) => {
+const CustomCarousel = ({
+  responsive,
+  children,
+  style,
+  arrows,
+  counterColor,
+}) => {
   const { carouselContainerStyle } = style || {};
   const classes = useStyles({ carouselContainerStyle });
 
@@ -19,7 +25,7 @@ const CustomCarousel = ({ responsive, children, style, arrows }) => {
     <Carousel
       responsive={responsive}
       arrows={arrows}
-      customButtonGroup={<CustomButtonGroup />}
+      customButtonGroup={<CustomButtonGroup counterColor={counterColor} />}
       renderButtonGroupOutside
       swipeable={false}
       containerClass={classes.carouselContainer}
@@ -34,11 +40,13 @@ CustomCarousel.propTypes = {
   children: PropTypes.array.isRequired,
   style: PropTypes.object,
   arrows: PropTypes.bool,
+  counterColor: PropTypes.string,
 };
 
 CustomCarousel.defaultProps = {
   style: {},
   arrows: false,
+  counterColor: "black",
 };
 
 export default CustomCarousel;

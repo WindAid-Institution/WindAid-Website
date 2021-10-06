@@ -68,11 +68,18 @@ const Separator = ({ route, title, body, bodyTwo, image }) => {
 };
 
 Separator.propTypes = {
-  route: PropTypes.object.isRequired,
+  route: PropTypes.object,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   bodyTwo: PropTypes.string.isRequired,
   image: PropTypes.object.isRequired,
+};
+
+Separator.defaultProps = {
+  route: {
+    name: "Home",
+    path: "/",
+  },
 };
 
 export default Separator;

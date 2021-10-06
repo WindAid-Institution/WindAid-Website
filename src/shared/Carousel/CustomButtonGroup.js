@@ -9,11 +9,10 @@ import arrowHover from "../images/arrowHover.svg";
 const useStyles = makeStyles({
   arrow: {
     position: "absolute",
-    width: "60px",
-    height: "60px",
+    width: "32px",
+    height: "32px",
     border: "none",
     background: "transparent",
-    fontSize: "24px",
     padding: "0",
     "& img:hover": {
       cursor: "pointer",
@@ -31,18 +30,20 @@ const useStyles = makeStyles({
   buttonGroup: {
     position: "absolute",
     left: "50%",
+    // bottom: "50%",
+    transform: "translateX(-50%)",
     display: "flex",
     alignItems: "center",
-    width: "160px",
+    width: "120px",
     height: "auto",
-    transform: "translateX(-50%)",
   },
 
-  counter: {
+  counter: ({ counterColor }) => ({
     position: "relative",
     left: "50%",
     transform: "translateX(-50%)",
-  },
+    color: counterColor,
+  }),
 });
 
 const Arrow = ({ onClick, style, alt }) => {
@@ -64,11 +65,12 @@ const Arrow = ({ onClick, style, alt }) => {
 };
 
 const CustomButtonGroup = ({ next, previous, ...rest }) => {
-  const classes = useStyles();
-
   const {
     carouselState: { totalItems, currentSlide },
+    counterColor,
   } = rest;
+
+  const classes = useStyles({ counterColor });
 
   return (
     <div className={classes.buttonGroup}>
