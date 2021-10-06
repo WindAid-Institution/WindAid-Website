@@ -23,14 +23,12 @@ const Trujillo = ({
   <ThemeProvider theme={theme}>
     <MainLayout>
       <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
-      <>
-        <Spring />
-        <Explore />
-        <Beach />
-        <Entertainment />
-        <Immerse />
-        <Accommodation />
-      </>
+      <Accommodation />
+      <Spring />
+      <Immerse />
+      <Entertainment />
+      <Explore />
+      <Beach />
     </MainLayout>
   </ThemeProvider>
 );

@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Separator = ({ route, title, body, bodyTwo, image }) => {
   const classes = useStyles();
+  console.log(image);
   const {
     description,
     file: { url },

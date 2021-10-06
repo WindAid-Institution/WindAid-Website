@@ -188,7 +188,7 @@ InfoCard.propTypes = {
   note: PropTypes.string.isRequired,
   included: PropTypes.string.isRequired,
   notIncluded: PropTypes.string.isRequired,
-  programDates: PropTypes.object.isRequired,
+  programDates: PropTypes.array.isRequired,
   image: PropTypes.object.isRequired,
 };
 

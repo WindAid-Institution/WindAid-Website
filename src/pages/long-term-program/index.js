@@ -10,6 +10,7 @@ import Offering from "components/LongTerm/Offering";
 import ExampleProjects from "components/LongTerm/ExampleProjects/index";
 import LevelInfo from "components/LongTerm/LevelInfo";
 import Hero from "components/Hero/Hero";
+import Structure from "../../components/LongTerm/Structure";
 
 import theme from "../../../theme";
 
@@ -30,6 +31,7 @@ const LongTermProgram = ({
           bodyTwo={overview.bodyTwo.bodyTwo}
         />
         <Offering />
+        <Structure />
         <ExampleProjects />
         <LevelInfo />
       </>

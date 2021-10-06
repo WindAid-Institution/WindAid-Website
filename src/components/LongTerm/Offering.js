@@ -1,5 +1,5 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
+import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import SectionWrapper from "shared/SectionWrapper";
@@ -10,13 +10,17 @@ import useLongTermData from "../../hooks/queries/longTerm";
 
 const useStyles = makeStyles((theme) => ({
   mainWrapper: {
-    maxWidth: "870px",
     padding: theme.spacing(2),
+  },
+
+  header: {
+    fontWeight: "bold",
+    marginBottom: "41px",
   },
 
   text: {
     textAlign: "center",
-    marginTop: "calc(5.28vw + 21px)",
+    marginTop: "40px",
   },
 
   row: {
@@ -46,37 +50,50 @@ const Offering = () => {
     >
       <Grid
         container
-        direction="column"
+        direction="row"
         justify="center"
         alignItems="center"
         className={classes.mainWrapper}
       >
-        <Grid item className={classes.row}>
-          <TextSection title={title} header={header} />
+        <Grid item className={classes.row} xs={8}>
+          <TextSection title={title} />
+          <Typography variant="h5" className={classes.header}>
+            {header}
+          </Typography>
         </Grid>
 
         <Grid item className={classes.iconRow}>
           <Grid
             container
             direction="row"
-            justify="space-between"
+            justify="space-around"
             alignItems="stretch"
+            spacing={5}
           >
             {offeringCardsContent.map((card) => (
-              <Grid item key={header} xs={12} sm={6} lg={3}>
+              <Grid
+                item
+                key={header}
+                xs={12}
+                sm={6}
+                lg={3}
+                className={classes.row}
+              >
                 <TextSection header={card.header} body={card.body.body} />
               </Grid>
             ))}
           </Grid>
         </Grid>
-        <Grid item className={classes.text}>
+        <Grid item className={classes.text} xs={8}>
           <TextSection header={body} />
         </Grid>
-        <Button
-          text="Contact Us"
-          style={{ marginTop: "24px" }}
-          route={ROUTES.CONTACT_US}
-        />
+        <Grid item xs={12} className={classes.row}>
+          <Button
+            text="Contact Us"
+            style={{ marginTop: "24px" }}
+            route={ROUTES.CONTACT_US}
+          />
+        </Grid>
       </Grid>
     </SectionWrapper>
   );

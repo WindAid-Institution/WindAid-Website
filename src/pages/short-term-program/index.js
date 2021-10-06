@@ -11,6 +11,7 @@ import Structure from "components/ShortTerm/Structure";
 import LevelInfo from "components/ShortTerm/LevelInfo";
 import Apply from "components/ShortTerm/Apply";
 import HearFromPrev from "components/ShortTerm/HearFromPrev";
+import Living from "../../components/ShortTerm/Living";
 // eslint-disable-next-line max-len
 
 import theme from "../../../theme";
@@ -27,6 +28,7 @@ const ShortTermProgram = ({
       <Overview header="" title={overview.title} body={overview.body.body} />
       <Structure />
       <LevelInfo />
+      <Living />
       <Apply />
       <HearFromPrev />
     </MainLayout>
