@@ -9,10 +9,12 @@ import TextSection from "./TextSection";
 const useStyles = makeStyles((theme) => ({
   contentContainer: ({ contentContainerStyle }) => ({
     direction: "row",
-    width: "100%",
     marginTop: "calc(4.16vw + 17px)",
+    borderRadius: "10px",
     "&:hover": {
-      boxShadow: "0px 0px 30px 7px #BDBDBD",
+      [theme.breakpoints.up("sm")]: {
+        boxShadow: `0px 0px 30px 7px ${theme.palette.info.dark}`,
+      },
       "&:last-child > div:last-child > div:last-child": {
         fontWeight: "bold",
       },

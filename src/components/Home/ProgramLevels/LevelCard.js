@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid } from "@material-ui/core";
 
 import TextSection from "shared/TextSection";
 import Card from "shared/Card";
@@ -19,9 +18,7 @@ const LevelCard = ({ header, title, body, image }) => {
 
   return (
     <Card image={image} style={additionalStyle}>
-      <Grid item>
-        <TextSection title={title} header={header} body={bodyContent} />
-      </Grid>
+      <TextSection title={title} header={header} body={bodyContent} />
     </Card>
   );
 };

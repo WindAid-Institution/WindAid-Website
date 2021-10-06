@@ -9,8 +9,8 @@ import arrowHover from "../images/arrowHover.svg";
 const useStyles = makeStyles({
   arrow: {
     position: "absolute",
-    width: "60px",
-    height: "60px",
+    width: "56px",
+    height: "56px",
     border: "none",
     background: "transparent",
     fontSize: "24px",
@@ -36,6 +36,7 @@ const useStyles = makeStyles({
     width: "160px",
     height: "auto",
     transform: "translateX(-50%)",
+    marginTop: "15px",
   },
 
   counter: {

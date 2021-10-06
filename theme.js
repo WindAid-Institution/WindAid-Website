@@ -36,6 +36,13 @@ const theme = createMuiTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 600,
     fontWeightBold: 700,
+    body1: {
+      lineHeight: "28px",
+      fontSize: "14px",
+      [breakpoints.up("sm")]: {
+        fontSize: "16px",
+      },
+    }
   },
   shape: {
     borderRadius: 30,

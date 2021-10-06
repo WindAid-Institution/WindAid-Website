@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
   carouselContainer: ({ carouselContainerStyle }) => ({
     ...carouselContainerStyle,
   }),
+  carouselItem: {},
 }));
 
 const CustomCarousel = ({ responsive, children, style, arrows }) => {
@@ -23,6 +24,7 @@ const CustomCarousel = ({ responsive, children, style, arrows }) => {
       renderButtonGroupOutside
       swipeable={false}
       containerClass={classes.carouselContainer}
+      itemClass={classes.carouselItem}
     >
       {children}
     </Carousel>
