@@ -11,11 +11,8 @@ import useHomepageData from "queries/homepage";
 
 import StatisticsItem from "./StatisticsItem";
 
-const useStyles = makeStyles((theme) => ({
-  mainWrapper: {
-    maxWidth: "870px",
-    padding: theme.spacing(2),
-  },
+const useStyles = makeStyles(() => ({
+  mainWrapper: {},
 
   text: {
     textAlign: "center",
@@ -61,7 +58,7 @@ const Stats = () => {
           <Grid
             container
             direction="row"
-            justify="space-between"
+            justify="space-around"
             alignItems="stretch"
           >
             {images.map((stats, index) => (

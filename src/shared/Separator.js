@@ -33,9 +33,12 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("sm")]: {
       right: "calc(12.6vw - 87px)",
-      height: "70%",
+      height: "50%",
     },
-    height: "35%",
+    [theme.breakpoints.up("lg")]: {
+      height: "80%",
+    },
+    height: "30%",
   },
 }));
 
@@ -51,7 +54,7 @@ const Separator = ({ route, title, body, bodyTwo, image }) => {
       <img src={url} alt={description} className={classes.image} />
       <Box className={classes.container}>
         <Container className={classes.textContainer}>
-          <Grid item xs={12} md={9}>
+          <Grid item xs={12} sm={10}>
             <TextSection title={title} body={body} />
           </Grid>
           <Grid item>

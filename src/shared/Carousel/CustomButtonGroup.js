@@ -31,11 +31,12 @@ const useStyles = makeStyles({
     position: "absolute",
     left: "50%",
     // bottom: "50%",
-    transform: "translateX(-50%)",
     display: "flex",
     alignItems: "center",
     width: "120px",
     height: "auto",
+    transform: "translateX(-50%)",
+    marginTop: "15px",
   },
 
   counter: ({ counterColor }) => ({

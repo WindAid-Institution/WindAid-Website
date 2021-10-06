@@ -2,17 +2,19 @@ import React from "react";
 import { Grid, Typography, Box } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import TextSection from "./TextSection";
 
 const useStyles = makeStyles((theme) => ({
   contentContainer: ({ contentContainerStyle }) => ({
     direction: "row",
-    width: "100%",
     marginTop: "calc(4.16vw + 17px)",
+    borderRadius: "10px",
     "&:hover": {
-      boxShadow: "0px 0px 30px 7px #BDBDBD",
+      [theme.breakpoints.up("sm")]: {
+        boxShadow: `0px 0px 30px 7px ${theme.palette.info.dark}`,
+      },
       "&:last-child > div:last-child > div:last-child": {
         fontWeight: "bold",
       },
@@ -44,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textContainer: ({ textContainerStyle }) => ({
     direction: "row",
-    border: "1px solid #BDBDBD",
+    border: `1px solid ${theme.palette.info.dark}`,
     borderRadius: "0px 0px 10px 10px",
     padding: "16px",
     textAlign: "left",
@@ -57,17 +59,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const bodyStyle = {
-  textStyle: {
-    textAlign: "right",
-    color: "#056839",
-  },
-};
-
 const Card = ({ image, imageText, children, style }) => {
   const { textContainerStyle, contentContainerStyle } = style || {};
-  const classes = useStyles({ textContainerStyle, contentContainerStyle });
   const { gatsbyImageData, description } = image;
+  const classes = useStyles({ textContainerStyle, contentContainerStyle });
+  const theme = useTheme();
 
   return (
     <Grid container className={classes.contentContainer}>
@@ -94,7 +90,17 @@ const Card = ({ image, imageText, children, style }) => {
       <Grid container className={classes.textContainer}>
         {children}
         <Grid className={classes.textItem}>
-          <TextSection body={"Find out more &gt;"} style={{ bodyStyle }} />
+          <TextSection
+            body={"Find out more &gt;"}
+            style={{
+              bodyStyle: {
+                textStyle: {
+                  textAlign: "right",
+                  color: theme.palette.primary.main,
+                },
+              },
+            }}
+          />
         </Grid>
       </Grid>
     </Grid>

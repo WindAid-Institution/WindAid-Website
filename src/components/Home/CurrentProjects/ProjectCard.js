@@ -75,7 +75,7 @@ const ProjectCard = ({ data }) => {
         </Grid>
         <Grid container className={classes.stats}>
           <Grid item xs={1}>
-            <img src={householdImage} alt="" />
+            <img src={householdImage} alt="household" />
           </Grid>
           <Grid item xs={9} lg={5}>
             <Typography variant="body1" className={classes.text}>
@@ -90,7 +90,7 @@ const ProjectCard = ({ data }) => {
         </Grid>
         <Grid container className={classes.stats}>
           <Grid item xs={1}>
-            <img src={windturbineImage} alt="" />
+            <img src={windturbineImage} alt="windturbine" />
           </Grid>
           <Grid item xs={9} lg={5}>
             <Typography variant="body1" className={classes.text}>
