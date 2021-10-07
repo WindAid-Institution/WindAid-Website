@@ -1,73 +1,62 @@
 import React from "react";
-import { Grid, Box, Container } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Button from "./Button";
 import TextSection from "./TextSection";
+import SectionWrapper from "./SectionWrapper";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    position: "relative",
-    height: "500px",
-    borderBottom: "3px solid",
-    borderBottomColor: theme.palette.primary.main,
-    backgroundColor: theme.palette.secondary.dark,
-  },
-
-  container: {
-    position: "absolute",
-    left: "0",
-    [theme.breakpoints.up("xl")]: {
-      left: "calc(12.6vw - 87px)",
+  textSection: {
+    paddingBottom: "97px",
+    [theme.breakpoints.up("lg")]: {
+      paddingBottom: "131px",
     },
-    top: "64px",
   },
-
   image: {
     position: "absolute",
-    bottom: "0px",
-    right: "24px",
-    [theme.breakpoints.up("xl")]: {
-      right: "calc(12.6vw - 87px)",
-    },
+    bottom: "0",
+    right: "0",
+    height: "35%",
     [theme.breakpoints.up("sm")]: {
-      right: "calc(12.6vw - 87px)",
       height: "50%",
     },
     [theme.breakpoints.up("lg")]: {
-      height: "80%",
+      height: "60%",
     },
-    height: "30%",
   },
 }));
 
 const Separator = ({ route, title, body, bodyTwo, image }) => {
-  const classes = useStyles();
-  console.log(image);
   const {
     description,
     file: { url },
   } = image;
 
+  const classes = useStyles();
+  const theme = useTheme();
+
+  const style = {
+    sectionStyle: {
+      position: "relative",
+      paddingBottom: "0",
+      borderBottom: "3px solid",
+      borderBottomColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.secondary.dark,
+    },
+  };
+
   return (
-    <Box className={classes.root}>
+    <SectionWrapper style={style}>
+      <Grid container direction="row">
+        <Grid item xs={12} className={classes.textSection}>
+          <TextSection title={title} body={body} />
+          <Button text={bodyTwo} style={{ marginTop: "24px" }} route={route} />
+        </Grid>
+      </Grid>
       <img src={url} alt={description} className={classes.image} />
-      <Box className={classes.container}>
-        <Container className={classes.textContainer}>
-          <Grid item xs={12} sm={10}>
-            <TextSection title={title} body={body} />
-          </Grid>
-          <Grid item>
-            <Button
-              text={bodyTwo}
-              style={{ marginTop: "24px" }}
-              route={route}
-            />
-          </Grid>
-        </Container>
-      </Box>
-    </Box>
+    </SectionWrapper>
   );
 };
 
