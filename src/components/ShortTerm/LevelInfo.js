@@ -23,6 +23,7 @@ const LevelInfo = () => {
       notIncluded: { notIncluded },
       image,
     },
+    applyDescription,
   } = useShortTermData();
 
   const classes = useStyles();
@@ -41,10 +42,10 @@ const LevelInfo = () => {
       <Grid container>
         <Grid container className={classes.infoContainer} spacing={4}>
           <Grid item xs={12} lg={6}>
-            <Typography variant="h5">body</Typography>
+            <Typography variant="h5">{applyDescription.header}</Typography>
           </Grid>
           <Grid item xs={12} lg={6}>
-            <Typography variant="h5">bodyTwo</Typography>
+            <Typography variant="h5">{applyDescription.title}</Typography>
           </Grid>
         </Grid>
         <Grid item xs={12}>

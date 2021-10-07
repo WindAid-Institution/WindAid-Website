@@ -100,6 +100,13 @@ const useShortTermData = () => {
           gatsbyImageData(quality: 100, placeholder: BLURRED)
         }
       }
+
+      applyDescription: contentfulSimpleCard(
+        contentId: { eq: "shortTerm-applyDescription" }
+      ) {
+        title
+        header
+      }
     }
   `);
 
@@ -112,6 +119,7 @@ const useShortTermData = () => {
     apply,
     infoCard,
     structureImages,
+    applyDescription,
   } = data;
   return {
     overview,
@@ -122,6 +130,7 @@ const useShortTermData = () => {
     apply,
     infoCard,
     structureImages,
+    applyDescription,
   };
 };
 
