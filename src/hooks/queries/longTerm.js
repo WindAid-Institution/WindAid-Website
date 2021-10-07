@@ -98,6 +98,22 @@ const useLongTermData = () => {
           }
         }
       }
+
+      structure: contentfulSection(contentId: { eq: "longTerm-structure" }) {
+        title
+        body {
+          body
+        }
+        bodyTwo {
+          bodyTwo
+        }
+        image {
+          description
+          file {
+            url
+          }
+        }
+      }
     }
   `);
 
@@ -111,6 +127,7 @@ const useLongTermData = () => {
     projectsCards: { projectsCardsContent },
     offeringCards: { offeringCardsContent },
     infoCard,
+    structure,
   } = data;
   return {
     overview,
@@ -122,6 +139,7 @@ const useLongTermData = () => {
     projectsCardsContent,
     offeringCardsContent,
     infoCard,
+    structure,
   };
 };
 

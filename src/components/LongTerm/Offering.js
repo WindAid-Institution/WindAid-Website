@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import SectionWrapper from "shared/SectionWrapper";
@@ -43,6 +43,15 @@ const Offering = () => {
   } = useLongTermData();
   const classes = useStyles();
 
+  const headerStyle = {
+    headerStyle: {
+      rootStyle: {
+        paddingTop: "30px",
+        paddingBottom: "30px",
+      },
+    },
+  };
+
   return (
     <SectionWrapper
       bgColor="secondary"
@@ -55,11 +64,9 @@ const Offering = () => {
         alignItems="center"
         className={classes.mainWrapper}
       >
-        <Grid item className={classes.row} xs={8}>
+        <Grid item className={classes.row} xs={12} md={8}>
           <TextSection title={title} />
-          <Typography variant="h5" className={classes.header}>
-            {header}
-          </Typography>
+          <TextSection header={header} style={headerStyle} />
         </Grid>
 
         <Grid item className={classes.iconRow}>
@@ -84,7 +91,7 @@ const Offering = () => {
             ))}
           </Grid>
         </Grid>
-        <Grid item className={classes.text} xs={8}>
+        <Grid item className={classes.text} xs={12} md={8}>
           <TextSection header={body} />
         </Grid>
         <Grid item xs={12} className={classes.row}>

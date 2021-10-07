@@ -1,64 +1,76 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-// import PropTypes from "prop-types";
-// import { GatsbyImage } from "gatsby-plugin-image";
-// import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-// import useLongTermData from "../../hooks/queries/longTerm";
+import useLongTermData from "../../hooks/queries/longTerm";
 import SectionWrapper from "../../shared/SectionWrapper";
 import TextSection from "../../shared/TextSection";
 
-// const useStyles = makeStyles(() => ({
-
-// }));
-
-const style = {
-  bodyStyle: {
-    textStyle: {
-      color: "white",
+const useStyles = makeStyles((theme) => ({
+  containerStyle: {
+    direction: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  image: {
+    width: "100%",
+    objectFit: "cover",
+    [theme.breakpoints.up("sm")]: {
+      height: "290px",
     },
   },
-  titleStyle: {
-    textStyle: {
-      color: "white",
+}));
+
+const Structure = () => {
+  const {
+    structure: {
+      title,
+      body: { body },
+      bodyTwo: { bodyTwo },
+      image,
     },
-  },
-};
+  } = useLongTermData();
 
-const Structure = () => (
-  // const {
-  //   structure: {
-  //     title,
-  //     body: { body },
-  //     bodyTwo: { bodyTwo },
-  //     image,
-  //   },
-  // } = useLongTermData();
+  const classes = useStyles();
+  const theme = useTheme();
 
-  // const classes = useStyles();
+  const style = {
+    bodyStyle: {
+      textStyle: {
+        color: theme.palette.secondary.main,
+      },
+    },
+    titleStyle: {
+      textStyle: {
+        color: theme.palette.secondary.main,
+      },
+    },
+  };
 
-  <SectionWrapper
-    bgColor="primary"
-    style={{ containerStyle: { display: "flex", justifyContent: "center" } }}
-  >
-    <Grid container direction="column">
-      <Grid item xs={12} md={6}>
-        <TextSection
-          title="title"
-          body="body"
-          bodyTwo="bodyTwo"
-          style={style}
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <p>img</p>
-        {/* <GatsbyImage
-            image={image.gatsbyImageData}
+  return (
+    <SectionWrapper
+      bgColor="primary"
+      style={{ containerStyle: { display: "flex", justifyContent: "center" } }}
+    >
+      <Grid container className={classes.containerStyle} spacing={3}>
+        <Grid item xs={12} md={7}>
+          <TextSection
+            title={title}
+            body={body}
+            bodyTwo={bodyTwo}
+            style={style}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <img
+            src={image.file.url}
             alt={image.description}
             className={classes.image}
-          /> */}
+          />
+        </Grid>
       </Grid>
-    </Grid>
-  </SectionWrapper>
-);
+    </SectionWrapper>
+  );
+};
+
 export default Structure;
