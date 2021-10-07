@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import {
   Table,
@@ -8,13 +8,14 @@ import {
   TableCell,
 } from "@mui/material";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import ApplyButton from "../components/ApplyButton";
+import ApplyButton from "../../components/ApplyButton";
+import InfoCardDropDown from "./InfoCardDropDown";
 
 const useStyles = makeStyles((theme) => ({
   contentContainer: {
-    backgroundColor: "white",
+    backgroundColor: theme.palette.secondary.main,
     position: "relative",
     direction: "row",
     border: `2px solid ${theme.palette.primary.main}`,
@@ -36,10 +37,17 @@ const useStyles = makeStyles((theme) => ({
   price: {
     fontWeight: "bold",
     borderBottom: "1px solid",
+    marginBottom: "16px",
+  },
+  title: {
+    color: theme.palette.primary.main,
+    textAlign: "left",
+    fontWeight: "bold",
+    paddingBottom: "48px",
   },
   text: {
     color: theme.palette.primary.main,
-    textAlign: "left",
+    fontWeight: "bold",
   },
   image: {
     position: "absolute",
@@ -47,19 +55,10 @@ const useStyles = makeStyles((theme) => ({
     right: "0px",
     height: "10%",
     [theme.breakpoints.up("sm")]: {
-      height: "30%",
-    },
-    [theme.breakpoints.up("lg")]: {
-      height: "40%",
+      height: "25%",
     },
   },
 }));
-
-const tableCellStyle = {
-  borderBottom: "none",
-  padding: "7px 0",
-  color: "black",
-};
 
 const InfoCard = ({
   title,
@@ -70,29 +69,34 @@ const InfoCard = ({
   notIncluded,
   image,
 }) => {
-  const [isIncluded, setIsIncluded] = useState(false);
-  const [isNotIncluded, setIsNotIncluded] = useState(false);
   const classes = useStyles();
+  const theme = useTheme();
 
-  const noteArray = note.split("/\n/g");
-  const includedArray = included.split("/\n/g");
-  const notIncludedArray = notIncluded.split("/\n/g");
+  const noteArray = note.split(";");
+  const includedArray = included.split(";");
+  const notIncludedArray = notIncluded.split(";");
 
   const {
     description,
     file: { url },
   } = image;
 
+  const tableCellStyle = {
+    borderBottom: "none",
+    padding: "8px 0",
+    color: theme.palette.primary.dark,
+  };
+
   return (
     <Grid container className={classes.contentContainer}>
-      <Grid item xs={12}>
-        <Typography variant="h3" className={classes.text}>
+      <Grid item xs={12} md={8}>
+        <Typography variant="h4" className={classes.title}>
           {title}
         </Typography>
       </Grid>
       <Grid container className={classes.infoContainer} spacing={4}>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h5" className={classes.text}>
+          <Typography variant="h6" className={classes.text}>
             Price:
           </Typography>
           <Typography variant="h4" className={classes.price}>
@@ -106,7 +110,7 @@ const InfoCard = ({
           </ul>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h5" className={classes.text}>
+          <Typography variant="h6" className={classes.text}>
             2021 Program Dates
           </Typography>
           <Table>
@@ -131,49 +135,14 @@ const InfoCard = ({
           </Table>
         </Grid>
       </Grid>
-
-      <Grid item xs={12}>
-        {isIncluded ? (
-          <Typography variant="h6" onClick={() => setIsIncluded(false)}>
-            &#8722; Whats included
-          </Typography>
-        ) : (
-          <Typography variant="h6" onClick={() => setIsIncluded(true)}>
-            &#43; Whats included
-          </Typography>
-        )}
-      </Grid>
-      <Grid item xs={12}>
-        {isIncluded && (
-          <ul>
-            {includedArray.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        )}
-      </Grid>
-
-      <Grid item xs={12}>
-        {isNotIncluded ? (
-          <Typography variant="h6" onClick={() => setIsNotIncluded(false)}>
-            &#8722; Whats NOT included
-          </Typography>
-        ) : (
-          <Typography variant="h6" onClick={() => setIsNotIncluded(true)}>
-            &#43; Whats NOT included
-          </Typography>
-        )}
-      </Grid>
-      <Grid item xs={12}>
-        {isNotIncluded && (
-          <ul>
-            {notIncludedArray.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        )}
-      </Grid>
-
+      <InfoCardDropDown
+        descriptionArray={includedArray}
+        title={"What's included"}
+      />
+      <InfoCardDropDown
+        descriptionArray={notIncludedArray}
+        title={"What's NOT included"}
+      />
       <Grid item xs={12}>
         <ApplyButton />
       </Grid>

@@ -1,9 +1,10 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Grid } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import SectionWrapper from "shared/SectionWrapper";
-import InfoCard from "../../shared/InfoCard";
+import TextSection from "../../shared/TextSection";
+import InfoCard from "../../shared/InfoCard/InfoCard";
 import useShortTermData from "../../hooks/queries/shortTerm";
 
 const useStyles = makeStyles(() => ({
@@ -27,6 +28,8 @@ const LevelInfo = () => {
   } = useShortTermData();
 
   const classes = useStyles();
+  const theme = useTheme();
+
   const data = {
     title,
     price,
@@ -37,15 +40,29 @@ const LevelInfo = () => {
     image,
   };
 
+  const textStyle = {
+    rootStyle: {
+      marginBottom: "30px",
+    },
+    subHeaderStyle: {
+      textStyle: {
+        color: theme.palette.primary.main,
+      },
+    },
+  };
+
   return (
     <SectionWrapper bgColor="secondary">
       <Grid container>
         <Grid container className={classes.infoContainer} spacing={4}>
           <Grid item xs={12} lg={6}>
-            <Typography variant="h5">{applyDescription.header}</Typography>
+            <TextSection
+              subHeader={applyDescription.header}
+              style={textStyle}
+            />
           </Grid>
           <Grid item xs={12} lg={6}>
-            <Typography variant="h5">{applyDescription.title}</Typography>
+            <TextSection subHeader={applyDescription.title} style={textStyle} />
           </Grid>
         </Grid>
         <Grid item xs={12}>
