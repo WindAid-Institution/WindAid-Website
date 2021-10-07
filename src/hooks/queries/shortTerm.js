@@ -107,6 +107,20 @@ const useShortTermData = () => {
         title
         header
       }
+
+      living: contentfulSection(contentId: { eq: "shortTerm-living" }) {
+        title
+        body {
+          body
+        }
+        images {
+          title
+          description
+          file {
+            url
+          }
+        }
+      }
     }
   `);
 
@@ -120,6 +134,7 @@ const useShortTermData = () => {
     infoCard,
     structureImages,
     applyDescription,
+    living,
   } = data;
   return {
     overview,
@@ -131,6 +146,7 @@ const useShortTermData = () => {
     infoCard,
     structureImages,
     applyDescription,
+    living,
   };
 };
 
