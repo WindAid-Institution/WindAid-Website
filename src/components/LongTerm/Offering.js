@@ -80,7 +80,7 @@ const Offering = () => {
             {offeringCardsContent.map((card) => (
               <Grid
                 item
-                key={header}
+                key={card.header}
                 xs={12}
                 sm={6}
                 lg={3}

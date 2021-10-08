@@ -15,8 +15,13 @@ const useStyles = makeStyles((theme) => ({
   },
   carouselWrapper: {
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
-    minWidth: "600px",
+    minWidth: "230px",
+    [theme.breakpoints.up("md")]: {
+      minWidth: "450px",
+      flexDirection: "row",
+    },
   },
   textSection: {
     marginTop: "36px",
@@ -25,15 +30,13 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     display: "flex",
     flexDirection: "column-reverse",
-    minWidth: "600px",
     textAlign: "center",
-    height: "500px",
+    height: "320px",
     paddingTop: "10px",
-
     [theme.breakpoints.up("md")]: {
       height: "450px",
-      alignItems: "center",
-      display: "flex",
+      alignItems: "flex-end",
+      flexDirection: "row",
     },
   },
   image: {
@@ -41,13 +44,6 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
   },
 }));
-
-const additionalStyle = {
-  carouselContainerStyle: {
-    height: "450px",
-    width: "600px",
-  },
-};
 
 const Structure = () => {
   const {
@@ -68,6 +64,13 @@ const Structure = () => {
       background: isUpMd
         ? `linear-gradient(to right, ${theme.palette.secondary.dark} 50%, ${theme.palette.primary.main} 50%)`
         : `linear-gradient(to top, ${theme.palette.primary.main} 360px, ${theme.palette.secondary.dark} 360px)`,
+    },
+  };
+
+  const additionalStyle = {
+    carouselContainerStyle: {
+      height: isUpMd ? "410px" : "320px",
+      width: isUpMd ? "450px" : "290px",
     },
   };
 
