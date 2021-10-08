@@ -13,29 +13,39 @@ const useStyles = makeStyles((theme) => ({
   containerWrapper: {
     direction: "column",
   },
+  carouselWrapper: {
+    display: "flex",
+    alignItems: "center",
+    minWidth: "600px",
+  },
   textSection: {
     marginTop: "36px",
   },
   carouselBox: {
-    width: "100%",
+    position: "relative",
+    display: "flex",
+    flexDirection: "column-reverse",
+    minWidth: "600px",
     textAlign: "center",
-    height: "360px",
+    height: "500px",
     paddingTop: "10px",
+
     [theme.breakpoints.up("md")]: {
-      height: "100%",
+      height: "450px",
       alignItems: "center",
       display: "flex",
     },
   },
   image: {
     width: "100%",
-    height: "90%",
+    height: "100%",
   },
 }));
 
 const additionalStyle = {
   carouselContainerStyle: {
-    // height: "230px",
+    height: "450px",
+    width: "600px",
   },
 };
 
@@ -95,7 +105,7 @@ const Structure = () => {
             </Box>
           ))}
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} md={5} className={classes.carouselWrapper}>
           <Box className={classes.carouselBox}>
             <CustomCarousel
               responsive={responsive}
