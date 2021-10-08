@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
       padding: "inherit",
     },
     [theme.breakpoints.up("md")]: {
+      fontSize: "30px",
       top: "auto",
       bottom: "0",
       left: "0",

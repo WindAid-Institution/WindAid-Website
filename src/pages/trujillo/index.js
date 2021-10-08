@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { graphql } from "gatsby";
-import { ThemeProvider } from "@material-ui/core/styles";
 
 import MainLayout from "src/layout/MainLayout";
 
@@ -13,26 +12,24 @@ import Immerse from "components/Trujillo/Immerse";
 import Entertainment from "components/Trujillo/Entertainment";
 import Accommodation from "components/Trujillo/Accommodation";
 import DayInLife from "../../components/Trujillo/DayInLife";
-
-import theme from "../../../theme";
+import Apply from "../../components/ShortTerm/Apply";
 
 const Trujillo = ({
   data: {
     hero: { title, image },
   },
 }) => (
-  <ThemeProvider theme={theme}>
-    <MainLayout>
-      <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
-      <Accommodation />
-      <DayInLife />
-      <Spring />
-      <Immerse />
-      <Entertainment />
-      <Explore />
-      <Beach />
-    </MainLayout>
-  </ThemeProvider>
+  <MainLayout>
+    <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
+    <Accommodation />
+    <DayInLife />
+    <Spring />
+    <Immerse />
+    <Entertainment />
+    <Explore />
+    <Beach />
+    <Apply />
+  </MainLayout>
 );
 
 export const query = graphql`

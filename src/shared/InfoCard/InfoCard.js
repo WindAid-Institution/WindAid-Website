@@ -1,12 +1,13 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
 import {
+  Grid,
+  Typography,
   Table,
   TableHead,
   TableBody,
   TableRow,
   TableCell,
-} from "@mui/material";
+} from "@material-ui/core";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 

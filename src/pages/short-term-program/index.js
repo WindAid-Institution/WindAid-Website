@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { graphql } from "gatsby";
-import { ThemeProvider } from "@material-ui/core/styles";
 
 import MainLayout from "src/layout/MainLayout";
 
@@ -14,25 +13,21 @@ import HearFromPrev from "components/ShortTerm/HearFromPrev";
 import Living from "../../components/ShortTerm/Living";
 // eslint-disable-next-line max-len
 
-import theme from "../../../theme";
-
 const ShortTermProgram = ({
   data: {
     hero: { title, image },
     overview,
   },
 }) => (
-  <ThemeProvider theme={theme}>
-    <MainLayout>
-      <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
-      <Overview header="" title={overview.title} body={overview.body.body} />
-      <Structure />
-      <LevelInfo />
-      <Living />
-      <Apply />
-      <HearFromPrev />
-    </MainLayout>
-  </ThemeProvider>
+  <MainLayout>
+    <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
+    <Overview header="" title={overview.title} body={overview.body.body} />
+    <Structure />
+    <LevelInfo />
+    <Living />
+    <Apply />
+    <HearFromPrev />
+  </MainLayout>
 );
 
 export const query = graphql`

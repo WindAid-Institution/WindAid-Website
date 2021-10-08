@@ -10,9 +10,6 @@ import SectionWrapper from "./SectionWrapper";
 const useStyles = makeStyles((theme) => ({
   textSection: {
     paddingBottom: "97px",
-    [theme.breakpoints.up("lg")]: {
-      paddingBottom: "131px",
-    },
   },
   image: {
     position: "absolute",
