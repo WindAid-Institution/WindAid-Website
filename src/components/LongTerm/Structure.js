@@ -52,8 +52,8 @@ const Structure = () => {
       bgColor="primary"
       style={{ containerStyle: { display: "flex", justifyContent: "center" } }}
     >
-      <Grid container className={classes.containerStyle} spacing={3}>
-        <Grid item xs={12} md={7}>
+      <Grid container className={classes.containerStyle} spacing={6}>
+        <Grid item xs={12} md={6}>
           <TextSection
             title={title}
             body={body}
@@ -61,7 +61,7 @@ const Structure = () => {
             style={style}
           />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6}>
           <img
             src={image.file.url}
             alt={image.description}

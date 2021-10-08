@@ -1,13 +1,10 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-import { ROUTES } from "src/constants/routes";
-import useShortTermData from "../../hooks/queries/shortTerm";
+import useTrujilloData from "../../hooks/queries/trujillo";
 import SectionWrapper from "../../shared/SectionWrapper";
 import TextSection from "../../shared/TextSection";
-import Button from "../../shared/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,14 +12,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  text: {
-    paddingBottom: "40px",
-  },
   images: {
     direction: "column",
     justifyContent: "flex-end",
     height: "800px",
-    paddingTop: "33px",
+    padding: "0",
     [theme.breakpoints.up("sm")]: {
       height: "360px",
     },
@@ -34,46 +28,32 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "240px",
     objectFit: "cover",
-    objectPosition: "50% 0%",
+    objectPosition: "50% 0",
     [theme.breakpoints.up("sm")]: {
       height: "100%",
       objectPosition: "20% 0",
     },
     [theme.breakpoints.up("md")]: {
-      height: "162px",
+      height: "240px",
       objectFit: "contain",
       objectPosition: "50% 50%",
     },
   },
 }));
 
-const Living = () => {
+const DayInLife = () => {
   const {
-    living: {
+    dayInLife: {
       title,
+      header,
       body: { body },
+      bodyTwo: { bodyTwo },
       images,
     },
-  } = useShortTermData();
+  } = useTrujilloData();
 
   const classes = useStyles();
   const theme = useTheme();
-  const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
-  const isUpSm = useMediaQuery(theme.breakpoints.up("sm"));
-
-  const wrapperStyle = {
-    sectionStyle: {
-      paddingTop: "33px",
-      paddingBottom: isUpMd ? "33px" : "0",
-      borderBottom: "3px solid",
-      borderBottomColor: theme.palette.primary.main,
-      background: isUpMd
-        ? `linear-gradient(to left, ${theme.palette.secondary.dark} 33.33%, ${theme.palette.primary.main} 33.33%)`
-        : `linear-gradient(to top, ${theme.palette.secondary.dark} ${
-            isUpSm ? "394px" : "834px"
-          }, ${theme.palette.primary.main} ${isUpSm ? "394px" : "834px"})`,
-    },
-  };
 
   const textStyle = {
     color: theme.palette.secondary.main,
@@ -85,21 +65,26 @@ const Living = () => {
     titleStyle: {
       textStyle,
     },
+    headerStyle: {
+      textStyle,
+    },
+  };
+  const rootStyle = {
+    marginBottom: "32px",
   };
 
   return (
-    <SectionWrapper style={wrapperStyle}>
-      <Grid container className={classes.root}>
-        <Grid item xs={12} md={8} className={classes.text}>
-          <TextSection title={title} body={body} style={sectionStyle} />
-          <Button
-            text="Learn About Your Leisure Time"
-            style={{ marginTop: "24px" }}
-            route={ROUTES.TRUJILLO}
-            inverted
+    <SectionWrapper bgColor="primary">
+      <Grid container className={classes.root} spacing={5}>
+        <Grid item xs={12} sm={11} md={6}>
+          <TextSection
+            title={title}
+            body={body}
+            style={{ ...sectionStyle, rootStyle }}
           />
+          <TextSection header={header} bodyTwo={bodyTwo} style={sectionStyle} />
         </Grid>
-        <Grid item xs={12} md={3} className={classes.text}>
+        <Grid item xs={12} md={6}>
           <Grid container className={classes.images} spacing={1}>
             {images.map((image) => (
               <Grid item key={image.title} xs={12} sm={4} md={12}>
@@ -117,4 +102,4 @@ const Living = () => {
   );
 };
 
-export default Living;
+export default DayInLife;

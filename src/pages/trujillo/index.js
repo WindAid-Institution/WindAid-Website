@@ -12,6 +12,7 @@ import Beach from "components/Trujillo/Beach";
 import Immerse from "components/Trujillo/Immerse";
 import Entertainment from "components/Trujillo/Entertainment";
 import Accommodation from "components/Trujillo/Accommodation";
+import DayInLife from "../../components/Trujillo/DayInLife";
 
 import theme from "../../../theme";
 
@@ -24,6 +25,7 @@ const Trujillo = ({
     <MainLayout>
       <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
       <Accommodation />
+      <DayInLife />
       <Spring />
       <Immerse />
       <Entertainment />
