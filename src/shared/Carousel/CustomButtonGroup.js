@@ -30,7 +30,6 @@ const useStyles = makeStyles({
   buttonGroup: {
     position: "absolute",
     left: "50%",
-    // bottom: "50%",
     display: "flex",
     alignItems: "center",
     width: "120px",
@@ -69,6 +68,7 @@ const CustomButtonGroup = ({ next, previous, ...rest }) => {
   const {
     carouselState: { totalItems, currentSlide },
     counterColor,
+    showedSlides,
   } = rest;
 
   const classes = useStyles({ counterColor });
@@ -81,7 +81,7 @@ const CustomButtonGroup = ({ next, previous, ...rest }) => {
         style={clsx(classes.arrow, classes.arrowLeft)}
       />
       <div className={classes.counter}>
-        {`${currentSlide + 1} / ${totalItems}`}
+        {`${currentSlide + 1} / ${totalItems - showedSlides + 1}`}
       </div>
       <Arrow
         onClick={() => next()}

@@ -33,6 +33,7 @@ const ProjectsCarousel = ({ carouselData }) => {
       responsive={responsive}
       style={additionalStyle}
       arrows={false}
+      showedSlides={2}
     >
       {carouselData.map((projectData) => (
         <ProjectCard key={projectData.orderNumber} data={projectData} />

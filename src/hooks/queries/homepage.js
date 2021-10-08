@@ -41,7 +41,7 @@ const useHomepageData = () => {
       }
 
       programLevelCards: allContentfulSimpleCard(
-        filter: { contentId: { eq: "program-level" } }
+        filter: { contentId: { eq: "homepage-program-level-card" } }
         sort: { fields: orderNumber }
       ) {
         programLevelCardsContent: nodes {
@@ -67,7 +67,7 @@ const useHomepageData = () => {
       }
 
       currentProjectCards: allContentfulProjectCard(
-        filter: { contentId: { eq: "project-card" } }
+        filter: { contentId: { eq: "homepage-project-card" } }
         sort: { fields: orderNumber }
       ) {
         currentProjectCardsContent: nodes {
