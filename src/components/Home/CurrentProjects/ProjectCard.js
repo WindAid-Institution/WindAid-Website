@@ -5,8 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Card from "shared/Card";
 import theme from "../../../../theme";
-import householdImage from "../../../shared/images/household.svg";
-import windturbineImage from "../../../shared/images/windturbine.svg";
+import householdImage from "../../../images/household.svg";
+import windturbineImage from "../../../images/windturbine.svg";
 
 const useStyles = makeStyles(() => ({
   status: {

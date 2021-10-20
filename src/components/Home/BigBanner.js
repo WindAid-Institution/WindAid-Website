@@ -17,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     position: "absolute",
     top: "calc(7.7vw + 89.3px)",
-    padding: "0px 12px",
+    padding: "0px 34px",
+    [theme.breakpoints.up("sm")]: {
+      padding: "0px 54px",
+    },
     [theme.breakpoints.up("xl")]: {
       padding: "0 calc(12.6vw - 75px)",
     },

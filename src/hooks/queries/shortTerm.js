@@ -73,6 +73,7 @@ const useShortTermData = () => {
           note
         }
         programDates {
+          heading
           data {
             cohort
             dates

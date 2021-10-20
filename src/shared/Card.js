@@ -31,8 +31,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "10px 10px 0 0",
   },
   imageText: {
-    backgroundColor: theme.palette.primary.dark,
-    opacity: "0.6",
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
     position: "absolute",
     left: "0",
     bottom: "0",
@@ -45,12 +44,15 @@ const useStyles = makeStyles((theme) => ({
     padding: "0 16px",
   },
   textContainer: ({ textContainerStyle }) => ({
-    direction: "row",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
     border: `1px solid ${theme.palette.info.dark}`,
     borderRadius: "0px 0px 10px 10px",
     padding: "16px",
     textAlign: "left",
     width: "100%",
+    backgroundColor: theme.palette.secondary.main,
     ...textContainerStyle,
   }),
   textItem: {

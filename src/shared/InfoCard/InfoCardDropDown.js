@@ -1,28 +1,44 @@
 import React, { useState } from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
+import TextSection from "../TextSection";
 
 const InfoCardDropDown = ({ descriptionArray, title }) => {
   const [isShowed, setIsShowed] = useState(false);
 
+  const textStyle = {
+    subHeaderStyle: {
+      textStyle: {
+        fontWeight: "bold",
+      },
+    },
+    bodyStyle: {
+      textStyle: {
+        marginTop: "0px",
+      },
+    },
+  };
+
+  const subHeader = isShowed ? `- ${title}` : `+ ${title}`;
+
   return (
     <Grid container>
       <Grid item xs={12}>
-        {isShowed ? (
-          <Typography variant="h6" onClick={() => setIsShowed(false)}>
-            &#8722; {title}
-          </Typography>
-        ) : (
-          <Typography variant="h6" onClick={() => setIsShowed(true)}>
-            &#43; {title}
-          </Typography>
-        )}
+        <div
+          role="none"
+          onKeyDown={() => setIsShowed(!isShowed)}
+          onClick={() => setIsShowed(!isShowed)}
+        >
+          <TextSection subHeader={subHeader} style={textStyle} />
+        </div>
       </Grid>
       <Grid item xs={12}>
         {isShowed && (
           <ul>
             {descriptionArray.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item}>
+                <TextSection body={item} style={textStyle} />
+              </li>
             ))}
           </ul>
         )}

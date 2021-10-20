@@ -8,7 +8,7 @@ const ApplyButton = () => {
 
   return (
     <Button
-      text={`Apply now for the ${currentYear} programs`}
+      text={`Apply For The ${currentYear} Program`}
       style={{ marginTop: "32px" }}
       route={ROUTES.APPLICATION_PROGRAM}
     />

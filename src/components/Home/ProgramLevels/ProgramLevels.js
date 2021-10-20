@@ -16,7 +16,7 @@ const ProgramLevels = () => {
   } = useHomepageData();
 
   return (
-    <SectionWrapper>
+    <SectionWrapper bgColor="secondary">
       <TextSection size="lg" title={title} body={body} />
       <Grid container spacing={2}>
         {programLevelCardsContent.map((card) => (

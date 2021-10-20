@@ -12,8 +12,6 @@ import useHomepageData from "queries/homepage";
 import StatisticsItem from "./StatisticsItem";
 
 const useStyles = makeStyles(() => ({
-  mainWrapper: {},
-
   text: {
     textAlign: "center",
     marginTop: "calc(5.28vw + 21px)",
@@ -44,13 +42,7 @@ const Stats = () => {
       style={{ containerStyle: { display: "flex", justifyContent: "center" } }}
       bgColor="secondary"
     >
-      <Grid
-        container
-        direction="column"
-        justify="center"
-        alignItems="center"
-        className={classes.mainWrapper}
-      >
+      <Grid container direction="column" justify="center" alignItems="center">
         <Grid item className={classes.row}>
           <Title title={title} />
         </Grid>

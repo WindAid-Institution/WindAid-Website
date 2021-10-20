@@ -80,6 +80,7 @@ const useLongTermData = () => {
           note
         }
         programDates {
+          heading
           data {
             cohort
             dates

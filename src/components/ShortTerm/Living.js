@@ -17,8 +17,12 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     paddingBottom: "40px",
+    [theme.breakpoints.up("md")]: {
+      paddingBottom: "0",
+    },
   },
   images: {
+    position: "relative",
     direction: "column",
     justifyContent: "flex-end",
     height: "800px",
@@ -28,7 +32,12 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("md")]: {
       height: "100%",
+      paddingTop: "0",
     },
+  },
+  imageItem: {
+    display: "flex",
+    justifyContent: "flex-end",
   },
   image: {
     width: "100%",
@@ -40,10 +49,20 @@ const useStyles = makeStyles((theme) => ({
       objectPosition: "20% 0",
     },
     [theme.breakpoints.up("md")]: {
-      height: "162px",
-      objectFit: "contain",
-      objectPosition: "50% 50%",
+      width: "85%",
+      height: "200px",
+      objectFit: "cover",
+      objectPosition: "0% 15%",
     },
+  },
+  additionalImage: {
+    position: "absolute",
+    top: "25%",
+    left: "52%",
+    height: "200px",
+    width: "300px",
+    objectFit: "cover",
+    objectPosition: "0% 25%",
   },
 }));
 
@@ -68,7 +87,7 @@ const Living = () => {
       borderBottom: "3px solid",
       borderBottomColor: theme.palette.primary.main,
       background: isUpMd
-        ? `linear-gradient(to left, ${theme.palette.secondary.dark} 33.33%, ${theme.palette.primary.main} 33.33%)`
+        ? `linear-gradient(to left, ${theme.palette.secondary.dark} 45%, ${theme.palette.primary.main} 45%)`
         : `linear-gradient(to top, ${theme.palette.secondary.dark} ${
             isUpSm ? "394px" : "834px"
           }, ${theme.palette.primary.main} ${isUpSm ? "394px" : "834px"})`,
@@ -90,7 +109,7 @@ const Living = () => {
   return (
     <SectionWrapper style={wrapperStyle}>
       <Grid container className={classes.root}>
-        <Grid item xs={12} md={8} className={classes.text}>
+        <Grid item xs={12} sm={10} md={6} className={classes.text}>
           <TextSection title={title} body={body} style={sectionStyle} />
           <Button
             text="Learn About Your Leisure Time"
@@ -99,18 +118,34 @@ const Living = () => {
             inverted
           />
         </Grid>
-        <Grid item xs={12} md={3} className={classes.text}>
-          <Grid container className={classes.images} spacing={1}>
-            {images.map((image) => (
-              <Grid item key={image.title} xs={12} sm={4} md={12}>
-                <img
-                  src={image.file.url}
-                  alt={image.description}
-                  className={classes.image}
-                />
-              </Grid>
-            ))}
+        <Grid item xs={12} md={4} className={classes.text}>
+          <Grid container className={classes.images} spacing={isUpMd ? 6 : 1}>
+            {images
+              .filter((image, index) => (isUpMd ? index : true))
+              .map((image) => (
+                <Grid
+                  item
+                  key={image.title}
+                  xs={12}
+                  sm={4}
+                  md={12}
+                  className={classes.imageItem}
+                >
+                  <img
+                    src={image.file.url}
+                    alt={image.description}
+                    className={classes.image}
+                  />
+                </Grid>
+              ))}
           </Grid>
+          {isUpMd && (
+            <img
+              src={images[0].file.url}
+              alt={images[0].description}
+              className={classes.additionalImage}
+            />
+          )}
         </Grid>
       </Grid>
     </SectionWrapper>

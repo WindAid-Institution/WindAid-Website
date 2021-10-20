@@ -42,7 +42,28 @@ const theme = createMuiTheme({
       [breakpoints.up("sm")]: {
         fontSize: "16px",
       },
-    }
+    },
+    body2: {
+      lineHeight: "20px",
+      fontSize: "14px",
+      fontWeight: 700,
+      [breakpoints.up("sm")]: {
+        lineHeight: "32px",
+        fontSize: "18px",
+      },
+    },
+    h4: {
+      fontSize: "24px",
+      lineHeight: "35px",
+      fontWeight: 700,
+      [breakpoints.up("sm")]: {
+        fontSize: "30px",
+        lineHeight: "40px",
+      },
+      [breakpoints.up("md")]: {
+        fontSize: "40px",
+      },
+    },
   },
   shape: {
     borderRadius: 30,

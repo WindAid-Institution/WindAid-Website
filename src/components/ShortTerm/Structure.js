@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    minWidth: "230px",
+    minWidth: "100%",
     [theme.breakpoints.up("md")]: {
       minWidth: "450px",
       flexDirection: "row",
@@ -42,6 +42,12 @@ const useStyles = makeStyles((theme) => ({
   image: {
     width: "100%",
     height: "100%",
+    [theme.breakpoints.up("sm")]: {
+      height: "87%",
+    },
+    [theme.breakpoints.up("md")]: {
+      height: "100%",
+    },
   },
 }));
 
@@ -54,6 +60,7 @@ const Structure = () => {
   const classes = useStyles();
   const theme = useTheme();
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isUpSm = useMediaQuery(theme.breakpoints.up("sm"));
 
   const style = {
     sectionStyle: {
@@ -70,7 +77,8 @@ const Structure = () => {
   const additionalStyle = {
     carouselContainerStyle: {
       height: isUpMd ? "410px" : "320px",
-      width: isUpMd ? "450px" : "290px",
+      /* eslint-disable no-nested-ternary */
+      width: isUpMd ? "450px" : isUpSm ? "600px" : "290px",
     },
   };
 
@@ -99,7 +107,7 @@ const Structure = () => {
           <TextSection title="Structure" />
           {structureCardsContent.map(({ title, header, body }) => (
             <Box key={title} className={classes.textSection}>
-              <Typography variant="h6">{header}</Typography>
+              <Typography variant="body2">{header}</Typography>
               <TextSection
                 subHeader={title}
                 body={body.body}

@@ -35,8 +35,8 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("md")]: {
       height: "240px",
-      objectFit: "contain",
-      objectPosition: "50% 50%",
+      objectFit: "cover",
+      objectPosition: "0% 20%",
     },
   },
 }));

@@ -10,6 +10,8 @@ import {
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import TextSection from "../TextSection";
+import { splitQueriedList } from "../../utils/utils";
 
 import ApplyButton from "../../components/ApplyButton";
 import InfoCardDropDown from "./InfoCardDropDown";
@@ -49,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
   text: {
     color: theme.palette.primary.main,
     fontWeight: "bold",
+    paddingBottom: "8px",
   },
   image: {
     position: "absolute",
@@ -65,6 +68,7 @@ const InfoCard = ({
   title,
   price,
   note,
+  programHeading,
   programDates,
   included,
   notIncluded,
@@ -73,19 +77,41 @@ const InfoCard = ({
   const classes = useStyles();
   const theme = useTheme();
 
-  const noteArray = note.split(";");
-  const includedArray = included.split(";");
-  const notIncludedArray = notIncluded.split(";");
+  const [noteArray, includedArray, notIncludedArray] = [
+    note,
+    included,
+    notIncluded,
+  ].map((data) => splitQueriedList(data));
 
   const {
     description,
     file: { url },
   } = image;
 
-  const tableCellStyle = {
+  const tableStyle = {
     borderBottom: "none",
-    padding: "8px 0",
     color: theme.palette.primary.dark,
+    padding: "0",
+  };
+
+  const tableCellStyle = {
+    ...tableStyle,
+    fontWeight: "normal",
+  };
+
+  const tableHeaderStyle = {
+    ...tableStyle,
+    fontWeight: "bold",
+    paddingBottom: "8px",
+    paddingRight: "30px",
+  };
+
+  const textStyle = {
+    bodyStyle: {
+      textStyle: {
+        marginTop: "0px",
+      },
+    },
   };
 
   return (
@@ -97,53 +123,53 @@ const InfoCard = ({
       </Grid>
       <Grid container className={classes.infoContainer} spacing={4}>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h6" className={classes.text}>
-            Price:
-          </Typography>
+          <TextSection title="Price" />
           <Typography variant="h4" className={classes.price}>
             {price}
           </Typography>
-          <Typography variant="h6">Note:</Typography>
+          <TextSection subHeader="Note" style={textStyle} />
           <ul>
             {noteArray.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item}>
+                <TextSection body={item} style={textStyle} />
+              </li>
             ))}
           </ul>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Typography variant="h6" className={classes.text}>
-            2021 Program Dates
-          </Typography>
+          <TextSection title={programHeading} />
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell style={tableCellStyle}>
-                  <b>Cohort</b>
-                </TableCell>
-                <TableCell style={tableCellStyle}>
-                  <b>Program Dates</b>
-                </TableCell>
+                <TableCell style={tableHeaderStyle}>Cohort</TableCell>
+                <TableCell style={tableHeaderStyle}>Program Dates</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {programDates.map(({ cohort, dates }) => (
                 <TableRow key={dates}>
-                  <TableCell style={tableCellStyle}>{cohort}</TableCell>
-                  <TableCell style={tableCellStyle}>{dates}</TableCell>
+                  <TableCell style={tableCellStyle}>
+                    <TextSection body={cohort} style={textStyle} />
+                  </TableCell>
+                  <TableCell style={tableCellStyle}>
+                    <TextSection body={dates} style={textStyle} />
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </Grid>
       </Grid>
-      <InfoCardDropDown
-        descriptionArray={includedArray}
-        title={"What's included"}
-      />
-      <InfoCardDropDown
-        descriptionArray={notIncludedArray}
-        title={"What's NOT included"}
-      />
+      <div style={{ marginTop: "32px" }}>
+        <InfoCardDropDown
+          descriptionArray={includedArray}
+          title={"What's included"}
+        />
+        <InfoCardDropDown
+          descriptionArray={notIncludedArray}
+          title={"What's NOT included"}
+        />
+      </div>
       <Grid item xs={12}>
         <ApplyButton />
       </Grid>
@@ -159,6 +185,7 @@ InfoCard.propTypes = {
   included: PropTypes.string.isRequired,
   notIncluded: PropTypes.string.isRequired,
   programDates: PropTypes.array.isRequired,
+  programHeading: PropTypes.string.isRequired,
   image: PropTypes.object.isRequired,
 };
 

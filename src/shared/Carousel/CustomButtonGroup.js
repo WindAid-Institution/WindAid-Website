@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 
-import rightArrowCircle from "../images/rightArrowCircle.svg";
-import arrowHover from "../images/arrowHover.svg";
+import rightArrowCircle from "../../images/rightArrowCircle.svg";
+import arrowHover from "../../images/arrowHover.svg";
 
 const useStyles = makeStyles({
   arrow: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     left: "50%",
     display: "flex",
     alignItems: "center",
-    width: "120px",
+    width: "160px",
     height: "auto",
     transform: "translateX(-50%)",
     marginTop: "15px",
