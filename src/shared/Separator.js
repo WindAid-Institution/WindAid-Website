@@ -64,12 +64,12 @@ Separator.propTypes = {
   body: PropTypes.string,
   bodyTwo: PropTypes.string.isRequired,
   image: PropTypes.object.isRequired,
-  children: PropTypes.string,
+  children: PropTypes.object,
 };
 
 Separator.defaultProps = {
   body: "",
-  children: "",
+  children: {},
   route: {
     name: "Home",
     path: "/",
