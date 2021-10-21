@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Separator = ({ route, title, body, bodyTwo, image }) => {
+const Separator = ({ route, title, body, bodyTwo, image, children }) => {
   const {
     description,
     file: { url },
@@ -49,6 +49,7 @@ const Separator = ({ route, title, body, bodyTwo, image }) => {
       <Grid container direction="row">
         <Grid item xs={12} className={classes.textSection}>
           <TextSection title={title} body={body} />
+          {children}
           <Button text={bodyTwo} style={{ marginTop: "24px" }} route={route} />
         </Grid>
       </Grid>
@@ -60,12 +61,15 @@ const Separator = ({ route, title, body, bodyTwo, image }) => {
 Separator.propTypes = {
   route: PropTypes.object,
   title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
+  body: PropTypes.string,
   bodyTwo: PropTypes.string.isRequired,
   image: PropTypes.object.isRequired,
+  children: PropTypes.string,
 };
 
 Separator.defaultProps = {
+  body: "",
+  children: "",
   route: {
     name: "Home",
     path: "/",
