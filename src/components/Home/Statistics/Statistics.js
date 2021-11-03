@@ -42,7 +42,12 @@ const Stats = () => {
       style={{ containerStyle: { display: "flex", justifyContent: "center" } }}
       bgColor="secondary"
     >
-      <Grid container direction="column" justify="center" alignItems="center">
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Grid item className={classes.row}>
           <Title title={title} />
         </Grid>
@@ -50,7 +55,7 @@ const Stats = () => {
           <Grid
             container
             direction="row"
-            justify="space-around"
+            justifyContent="space-around"
             alignItems="stretch"
           >
             {images.map((stats, index) => (

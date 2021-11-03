@@ -60,7 +60,7 @@ const Offering = () => {
       <Grid
         container
         direction="row"
-        justify="center"
+        justifyContent="center"
         alignItems="center"
         className={classes.mainWrapper}
       >
@@ -73,7 +73,7 @@ const Offering = () => {
           <Grid
             container
             direction="row"
-            justify="space-around"
+            justifyContent="space-around"
             alignItems="stretch"
             spacing={5}
           >
