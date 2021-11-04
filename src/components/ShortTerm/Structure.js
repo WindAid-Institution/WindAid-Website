@@ -41,10 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   image: {
     width: "100%",
-    height: "100%",
-    [theme.breakpoints.up("sm")]: {
-      height: "87%",
-    },
+    height: "95%",
     [theme.breakpoints.up("md")]: {
       height: "100%",
     },
@@ -59,6 +56,7 @@ const Structure = () => {
 
   const classes = useStyles();
   const theme = useTheme();
+  const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
   const isUpSm = useMediaQuery(theme.breakpoints.up("sm"));
 
@@ -76,9 +74,12 @@ const Structure = () => {
 
   const additionalStyle = {
     carouselContainerStyle: {
-      height: isUpMd ? "410px" : "320px",
+      height: "100%",
       /* eslint-disable no-nested-ternary */
-      width: isUpMd ? "450px" : isUpSm ? "600px" : "290px",
+      width: isUpLg ? "670px" : isUpMd ? "510px" : isUpSm ? "600px" : "290px",
+    },
+    carouselSliderStyle: {
+      height: "80%",
     },
   };
 

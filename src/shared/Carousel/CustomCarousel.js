@@ -9,6 +9,9 @@ const useStyles = makeStyles(() => ({
   carouselContainer: ({ carouselContainerStyle }) => ({
     ...carouselContainerStyle,
   }),
+  carouselSlider: ({ carouselSliderStyle }) => ({
+    ...carouselSliderStyle,
+  }),
 }));
 
 const CustomCarousel = ({
@@ -19,8 +22,8 @@ const CustomCarousel = ({
   counterColor,
   showedSlides,
 }) => {
-  const { carouselContainerStyle } = style || {};
-  const classes = useStyles({ carouselContainerStyle });
+  const { carouselContainerStyle, carouselSliderStyle } = style || {};
+  const classes = useStyles({ carouselContainerStyle, carouselSliderStyle });
 
   return (
     <Carousel
@@ -35,6 +38,7 @@ const CustomCarousel = ({
       renderButtonGroupOutside
       swipeable={false}
       containerClass={classes.carouselContainer}
+      sliderClass={classes.carouselSlider}
     >
       {children}
     </Carousel>
