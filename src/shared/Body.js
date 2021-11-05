@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
       fontFamily: theme.typography.fontFamily,
       fontSize: "14px",
       lineHeight: "28px",
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "16px",
+      },
       maxWidth: size === "sm" ? "560px" : "none",
       color: "#282828",
       marginBottom: theme.spacing(1),

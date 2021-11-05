@@ -79,7 +79,7 @@ const Overview = () => {
 
   return (
     <SectionWrapper>
-      <Grid container justify="space-between">
+      <Grid container justifyContent="space-between">
         <Grid item className={classes.text} sm={12} md={8}>
           <TextSection
             header={header}
