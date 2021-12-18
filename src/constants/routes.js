@@ -37,27 +37,31 @@ export const ROUTES = {
     path: "/project-three",
   },
 
-  JOIN_US: {
-    name: "Join Us",
-    path: "/join-us",
+  PROGRAMS: {
+    name: "Programs",
+    path: "/programs",
   },
 
   VOLUNTEER_PROGRAMS: {
-    name: "Volunteer Programs",
+    name: "Volunteer",
     path: "/general-program",
   },
-  GENERAL_PROGRAM: {
-    name: "Peru Electrification Program",
-    path: "/general-program",
+  CERTIFICATE_PROGRAMS: {
+    name: "Certificate Programs",
+    path: "/",
+  },
+  LEVEL_1: {
+    name: "Level 1: E-learning",
+    path: "/",
   },
 
-  SHORT_TERM_PROGRAM: {
-    name: "Short Term Volunteer",
-    path: "/short-term-program",
+  LEVEL_2: {
+    name: "Level 2: In Person Practical Training",
+    path: "/level-2",
   },
-  LONG_TERM_PROGRAM: {
-    name: "Long Term Volunteer",
-    path: "/long-term-program",
+  LEVEL_3: {
+    name: "Level 3: Project Focused Career Development",
+    path: "/level-3",
   },
 
   PARTNERSHIP: {
@@ -82,11 +86,11 @@ export const ROUTES = {
 
   CONTACT_US: {
     name: "Contact Us",
-    path: "/contact",
+    path: "/contact-us",
   },
 
   GENERAL_CONTACT: {
-    name: "General contact",
+    name: "Contact",
     path: "/contact",
   },
 
@@ -106,52 +110,44 @@ const {
   AMBASSADORS,
   OUR_WORK,
   OUR_IMPACT,
-  OUR_PROJECTS,
-  PROJECT_ONE,
-  PROJECT_TWO,
-  PROJECT_THREE,
-  JOIN_US,
-  GENERAL_PROGRAM,
-  SHORT_TERM_PROGRAM,
-  LONG_TERM_PROGRAM,
-  PARTNERSHIP,
-  CAREERS,
+  PROGRAMS,
+  CERTIFICATE_PROGRAMS,
+  LEVEL_1,
+  LEVEL_2,
+  LEVEL_3,
   TRUJILLO,
   FAQ,
-  CONTACT_US,
+  GENERAL_CONTACT,
   APPLY,
 } = ROUTES;
-export const NAVBAR_ROUTES = [WHO_WE_ARE, OUR_WORK, JOIN_US, CONTACT_US, APPLY];
+export const NAVBAR_ROUTES = [
+  WHO_WE_ARE,
+  OUR_WORK,
+  PROGRAMS,
+  GENERAL_CONTACT,
+  APPLY,
+];
 
 export const MENU_ROUTES = [
   {
     main: WHO_WE_ARE,
-    submenu: [ABOUT_US, AMBASSADORS, FAQ],
+    submenu: [ABOUT_US, AMBASSADORS],
   },
   {
     main: OUR_WORK,
-    submenu: [
-      OUR_IMPACT,
-      {
-        ...OUR_PROJECTS,
-        subSubmenu: [PROJECT_ONE, PROJECT_TWO, PROJECT_THREE],
-      },
-    ],
+    submenu: [OUR_IMPACT],
   },
 
   {
-    main: JOIN_US,
+    main: PROGRAMS,
     submenu: [
       {
-        ...GENERAL_PROGRAM,
-        subSubmenu: [SHORT_TERM_PROGRAM, LONG_TERM_PROGRAM],
+        ...CERTIFICATE_PROGRAMS,
+        subSubmenu: [LEVEL_1, LEVEL_2, LEVEL_3],
       },
-      PARTNERSHIP,
-      CAREERS,
       TRUJILLO,
       FAQ,
     ],
   },
-  { main: CONTACT_US },
   { main: APPLY },
 ];
