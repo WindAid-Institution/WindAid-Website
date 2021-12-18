@@ -63,7 +63,7 @@ const BigBanner = () => {
           backgroundColor={theme.palette.primary.main}
         />
         <Grid item className={classes.textField}>
-          <Typography align="justify" variant="h1" className={classes.heading}>
+          <Typography variant="h1" className={classes.heading}>
             {title}
           </Typography>
           <Typography

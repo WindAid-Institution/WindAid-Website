@@ -69,12 +69,12 @@ const Card = ({ image, imageText, children, style }) => {
 
   return (
     <Grid container className={classes.contentContainer}>
+      <GatsbyImage
+        image={gatsbyImageData}
+        alt={description}
+        className={classes.image}
+      />
       <Box className={classes.root}>
-        <GatsbyImage
-          image={gatsbyImageData}
-          alt={description}
-          className={classes.image}
-        />
         {imageText && (
           <Box className={classes.imageText}>
             <Typography variant="h5" className={classes.text}>
