@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => {
       return theme.palette.secondary.dark;
     }
 
+    if (bgColor === "tertiary") {
+      return theme.palette.secondary.main;
+    }
+
     if (bgColor.includes("#")) {
       return bgColor;
     }

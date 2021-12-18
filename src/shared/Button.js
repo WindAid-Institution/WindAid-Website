@@ -35,13 +35,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Button = ({ text, inverted, style, route }) => {
+const Button = ({ text, inverted, style, route, url }) => {
   const classes = useStyles({ inverted, style });
 
   return (
-    <Link to={route.path} className={classes.link}>
-      <MuiButton className={classes.button}>{text}</MuiButton>
-    </Link>
+    <div>
+      {url.length === 0 && (
+        <Link to={route.path} className={classes.link}>
+          <MuiButton className={classes.button}>{text}</MuiButton>
+        </Link>
+      )}
+      {url.length > 0 && (
+        <a href="https://bit.ly/windaidapplication">
+          <MuiButton className={classes.button}>{text}</MuiButton>
+        </a>
+      )}
+    </div>
   );
 };
 
@@ -52,6 +61,7 @@ Button.propTypes = {
   route: PropTypes.shape({
     path: PropTypes.string,
   }),
+  url: PropTypes.string,
 };
 Button.defaultProps = {
   inverted: false,
@@ -59,6 +69,7 @@ Button.defaultProps = {
   route: {
     path: "/",
   },
+  url: "",
 };
 
 export default Button;
