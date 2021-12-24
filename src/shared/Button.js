@@ -35,13 +35,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Button = ({ text, inverted, style, route }) => {
+const Button = ({ text, inverted, style, route, isDisabled, onClick }) => {
   const classes = useStyles({ inverted, style });
 
   return (
-    <Link to={route.path} className={classes.link}>
-      <MuiButton className={classes.button}>{text}</MuiButton>
-    </Link>
+    <>
+      {route?.path ? (
+        <Link to={route.path} className={classes.link}>
+          <MuiButton
+            disabled={isDisabled}
+            className={classes.button}
+          >
+            {text}
+          </MuiButton>
+        </Link>
+      ) : (
+        <MuiButton
+          onClick={onClick}
+          disabled={isDisabled}
+          className={classes.button}
+        >
+          {text}
+        </MuiButton>
+      )}
+    </>
   );
 };
 
@@ -52,13 +69,17 @@ Button.propTypes = {
   route: PropTypes.shape({
     path: PropTypes.string,
   }),
+  isDisabled: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 Button.defaultProps = {
   inverted: false,
   style: {},
   route: {
-    path: "/",
+    path: "",
   },
+  isDisabled: false,
+  onClick: () => {},
 };
 
 export default Button;

@@ -52,11 +52,12 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "calc(4vw + 24px)",
     paddingBottom: "calc(280px - 6vw)",
     paddingRight: "32px",
+    paddingLeft: "16px",
     [theme.breakpoints.up("sm")]: {
       paddingLeft: "32px",
     },
     [theme.breakpoints.up("xmd")]: {
-      paddingLeft: "calc(35vw)",
+      paddingLeft: "calc(25vw)",
     },
     [theme.breakpoints.up("md")]: {
       paddingLeft: "calc(40vw)",
