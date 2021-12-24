@@ -5,10 +5,10 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Link } from "gatsby";
 
 import Logo from "images/navbar/logo.svg";
-// import Toggle from "images/navbar/toggle.svg";
+import Toggle from "images/navbar/toggle.svg";
 
 import NavLinks from "./Navlinks";
-// import DonateButton from "./DonateButton";
+import DonateButton from "./DonateButton";
 import Sidebar from "./Sidebar";
 
 const useStyles = makeStyles((theme) => ({
@@ -64,7 +64,7 @@ const Navbar = () => {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // const handleSidebarOpen = () => setIsSidebarOpen(true);
+  const handleSidebarOpen = () => setIsSidebarOpen(true);
   const handleSidebarClose = () => setIsSidebarOpen(false);
 
   const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
@@ -89,14 +89,14 @@ const Navbar = () => {
           >
             <NavLinks />
 
-            {/* <Box className={classes.buttonsContainer}>
+            <Box className={classes.buttonsContainer}>
               <DonateButton />
               <Toggle
                 role="button"
                 className={classes.toggleButton}
                 onClick={handleSidebarOpen}
               />
-            </Box> */}
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>
