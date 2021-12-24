@@ -3,42 +3,16 @@ import { graphql, useStaticQuery } from "gatsby";
 const useShortTermData = () => {
   const data = useStaticQuery(graphql`
     {
-      day1to3: contentfulSection(contentId: { eq: "shortTerm-day-1-3" }) {
-        header
-        title
-        body {
-          body
-        }
-        images {
+      structureCards: allContentfulSimpleCard(
+        filter: { contentId: { eq: "shortTerm-structure" } }
+        sort: { fields: orderNumber }
+      ) {
+        structureCardsContent: nodes {
           title
-          description
-          gatsbyImageData(quality: 100, placeholder: BLURRED)
-        }
-      }
-
-      day4to20: contentfulSection(contentId: { eq: "shortTerm-day-4-20" }) {
-        header
-        title
-        body {
-          body
-        }
-        image {
-          title
-          description
-          gatsbyImageData(quality: 100, placeholder: BLURRED)
-        }
-      }
-
-      day21to27: contentfulSection(contentId: { eq: "shortTerm-day-21-27" }) {
-        header
-        title
-        body {
-          body
-        }
-        images {
-          title
-          description
-          gatsbyImageData(quality: 100, placeholder: BLURRED)
+          header
+          body {
+            body
+          }
         }
       }
 
@@ -73,26 +47,107 @@ const useShortTermData = () => {
           additionalText
         }
       }
+
+      apply: contentfulSeparationImage(contentId: { eq: "shortTerm-apply" }) {
+        title
+        body {
+          body
+        }
+        bodyTwo {
+          bodyTwo
+        }
+        image {
+          description
+          file {
+            url
+          }
+        }
+      }
+
+      infoCard: contentfulInfoCard(contentId: { eq: "shortTerm-applyInfo" }) {
+        title {
+          title
+        }
+        price
+        note {
+          note
+        }
+        programDates {
+          heading
+          data {
+            cohort
+            dates
+          }
+        }
+        included {
+          included
+        }
+        notIncluded {
+          notIncluded
+        }
+        image {
+          description
+          file {
+            url
+          }
+        }
+      }
+
+      structureImages: contentfulSection(
+        contentId: { eq: "shortTerm-structureImages" }
+      ) {
+        images {
+          description
+          gatsbyImageData(quality: 100, placeholder: BLURRED)
+        }
+      }
+
+      applyDescription: contentfulSimpleCard(
+        contentId: { eq: "shortTerm-applyDescription" }
+      ) {
+        title
+        header
+      }
+
+      living: contentfulSection(contentId: { eq: "shortTerm-living" }) {
+        title
+        body {
+          body
+        }
+        images {
+          title
+          description
+          file {
+            url
+          }
+        }
+      }
     }
   `);
 
   const {
     overview,
-    day1to3,
-    day4to20,
-    day21to27,
     volunteers,
     hearFromPrev,
     volunteersCards: { volunteersCardsContent },
+    structureCards: { structureCardsContent },
+    apply,
+    infoCard,
+    structureImages,
+    applyDescription,
+    living,
   } = data;
   return {
     overview,
-    day1to3,
-    day4to20,
-    day21to27,
     volunteers,
     hearFromPrev,
     volunteersCardsContent,
+    structureCardsContent,
+    apply,
+    infoCard,
+    structureImages,
+    applyDescription,
+    living,
   };
 };
 

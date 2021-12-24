@@ -107,7 +107,11 @@ const VolunteerProgram = () => {
         />
       </SectionWrapper>
       <Box className={clsx(classes.box, classes.mobileBeige)}>
-        <Grid container className={classes.background} justify="space-between">
+        <Grid
+          container
+          className={classes.background}
+          justifyContent="space-between"
+        >
           <Grid
             item
             className={clsx(classes.leftBackground, classes.backgroundBeige)}
@@ -123,7 +127,11 @@ const VolunteerProgram = () => {
         <ShortTimeVolunteer />
       </Box>
       <Box className={clsx(classes.box, classes.mobileGreen)}>
-        <Grid container className={classes.background} justify="space-between">
+        <Grid
+          container
+          className={classes.background}
+          justifyContent="space-between"
+        >
           <Grid
             item
             className={clsx(classes.leftBackground, classes.backgroundGreen)}

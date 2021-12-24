@@ -45,23 +45,18 @@ const Explore = () => {
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const sectionStyle = {
-    height: "760px",
+    height: "600px",
     backgroundSize: "contain",
     backgroundPosition: "bottom",
 
     [theme.breakpoints.up("sm")]: {
-      height: "820px",
+      height: "740px",
     },
-
     [theme.breakpoints.up("md")]: {
-      height: "860px",
-    },
-
-    [theme.breakpoints.up("lg")]: {
-      height: "920px",
+      height: "810px",
     },
     [theme.breakpoints.up("xl")]: {
-      height: "1100px",
+      height: "920px",
     },
   };
 

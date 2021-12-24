@@ -4,17 +4,22 @@ const useLongTermData = () => {
   const data = useStaticQuery(graphql`
     {
       offering: contentfulSection(contentId: { eq: "longTerm-offering" }) {
-        title: header
+        title
+        header
         body {
           body
         }
-        bodyTwo {
-          bodyTwo
-        }
-        images {
-          title
-          description
-          gatsbyImageData(quality: 100, placeholder: BLURRED)
+      }
+
+      offeringCards: allContentfulSimpleCard(
+        filter: { contentId: { eq: "longTerm-offering-card" } }
+        sort: { fields: orderNumber }
+      ) {
+        offeringCardsContent: nodes {
+          header
+          body {
+            body
+          }
         }
       }
 
@@ -65,6 +70,51 @@ const useLongTermData = () => {
           email
         }
       }
+
+      infoCard: contentfulInfoCard(contentId: { eq: "longTerm-applyInfo" }) {
+        title {
+          title
+        }
+        price
+        note {
+          note
+        }
+        programDates {
+          heading
+          data {
+            cohort
+            dates
+          }
+        }
+        included {
+          included
+        }
+        notIncluded {
+          notIncluded
+        }
+        image {
+          description
+          file {
+            url
+          }
+        }
+      }
+
+      structure: contentfulSection(contentId: { eq: "longTerm-structure" }) {
+        title
+        body {
+          body
+        }
+        bodyTwo {
+          bodyTwo
+        }
+        image {
+          description
+          file {
+            url
+          }
+        }
+      }
     }
   `);
 
@@ -76,6 +126,9 @@ const useLongTermData = () => {
     apply,
     hearFromPrev,
     projectsCards: { projectsCardsContent },
+    offeringCards: { offeringCardsContent },
+    infoCard,
+    structure,
   } = data;
   return {
     overview,
@@ -85,6 +138,9 @@ const useLongTermData = () => {
     apply,
     hearFromPrev,
     projectsCardsContent,
+    offeringCardsContent,
+    infoCard,
+    structure,
   };
 };
 

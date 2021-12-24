@@ -8,26 +8,26 @@ import VisibilitySensor from "react-visibility-sensor";
 const useStyles = makeStyles((theme) => ({
   numbers: {
     fontFamily: theme.typography.fontFamily,
-    fontSize: "60px",
+    fontSize: "45px",
     fontWeight: "600",
-    margin: "0 0 0 0",
-    [theme.breakpoints.down("md")]: {
-      fontSize: "45px",
+    margin: "16px 0 0 0",
+    [theme.breakpoints.up("md")]: {
+      fontSize: "60px",
     },
   },
   iconText: {
     fontFamily: theme.typography.fontFamily,
-    fontSize: "18px",
+    fontSize: "16px",
     fontWeight: "400",
     textAlign: "center",
     maxWidth: "237px",
     width: "100%",
-    [theme.breakpoints.down("md")]: {
-      fontSize: "16px",
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "18px",
     },
   },
   contentContainer: {
-    paddingTop: "42px",
+    paddingTop: "calc(4.4vw + 16px)",
   },
 }));
 

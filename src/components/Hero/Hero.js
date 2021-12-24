@@ -21,16 +21,16 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
     height: "67px",
     paddingRight: "16px",
-    paddingLeft: "48px",
     zIndex: 99,
     color: theme.palette.secondary.main,
     background: "rgba(0, 0, 0, 0.4)",
     fontWeight: 700,
     fontSize: "24px",
     lineHeight: "35px",
+    paddingLeft: "12px",
 
-    [theme.breakpoints.up("xs")]: {
-      paddingLeft: "calc(-0.036 * 100vw + 59.43px)",
+    [theme.breakpoints.up("lg")]: {
+      paddingLeft: "calc(12.6vw - 75px)",
     },
 
     [theme.breakpoints.up("sm")]: {
@@ -40,12 +40,7 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: "calc(0.0226 * 100vw + 21.4px)",
     },
 
-    [theme.breakpoints.up("xmd")]: {
-      paddingLeft: "calc(0.155 * 100vw - 70.86px)",
-    },
-
     [theme.breakpoints.up("xl")]: {
-      paddingLeft: "152px",
       height: "118px",
       paddingRight: "32px",
       fontSize: "40px",

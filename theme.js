@@ -27,6 +27,7 @@ const theme = createMuiTheme({
     },
     info: {
       main: "#015B90",
+      dark: "#BDBDBD",
     },
   },
   typography: {
@@ -35,6 +36,34 @@ const theme = createMuiTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 600,
     fontWeightBold: 700,
+    body1: {
+      lineHeight: "28px",
+      fontSize: "14px",
+      [breakpoints.up("sm")]: {
+        fontSize: "16px",
+      },
+    },
+    body2: {
+      lineHeight: "20px",
+      fontSize: "14px",
+      fontWeight: 700,
+      [breakpoints.up("sm")]: {
+        lineHeight: "32px",
+        fontSize: "18px",
+      },
+    },
+    h4: {
+      fontSize: "24px",
+      lineHeight: "35px",
+      fontWeight: 700,
+      [breakpoints.up("sm")]: {
+        fontSize: "30px",
+        lineHeight: "40px",
+      },
+      [breakpoints.up("md")]: {
+        fontSize: "40px",
+      },
+    },
   },
   shape: {
     borderRadius: 30,

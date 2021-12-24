@@ -5,6 +5,7 @@ const useHomepageData = () => {
     {
       hero: contentfulPageHero(contentId: { eq: "homepage" }) {
         title
+        subtitle
         image {
           description
           gatsbyImageData(
@@ -15,21 +16,9 @@ const useHomepageData = () => {
         }
       }
 
-      ourMission: contentfulSection(contentId: { eq: "homepage-our-mission" }) {
-        header
-        title
-        body {
-          body
-        }
-        images {
-          title
-          description
-          gatsbyImageData(quality: 100, placeholder: BLURRED)
-        }
-      }
-
       statistics: contentfulSection(contentId: { eq: "homepage-statistics" }) {
         title
+        header
         body {
           body
         }
@@ -42,34 +31,67 @@ const useHomepageData = () => {
         }
       }
 
-      ourApproach: contentfulSection(
-        contentId: { eq: "homepage-our-approach" }
+      programLevels: contentfulSection(
+        contentId: { eq: "homepage-program-levels" }
       ) {
-        header
         title
         body {
           body
         }
       }
 
-      ourProgramsOne: contentfulSection(
-        contentId: { eq: "homepage-our-programs-one" }
+      programLevelCards: allContentfulSimpleCard(
+        filter: { contentId: { eq: "homepage-program-level-card" } }
+        sort: { fields: orderNumber }
       ) {
-        header
+        programLevelCardsContent: nodes {
+          header
+          title
+          body {
+            body
+          }
+          image {
+            gatsbyImageData(quality: 100, placeholder: BLURRED)
+            description
+          }
+        }
+      }
+
+      currentProjects: contentfulSection(
+        contentId: { eq: "homepage-current-projects" }
+      ) {
         title
         body {
           body
         }
-        image {
-          title
-          description
-          gatsbyImageData(quality: 100, placeholder: BLURRED)
+      }
+
+      currentProjectCards: allContentfulProjectCard(
+        filter: { contentId: { eq: "homepage-project-card" } }
+        sort: { fields: orderNumber }
+      ) {
+        currentProjectCardsContent: nodes {
+          orderNumber
+          header
+          location
+          date
+          status
+          body {
+            body
+          }
+          householdNumber
+          windturbineNumber
+          image {
+            gatsbyImageData(quality: 100, placeholder: BLURRED)
+            description
+          }
         }
       }
-      ourProgramsTwo: contentfulSection(
-        contentId: { eq: "homepage-our-programs-two" }
+
+      careerPortal: contentfulSeparationImage(
+        contentId: { eq: "homepage-career-portal" }
       ) {
-        header
+        title
         body {
           body
         }
@@ -77,19 +99,10 @@ const useHomepageData = () => {
           bodyTwo
         }
         image {
-          title
           description
-          gatsbyImageData(quality: 100, placeholder: BLURRED)
-        }
-      }
-
-      ourCoreWork: contentfulSection(
-        contentId: { eq: "homepage-our-core-work" }
-      ) {
-        header
-        title
-        listItems {
-          listItems
+          file {
+            url
+          }
         }
       }
     }
@@ -97,21 +110,21 @@ const useHomepageData = () => {
 
   const {
     hero,
-    ourMission,
     statistics,
-    ourApproach,
-    ourProgramsOne,
-    ourProgramsTwo,
-    ourCoreWork,
+    programLevels,
+    programLevelCards,
+    currentProjects,
+    currentProjectCards,
+    careerPortal,
   } = data;
   return {
     hero,
-    ourMission,
     statistics,
-    ourApproach,
-    ourProgramsOne,
-    ourProgramsTwo,
-    ourCoreWork,
+    programLevels,
+    programLevelCards,
+    currentProjects,
+    currentProjectCards,
+    careerPortal,
   };
 };
 

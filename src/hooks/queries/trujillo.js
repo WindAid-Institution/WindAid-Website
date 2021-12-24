@@ -92,6 +92,24 @@ const useTrujilloData = () => {
           body
         }
       }
+
+      dayInLife: contentfulSection(contentId: { eq: "trujillo-dayInLife" }) {
+        title
+        header
+        body {
+          body
+        }
+        bodyTwo {
+          bodyTwo
+        }
+        images {
+          title
+          description
+          file {
+            url
+          }
+        }
+      }
     }
   `);
 
@@ -103,6 +121,7 @@ const useTrujilloData = () => {
     accommodation,
     entertainmentOne,
     entertainmentTwo,
+    dayInLife,
   } = data;
   return {
     spring,
@@ -112,6 +131,7 @@ const useTrujilloData = () => {
     accommodation,
     entertainmentOne,
     entertainmentTwo,
+    dayInLife,
   };
 };
 

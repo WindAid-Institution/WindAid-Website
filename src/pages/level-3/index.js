@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { graphql } from "gatsby";
-import { ThemeProvider } from "@material-ui/core/styles";
 
 import MainLayout from "src/layout/MainLayout";
 
 import Overview from "components/Overview";
-import Offering from "components/LongTerm/Offering/index";
+import Offering from "components/LongTerm/Offering";
 import ExampleProjects from "components/LongTerm/ExampleProjects/index";
-import ApplyNow from "components/LongTerm/ApplyNow";
+import LevelInfo from "components/LongTerm/LevelInfo";
 import Hero from "components/Hero/Hero";
-
-import theme from "../../../theme";
+import Structure from "../../components/LongTerm/Structure";
 
 const LongTermProgram = ({
   data: {
@@ -19,21 +17,21 @@ const LongTermProgram = ({
     overview,
   },
 }) => (
-  <ThemeProvider theme={theme}>
-    <MainLayout>
-      <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
-      <>
-        <Overview
-          header={overview.header}
-          title={overview.title}
-          body={overview.body.body}
-        />
-        <Offering />
-        <ExampleProjects />
-        <ApplyNow />
-      </>
-    </MainLayout>
-  </ThemeProvider>
+  <MainLayout>
+    <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
+    <>
+      <Overview
+        header=""
+        title={overview.title}
+        body={overview.body.body}
+        bodyTwo={overview.bodyTwo.bodyTwo}
+      />
+      <Offering />
+      <Structure />
+      <ExampleProjects />
+      <LevelInfo />
+    </>
+  </MainLayout>
 );
 
 export const query = graphql`
@@ -54,6 +52,9 @@ export const query = graphql`
       title
       body {
         body
+      }
+      bodyTwo {
+        bodyTwo
       }
     }
   }
