@@ -84,7 +84,7 @@ const ValueInput = ({ value, handleInputChange }) => {
 
   const [isFocused, setIsFocused] = useState(false);
   const isAdornmentVisible = isFocused || Number.isInteger(value);
-  
+
   return (
     <TextField
       className={classes.textInput}

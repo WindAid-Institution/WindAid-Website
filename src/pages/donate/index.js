@@ -1,12 +1,12 @@
 import React from "react";
 
 import { MainLayout } from "../../layout";
-import DonateWidget from "../../components/DonateWidget";
+import Donate from "../../components/Donate";
 
 export default function Contact() {
   return (
     <MainLayout>
-      <DonateWidget />
+      <Donate />
     </MainLayout>
   );
 }
