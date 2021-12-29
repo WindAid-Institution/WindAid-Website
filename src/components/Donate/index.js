@@ -53,9 +53,14 @@ const useStyles = makeStyles((theme) => ({
   donateWidgetContainer: {
     textAlign: "center",
     display: "flex",
-    justifyContent: "end",
+    justifyContent: "center",
     zIndex: 2,
+    marginTop: "50px",
     position: "relative",
+    [theme.breakpoints.up("lg")]: {
+      justifyContent: "end",
+      marginTop: "0px",
+    },
   },
 }));
 
@@ -72,16 +77,10 @@ const Donate = () => {
   const theme = useTheme();
 
   const sectionStyle = {
-    height: "500px",
+    height: "800px",
     backgroundSize: "cover",
     backgroundPosition: "bottom",
 
-    [theme.breakpoints.up("sm")]: {
-      height: "640px",
-    },
-    [theme.breakpoints.up("md")]: {
-      height: "710px",
-    },
     [theme.breakpoints.up("xl")]: {
       height: "820px",
     },

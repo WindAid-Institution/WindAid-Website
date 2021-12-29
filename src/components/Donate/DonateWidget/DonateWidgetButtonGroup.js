@@ -122,7 +122,7 @@ const DonateWidgetButtonGroup = ({
   return (
     <Grid container spacing={2}>
       {buttonsValues.map((val) => (
-        <Grid item key={val} xs={4}>
+        <Grid item key={val}>
           <ValueButton
             handleButtonClick={handleButtonClick}
             value={val}
