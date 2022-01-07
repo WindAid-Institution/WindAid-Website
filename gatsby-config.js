@@ -61,5 +61,13 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    {
+      resolve: "gatsby-plugin-paypal",
+      options: {
+        clientId: process.env.PAYPAL_TOKEN,
+        currency: "USD", // Optional
+        vault: true, // Optional
+      },
+    },
   ],
 };
