@@ -39,7 +39,7 @@ export const ROUTES = {
 
   PROGRAMS: {
     name: "Programs",
-    path: "/programs",
+    path: "/level-2",
   },
 
   VOLUNTEER_PROGRAMS: {
@@ -52,7 +52,7 @@ export const ROUTES = {
   },
   LEVEL_1: {
     name: "Level 1: E-learning",
-    path: "/",
+    path: "#",
   },
 
   LEVEL_2: {
@@ -66,12 +66,12 @@ export const ROUTES = {
 
   PARTNERSHIP: {
     name: "Partnership",
-    path: "/partnership",
+    path: "/level-2",
   },
 
   CAREERS: {
     name: "Careers",
-    path: "/careers",
+    path: "/application-program",
   },
 
   TRUJILLO: {
