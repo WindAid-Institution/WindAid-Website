@@ -77,7 +77,7 @@ const JoinProgram = () => {
             text="View Our Programs"
             inverted
             style={{ marginTop: "26px" }}
-            route={ROUTES.APPLICATION_PROGRAM}
+            route={ROUTES.PROGRAMS}
           />
         </Box>
 

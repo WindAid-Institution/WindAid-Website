@@ -7,7 +7,8 @@ import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 // eslint-disable-next-line max-len
 import CommunityCard from "components/OurImpact/Community/Carousel/CommunityCard";
-import ApplyButton from "components/ApplyButton";
+import { ROUTES } from "src/constants/routes";
+import Button from "src/shared/Button";
 
 import useShortTermData from "queries/shortTerm";
 
@@ -59,7 +60,11 @@ const HearFromPrev = () => {
       </Box>
 
       <Box className={classes.buttonContainer}>
-        <ApplyButton />
+        <Button
+          text="Apply"
+          style={{ marginTop: "24px" }}
+          route={ROUTES.APPLY}
+        />
       </Box>
     </SectionWrapper>
   );
