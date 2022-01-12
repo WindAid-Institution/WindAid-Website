@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
+import { Link } from "gatsby";
 
 const yellowColor = "#ffde15";
 
@@ -45,12 +46,14 @@ const useStyles = makeStyles((theme) => ({
 const DonateButton = ({ isSidebar }) => {
   const classes = useStyles();
   return (
-    <Button
-      disableRipple
-      className={clsx(classes.root, isSidebar && classes.sidebar)}
-    >
-      Donate
-    </Button>
+    <Link to="/donate">
+      <Button
+        disableRipple
+        className={clsx(classes.root, isSidebar && classes.sidebar)}
+      >
+        Donate
+      </Button>
+    </Link>
   );
 };
 

@@ -60,7 +60,7 @@ const Offering = () => {
       <Grid
         container
         direction="row"
-        justifyContent="center"
+        justify="center"
         alignItems="center"
         className={classes.mainWrapper}
       >

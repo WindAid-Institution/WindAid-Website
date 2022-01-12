@@ -10,10 +10,11 @@ import {
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { ROUTES } from "src/constants/routes";
 import TextSection from "../TextSection";
 import { splitQueriedList } from "../../utils/utils";
 
-import ApplyButton from "../../components/ApplyButton";
+import Button from "../Button";
 import InfoCardDropDown from "./InfoCardDropDown";
 
 const useStyles = makeStyles((theme) => ({
@@ -171,7 +172,11 @@ const InfoCard = ({
         />
       </div>
       <Grid item xs={12}>
-        <ApplyButton />
+        <Button
+          text="Apply"
+          style={{ marginTop: "24px" }}
+          route={ROUTES.APPLY}
+        />
       </Grid>
       <img src={url} alt={description} className={classes.image} />
     </Grid>

@@ -84,7 +84,7 @@ const ValueInput = ({ value, handleInputChange }) => {
 
   const [isFocused, setIsFocused] = useState(false);
   const isAdornmentVisible = isFocused || Number.isInteger(value);
-  
+
   return (
     <TextField
       className={classes.textInput}
@@ -122,7 +122,7 @@ const DonateWidgetButtonGroup = ({
   return (
     <Grid container spacing={2}>
       {buttonsValues.map((val) => (
-        <Grid item key={val} xs={4}>
+        <Grid item key={val}>
           <ValueButton
             handleButtonClick={handleButtonClick}
             value={val}
