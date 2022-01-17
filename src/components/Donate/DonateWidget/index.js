@@ -11,7 +11,6 @@ import DonateWidgetButton from "./DonateWidgetButton";
 
 import DonateWidgetFirstStep from "./Steps/DonateWidgetFirstStep";
 import DonateWidgetSecondStep from "./Steps/DonateWidgetSecondStep";
-import DonateWidgetThirdStep from "./Steps/DonateWidgetThirdStep";
 import DonateWidgetSuccess from "./Steps/DonateWidgetSuccess";
 
 const PAYPAL_INITIAL_DATA = {
@@ -25,14 +24,6 @@ const CARD_INITIAL_DATA = {
   firstName: undefined,
   lastName: undefined,
 };
-
-const CARD_ADDRESS_INITIAL_DATA = {
-  billingAddress: undefined,
-  city: undefined,
-  zipCode: undefined,
-  country: undefined,
-};
-// buttons dollars values
 
 const BUTTONS_VALUES = [10, 20, 40, 50];
 
@@ -70,9 +61,6 @@ const DonateWidget = () => {
   const [selectedProvider, setSelectedProvider] = useState("card");
   const [paypalData, setPaypalData] = useState(PAYPAL_INITIAL_DATA);
   const [cardData, setCardData] = useState(CARD_INITIAL_DATA);
-  const [cardAddressData, setCardAddressData] = useState(
-    CARD_ADDRESS_INITIAL_DATA
-  );
 
   // fnc to handle click on one of predefined amounts
   const handleButtonClick = (event) => {
@@ -119,15 +107,12 @@ const DonateWidget = () => {
   };
 
   const goToNextStep = () => setCurrentStep((value) => value + 1);
-  const goToPrevStep = () => setCurrentStep((value) => value - 1);
   const goToFirstStep = () => setCurrentStep(1);
 
   const formRef = createRef();
   const addressFormRef = createRef();
 
-  const isDone =
-    (currentStep === 4 && selectedProvider === "card") ||
-    (currentStep === 3 && selectedProvider === "paypal");
+  const isDone = currentStep === 3;
   return (
     <Box className={classes.container}>
       <Card className={classes.card}>
@@ -149,9 +134,10 @@ const DonateWidget = () => {
               isMonthlyDonation={isMonthlyDonation}
             />
           )}
-
           {currentStep === 2 && (
             <DonateWidgetSecondStep
+              donationValue={donationValue}
+              goToFirstStep={goToFirstStep}
               selectedProvider={selectedProvider}
               handleProviderChange={handleProviderChange}
               formRef={formRef}
@@ -160,9 +146,10 @@ const DonateWidget = () => {
               setCardData={setCardData}
               cardData={cardData}
               goToNextStep={goToNextStep}
+              isMonthlyDonation={isMonthlyDonation}
             />
           )}
-          {currentStep === 3 && selectedProvider === "card" && (
+          {/* {currentStep === 3 && selectedProvider === "card" && (
             <DonateWidgetThirdStep
               cardAddressData={cardAddressData}
               setCardAddressData={setCardAddressData}
@@ -170,17 +157,16 @@ const DonateWidget = () => {
               goToNextStep={goToNextStep}
               goToPrevStep={goToPrevStep}
             />
-          )}
+          )} */}
           {isDone && <DonateWidgetSuccess />}
-          {!isDone && (
-            <DonateWidgetButton
-              donationValue={donationValue}
-              currentStep={currentStep}
-              goToNextStep={goToNextStep}
-              formRef={formRef}
-              addressFormRef={addressFormRef}
-            />
-          )}
+          <DonateWidgetButton
+            donationValue={donationValue}
+            currentStep={currentStep}
+            goToNextStep={goToNextStep}
+            goToFirstStep={goToFirstStep}
+            formRef={formRef}
+            addressFormRef={addressFormRef}
+          />
         </CardContent>
       </Card>
     </Box>

@@ -1,64 +1,117 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { AutoForm, AutoField } from "uniforms-material";
-import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { PayPalButton } from "react-paypal-button-v2";
 
-import { paypalFormSchemaBridge } from "src/schemas/paypalFormSchema";
-import { cardFormSchemaBridge } from "src/schemas/cardFormSchema";
+// const useStyles = makeStyles((theme) => ({
+//   tab: {
+//     "& > span": {
+//       textTransform: "none",
+//       fontSize: "18px",
+//     },
 
-const useStyles = makeStyles((theme) => ({
-  tab: {
-    "& > span": {
-      textTransform: "none",
-      fontSize: "18px",
-    },
+//     "&.Mui-selected > span": {
+//       fontWeight: theme.typography.fontWeightBold,
+//     },
+//   },
 
-    "&.Mui-selected > span": {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-  },
+//   form: {
+//     margin: "24px 0",
+//   },
+//   filed: {
+//     padding: "6px 0",
+//     "& > div": {
+//       borderRadius: "5px",
+//     },
 
-  form: {
-    margin: "24px 0",
-  },
-  filed: {
-    padding: "6px 0",
-    "& > div": {
-      borderRadius: "5px",
-    },
-
-    "& > label": {
-      top: "5px",
-    },
-  },
-}));
+//     "& > label": {
+//       top: "5px",
+//     },
+//   },
+// }));
 
 const DonateWidgetSecondStep = ({
-  selectedProvider,
-  handleProviderChange,
-  formRef,
-  paypalData,
-  setPaypalData,
-  cardData,
-  setCardData,
+  donationValue,
+  goToFirstStep,
   goToNextStep,
+  isMonthlyDonation,
 }) => {
-  const classes = useStyles();
-
-  const handleSubmit = (data) => {
-    if (selectedProvider === "card") {
-      setCardData(data);
-      return goToNextStep();
-    }
-
-    setPaypalData(data);
-    return goToNextStep();
+  const paypalSubscribe = (data, actions) => {
+    const quant = (donationValue / 10).toString();
+    return actions.subscription.create({
+      plan_id: "P-60P81028WW038642TMHS4ODY",
+      quantity: quant,
+    });
   };
+
+  const paypalOnError = (err) => {
+    console.log(err);
+    alert("Transaction could not be completed. Please try again later.");
+  };
+
+  const paypalOnApprove = (data, actions) => {
+    // Capture the funds from the transaction
+    actions.subscription.get().then(
+      // Show a success message to your buyer
+      // OPTIONAL: Call your server to save the subscription
+      fetch("/paypal-subscription-complete", {
+        method: "post",
+        body: JSON.stringify({
+          orderID: data.orderID,
+          subscriptionID: data.subscriptionID,
+        }),
+      })
+    );
+  };
+
+  const paypalOnSuccess = (data) =>
+    fetch("/paypal-transaction-complete", {
+      method: "post",
+      body: JSON.stringify({
+        orderID: data.orderID,
+        subscriptionID: data.subscriptionID,
+      }),
+    });
+
   return (
     <>
-      <Tabs
+      {!isMonthlyDonation && (
+        <PayPalButton
+          amount={donationValue}
+          currency="USD"
+          // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+          onSuccess={(data) => {
+            goToNextStep();
+            paypalOnSuccess(data);
+          }}
+          catchError={paypalOnError}
+          onError={paypalOnError}
+          onCancel={goToFirstStep}
+          options={{
+            clientId:
+              "AbamL8-_OXBlAy_irUOUcEIbfeZyD5fM77qKrchVcNTD2mQldx092s9DUNH-6Ngrth4knhFWFItH0u3_",
+          }}
+        />
+      )}
+      {isMonthlyDonation && (
+        <PayPalButton
+          amount={donationValue}
+          currency="USD"
+          createSubscription={paypalSubscribe}
+          onApprove={() => {
+            goToNextStep();
+            paypalOnApprove();
+          }}
+          catchError={paypalOnError}
+          onError={paypalOnError}
+          onCancel={goToFirstStep}
+          options={{
+            vault: true,
+            clientId:
+              "AbamL8-_OXBlAy_irUOUcEIbfeZyD5fM77qKrchVcNTD2mQldx092s9DUNH-6Ngrth4knhFWFItH0u3_",
+          }}
+        />
+      )}
+      {/* <Tabs
         value={selectedProvider}
         indicatorColor="primary"
         textColor="primary"
@@ -95,24 +148,16 @@ const DonateWidgetSecondStep = ({
         >
           <AutoField className={classes.filed} name="email" />
         </AutoForm>
-      )}
+      )} */}
     </>
   );
 };
 
 DonateWidgetSecondStep.propTypes = {
-  selectedProvider: PropTypes.string.isRequired,
-  handleProviderChange: PropTypes.func.isRequired,
-  formRef: PropTypes.object,
-  paypalData: PropTypes.object.isRequired,
-  setPaypalData: PropTypes.func.isRequired,
-  cardData: PropTypes.object.isRequired,
-  setCardData: PropTypes.func.isRequired,
+  donationValue: PropTypes.number.isRequired,
+  goToFirstStep: PropTypes.func.isRequired,
   goToNextStep: PropTypes.func.isRequired,
-};
-
-DonateWidgetSecondStep.defaultProps = {
-  formRef: { current: null },
+  isMonthlyDonation: PropTypes.bool.isRequired,
 };
 
 export default DonateWidgetSecondStep;

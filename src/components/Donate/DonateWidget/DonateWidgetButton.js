@@ -10,18 +10,18 @@ const DonateWidgetButton = ({
   donationValue,
   currentStep,
   goToNextStep,
-  formRef,
-  addressFormRef,
+  goToFirstStep,
 }) => {
   const theme = useTheme();
   const isDisabled = donationValue === 0 || Number.isNaN(donationValue);
+  const showButton = currentStep !== 2;
 
   const getButtonText = () => {
     switch (currentStep) {
       case 1:
         return "Donate";
       case 3:
-        return `Donate $${donationValue}`;
+        return "Donate Again";
       default:
         return "Next";
     }
@@ -31,10 +31,8 @@ const DonateWidgetButton = ({
     switch (currentStep) {
       case 1:
         return goToNextStep();
-      case 2:
-        return formRef?.current?.submit();
       case 3:
-        return addressFormRef?.current?.submit();
+        return goToFirstStep();
       default:
         return goToNextStep();
     }
@@ -42,17 +40,19 @@ const DonateWidgetButton = ({
 
   return (
     <Box display="flex" justifyContent="center">
-      <Button
-        style={{
-          width: "187px",
-          minWidth: "auto",
-          marginBottom: theme.spacing(2),
-          border: "none",
-        }}
-        text={getButtonText()}
-        isDisabled={isDisabled}
-        onClick={getOnClick}
-      />
+      {showButton && (
+        <Button
+          style={{
+            width: "187px",
+            minWidth: "auto",
+            marginBottom: theme.spacing(2),
+            border: "none",
+          }}
+          text={getButtonText()}
+          isDisabled={isDisabled}
+          onClick={getOnClick}
+        />
+      )}
     </Box>
   );
 };
@@ -61,13 +61,7 @@ DonateWidgetButton.propTypes = {
   donationValue: PropTypes.number.isRequired,
   currentStep: PropTypes.number.isRequired,
   goToNextStep: PropTypes.func.isRequired,
-  formRef: PropTypes.object,
-  addressFormRef: PropTypes.object,
-};
-
-DonateWidgetButton.defaultProps = {
-  formRef: { current: null },
-  addressFormRef: { current: null },
+  goToFirstStep: PropTypes.func.isRequired,
 };
 
 export default DonateWidgetButton;
