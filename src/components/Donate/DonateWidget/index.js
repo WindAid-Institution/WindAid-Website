@@ -1,6 +1,6 @@
 /* eslint-disable one-var */
 /* eslint-disable max-len */
-import React, { useState, createRef } from "react";
+import React, { useState } from "react";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -12,18 +12,6 @@ import DonateWidgetButton from "./DonateWidgetButton";
 import DonateWidgetFirstStep from "./Steps/DonateWidgetFirstStep";
 import DonateWidgetSecondStep from "./Steps/DonateWidgetSecondStep";
 import DonateWidgetSuccess from "./Steps/DonateWidgetSuccess";
-
-const PAYPAL_INITIAL_DATA = {
-  email: undefined,
-};
-
-const CARD_INITIAL_DATA = {
-  CVC: undefined,
-  cardNumber: undefined,
-  expiryDate: undefined,
-  firstName: undefined,
-  lastName: undefined,
-};
 
 const BUTTONS_VALUES = [10, 20, 40, 50];
 
@@ -57,10 +45,6 @@ const DonateWidget = () => {
   const [inputValue, setInputValue] = useState("");
   const [isMonthlyDonation, setIsMonthlyDonation] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-
-  const [selectedProvider, setSelectedProvider] = useState("card");
-  const [paypalData, setPaypalData] = useState(PAYPAL_INITIAL_DATA);
-  const [cardData, setCardData] = useState(CARD_INITIAL_DATA);
 
   // fnc to handle click on one of predefined amounts
   const handleButtonClick = (event) => {
@@ -102,15 +86,8 @@ const DonateWidget = () => {
   const handleCheckboxToggle = (event) =>
     setIsMonthlyDonation(event.target.checked);
 
-  const handleProviderChange = (_event, newValue) => {
-    setSelectedProvider(newValue);
-  };
-
   const goToNextStep = () => setCurrentStep((value) => value + 1);
   const goToFirstStep = () => setCurrentStep(1);
-
-  const formRef = createRef();
-  const addressFormRef = createRef();
 
   const isDone = currentStep === 3;
   return (
@@ -138,34 +115,16 @@ const DonateWidget = () => {
             <DonateWidgetSecondStep
               donationValue={donationValue}
               goToFirstStep={goToFirstStep}
-              selectedProvider={selectedProvider}
-              handleProviderChange={handleProviderChange}
-              formRef={formRef}
-              setPaypalData={setPaypalData}
-              paypalData={paypalData}
-              setCardData={setCardData}
-              cardData={cardData}
               goToNextStep={goToNextStep}
               isMonthlyDonation={isMonthlyDonation}
             />
           )}
-          {/* {currentStep === 3 && selectedProvider === "card" && (
-            <DonateWidgetThirdStep
-              cardAddressData={cardAddressData}
-              setCardAddressData={setCardAddressData}
-              formRef={addressFormRef}
-              goToNextStep={goToNextStep}
-              goToPrevStep={goToPrevStep}
-            />
-          )} */}
           {isDone && <DonateWidgetSuccess />}
           <DonateWidgetButton
             donationValue={donationValue}
             currentStep={currentStep}
             goToNextStep={goToNextStep}
             goToFirstStep={goToFirstStep}
-            formRef={formRef}
-            addressFormRef={addressFormRef}
           />
         </CardContent>
       </Card>
