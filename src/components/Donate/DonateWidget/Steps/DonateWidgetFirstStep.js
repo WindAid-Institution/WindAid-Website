@@ -33,7 +33,7 @@ DonateWidgetFirstStep.propTypes = {
   handleButtonClick: PropTypes.func.isRequired,
   donationValue: PropTypes.number.isRequired,
   handleInputChange: PropTypes.func.isRequired,
-  inputValue: PropTypes.string.isRequired,
+  inputValue: PropTypes.number.isRequired,
   buttonsValues: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   handleCheckboxToggle: PropTypes.func.isRequired,
   isMonthlyDonation: PropTypes.bool.isRequired,

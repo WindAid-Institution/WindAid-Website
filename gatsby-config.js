@@ -12,6 +12,7 @@ module.exports = {
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    "gatsby-env-variables",
     {
       resolve: "gatsby-plugin-recaptcha",
       options: {
@@ -59,14 +60,6 @@ module.exports = {
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-paypal",
-      options: {
-        clientId: process.env.PAYPAL_TOKEN,
-        currency: "USD", // Optional
-        vault: true, // Optional
       },
     },
   ],

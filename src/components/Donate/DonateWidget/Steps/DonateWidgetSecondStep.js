@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { PayPalButton } from "react-paypal-button-v2";
-
 // const useStyles = makeStyles((theme) => ({
 //   tab: {
 //     "& > span": {
@@ -31,14 +30,18 @@ import { PayPalButton } from "react-paypal-button-v2";
 
 const DonateWidgetSecondStep = ({
   donationValue,
+  inputValue,
   goToFirstStep,
   goToNextStep,
   isMonthlyDonation,
 }) => {
+  const donation =
+    inputValue > 0 && inputValue !== "" ? inputValue : donationValue;
+
   const paypalSubscribe = (data, actions) => {
-    const quant = (donationValue / 10).toString();
+    const quant = (donation * 1).toString();
     return actions.subscription.create({
-      plan_id: "P-60P81028WW038642TMHS4ODY",
+      plan_id: process.env.GATSBY_PAYPAL_SUBSCRIPTION_PLAN_ID,
       quantity: quant,
     });
   };
@@ -76,8 +79,8 @@ const DonateWidgetSecondStep = ({
     <>
       {!isMonthlyDonation && (
         <PayPalButton
-          amount={donationValue}
-          currency="USD"
+          amount={donation}
+          currency={process.env.GATSBY_PAYPAL_CURRENCY}
           // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
           onSuccess={(data) => {
             goToNextStep();
@@ -87,15 +90,14 @@ const DonateWidgetSecondStep = ({
           onError={paypalOnError}
           onCancel={goToFirstStep}
           options={{
-            clientId:
-              "AbamL8-_OXBlAy_irUOUcEIbfeZyD5fM77qKrchVcNTD2mQldx092s9DUNH-6Ngrth4knhFWFItH0u3_",
+            clientId: process.env.GATSBY_PAYPAL_CLIENT_ID,
           }}
         />
       )}
       {isMonthlyDonation && (
         <PayPalButton
-          amount={donationValue}
-          currency="USD"
+          amount={donation}
+          currency={process.env.GATSBY_PAYPAL_CURRENCY}
           createSubscription={paypalSubscribe}
           onApprove={() => {
             goToNextStep();
@@ -106,8 +108,7 @@ const DonateWidgetSecondStep = ({
           onCancel={goToFirstStep}
           options={{
             vault: true,
-            clientId:
-              "AbamL8-_OXBlAy_irUOUcEIbfeZyD5fM77qKrchVcNTD2mQldx092s9DUNH-6Ngrth4knhFWFItH0u3_",
+            clientId: process.env.GATSBY_PAYPAL_CLIENT_ID,
           }}
         />
       )}
@@ -155,6 +156,7 @@ const DonateWidgetSecondStep = ({
 
 DonateWidgetSecondStep.propTypes = {
   donationValue: PropTypes.number.isRequired,
+  inputValue: PropTypes.number.isRequired,
   goToFirstStep: PropTypes.func.isRequired,
   goToNextStep: PropTypes.func.isRequired,
   isMonthlyDonation: PropTypes.bool.isRequired,

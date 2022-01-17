@@ -114,6 +114,7 @@ const DonateWidget = () => {
           {currentStep === 2 && (
             <DonateWidgetSecondStep
               donationValue={donationValue}
+              inputValue={inputValue}
               goToFirstStep={goToFirstStep}
               goToNextStep={goToNextStep}
               isMonthlyDonation={isMonthlyDonation}
