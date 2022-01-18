@@ -12,7 +12,6 @@ module.exports = {
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
-    "gatsby-env-variables",
     {
       resolve: "gatsby-plugin-recaptcha",
       options: {
