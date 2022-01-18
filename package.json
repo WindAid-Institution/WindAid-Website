@@ -40,7 +40,6 @@
     "clsx": "^1.1.1",
     "dotenv": "^8.2.0",
     "gatsby": "^3.0.1",
-    "gatsby-env-variables": "^2.0.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-image": "^1.2.0",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
