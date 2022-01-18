@@ -77,12 +77,12 @@ const Donate = () => {
   const theme = useTheme();
 
   const sectionStyle = {
-    height: "800px",
+    height: "auto",
     backgroundSize: "cover",
     backgroundPosition: "bottom",
 
     [theme.breakpoints.up("xl")]: {
-      height: "820px",
+      minHeight: "820px",
     },
   };
 

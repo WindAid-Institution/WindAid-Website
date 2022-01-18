@@ -1,64 +1,118 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { AutoForm, AutoField } from "uniforms-material";
-import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { PayPalButton } from "react-paypal-button-v2";
+// const useStyles = makeStyles((theme) => ({
+//   tab: {
+//     "& > span": {
+//       textTransform: "none",
+//       fontSize: "18px",
+//     },
 
-import { paypalFormSchemaBridge } from "src/schemas/paypalFormSchema";
-import { cardFormSchemaBridge } from "src/schemas/cardFormSchema";
+//     "&.Mui-selected > span": {
+//       fontWeight: theme.typography.fontWeightBold,
+//     },
+//   },
 
-const useStyles = makeStyles((theme) => ({
-  tab: {
-    "& > span": {
-      textTransform: "none",
-      fontSize: "18px",
-    },
+//   form: {
+//     margin: "24px 0",
+//   },
+//   filed: {
+//     padding: "6px 0",
+//     "& > div": {
+//       borderRadius: "5px",
+//     },
 
-    "&.Mui-selected > span": {
-      fontWeight: theme.typography.fontWeightBold,
-    },
-  },
-
-  form: {
-    margin: "24px 0",
-  },
-  filed: {
-    padding: "6px 0",
-    "& > div": {
-      borderRadius: "5px",
-    },
-
-    "& > label": {
-      top: "5px",
-    },
-  },
-}));
+//     "& > label": {
+//       top: "5px",
+//     },
+//   },
+// }));
 
 const DonateWidgetSecondStep = ({
-  selectedProvider,
-  handleProviderChange,
-  formRef,
-  paypalData,
-  setPaypalData,
-  cardData,
-  setCardData,
+  donationValue,
+  inputValue,
+  goToFirstStep,
   goToNextStep,
+  isMonthlyDonation,
 }) => {
-  const classes = useStyles();
+  const donation =
+    inputValue > 0 && inputValue !== "" ? inputValue : donationValue;
 
-  const handleSubmit = (data) => {
-    if (selectedProvider === "card") {
-      setCardData(data);
-      return goToNextStep();
-    }
-
-    setPaypalData(data);
-    return goToNextStep();
+  const paypalSubscribe = (data, actions) => {
+    const quant = (donation * 1).toString();
+    return actions.subscription.create({
+      plan_id: process.env.GATSBY_PAYPAL_SUBSCRIPTION_PLAN_ID,
+      quantity: quant,
+    });
   };
+
+  const paypalOnError = (err) => {
+    console.log(err);
+    alert("Transaction could not be completed. Please try again later.");
+  };
+
+  const paypalOnApprove = (data, actions) => {
+    // Capture the funds from the transaction
+    actions.subscription.get().then(
+      // Show a success message to your buyer
+      // OPTIONAL: Call your server to save the subscription
+      fetch("/paypal-subscription-complete", {
+        method: "post",
+        body: JSON.stringify({
+          orderID: data.orderID,
+          subscriptionID: data.subscriptionID,
+        }),
+      })
+    );
+  };
+
+  const paypalOnSuccess = (data) =>
+    fetch("/paypal-transaction-complete", {
+      method: "post",
+      body: JSON.stringify({
+        orderID: data.orderID,
+        subscriptionID: data.subscriptionID,
+      }),
+    });
+
   return (
     <>
-      <Tabs
+      {!isMonthlyDonation && (
+        <PayPalButton
+          amount={donation}
+          currency={process.env.GATSBY_PAYPAL_CURRENCY}
+          // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+          onSuccess={(data) => {
+            goToNextStep();
+            paypalOnSuccess(data);
+          }}
+          catchError={paypalOnError}
+          onError={paypalOnError}
+          onCancel={goToFirstStep}
+          options={{
+            clientId: process.env.GATSBY_PAYPAL_CLIENT_ID,
+          }}
+        />
+      )}
+      {isMonthlyDonation && (
+        <PayPalButton
+          amount={donation}
+          currency={process.env.GATSBY_PAYPAL_CURRENCY}
+          createSubscription={paypalSubscribe}
+          onApprove={() => {
+            goToNextStep();
+            paypalOnApprove();
+          }}
+          catchError={paypalOnError}
+          onError={paypalOnError}
+          onCancel={goToFirstStep}
+          options={{
+            vault: true,
+            clientId: process.env.GATSBY_PAYPAL_CLIENT_ID,
+          }}
+        />
+      )}
+      {/* <Tabs
         value={selectedProvider}
         indicatorColor="primary"
         textColor="primary"
@@ -95,24 +149,17 @@ const DonateWidgetSecondStep = ({
         >
           <AutoField className={classes.filed} name="email" />
         </AutoForm>
-      )}
+      )} */}
     </>
   );
 };
 
 DonateWidgetSecondStep.propTypes = {
-  selectedProvider: PropTypes.string.isRequired,
-  handleProviderChange: PropTypes.func.isRequired,
-  formRef: PropTypes.object,
-  paypalData: PropTypes.object.isRequired,
-  setPaypalData: PropTypes.func.isRequired,
-  cardData: PropTypes.object.isRequired,
-  setCardData: PropTypes.func.isRequired,
+  donationValue: PropTypes.number.isRequired,
+  inputValue: PropTypes.number.isRequired,
+  goToFirstStep: PropTypes.func.isRequired,
   goToNextStep: PropTypes.func.isRequired,
-};
-
-DonateWidgetSecondStep.defaultProps = {
-  formRef: { current: null },
+  isMonthlyDonation: PropTypes.bool.isRequired,
 };
 
 export default DonateWidgetSecondStep;
