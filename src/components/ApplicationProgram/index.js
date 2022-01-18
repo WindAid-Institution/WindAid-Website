@@ -8,6 +8,10 @@ import Button from "shared/Button";
 
 const title = "Application Form For Programs";
 
+const handleClick = () => {
+  window.open("https://bit.ly/windaidapplication");
+};
+
 const ApplicationProgram = () => (
   <SectionWrapper bgColor="secondary">
     <Title title={title} size="lg" />
@@ -20,7 +24,7 @@ const ApplicationProgram = () => (
     <Button
       text="Application Form"
       style={{ marginTop: "32px" }}
-      url="https://bit.ly/windaidapplication"
+      onClick={handleClick}
     />
     {/* <ApplicationForm /> */}
   </SectionWrapper>

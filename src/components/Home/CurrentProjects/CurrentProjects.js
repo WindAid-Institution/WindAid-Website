@@ -9,6 +9,12 @@ import ProjectsCarousel from "./ProjectsCarousel";
 
 const useStyles = makeStyles(() => ({
   mainWrapper: {},
+  textRow: {
+    textAlign: "center",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+  },
   row: {
     textAlign: "center",
     width: "100%",
@@ -43,7 +49,7 @@ const CurrentProjects = () => {
         alignItems="center"
         className={classes.mainWrapper}
       >
-        <Grid item xs={12} className={classes.row}>
+        <Grid item xs={12} className={classes.textRow}>
           <TextSection title={title} body={body} />
         </Grid>
         <Grid item xs={12} className={classes.row}>
