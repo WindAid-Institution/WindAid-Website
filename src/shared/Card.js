@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     padding: "16px 0",
   },
+  imgContainer: {
+    height: "350px",
+  },
   text: {
     color: theme.palette.secondary.main,
     textAlign: "left",
@@ -69,11 +72,13 @@ const Card = ({ image, imageText, children, style }) => {
 
   return (
     <Grid container className={classes.contentContainer}>
-      <GatsbyImage
-        image={gatsbyImageData}
-        alt={description}
-        className={classes.image}
-      />
+      <Box className={classes.imgContainer}>
+        <GatsbyImage
+          image={gatsbyImageData}
+          alt={description}
+          className={classes.image}
+        />
+      </Box>
       <Box className={classes.root}>
         {imageText && (
           <Box className={classes.imageText}>
