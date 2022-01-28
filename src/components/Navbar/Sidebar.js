@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { AiOutlineClose } from "@react-icons/all-files/ai/AiOutlineClose";
 
-import DonateButton from "./DonateButton";
+import ApplyButton from "./ApplyButton";
 import NavLinks from "./Navlinks";
 
 const useStyles = makeStyles((theme) => ({
@@ -52,9 +52,9 @@ const Sidebar = ({ isOpen, handleSidebarClose }) => {
         alignItems="center"
       >
         <NavLinks isSidebar />
-        <DonateButton isSidebar />
+        <ApplyButton isSidebar />
         <Typography className={classes.navCopyRight} variant="subtitle1">
-          &copy; WindAid Institure {new Date().getFullYear()}
+          &copy; WindAid Institute {new Date().getFullYear()}
         </Typography>
       </Box>
     </Drawer>

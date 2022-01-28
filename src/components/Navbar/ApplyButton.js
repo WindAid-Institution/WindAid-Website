@@ -36,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 0,
     display: "block",
     margin: "32px 0",
+    fontSize: "18px",
+    textDecoration: "none",
 
     [theme.breakpoints.up("sm")]: {
       display: "none",
@@ -43,26 +45,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DonateButton = ({ isSidebar }) => {
+const ApplyButton = ({ isSidebar }) => {
   const classes = useStyles();
   return (
-    <Link to="/donate">
+    <Link to="/application-program" style={{ textDecoration: "none" }}>
       <Button
         disableRipple
         className={clsx(classes.root, isSidebar && classes.sidebar)}
       >
-        Donate
+        Apply
       </Button>
     </Link>
   );
 };
 
-DonateButton.propTypes = {
+ApplyButton.propTypes = {
   isSidebar: propTypes.bool,
 };
 
-DonateButton.defaultProps = {
+ApplyButton.defaultProps = {
   isSidebar: false,
 };
 
-export default DonateButton;
+export default ApplyButton;

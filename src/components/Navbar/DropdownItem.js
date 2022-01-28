@@ -235,17 +235,17 @@ const DropdownItem = ({ route, isSidebar }) => {
       )}
       activeClassName={classes.navItemActive}
       onMouseEnter={() => {
-        if (isPrimary && hasSubmenu && isUpLg) {
+        if (isPrimary && hasSubmenu) {
           return handleSecondSubmenuOpen();
         }
-        if (isSecondary && isUpLg) {
+        if (isSecondary) {
           handleSubmenuOpen();
           return handleSecondSubmenuOpen();
         }
         return null;
       }}
       onMouseLeave={() => {
-        if (isPrimary && hasSubmenu && isUpLg) {
+        if (isPrimary && hasSubmenu) {
           return handleSecondSubmenuClose();
         }
         return null;
@@ -342,7 +342,7 @@ const DropdownItem = ({ route, isSidebar }) => {
                   onMouseEnter={isSubSubmenu ? handleSecondSubmenuOpen : null}
                   hasSubmenu={isSubSubmenu}
                 />
-                {isSecondSubmenuOpen && isSubSubmenu && isUpLg && (
+                {isSecondSubmenuOpen && isSubSubmenu && (
                   <Box
                     className={classes.subSubMenu}
                     onMouseLeave={handleSecondSubmenuClose}

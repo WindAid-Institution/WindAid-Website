@@ -8,7 +8,7 @@ import Logo from "images/navbar/logo.svg";
 import Toggle from "images/navbar/toggle.svg";
 
 import NavLinks from "./Navlinks";
-import DonateButton from "./DonateButton";
+import ApplyButton from "./ApplyButton";
 import Sidebar from "./Sidebar";
 
 const useStyles = makeStyles((theme) => ({
@@ -77,7 +77,7 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="sticky" color="default" className={classes.root}>
+      <AppBar position="fixed" color="default" className={classes.root}>
         <Toolbar className={classes.toolbar} variant="dense" disableGutters>
           <Link to="/">
             <Logo alt="windaid logo" className={classes.logo} />
@@ -90,7 +90,7 @@ const Navbar = () => {
             <NavLinks />
 
             <Box className={classes.buttonsContainer}>
-              <DonateButton />
+              <ApplyButton />
               <Toggle
                 role="button"
                 className={classes.toggleButton}
@@ -100,6 +100,7 @@ const Navbar = () => {
           </Box>
         </Toolbar>
       </AppBar>
+      <Toolbar />
 
       <Sidebar isOpen={isSidebarOpen} handleSidebarClose={handleSidebarClose} />
     </>

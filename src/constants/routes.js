@@ -102,6 +102,10 @@ export const ROUTES = {
     name: "Apply",
     path: "/application-program",
   },
+  DONATE: {
+    name: "Donate",
+    path: "/donate",
+  },
 };
 
 const {
@@ -118,14 +122,14 @@ const {
   TRUJILLO,
   FAQ,
   GENERAL_CONTACT,
-  APPLY,
+  DONATE,
 } = ROUTES;
 export const NAVBAR_ROUTES = [
   WHO_WE_ARE,
   OUR_WORK,
   PROGRAMS,
   GENERAL_CONTACT,
-  APPLY,
+  DONATE,
 ];
 
 export const MENU_ROUTES = [
@@ -149,5 +153,5 @@ export const MENU_ROUTES = [
       FAQ,
     ],
   },
-  { main: APPLY },
+  { main: DONATE },
 ];
