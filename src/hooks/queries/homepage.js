@@ -54,6 +54,7 @@ const useHomepageData = () => {
             gatsbyImageData(quality: 100, placeholder: BLURRED)
             description
           }
+          path
         }
       }
 
