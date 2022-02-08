@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core";
+import { createTheme } from "@material-ui/core/styles";
 import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
 
 // we create theme where we can override default Material-UI values
@@ -15,7 +15,7 @@ const breakpoints = createBreakpoints({
   },
 });
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#056839",

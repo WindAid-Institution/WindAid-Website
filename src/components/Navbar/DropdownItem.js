@@ -101,6 +101,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     alignItems: "center",
     cursor: "pointer",
+
     [theme.breakpoints.up("lg")]: {
       flexDirection: "row",
       width: "auto",
@@ -119,7 +120,8 @@ const useStyles = makeStyles((theme) => ({
       left: 0,
       top: "82px",
       width: "250px",
-      height: "64px",
+      height: "auto",
+      boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
     },
   },
   subSubMenu: {
@@ -131,6 +133,7 @@ const useStyles = makeStyles((theme) => ({
       position: "absolute",
       left: "250px",
       width: "250px",
+      boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
     },
   },
 
@@ -141,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.up("lg")]: {
       paddingLeft: theme.spacing(4),
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: "#FBF6EE",
     },
 
     "& > p": {
@@ -235,17 +238,17 @@ const DropdownItem = ({ route, isSidebar }) => {
       )}
       activeClassName={classes.navItemActive}
       onMouseEnter={() => {
-        if (isPrimary && hasSubmenu && isUpLg) {
+        if (isPrimary && hasSubmenu) {
           return handleSecondSubmenuOpen();
         }
-        if (isSecondary && isUpLg) {
+        if (isSecondary) {
           handleSubmenuOpen();
           return handleSecondSubmenuOpen();
         }
         return null;
       }}
       onMouseLeave={() => {
-        if (isPrimary && hasSubmenu && isUpLg) {
+        if (isPrimary && hasSubmenu) {
           return handleSecondSubmenuClose();
         }
         return null;
@@ -342,7 +345,7 @@ const DropdownItem = ({ route, isSidebar }) => {
                   onMouseEnter={isSubSubmenu ? handleSecondSubmenuOpen : null}
                   hasSubmenu={isSubSubmenu}
                 />
-                {isSecondSubmenuOpen && isSubSubmenu && isUpLg && (
+                {isSecondSubmenuOpen && isSubSubmenu && (
                   <Box
                     className={classes.subSubMenu}
                     onMouseLeave={handleSecondSubmenuClose}

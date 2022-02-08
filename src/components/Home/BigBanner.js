@@ -67,7 +67,7 @@ const BigBanner = () => {
             {title}
           </Typography>
           <Typography
-            align="justify"
+            align="left"
             variant="subtitle1"
             className={classes.subtitle}
           >

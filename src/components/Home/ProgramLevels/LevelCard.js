@@ -1,25 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "gatsby";
+import { ROUTES } from "src/constants/routes";
 
 import TextSection from "shared/TextSection";
-import Card from "shared/Card";
+import StackedCards from "shared/StackedCards";
 import theme from "../../../../theme";
 
 const additionalStyle = {
   textContainerStyle: {
     [theme.breakpoints.up("lg")]: {
-      height: "650px",
+      height: "auto",
     },
   },
 };
 
-const LevelCard = ({ header, title, body, image }) => {
+const LevelCard = ({ header, title, body, image, path }) => {
   const { body: bodyContent } = body;
 
   return (
-    <Card image={image} style={additionalStyle}>
-      <TextSection title={title} header={header} body={bodyContent} />
-    </Card>
+    <Link to={ROUTES[path].path} style={{ textDecoration: "none" }}>
+      <StackedCards image={image} style={additionalStyle}>
+        <TextSection title={title} header={header} body={bodyContent} />
+      </StackedCards>
+    </Link>
   );
 };
 
@@ -28,6 +32,7 @@ LevelCard.propTypes = {
   title: PropTypes.string.isRequired,
   body: PropTypes.object.isRequired,
   image: PropTypes.object.isRequired,
+  path: PropTypes.string.isRequired,
 };
 
 export default LevelCard;

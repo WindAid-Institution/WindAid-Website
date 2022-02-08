@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "40px",
       left: "0",
       padding: "inherit",
+      marginLeft: "100px",
     },
     [theme.breakpoints.up("md")]: {
       fontSize: "30px",
@@ -30,9 +31,11 @@ const useStyles = makeStyles((theme) => ({
       bottom: "0",
       left: "0",
       padding: "0",
+      marginLeft: "100px",
     },
     [theme.breakpoints.up("lg")]: {
       padding: "inherit",
+      marginLeft: "150px",
     },
   },
 

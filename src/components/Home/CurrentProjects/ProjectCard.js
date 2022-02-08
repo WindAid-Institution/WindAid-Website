@@ -14,6 +14,10 @@ const useStyles = makeStyles(() => ({
   },
   description: {
     marginBottom: "32px",
+    display: "-webkit-box",
+    overflow: "hidden",
+    WebkitBoxOrient: "vertical",
+    WebkitLineClamp: 3,
   },
   stats: {
     direction: "column",

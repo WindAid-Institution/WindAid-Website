@@ -20,7 +20,7 @@ const ProgramLevels = () => {
       <TextSection size="full" title={title} body={body} />
       <Grid container spacing={2}>
         {programLevelCardsContent.map((card) => (
-          <Grid item lg={4} key={card.header}>
+          <Grid item lg={12} key={card.header}>
             <LevelCard {...card} />
           </Grid>
         ))}

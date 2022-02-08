@@ -31,11 +31,7 @@ export const query = graphql`
     hero: contentfulPageHero(contentId: { eq: "aboutUs" }) {
       title
       image {
-        gatsbyImageData(
-          quality: 100
-          placeholder: TRACED_SVG
-          layout: FULL_WIDTH
-        )
+        gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
       }
     }
   }
