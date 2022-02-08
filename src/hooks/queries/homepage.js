@@ -10,7 +10,7 @@ const useHomepageData = () => {
           description
           gatsbyImageData(
             layout: FULL_WIDTH
-            placeholder: TRACED_SVG
+            placeholder: BLURRED
             quality: 100
           )
         }

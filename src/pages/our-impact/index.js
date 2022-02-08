@@ -61,11 +61,7 @@ export const query = graphql`
     hero: contentfulPageHero(contentId: { eq: "ourImpact" }) {
       title
       image {
-        gatsbyImageData(
-          quality: 100
-          placeholder: TRACED_SVG
-          layout: FULL_WIDTH
-        )
+        gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
       }
     }
 
@@ -85,11 +81,7 @@ export const query = graphql`
         sunsetParagraph: body
       }
       sunsetImage: image {
-        gatsbyImageData(
-          quality: 100
-          placeholder: TRACED_SVG
-          layout: FULL_WIDTH
-        )
+        gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
       }
     }
   }

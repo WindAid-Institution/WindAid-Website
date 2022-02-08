@@ -58,11 +58,7 @@ export const query = graphql`
     hero: contentfulPageHero(contentId: { eq: "generalProgram" }) {
       title
       image {
-        gatsbyImageData(
-          quality: 100
-          placeholder: TRACED_SVG
-          layout: FULL_WIDTH
-        )
+        gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
       }
     }
 
@@ -76,11 +72,7 @@ export const query = graphql`
         separationBodyTwo: bodyTwo
       }
       separationImage: image {
-        gatsbyImageData(
-          quality: 100
-          placeholder: TRACED_SVG
-          layout: FULL_WIDTH
-        )
+        gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
       }
     }
   }
