@@ -50,7 +50,7 @@ const Stats = () => {
           <Grid
             container
             direction="row"
-            justify="space-around"
+            justifyContent="space-around"
             alignItems="stretch"
           >
             {images.map((stats, index) => (
