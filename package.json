@@ -71,7 +71,8 @@
     "uniforms": "^3.4.0",
     "uniforms-bridge-json-schema": "^3.3.0",
     "uniforms-material": "^3.3.0",
-    "webfontloader": "^1.6.28"
+    "webfontloader": "^1.6.28",
+    "yurnalist": "^2.1.0"
   },
   "main": "gatsby-browser.js",
   "devDependencies": {
