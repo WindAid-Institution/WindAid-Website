@@ -6,7 +6,8 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: "Windaid Institute | Education, Empowerment, Electricity",
-    siteUrl: "https://windaid.org"
+    siteUrl: "https://windaid.org",
+    author: "Rishi Khan"
   },
   plugins: [
     "gatsby-plugin-styled-components",
