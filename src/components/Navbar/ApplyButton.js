@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 const ApplyButton = ({ isSidebar }) => {
   const classes = useStyles();
   return (
-    <Link to="/application-program" style={{ textDecoration: "none" }}>
+    <Link to="/application" style={{ textDecoration: "none" }}>
       <Button
         disableRipple
         className={clsx(classes.root, isSidebar && classes.sidebar)}

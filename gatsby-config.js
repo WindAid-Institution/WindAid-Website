@@ -5,13 +5,16 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: "WindaidInstitute",
+    title: "Windaid Institute | Education, Empowerment, Electricity",
+    siteUrl: "https://windaid.org"
   },
   plugins: [
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-recaptcha",
       options: {

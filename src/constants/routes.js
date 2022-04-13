@@ -71,7 +71,7 @@ export const ROUTES = {
 
   CAREERS: {
     name: "Careers",
-    path: "/application-program",
+    path: "/application",
   },
 
   TRUJILLO: {
@@ -96,11 +96,11 @@ export const ROUTES = {
 
   PROGRAM_APPLICATION: {
     name: "Program Application",
-    path: "/application-program",
+    path: "/application",
   },
   APPLY: {
     name: "Apply",
-    path: "/application-program",
+    path: "/application",
   },
   DONATE: {
     name: "Donate",
