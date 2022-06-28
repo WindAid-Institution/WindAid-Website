@@ -1,50 +1,22 @@
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Grid, Box } from "@mui/material";
+import useTheme from "@mui/material/styles/useTheme";
 
 import useHomepageData from "src/hooks/queries/homepage";
 
-const useStyles = makeStyles((theme) => ({
-  root: { position: "relative", height: "100%", width: "100%" },
-  picture: {
-    height: "calc(19.7vw + 329px)",
-    maxHeight: "850px",
-    width: "100%",
-    objectFit: "cover",
-  },
-  textField: {
-    position: "absolute",
-    top: "calc(7.7vw + 89.3px)",
-    padding: "0px 34px",
-    [theme.breakpoints.up("sm")]: {
-      padding: "0px 54px",
-    },
-    [theme.breakpoints.up("xl")]: {
-      padding: "0 calc(12.6vw - 75px)",
-    },
-  },
-  heading: {
-    color: theme.palette.secondary.main,
-    fontSize: "calc(1.48vw + 18.7px)",
-    fontWeight: theme.typography.fontWeightBold,
-    lineHeight: "calc(1.76vw + 28.7px)",
-    width: "calc(20.74vw + 201.33px)",
-  },
-  subtitle: {
-    color: theme.palette.secondary.main,
-    fontSize: "calc(0.37vw + 12.7px)",
-    fontWeight: theme.typography.fontWeightRegular,
-    lineHeight: "calc(0.09vw + 27.7px)",
-    width: "calc(20.74vw + 201.33px)",
-    margin: "8px 0px",
-  },
-}));
-
 const BigBanner = () => {
-  const classes = useStyles();
   const theme = useTheme();
+
+  const classes = {
+    picture: {
+      height: "calc(19.7vw + 329px)",
+      maxHeight: "850px",
+      width: "100%",
+      objectFit: "cover",
+    },
+  };
+
   const {
     hero: {
       title,
@@ -54,25 +26,61 @@ const BigBanner = () => {
   } = useHomepageData();
 
   return (
-    <Grid container className={classes.root}>
-      <Grid item className={classes.root}>
+    <Grid
+      container
+      sx={{ position: "relative", height: "100%", width: "100%" }}
+    >
+      <Grid item sx={{ position: "relative", height: "100%", width: "100%" }}>
         <GatsbyImage
           image={gatsbyImageData}
-          className={classes.picture}
+          style={classes.picture}
           alt={description}
           backgroundColor={theme.palette.primary.main}
         />
-        <Grid item className={classes.textField}>
-          <Typography variant="h1" className={classes.heading}>
+        <Grid
+          item
+          sx={{
+            position: "absolute",
+            top: "calc(7.7vw + 89.3px)",
+            padding: {
+              xs: "0px 34px",
+              sm: "0px 54px",
+              lg: "0 calc(12.6vw - 75px)",
+            },
+            // [theme.breakpoints.up("sm")]: {
+            //   padding: "0px 54px",
+            // },
+            // [theme.breakpoints.up("xl")]: {
+            //   padding: "0 calc(12.6vw - 75px)",
+            // },
+          }}
+        >
+          <Box
+            sx={{
+              typography: "h1",
+              color: theme.palette.secondary.main,
+              fontSize: "calc(1.48vw + 18.7px)",
+              fontWeight: theme.typography.fontWeightBold,
+              lineHeight: "calc(1.76vw + 28.7px)",
+              width: "calc(20.74vw + 201.33px)",
+            }}
+          >
             {title}
-          </Typography>
-          <Typography
+          </Box>
+          <Box
             align="left"
-            variant="subtitle1"
-            className={classes.subtitle}
+            sx={{
+              typography: "subtitle1",
+              color: theme.palette.secondary.main,
+              fontSize: "calc(0.37vw + 12.7px)",
+              fontWeight: theme.typography.fontWeightRegular,
+              lineHeight: "calc(0.09vw + 27.7px)",
+              width: "calc(20.74vw + 201.33px)",
+              margin: "8px 0px",
+            }}
           >
             {subtitle}
-          </Typography>
+          </Box>
         </Grid>
       </Grid>
     </Grid>

@@ -1,19 +1,4 @@
-import { createTheme } from "@material-ui/core/styles";
-import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
-
-// we create theme where we can override default Material-UI values
-
-const breakpoints = createBreakpoints({
-  values: {
-    xxs: 0,
-    xs: 320,
-    sm: 600,
-    xmd: 768,
-    md: 960,
-    lg: 1200,
-    xl: 1440,
-  },
-});
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
@@ -39,29 +24,39 @@ const theme = createTheme({
     body1: {
       lineHeight: "28px",
       fontSize: "14px",
-      [breakpoints.up("sm")]: {
-        fontSize: "16px",
-      },
+      // [breakpoints.up("sm")]: {
+      //   fontSize: "16px",
+      // },
     },
     body2: {
       lineHeight: "20px",
       fontSize: "14px",
       fontWeight: 700,
-      [breakpoints.up("sm")]: {
-        lineHeight: "32px",
-        fontSize: "18px",
-      },
+      // [breakpoints.up("sm")]: {
+      //   lineHeight: "32px",
+      //   fontSize: "18px",
+      // },
+    },
+    h1: {
+      fontSize: "40px",
+      lineHeight: "54px",
+      fontWeight: 800,
     },
     h4: {
       fontSize: "24px",
       lineHeight: "35px",
       fontWeight: 700,
-      [breakpoints.up("sm")]: {
-        fontSize: "30px",
-        lineHeight: "40px",
-      },
-      [breakpoints.up("md")]: {
-        fontSize: "40px",
+      // [breakpoints.up("sm")]: {
+      //   fontSize: "30px",
+      //   lineHeight: "40px",
+      // },
+      // [breakpoints.up("md")]: {
+      //   fontSize: "40px",
+      // },
+      subtitle1: {
+        fontSize: "18px",
+        lineHeight: "29px",
+        fontWeight: 400,
       },
     },
   },
@@ -77,10 +72,10 @@ const theme = createTheme({
         fontWeight: 700,
         fontSize: "13px",
         lineHeight: "13px",
-        [breakpoints.up("sm")]: {
-          minWidth: "320px",
-          fontSize: "16px",
-        },
+        // [breakpoints.up("sm")]: {
+        //   minWidth: "320px",
+        //   fontSize: "16px",
+        // },
       },
     },
     MuiContainer: {
@@ -91,28 +86,33 @@ const theme = createTheme({
         marginRight: "auto",
         marginLeft: "auto",
         transition: "max-width 0.2s ease",
-        [breakpoints.up("sm")]: {
-          maxWidth: "540px",
-        },
-        [breakpoints.up("xmd")]: {
-          maxWidth: "720px",
-        },
-        [breakpoints.up("md")]: {
-          maxWidth: "920px",
-        },
+        // [breakpoints.up("sm")]: {
+        //   maxWidth: "540px",
+        // },
+        // [breakpoints.up("xmd")]: {
+        //   maxWidth: "720px",
+        // },
+        // [breakpoints.up("md")]: {
+        //   maxWidth: "920px",
+        // },
 
-        [breakpoints.up("lg")]: {
-          maxWidth: "1140px",
-        },
-        [breakpoints.up("xl")]: {
-          maxWidth: "1380px",
-        },
+        // [breakpoints.up("lg")]: {
+        //   maxWidth: "1140px",
+        // },
+        // [breakpoints.up("xl")]: {
+        //   maxWidth: "1380px",
+        // },
       },
     },
     MuiTypography: {
       root: {
         color: "#000000",
         fontStyle: "normal",
+      },
+      h1: {
+        fontSize: "40px",
+        lineHeight: "54px",
+        fontWeight: 800,
       },
     },
     MuiLink: {
@@ -132,7 +132,17 @@ const theme = createTheme({
       color: "primary",
     },
   },
-  breakpoints,
+  breakpoints: {
+    values: {
+      xxs: 0,
+      xs: 320,
+      sm: 600,
+      xmd: 768,
+      md: 960,
+      lg: 1200,
+      xl: 1440,
+    },
+  },
 });
 
 export default theme;

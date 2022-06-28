@@ -6,85 +6,89 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import useTheme from "@mui/material/styles/useTheme";
 import clsx from "clsx";
 
 import { FOOTER_SOCIALS, FOOTER_LINKS } from "src/constants/footer";
 
-const useStyles = makeStyles((theme) => ({
-  footerText: {
-    fontFamily: theme.typography.fontFamily,
-    fontStyle: "normal",
-  },
-  linksHeader: {
-    fontWeight: "bold",
-    fontSize: "18px",
-    lineHeight: "32px",
-    [theme.breakpoints.down("md")]: {
-      fontSize: "24px",
-      lineHeight: "36px",
+const useStyles = makeStyles(() => {
+  const theme = useTheme();
+  return {
+    footerText: {
+      fontFamily: theme.typography.fontFamily,
+      fontStyle: "normal",
     },
-  },
-  linkText: {
-    fontWeight: "normal",
-    fontSize: "14px",
-    lineHeight: "16px",
-
-    [theme.breakpoints.down("md")]: {
+    linksHeader: {
+      fontWeight: "bold",
       fontSize: "18px",
-      lineHeight: "22px",
+      lineHeight: "32px",
+      [theme.breakpoints.down("md")]: {
+        fontSize: "24px",
+        lineHeight: "36px",
+      },
     },
-    color: theme.palette.primary.dark,
-  },
-  padding: {
-    padding: "0",
-  },
-  spacingBottom: {
-    marginBottom: "16px",
-  },
-  grid: {
-    margin: "auto",
-    [theme.breakpoints.down("md")]: {
-      padding: "40px 15px",
-    },
-    [theme.breakpoints.up("md")]: {
-      padding: "80px 15px",
-      maxWidth: "1110px",
-    },
-  },
-  listItem: {
-    "& > a": {
-      textDecoration: "none",
-    },
-  },
-  socialsLink: {
-    display: "flex",
-    width: "24px",
-    height: "24px",
-    padding: "3px",
-    margin: "3px",
-    borderRadius: "50%",
-    background: theme.palette.primary.main,
-    color: theme.palette.secondary.main,
-    textDecoration: "none",
+    linkText: {
+      fontWeight: "normal",
+      fontSize: "14px",
+      lineHeight: "16px",
 
-    [theme.breakpoints.up("lg")]: {
-      padding: "4px",
-      margin: "4px",
+      [theme.breakpoints.down("md")]: {
+        fontSize: "18px",
+        lineHeight: "22px",
+      },
+      color: theme.palette.primary.dark,
     },
-
-    "&:hover": {
-      color: theme.palette.secondary.main,
-      background: theme.palette.primary.main,
+    padding: {
+      padding: "0",
     },
-
-    "& *": {
+    spacingBottom: {
+      marginBottom: "16px",
+    },
+    grid: {
       margin: "auto",
+      [theme.breakpoints.down("md")]: {
+        padding: "40px 15px",
+      },
+      [theme.breakpoints.up("md")]: {
+        padding: "80px 15px",
+        maxWidth: "1110px",
+      },
     },
-  },
-  socials: {
-    display: "flex",
-  },
-}));
+    listItem: {
+      "& > a": {
+        textDecoration: "none",
+      },
+    },
+    socialsLink: {
+      display: "flex",
+      width: "24px",
+      height: "24px",
+      padding: "3px",
+      margin: "3px",
+      borderRadius: "50%",
+      background: theme.palette.primary.main,
+      color: theme.palette.secondary.main,
+      textDecoration: "none",
+
+      [theme.breakpoints.up("lg")]: {
+        padding: "4px",
+        margin: "4px",
+      },
+
+      "&:hover": {
+        color: theme.palette.secondary.main,
+        background: theme.palette.primary.main,
+      },
+
+      "& *": {
+        margin: "auto",
+      },
+    },
+    socials: {
+      display: "flex",
+    },
+  };
+});
 
 const ExternalLink = ({ to, children }) => <a href={to}>{children}</a>;
 

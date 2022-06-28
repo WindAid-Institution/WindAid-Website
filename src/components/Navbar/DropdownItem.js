@@ -1,208 +1,213 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { makeStyles } from "@material-ui/core/styles";
+import useTheme from "@mui/material/styles/useTheme";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-const useStyles = makeStyles((theme) => ({
-  navItem: {
-    maxHeight: "40px",
-    padding: "16px 0",
-    display: "none",
-    textDecoration: "none",
-    position: "relative",
-
-    "& > p": {
-      fontSize: "16px",
-      color: theme.palette.secondary.main,
-      fontWeight: theme.typography.fontWeightBold,
-    },
-
-    [theme.breakpoints.between(1200, 1251)]: {
-      paddingLeft: "26px",
-      paddingRight: "26px",
-    },
-
-    [theme.breakpoints.up("lg")]: {
-      display: "inline-block",
-      maxHeight: "80px",
-
-      padding: "28px 32px 32px 32px",
-    },
-
-    "&:after": {
-      transition: "all 0.5s ease",
-      position: "absolute",
-      bottom: "2px",
-      left: 0,
-      right: 0,
-      margin: "auto",
-      width: "0%",
-      // eslint-disable-next-line quotes
-      content: '"."',
-      color: "transparent",
-      background: theme.palette.primary.main,
-      height: "5px",
-
-      [theme.breakpoints.up("lg")]: {
-        background: theme.palette.secondary.main,
-      },
-    },
-
-    "&:hover:after": {
-      width: "100%",
-    },
-
-    "&:hover": {
-      color: theme.palette.primary.main,
+const useStyles = makeStyles(() => {
+  const theme = useTheme();
+  return {
+    navItem: {
+      maxHeight: "40px",
+      padding: "16px 0",
+      display: "none",
       textDecoration: "none",
-      [theme.breakpoints.up("lg")]: {
+      position: "relative",
+
+      "& > p": {
+        fontSize: "16px",
         color: theme.palette.secondary.main,
+        fontWeight: theme.typography.fontWeightBold,
+        fontFamily: theme.typography.fontFamily,
       },
-    },
-  },
 
-  navItemActive: {
-    "&:after": {
-      transition: "all 0.5s ease",
-      position: "absolute",
-      bottom: "2px",
-      left: 0,
-      right: 0,
-      margin: "auto",
-      width: "100%",
-      // eslint-disable-next-line quotes
-      content: '"."',
-      color: "transparent",
-      background: theme.palette.primary.main,
-      height: "5px",
+      [theme.breakpoints.between(1200, 1251)]: {
+        paddingLeft: "26px",
+        paddingRight: "26px",
+      },
 
       [theme.breakpoints.up("lg")]: {
-        background: theme.palette.secondary.main,
+        display: "inline-block",
+        maxHeight: "80px",
+
+        padding: "28px 32px 32px 32px",
+      },
+
+      "&:after": {
+        transition: "all 0.5s ease",
+        position: "absolute",
+        bottom: "2px",
+        left: 0,
+        right: 0,
+        margin: "auto",
+        width: "0%",
+        // eslint-disable-next-line quotes
+        content: '"."',
+        color: "transparent",
+        background: theme.palette.primary.main,
+        height: "5px",
+
+        [theme.breakpoints.up("lg")]: {
+          background: theme.palette.secondary.main,
+        },
+      },
+
+      "&:hover:after": {
+        width: "100%",
+      },
+
+      "&:hover": {
+        color: theme.palette.primary.main,
+        textDecoration: "none",
+        [theme.breakpoints.up("lg")]: {
+          color: theme.palette.secondary.main,
+        },
       },
     },
-  },
 
-  navItemSidebar: {
-    display: "block",
+    navItemActive: {
+      "&:after": {
+        transition: "all 0.5s ease",
+        position: "absolute",
+        bottom: "2px",
+        left: 0,
+        right: 0,
+        margin: "auto",
+        width: "100%",
+        // eslint-disable-next-line quotes
+        content: '"."',
+        color: "transparent",
+        background: theme.palette.primary.main,
+        height: "5px",
 
-    "& > p": {
-      color: theme.palette.primary.dark,
-    },
-  },
-
-  root: {
-    display: "flex",
-    position: "relative",
-    flexDirection: "column",
-    width: "100%",
-    alignItems: "center",
-    cursor: "pointer",
-
-    [theme.breakpoints.up("lg")]: {
-      flexDirection: "row",
-      width: "auto",
-    },
-  },
-
-  subMenu: {
-    position: "relative",
-
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-
-    [theme.breakpoints.up("lg")]: {
-      position: "absolute",
-      left: 0,
-      top: "82px",
-      width: "250px",
-      height: "auto",
-      boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
-    },
-  },
-  subSubMenu: {
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-
-    [theme.breakpoints.up("lg")]: {
-      position: "absolute",
-      left: "250px",
-      width: "250px",
-      boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
-    },
-  },
-
-  primary: {
-    cursor: "pointer",
-    paddingLeft: theme.spacing(2),
-    backgroundColor: theme.palette.primary.main,
-
-    [theme.breakpoints.up("lg")]: {
-      paddingLeft: theme.spacing(4),
-      backgroundColor: "#FBF6EE",
+        [theme.breakpoints.up("lg")]: {
+          background: theme.palette.secondary.main,
+        },
+      },
     },
 
-    "& > p": {
-      color: theme.palette.secondary.main,
-      fontWeight: theme.typography.fontWeightRegular,
+    navItemSidebar: {
+      display: "block",
 
-      [theme.breakpoints.up("lg")]: {
+      "& > p": {
         color: theme.palette.primary.dark,
       },
     },
-    "&:hover": {
+
+    root: {
+      display: "flex",
+      position: "relative",
+      flexDirection: "column",
+      width: "100%",
+      alignItems: "center",
+      cursor: "pointer",
+
+      [theme.breakpoints.up("lg")]: {
+        flexDirection: "row",
+        width: "auto",
+      },
+    },
+
+    subMenu: {
+      position: "relative",
+
+      display: "flex",
+      flexDirection: "column",
+      width: "100%",
+
+      [theme.breakpoints.up("lg")]: {
+        position: "absolute",
+        left: 0,
+        top: "82px",
+        width: "250px",
+        height: "auto",
+        boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
+      },
+    },
+    subSubMenu: {
+      position: "relative",
+      display: "flex",
+      flexDirection: "column",
+
+      [theme.breakpoints.up("lg")]: {
+        position: "absolute",
+        left: "250px",
+        width: "250px",
+        boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
+      },
+    },
+
+    primary: {
+      cursor: "pointer",
+      paddingLeft: theme.spacing(2),
       backgroundColor: theme.palette.primary.main,
+
+      [theme.breakpoints.up("lg")]: {
+        paddingLeft: theme.spacing(4),
+        backgroundColor: "#FBF6EE",
+      },
+
+      "& > p": {
+        color: theme.palette.secondary.main,
+        fontWeight: theme.typography.fontWeightRegular,
+
+        [theme.breakpoints.up("lg")]: {
+          color: theme.palette.primary.dark,
+        },
+      },
+      "&:hover": {
+        backgroundColor: theme.palette.primary.main,
+      },
+
+      "&:hover > p": {
+        fontWeight: theme.typography.fontWeightBold,
+        color: theme.palette.secondary.main,
+      },
+
+      "&:after": {
+        display: "none",
+      },
     },
 
-    "&:hover > p": {
-      fontWeight: theme.typography.fontWeightBold,
-      color: theme.palette.secondary.main,
-    },
-
-    "&:after": {
-      display: "none",
-    },
-  },
-
-  secondary: {
-    color: theme.palette.primary.dark,
-    backgroundColor: "#FBF6EE",
-    cursor: "pointer",
-    paddingLeft: theme.spacing(4),
-
-    [theme.breakpoints.up("lg")]: {
-      paddingLeft: "auto",
-      backgroundColor: theme.palette.secondary.main,
-    },
-    "& > p": {
+    secondary: {
       color: theme.palette.primary.dark,
-      fontWeight: theme.typography.fontWeightRegular,
-    },
-
-    "&:hover": {
       backgroundColor: "#FBF6EE",
-    },
+      cursor: "pointer",
+      paddingLeft: theme.spacing(4),
 
-    "&:hover > p": {
-      fontWeight: theme.typography.fontWeightBold,
-    },
+      [theme.breakpoints.up("lg")]: {
+        paddingLeft: "auto",
+        backgroundColor: theme.palette.secondary.main,
+      },
+      "& > p": {
+        color: theme.palette.primary.dark,
+        fontWeight: theme.typography.fontWeightRegular,
+      },
 
-    "&:after": {
-      bottom: 0,
-      background: theme.palette.primary.main,
+      "&:hover": {
+        backgroundColor: "#FBF6EE",
+      },
+
+      "&:hover > p": {
+        fontWeight: theme.typography.fontWeightBold,
+      },
+
+      "&:after": {
+        bottom: 0,
+        background: theme.palette.primary.main,
+      },
     },
-  },
-}));
+  };
+});
 
 const DropdownItem = ({ route, isSidebar }) => {
-  const { main, submenu } = route || {};
-  const classes = useStyles();
   const theme = useTheme();
+  const styles = useStyles();
+  const { main, submenu } = route || {};
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
@@ -231,12 +236,11 @@ const DropdownItem = ({ route, isSidebar }) => {
     <Link
       to={linkPath}
       className={clsx(
-        classes.navItem,
-        isPrimary && classes.primary,
-        isSecondary && classes.secondary,
-        isSidebar && classes.navItemSidebar
+        styles.navItem,
+        isPrimary && styles.primary,
+        isSecondary && styles.secondary,
+        isSidebar && styles.navItemSidebar
       )}
-      activeClassName={classes.navItemActive}
       onMouseEnter={() => {
         if (isPrimary && hasSubmenu) {
           return handleSecondSubmenuOpen();
@@ -274,7 +278,7 @@ const DropdownItem = ({ route, isSidebar }) => {
 
   const NavItem = ({ linkName, hasSubmenu }) => (
     <Box
-      className={clsx(classes.navItem, isSidebar && classes.navItemSidebar)}
+      className={clsx(styles.navItem, isSidebar && styles.navItemSidebar)}
       onMouseEnter={() => {
         if (hasSubmenu && isUpLg) {
           return handleSubmenuOpen();
@@ -318,7 +322,19 @@ const DropdownItem = ({ route, isSidebar }) => {
 
   return (
     <Box
-      className={classes.root}
+      sx={{
+        display: "flex",
+        position: "relative",
+        flexDirection: { md: "column", lg: "row" },
+        width: { md: "100%", lg: "auto" },
+        alignItems: "center",
+        cursor: "pointer",
+
+        // [theme.breakpoints.up("lg")]: {
+        //   flexDirection: "row",
+        //   width: "auto",
+        // },
+      }}
       onMouseOver={handleMainMouseOver}
       onMouseLeave={handleMainMouseLeave}
       onClick={handleMainClick}
@@ -330,7 +346,26 @@ const DropdownItem = ({ route, isSidebar }) => {
       )}
       {isSubmenuOpen && submenu?.length && (
         <Box
-          className={classes.subMenu}
+          sx={{
+            position: { md: "relative", lg: "absolute" },
+
+            display: "flex",
+            flexDirection: "column",
+            left: { lg: "0" },
+            top: { lg: "82px" },
+            width: { md: "100%", lg: "250px" },
+            height: { lg: "auto" },
+            boxShadow: { lg: "rgb(0, 0 ,0) 5px 5px 80px 5px" },
+
+            // [theme.breakpoints.up("lg")]: {
+            //   position: "absolute",
+            //   left: 0,
+            //   top: "82px",
+            //   width: "250px",
+            //   height: "auto",
+            //   boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
+            // },
+          }}
           onMouseLeave={isUpLg ? handleSubmenuClose : null}
         >
           {submenu.map((item) => {
@@ -347,7 +382,21 @@ const DropdownItem = ({ route, isSidebar }) => {
                 />
                 {isSecondSubmenuOpen && isSubSubmenu && (
                   <Box
-                    className={classes.subSubMenu}
+                    sx={{
+                      position: { md: "relative", lg: "absolute" },
+                      display: "flex",
+                      flexDirection: "column",
+                      left: { lg: "250px" },
+                      width: { lg: "250px" },
+                      boxShadow: { lg: "rgb(0, 0 ,0) 5px 5px 80px 5px" },
+
+                      // [theme.breakpoints.up("lg")]: {
+                      //   position: "absolute",
+                      //   left: "250px",
+                      //   width: "250px",
+                      //   boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
+                      // },
+                    }}
                     onMouseLeave={handleSecondSubmenuClose}
                   >
                     {item.subSubmenu.map(({ name, path }) => (

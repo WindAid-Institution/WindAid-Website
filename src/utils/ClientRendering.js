@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
+import App from "../pages/index";
 
 // eslint-disable-next-line react/prop-types
 function ClientSideRendering({ children, ...delegated }) {
@@ -12,7 +12,7 @@ function ClientSideRendering({ children, ...delegated }) {
     },
     classes: false,
     timeout: 1000,
-    active: Navbar, // invoked when fonts are active
+    active: App, // invoked when fonts are active
   };
 
   if (typeof window !== "undefined") {
