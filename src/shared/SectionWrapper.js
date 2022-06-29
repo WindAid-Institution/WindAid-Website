@@ -5,7 +5,6 @@ import useTheme from "@mui/material/styles/useTheme";
 import Container from "./Container";
 
 const getBackgroundColor = ({ theme, bgColor }) => {
-  console.log({ bgColor });
   if (bgColor === "primary") {
     return theme.palette.primary.main;
   }
