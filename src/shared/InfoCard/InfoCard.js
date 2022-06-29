@@ -7,9 +7,9 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from "@material-ui/core";
+} from "@mui/material";
 import PropTypes from "prop-types";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import { ROUTES } from "src/constants/routes";
 import TextSection from "../TextSection";
 import { splitQueriedList } from "../../utils/utils";

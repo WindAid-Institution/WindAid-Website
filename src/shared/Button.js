@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 // eslint-disable-next-line import/no-named-default
-import { default as MuiButton } from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
+import { default as MuiButton } from "@mui/material/Button";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   button: ({ inverted, style }) => ({
@@ -15,6 +15,13 @@ const useStyles = makeStyles((theme) => ({
       inverted ? theme.palette.secondary.main : theme.palette.primary.main
     }`,
     textDecoration: "none",
+    textTransform: "none",
+    fontWeight: "700",
+    height: "48px",
+    [theme.breakpoints.up("sm")]: {
+      minWidth: "320px",
+      fontSize: "16px",
+    },
     ...style,
 
     "&:hover": {
@@ -43,6 +50,7 @@ const Button = ({ text, inverted, style, route, isDisabled, onClick }) => {
       {route?.path ? (
         <Link to={route.path} className={classes.link}>
           <MuiButton
+            variant="contained"
             disabled={isDisabled}
             className={classes.button}
           >
@@ -51,6 +59,7 @@ const Button = ({ text, inverted, style, route, isDisabled, onClick }) => {
         </Link>
       ) : (
         <MuiButton
+          variant="contained"
           onClick={onClick}
           disabled={isDisabled}
           className={classes.button}

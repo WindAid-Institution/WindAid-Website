@@ -66,7 +66,6 @@ function Seo({ lang, meta }) {
       />
       <meta rel="manifest" href="/site.webmanifest" />
       <meta name="msapplication-TileColor" content="#da532c" />
-      <meta name="theme-color" content="#ffffff" />
     </Helmet>
   );
 }

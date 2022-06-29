@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { AutoForm, AutoField } from "uniforms-material";
-import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
 
 import { cardFormAddressSchemaBridge } from "src/schemas/cardFormSchema";
 

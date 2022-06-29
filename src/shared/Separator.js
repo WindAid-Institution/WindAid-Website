@@ -1,8 +1,9 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
+import useTheme from "@mui/material/styles/useTheme";
 import Button from "./Button";
 import TextSection from "./TextSection";
 import SectionWrapper from "./SectionWrapper";

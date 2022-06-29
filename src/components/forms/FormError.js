@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useForm } from "uniforms";
-import Alert from "@material-ui/lab/Alert";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import Alert from "@mui/material/Alert";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   alert: {

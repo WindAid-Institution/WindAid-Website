@@ -1,90 +1,97 @@
-import { List, ListItem, ListItemText } from "@material-ui/core";
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
+import {
+  Grid,
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import useTheme from "@mui/material/styles/useTheme";
 
 import { FOOTER_SOCIALS, FOOTER_LINKS } from "src/constants/footer";
 
-const useStyles = makeStyles((theme) => ({
-  footerText: {
-    fontFamily: theme.typography.fontFamily,
-    fontStyle: "normal",
-  },
-  linksHeader: {
-    fontWeight: "bold",
-    fontSize: "18px",
-    lineHeight: "32px",
-    [theme.breakpoints.down("md")]: {
-      fontSize: "24px",
-      lineHeight: "36px",
-    },
-  },
-  linkText: {
-    fontWeight: "normal",
-    fontSize: "14px",
-    lineHeight: "16px",
-
-    [theme.breakpoints.down("md")]: {
+const useStyles = makeStyles(() => {
+  const theme = useTheme();
+  return {
+    linksHeader: {
+      fontFamily: theme.typography.fontFamily,
+      fontStyle: "normal",
       fontSize: "18px",
-      lineHeight: "22px",
+      fontWeight: theme.typography.fontWeightBold,
+      lineHeight: "32px",
+      [theme.breakpoints.down("md")]: {
+        fontSize: "24px",
+        lineHeight: "36px",
+      },
     },
-    color: theme.palette.primary.dark,
-  },
-  padding: {
-    padding: "0",
-  },
-  spacingBottom: {
-    marginBottom: "16px",
-  },
-  grid: {
-    margin: "auto",
-    [theme.breakpoints.down("md")]: {
-      padding: "40px 15px",
-    },
-    [theme.breakpoints.up("md")]: {
-      padding: "80px 15px",
-      maxWidth: "1110px",
-    },
-  },
-  listItem: {
-    "& > a": {
-      textDecoration: "none",
-    },
-  },
-  socialsLink: {
-    display: "flex",
-    width: "24px",
-    height: "24px",
-    padding: "3px",
-    margin: "3px",
-    borderRadius: "50%",
-    background: theme.palette.primary.main,
-    color: theme.palette.secondary.main,
-    textDecoration: "none",
+    linkText: {
+      fontSize: "14px",
+      lineHeight: "16px",
+      padding: "0",
 
-    [theme.breakpoints.up("lg")]: {
-      padding: "4px",
-      margin: "4px",
+      [theme.breakpoints.down("md")]: {
+        fontSize: "18px",
+        lineHeight: "22px",
+      },
+      color: theme.palette.primary.dark,
     },
-
-    "&:hover": {
-      color: theme.palette.secondary.main,
-      background: theme.palette.primary.main,
+    spacingBottom: {
+      marginBottom: "16px",
     },
-
-    "& *": {
+    grid: {
       margin: "auto",
+      [theme.breakpoints.down("md")]: {
+        padding: "40px 15px",
+      },
+      [theme.breakpoints.up("md")]: {
+        padding: "80px 15px",
+        maxWidth: "1110px",
+      },
     },
-  },
-  socials: {
-    display: "flex",
-  },
-}));
+    listItem: {
+      padding: "0",
+      fontFamily: theme.typography.fontFamily,
+      fontWeight: "normal",
+      fontSize: "18px",
+
+      "& > a": {
+        textDecoration: "none",
+      },
+    },
+    socialsLink: {
+      display: "flex",
+      width: "24px",
+      height: "24px",
+      padding: "3px",
+      margin: "3px",
+      borderRadius: "50%",
+      background: theme.palette.primary.main,
+      color: theme.palette.secondary.main,
+      textDecoration: "none",
+
+      [theme.breakpoints.up("lg")]: {
+        padding: "4px",
+        margin: "4px",
+      },
+
+      "&:hover": {
+        color: theme.palette.secondary.main,
+        background: theme.palette.primary.main,
+      },
+
+      "& *": {
+        margin: "auto",
+      },
+    },
+    socials: {
+      display: "flex",
+    },
+  };
+});
 
 const ExternalLink = ({ to, children }) => <a href={to}>{children}</a>;
 
@@ -103,10 +110,7 @@ const TopFooter = () => {
           className={classes.spacingBottom}
         >
           <Box>
-            <Typography
-              variant="h5"
-              className={clsx(classes.linksHeader, classes.footerText)}
-            >
+            <Typography variant="h2" className={classes.linksHeader}>
               {item.name}
             </Typography>
             <List className={classes.padding}>
@@ -114,14 +118,11 @@ const TopFooter = () => {
                 const LinkComponent = link?.external ? ExternalLink : Link;
 
                 return (
-                  <ListItem
-                    className={clsx(classes.padding, classes.listItem)}
-                    key={link.name}
-                  >
+                  <ListItem className={classes.listItem} key={link.name}>
                     <LinkComponent key={link.name} to={link.path}>
                       <ListItemText
                         primary={link.name}
-                        className={clsx(classes.linkText, classes.footerText)}
+                        className={classes.linkText}
                       />
                     </LinkComponent>
                   </ListItem>
@@ -132,10 +133,7 @@ const TopFooter = () => {
         </Grid>
       ))}
       <Grid item xs={6} sm={4} md={4}>
-        <Typography
-          variant="h5"
-          className={clsx(classes.linksHeader, classes.footerText)}
-        >
+        <Typography variant="h2" className={classes.linksHeader}>
           {FOOTER_SOCIALS.name}
         </Typography>
         <Box className={classes.socials}>

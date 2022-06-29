@@ -1,10 +1,10 @@
 /* eslint-disable one-var */
 /* eslint-disable max-len */
 import React, { useState } from "react";
-import Box from "@material-ui/core/Box";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import { makeStyles } from "@mui/styles";
 
 import DonateWidgetHeader from "./DonateWidgetHeader";
 import DonateWidgetButton from "./DonateWidgetButton";

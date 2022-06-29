@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
+import { makeStyles } from "@mui/styles";
+import Box from "@mui/material/Box";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 import CustomButtonGroup from "./TrujilloButtonGroup";

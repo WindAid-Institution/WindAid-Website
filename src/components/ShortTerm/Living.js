@@ -1,7 +1,7 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { Grid } from "@mui/material";
+import { makeStyles, useTheme } from "@mui/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { ROUTES } from "src/constants/routes";
 import useShortTermData from "../../hooks/queries/shortTerm";

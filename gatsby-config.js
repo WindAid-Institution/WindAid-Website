@@ -7,15 +7,14 @@ module.exports = {
   siteMetadata: {
     title: "Windaid Institute | Education, Empowerment, Electricity",
     siteUrl: "https://windaid.org",
-    author: "Rishi Khan"
+    author: "Rishi Khan",
   },
   plugins: [
-    "gatsby-plugin-styled-components",
+    "gatsby-plugin-react-helmet",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-sitemap",
-    "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-recaptcha",
       options: {

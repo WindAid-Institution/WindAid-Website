@@ -1,7 +1,7 @@
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
+import { makeStyles } from "@mui/styles";
+import Box from "@mui/material/Box";
 
 import { ROUTES } from "src/constants/routes";
 import useOurImpactData from "queries/ourImpact";

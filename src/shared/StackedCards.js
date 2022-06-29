@@ -1,8 +1,9 @@
 import React from "react";
-import { Grid, Box } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
+import useTheme from "@mui/material/styles/useTheme";
 
 import TextSection from "./TextSection";
 
@@ -18,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
         cursor: "pointer",
       },
       "&:last-child > div:last-child > div:last-child": {
-        fontWeight: "bold",
         transition: "0.1s ease",
       },
     },
@@ -29,15 +29,12 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   image: {
-    width: "100%",
     height: "100%",
+    width: "100%",
     borderRadius: "10px 0px 0 10px",
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("lg")]: {
       borderRadius: "10px 10px 0 0px",
     },
-  },
-  imgContainer: {
-    height: "100%",
   },
   text: {
     color: theme.palette.secondary.main,
@@ -54,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     width: "100%",
     backgroundColor: theme.palette.secondary.main,
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("lg")]: {
       borderRadius: "0px 0px 10px 10px",
     },
     ...textContainerStyle,
@@ -74,13 +71,12 @@ const StackedCards = ({ image, children, style }) => {
   return (
     <Grid container className={classes.contentContainer}>
       <Grid item lg={4}>
-        <Box className={classes.imgContainer}>
-          <GatsbyImage
-            image={gatsbyImageData}
-            alt={description}
-            className={classes.image}
-          />
-        </Box>
+        <GatsbyImage
+          image={gatsbyImageData}
+          alt={description}
+          className={classes.image}
+          objectFit="cover"
+        />
       </Grid>
       <Grid item lg={8}>
         <Grid container className={classes.textContainer}>

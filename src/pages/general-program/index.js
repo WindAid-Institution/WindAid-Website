@@ -2,7 +2,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { getSrc } from "gatsby-plugin-image";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/styles";
 
 import MainLayout from "src/layout/MainLayout";
 import Hero from "components/Hero/Hero";

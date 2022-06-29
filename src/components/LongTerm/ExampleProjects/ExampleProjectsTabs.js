@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
 import clsx from "clsx";
 
 import WindTurbineLogo from "images/icons/wind_turbine.svg";
@@ -24,14 +24,14 @@ const useStyles = makeStyles((theme) => ({
   },
 
   activeTab: {
-    "& > span > span > p": {
+    "& > span > p": {
       color: theme.palette.primary.main,
       fontWeight: theme.typography.fontWeightBold,
     },
   },
 
   notActiveTab: {
-    "& > span > span > p": {
+    "& > span > p": {
       marginBottom: "46px",
     },
   },
@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 
     "& > p": {
       fontSize: "16px",
-
       [theme.breakpoints.up("md")]: {
         fontSize: "22px",
       },
@@ -86,6 +85,7 @@ const ExampleProjectsTabs = ({ currentTab, handleChange }) => {
           <Tab
             key={label}
             icon={currentTab === index && <WindTurbineImage />}
+            iconPosition="bottom"
             label={
               <span className={classes.label}>
                 <Typography>{label}</Typography>
