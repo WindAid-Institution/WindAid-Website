@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Grid } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 import SectionWrapper from "shared/SectionWrapper";
 import { ROUTES } from "src/constants/routes";
@@ -60,7 +60,7 @@ const Offering = () => {
       <Grid
         container
         direction="row"
-        justify="center"
+        justifyContent="center"
         alignItems="center"
         className={classes.mainWrapper}
       >

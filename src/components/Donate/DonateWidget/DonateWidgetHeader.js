@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
 import React from "react";
 import PropTypes from "prop-types";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import CardHeader from "@material-ui/core/CardHeader";
-import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import CardHeader from "@mui/material/CardHeader";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   header: {

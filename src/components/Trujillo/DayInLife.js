@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Grid } from "@mui/material";
+import { makeStyles, useTheme } from "@mui/styles";
 
 import useTrujilloData from "../../hooks/queries/trujillo";
 import SectionWrapper from "../../shared/SectionWrapper";
@@ -82,7 +82,11 @@ const DayInLife = () => {
             body={body}
             style={{ ...sectionStyle, rootStyle }}
           />
-          <TextSection header={header} bodyTwo={bodyTwo} style={sectionStyle} />
+          <TextSection
+            header={header}
+            bodyTwo={bodyTwo}
+            style={{ ...sectionStyle }}
+          />
         </Grid>
         <Grid item xs={12} md={6}>
           <Grid container className={classes.images} spacing={1}>

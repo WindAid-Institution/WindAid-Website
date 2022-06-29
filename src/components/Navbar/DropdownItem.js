@@ -4,205 +4,202 @@ import { Link } from "gatsby";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const useStyles = makeStyles(() => {
-  const theme = useTheme();
-  return {
-    navItem: {
-      maxHeight: "40px",
-      padding: "16px 0",
-      display: "none",
+const useStyles = makeStyles((theme) => ({
+  navItem: {
+    maxHeight: "40px",
+    padding: "16px 0",
+    display: "none",
+    textDecoration: "none",
+    position: "relative",
+
+    "& > p": {
+      fontSize: "16px",
+      color: theme.palette.secondary.main,
+      fontWeight: theme.typography.fontWeightBold,
+      fontFamily: theme.typography.fontFamily,
+    },
+
+    [theme.breakpoints.between(1200, 1251)]: {
+      paddingLeft: "26px",
+      paddingRight: "26px",
+    },
+
+    [theme.breakpoints.up("lg")]: {
+      display: "inline-block",
+      maxHeight: "80px",
+
+      padding: "28px 32px 32px 32px",
+    },
+
+    "&:after": {
+      transition: "all 0.5s ease",
+      position: "absolute",
+      bottom: "2px",
+      left: 0,
+      right: 0,
+      margin: "auto",
+      width: "0%",
+      // eslint-disable-next-line quotes
+      content: '"."',
+      color: "transparent",
+      background: theme.palette.primary.main,
+      height: "5px",
+
+      [theme.breakpoints.up("lg")]: {
+        background: theme.palette.secondary.main,
+      },
+    },
+
+    "&:hover:after": {
+      width: "100%",
+    },
+
+    "&:hover": {
+      color: theme.palette.primary.main,
       textDecoration: "none",
-      position: "relative",
-
-      "& > p": {
-        fontSize: "16px",
-        color: theme.palette.secondary.main,
-        fontWeight: theme.typography.fontWeightBold,
-        fontFamily: theme.typography.fontFamily,
-      },
-
-      [theme.breakpoints.between(1200, 1251)]: {
-        paddingLeft: "26px",
-        paddingRight: "26px",
-      },
-
       [theme.breakpoints.up("lg")]: {
-        display: "inline-block",
-        maxHeight: "80px",
-
-        padding: "28px 32px 32px 32px",
-      },
-
-      "&:after": {
-        transition: "all 0.5s ease",
-        position: "absolute",
-        bottom: "2px",
-        left: 0,
-        right: 0,
-        margin: "auto",
-        width: "0%",
-        // eslint-disable-next-line quotes
-        content: '"."',
-        color: "transparent",
-        background: theme.palette.primary.main,
-        height: "5px",
-
-        [theme.breakpoints.up("lg")]: {
-          background: theme.palette.secondary.main,
-        },
-      },
-
-      "&:hover:after": {
-        width: "100%",
-      },
-
-      "&:hover": {
-        color: theme.palette.primary.main,
-        textDecoration: "none",
-        [theme.breakpoints.up("lg")]: {
-          color: theme.palette.secondary.main,
-        },
+        color: theme.palette.secondary.main,
       },
     },
+  },
 
-    navItemActive: {
-      "&:after": {
-        transition: "all 0.5s ease",
-        position: "absolute",
-        bottom: "2px",
-        left: 0,
-        right: 0,
-        margin: "auto",
-        width: "100%",
-        // eslint-disable-next-line quotes
-        content: '"."',
-        color: "transparent",
-        background: theme.palette.primary.main,
-        height: "5px",
-
-        [theme.breakpoints.up("lg")]: {
-          background: theme.palette.secondary.main,
-        },
-      },
-    },
-
-    navItemSidebar: {
-      display: "block",
-
-      "& > p": {
-        color: theme.palette.primary.dark,
-      },
-    },
-
-    root: {
-      display: "flex",
-      position: "relative",
-      flexDirection: "column",
+  navItemActive: {
+    "&:after": {
+      transition: "all 0.5s ease",
+      position: "absolute",
+      bottom: "2px",
+      left: 0,
+      right: 0,
+      margin: "auto",
       width: "100%",
-      alignItems: "center",
-      cursor: "pointer",
+      // eslint-disable-next-line quotes
+      content: '"."',
+      color: "transparent",
+      background: theme.palette.primary.main,
+      height: "5px",
 
       [theme.breakpoints.up("lg")]: {
-        flexDirection: "row",
-        width: "auto",
+        background: theme.palette.secondary.main,
       },
     },
+  },
 
-    subMenu: {
-      position: "relative",
+  navItemSidebar: {
+    display: "block",
 
-      display: "flex",
-      flexDirection: "column",
-      width: "100%",
-
-      [theme.breakpoints.up("lg")]: {
-        position: "absolute",
-        left: 0,
-        top: "82px",
-        width: "250px",
-        height: "auto",
-        boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
-      },
-    },
-    subSubMenu: {
-      position: "relative",
-      display: "flex",
-      flexDirection: "column",
-
-      [theme.breakpoints.up("lg")]: {
-        position: "absolute",
-        left: "250px",
-        width: "250px",
-        boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
-      },
-    },
-
-    primary: {
-      cursor: "pointer",
-      paddingLeft: theme.spacing(2),
-      backgroundColor: theme.palette.primary.main,
-
-      [theme.breakpoints.up("lg")]: {
-        paddingLeft: theme.spacing(4),
-        backgroundColor: "#FBF6EE",
-      },
-
-      "& > p": {
-        color: theme.palette.secondary.main,
-        fontWeight: theme.typography.fontWeightRegular,
-
-        [theme.breakpoints.up("lg")]: {
-          color: theme.palette.primary.dark,
-        },
-      },
-      "&:hover": {
-        backgroundColor: theme.palette.primary.main,
-      },
-
-      "&:hover > p": {
-        fontWeight: theme.typography.fontWeightBold,
-        color: theme.palette.secondary.main,
-      },
-
-      "&:after": {
-        display: "none",
-      },
-    },
-
-    secondary: {
+    "& > p": {
       color: theme.palette.primary.dark,
-      backgroundColor: "#FBF6EE",
-      cursor: "pointer",
+    },
+  },
+
+  root: {
+    display: "flex",
+    position: "relative",
+    flexDirection: "column",
+    width: "100%",
+    alignItems: "center",
+    cursor: "pointer",
+
+    [theme.breakpoints.up("lg")]: {
+      flexDirection: "row",
+      width: "auto",
+    },
+  },
+
+  subMenu: {
+    position: "relative",
+
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+
+    [theme.breakpoints.up("lg")]: {
+      position: "absolute",
+      left: 0,
+      top: "82px",
+      width: "250px",
+      height: "auto",
+      boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
+    },
+  },
+  subSubMenu: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+
+    [theme.breakpoints.up("lg")]: {
+      position: "absolute",
+      left: "250px",
+      width: "250px",
+      boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
+    },
+  },
+
+  primary: {
+    cursor: "pointer",
+    paddingLeft: theme.spacing(2),
+    backgroundColor: theme.palette.primary.main,
+
+    [theme.breakpoints.up("lg")]: {
       paddingLeft: theme.spacing(4),
+      backgroundColor: "#FBF6EE",
+    },
+
+    "& > p": {
+      color: theme.palette.secondary.main,
+      fontWeight: theme.typography.fontWeightRegular,
 
       [theme.breakpoints.up("lg")]: {
-        paddingLeft: "auto",
-        backgroundColor: theme.palette.secondary.main,
-      },
-      "& > p": {
         color: theme.palette.primary.dark,
-        fontWeight: theme.typography.fontWeightRegular,
-      },
-
-      "&:hover": {
-        backgroundColor: "#FBF6EE",
-      },
-
-      "&:hover > p": {
-        fontWeight: theme.typography.fontWeightBold,
-      },
-
-      "&:after": {
-        bottom: 0,
-        background: theme.palette.primary.main,
       },
     },
-  };
-});
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+    },
+
+    "&:hover > p": {
+      fontWeight: theme.typography.fontWeightBold,
+      color: theme.palette.secondary.main,
+    },
+
+    "&:after": {
+      display: "none",
+    },
+  },
+
+  secondary: {
+    color: theme.palette.primary.dark,
+    backgroundColor: "#FBF6EE",
+    cursor: "pointer",
+    paddingLeft: theme.spacing(4),
+
+    [theme.breakpoints.up("lg")]: {
+      paddingLeft: "auto",
+      backgroundColor: theme.palette.secondary.main,
+    },
+    "& > p": {
+      color: theme.palette.primary.dark,
+      fontWeight: theme.typography.fontWeightRegular,
+    },
+
+    "&:hover": {
+      backgroundColor: "#FBF6EE",
+    },
+
+    "&:hover > p": {
+      fontWeight: theme.typography.fontWeightBold,
+    },
+
+    "&:after": {
+      bottom: 0,
+      background: theme.palette.primary.main,
+    },
+  },
+}));
 
 const DropdownItem = ({ route, isSidebar }) => {
   const theme = useTheme();
@@ -325,8 +322,8 @@ const DropdownItem = ({ route, isSidebar }) => {
       sx={{
         display: "flex",
         position: "relative",
-        flexDirection: { md: "column", lg: "row" },
-        width: { md: "100%", lg: "auto" },
+        flexDirection: { xxs: "column", lg: "row" },
+        width: { xxs: "100%", lg: "auto" },
         alignItems: "center",
         cursor: "pointer",
 
@@ -353,7 +350,8 @@ const DropdownItem = ({ route, isSidebar }) => {
             flexDirection: "column",
             left: { lg: "0" },
             top: { lg: "82px" },
-            width: { md: "100%", lg: "250px" },
+            width: { xxs: "100%", lg: "250px" },
+            textAlign: { xxs: "center", lg: "left" },
             height: { lg: "auto" },
             boxShadow: { lg: "rgb(0, 0 ,0) 5px 5px 80px 5px" },
 

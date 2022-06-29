@@ -2,8 +2,8 @@ import React from "react";
 
 import { ROUTES } from "src/constants/routes";
 import useShortTermData from "queries/shortTerm";
-import { Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import Separator from "../../shared/Separator";
 
 const useStyles = makeStyles(() => ({

@@ -23,7 +23,7 @@ const theme = createTheme({
     fontWeightBold: 700,
     body1: {
       lineHeight: "28px",
-      fontSize: "14px",
+      fontSize: "16px",
       // [breakpoints.up("sm")]: {
       //   fontSize: "16px",
       // },
@@ -32,10 +32,6 @@ const theme = createTheme({
       lineHeight: "20px",
       fontSize: "14px",
       fontWeight: 700,
-      // [breakpoints.up("sm")]: {
-      //   lineHeight: "32px",
-      //   fontSize: "18px",
-      // },
     },
     h1: {
       fontSize: "40px",
@@ -53,85 +49,85 @@ const theme = createTheme({
       // [breakpoints.up("md")]: {
       //   fontSize: "40px",
       // },
-      subtitle1: {
-        fontSize: "18px",
-        lineHeight: "29px",
-        fontWeight: 400,
-      },
+    },
+    subtitle1: {
+      fontSize: "18px",
+      lineHeight: "29px",
+      fontWeight: 400,
     },
   },
   shape: {
     borderRadius: 30,
   },
-  overrides: {
-    MuiButton: {
-      root: {
-        height: "48px",
-        minWidth: "180px",
-        textTransform: "none",
-        fontWeight: 700,
-        fontSize: "13px",
-        lineHeight: "13px",
-        // [breakpoints.up("sm")]: {
-        //   minWidth: "320px",
-        //   fontSize: "16px",
-        // },
-      },
-    },
-    MuiContainer: {
-      root: {
-        maxWidth: "100%",
-        paddingRight: "15px",
-        paddingLeft: "15px",
-        marginRight: "auto",
-        marginLeft: "auto",
-        transition: "max-width 0.2s ease",
-        // [breakpoints.up("sm")]: {
-        //   maxWidth: "540px",
-        // },
-        // [breakpoints.up("xmd")]: {
-        //   maxWidth: "720px",
-        // },
-        // [breakpoints.up("md")]: {
-        //   maxWidth: "920px",
-        // },
+  // overrides: {
+  //   MuiButton: {
+  //     root: {
+  //       height: "48px",
+  //       minWidth: "180px",
+  //       textTransform: "none",
+  //       fontWeight: 700,
+  //       fontSize: "13px",
+  //       lineHeight: "13px",
+  //       // [breakpoints.up("sm")]: {
+  //       //   minWidth: "320px",
+  //       //   fontSize: "16px",
+  //       // },
+  //     },
+  //   },
+  //   MuiContainer: {
+  //     root: {
+  //       maxWidth: "100%",
+  //       paddingRight: "15px",
+  //       paddingLeft: "15px",
+  //       marginRight: "auto",
+  //       marginLeft: "auto",
+  //       transition: "max-width 0.2s ease",
+  //       // [breakpoints.up("sm")]: {
+  //       //   maxWidth: "540px",
+  //       // },
+  //       // [breakpoints.up("xmd")]: {
+  //       //   maxWidth: "720px",
+  //       // },
+  //       // [breakpoints.up("md")]: {
+  //       //   maxWidth: "920px",
+  //       // },
 
-        // [breakpoints.up("lg")]: {
-        //   maxWidth: "1140px",
-        // },
-        // [breakpoints.up("xl")]: {
-        //   maxWidth: "1380px",
-        // },
-      },
-    },
-    MuiTypography: {
-      root: {
-        color: "#000000",
-        fontStyle: "normal",
-      },
-      h1: {
-        fontSize: "40px",
-        lineHeight: "54px",
-        fontWeight: 800,
-      },
-    },
-    MuiLink: {
-      root: {
-        fontWeight: 700,
-      },
-    },
-    MuiRadio: {
-      root: {
-        color: "#056839",
-      },
-    },
-  },
-  props: {
-    MuiButton: {
-      variant: "contained",
-      color: "primary",
-    },
-  },
+  //       // [breakpoints.up("lg")]: {
+  //       //   maxWidth: "1140px",
+  //       // },
+  //       // [breakpoints.up("xl")]: {
+  //       //   maxWidth: "1380px",
+  //       // },
+  //     },
+  //   },
+  //   MuiTypography: {
+  //     root: {
+  //       color: "#000000",
+  //       fontStyle: "normal",
+  //     },
+  //     h1: {
+  //       fontSize: "40px",
+  //       lineHeight: "54px",
+  //       fontWeight: 800,
+  //     },
+  //   },
+  //   MuiLink: {
+  //     root: {
+  //       fontWeight: 700,
+  //     },
+  //   },
+  //   MuiRadio: {
+  //     root: {
+  //       color: "#056839",
+  //     },
+  //   },
+  // },
+  // props: {
+  //   MuiButton: {
+  //     variant: "contained",
+  //     color: "primary",
+  //   },
+  // },
   breakpoints: {
     values: {
       xxs: 0,
@@ -144,5 +140,13 @@ const theme = createTheme({
     },
   },
 });
+
+theme.typography.body2 = {
+  [theme.breakpoints.up("sm")]: {
+    lineHeight: "32px",
+    fontSize: "18px",
+  },
+  ...theme.typography.body2
+};
 
 export default theme;

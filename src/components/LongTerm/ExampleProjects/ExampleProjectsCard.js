@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles, useTheme } from "@mui/styles";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import clsx from "clsx";
 import { GrLinkedin } from "@react-icons/all-files/gr/GrLinkedin";
 

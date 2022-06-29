@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider, StyledEngineProvider } from "@mui/material/styles";
 import PropTypes from "prop-types";
 
 import theme from "../../theme";
@@ -8,11 +8,13 @@ import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const MainLayout = ({ children }) => (
-  <ThemeProvider theme={theme}>
-    <NavBar />
-    {children}
-    <Footer />
-  </ThemeProvider>
+  <StyledEngineProvider injectFirst>
+    <ThemeProvider theme={theme}>
+      <NavBar />
+      {children}
+      <Footer />
+    </ThemeProvider>
+  </StyledEngineProvider>
 );
 
 MainLayout.propTypes = {

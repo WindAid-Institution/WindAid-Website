@@ -1,6 +1,6 @@
 import React from "react";
-import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
 
 import Body from "shared/Body";
 import SectionWrapper from "shared/SectionWrapper";

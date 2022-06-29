@@ -1,48 +1,45 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import useTheme from "@mui/material/styles/useTheme";
+import { makeStyles } from "@mui/styles";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
-const useStyles = makeStyles(() => {
-  const theme = useTheme();
-  return {
-    bar: {
-      display: "flex",
-      justifyContent: "center",
-      background: theme.palette.primary.main,
-      color: theme.palette.secondary.main,
-      padding: "16px",
+const useStyles = makeStyles((theme) => ({
+  bar: {
+    display: "flex",
+    justifyContent: "center",
+    background: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
+    padding: "16px",
 
-      "& p": {
-        margin: 0,
-        marginLeft: "4px",
+    "& p": {
+      margin: 0,
+      marginLeft: "4px",
 
-        fontFamily: theme.typography.fontFamily,
-        fontSize: "14px",
-        lineHeight: "16px",
+      fontFamily: theme.typography.fontFamily,
+      fontSize: "14px",
+      lineHeight: "16px",
 
-        [theme.breakpoints.down("md")]: {
-          fontSize: "12px",
-        },
+      [theme.breakpoints.down("md")]: {
+        fontSize: "12px",
       },
     },
-    privacyText: {
-      background: theme.palette.primary.main,
-      color: theme.palette.secondary.main,
-      display: "flex",
-      maxWidth: "1110px",
-      width: "100%",
-      [theme.breakpoints.down("xs")]: {
-        flexDirection: "column",
-      },
-
-      "& > p": {
-        color: theme.palette.secondary.main,
-      },
+  },
+  privacyText: {
+    background: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
+    display: "flex",
+    justifyContent: "center",
+    maxWidth: "1110px",
+    width: "100%",
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column",
     },
-  };
-});
+
+    "& > p": {
+      color: theme.palette.secondary.main,
+    },
+  },
+}));
 
 const BottomFooter = () => {
   const classes = useStyles();

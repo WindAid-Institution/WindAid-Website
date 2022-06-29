@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: ({ rootStyle }) => ({
@@ -16,19 +16,18 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "24px",
     color: "#1d1d1d",
     fontWeight: theme.typography.fontWeightBold,
-    ...textStyle,
+    fontFamily: theme.typography.fontFamily,
 
     [theme.breakpoints.up("sm")]: {
       fontSize: "24px",
       lineHeight: "36px",
-      ...textStyle,
     },
 
     [theme.breakpoints.up("md")]: {
       fontSize: "24px",
       lineHeight: "36px",
-      ...textStyle,
     },
+    ...textStyle,
   }),
 }));
 

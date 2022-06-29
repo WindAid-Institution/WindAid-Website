@@ -24,21 +24,16 @@ const Stats = () => {
       style={{ containerStyle: { display: "flex", justifyContent: "center" } }}
       bgColor="secondary"
     >
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid
-          item
-          sx={{
-            textAlign: "center",
-          }}
-        >
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item textAlign="center">
           <Title title={title} />
         </Grid>
-        <Grid
-          item
-          sx={{
-            width: "100%",
-          }}
-        >
+        <Grid item width="100%">
           <Grid
             container
             direction="row"
@@ -54,11 +49,8 @@ const Stats = () => {
         </Grid>
         <Grid
           item
-          marginTop="calc(5.28vw + 21px)"
-          sx={{
-            textAlign: "center",
-            marginTop: "calc(5.28vw + 21px)",
-          }}
+          textAlign="center"
+          style={{ marginTop: "calc(5.28vw + 21px)" }}
         >
           <TextSection body={body} header={header} />
         </Grid>

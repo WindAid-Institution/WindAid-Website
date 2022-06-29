@@ -1,6 +1,6 @@
 import React from "react";
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import { GatsbyImage } from "gatsby-plugin-image";
 import clsx from "clsx";
 

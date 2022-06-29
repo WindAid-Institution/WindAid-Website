@@ -8,12 +8,12 @@ import {
   RadioField,
   BoolField,
 } from "uniforms-material";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import { makeStyles } from "@mui/styles";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import Recaptcha from "react-recaptcha";
 import { applicationFormSchemaBridge } from "src/schemas/applicationFormSchema";
 
@@ -32,8 +32,7 @@ const errorMessages = {
   captcha: "Please check reCAPTHA to continue",
   submit:
     "There is a problem with submitting your form. Please try again later or contact us.",
-  form:
-    "There are errors in your form. Please follow instructions under the fields to send your form.",
+  form: "There are errors in your form. Please follow instructions under the fields to send your form.",
 };
 
 const useStyles = makeStyles((theme) => ({

@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Box from "@material-ui/core/Box";
-import Typography from "@mui/material/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { Box, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
 
 const getBoxSize = (size) => {

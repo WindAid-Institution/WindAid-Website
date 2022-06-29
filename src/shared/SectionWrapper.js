@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
 import Container from "./Container";
 
 const getBackgroundColor = ({ theme, bgColor }) => {
+  console.log({ bgColor });
   if (bgColor === "primary") {
     return theme.palette.primary.main;
   }
@@ -24,20 +25,20 @@ const getBackgroundColor = ({ theme, bgColor }) => {
   return theme.palette.secondary.main;
 };
 
-const useStyles = makeStyles({
-  root: {
-    backgroundColor: (props) => getBackgroundColor(props),
+const useStyles = makeStyles(() => ({
+  root: ({ sectionStyle, theme, bgColor, bgUrl }) => ({
+    backgroundColor: getBackgroundColor({ theme, bgColor }),
     paddingTop: "calc(2.96vw + 21.3px)",
     paddingBottom: "calc(2.96vw + 21.3px)",
-    backgroundImage: (props) => (props.bgUrl ? `url(${props.bgUrl})` : ""),
+    backgroundImage: bgUrl ? `url(${bgUrl})` : "",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center",
     position: "relative",
     overflow: "hidden",
-    ...(props) => props.sectionStyle,
-  },
-});
+    ...sectionStyle,
+  }),
+}));
 
 const SectionWrapper = ({ children, style, bgColor, bgUrl }) => {
   const { sectionStyle, containerStyle } = style || {};
@@ -45,7 +46,7 @@ const SectionWrapper = ({ children, style, bgColor, bgUrl }) => {
   const classes = useStyles({ theme, bgColor, bgUrl, sectionStyle });
 
   return (
-    <section className={classes.root}>
+    <section className={`${classes.root} ${classes.sectionStyle}`}>
       <Container style={containerStyle}>{children}</Container>
     </section>
   );

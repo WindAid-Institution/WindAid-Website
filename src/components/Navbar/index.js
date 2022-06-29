@@ -31,7 +31,7 @@ const Navbar = () => {
         color="default"
         sx={{
           maxHeight: "80px",
-          p: { lg: "0 12px", xl: "0 calc(12.6vw - 75px)" },
+          padding: { xxs: "0 12px", xl: "0 calc(12.6vw - 75px)" },
           backgroundColor: theme.palette.primary.main,
 
           // [theme.breakpoints.up("xl")]: {
@@ -54,7 +54,7 @@ const Navbar = () => {
                 display: "flex",
                 alignItems: "center",
                 justifyContet: "center",
-                height: { xxs: "40px", md: "48px" },
+                height: "48px",
               }}
             >
               <Logo

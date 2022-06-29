@@ -13,6 +13,7 @@ const ApplyButton = ({ isSidebar }) => {
   return (
     <Link to="/application" style={{ textDecoration: "none" }}>
       <Button
+        variant="contained"
         sx={
           !isSidebar
             ? {
@@ -39,6 +40,18 @@ const ApplyButton = ({ isSidebar }) => {
                 margin: "32px 0",
                 fontSize: "18px",
                 textDecoration: "none",
+                backgroundColor: yellowColor,
+                color: theme.palette.primary.dark,
+                height: "48px",
+                fontWeight: "700",
+                minWidth: "220px",
+                textTransform: "none",
+                border: `4px solid ${yellowColor}`,
+                "&:hover": {
+                  color: theme.palette.primary.dark,
+                  borderColor: theme.palette.primary.dark,
+                  backgroundColor: theme.palette.secondary.main,
+                },
               }
         }
       >

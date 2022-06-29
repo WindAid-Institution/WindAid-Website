@@ -3,43 +3,44 @@ import PropTypes from "prop-types";
 import { Link } from "gatsby";
 // eslint-disable-next-line import/no-named-default
 import { default as MuiButton } from "@mui/material/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import useTheme from "@mui/material/styles/useTheme";
+import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles(() => {
-  const theme = useTheme();
-  return {
-    button: ({ inverted, style }) => ({
-      color: inverted
+const useStyles = makeStyles((theme) => ({
+  button: ({ inverted, style }) => ({
+    color: inverted ? theme.palette.primary.main : theme.palette.secondary.main,
+    backgroundColor: inverted
+      ? theme.palette.secondary.main
+      : theme.palette.primary.main,
+    border: `3px solid ${
+      inverted ? theme.palette.secondary.main : theme.palette.primary.main
+    }`,
+    textDecoration: "none",
+    textTransform: "none",
+    fontWeight: "700",
+    height: "48px",
+    [theme.breakpoints.up("sm")]: {
+      minWidth: "320px",
+      fontSize: "16px",
+    },
+    ...style,
+
+    "&:hover": {
+      backgroundColor: inverted
         ? theme.palette.primary.main
         : theme.palette.secondary.main,
-      backgroundColor: inverted
+
+      color: inverted
         ? theme.palette.secondary.main
         : theme.palette.primary.main,
-      border: `3px solid ${
-        inverted ? theme.palette.secondary.main : theme.palette.primary.main
-      }`,
-      textDecoration: "none",
-      ...style,
 
-      "&:hover": {
-        backgroundColor: inverted
-          ? theme.palette.primary.main
-          : theme.palette.secondary.main,
-
-        color: inverted
-          ? theme.palette.secondary.main
-          : theme.palette.primary.main,
-
-        borderColor: theme.palette.primary.main,
-      },
-    }),
-
-    link: {
-      textDecoration: "none",
+      borderColor: theme.palette.primary.main,
     },
-  };
-});
+  }),
+
+  link: {
+    textDecoration: "none",
+  },
+}));
 
 const Button = ({ text, inverted, style, route, isDisabled, onClick }) => {
   const classes = useStyles({ inverted, style });
@@ -48,12 +49,17 @@ const Button = ({ text, inverted, style, route, isDisabled, onClick }) => {
     <>
       {route?.path ? (
         <Link to={route.path} className={classes.link}>
-          <MuiButton disabled={isDisabled} className={classes.button}>
+          <MuiButton
+            variant="contained"
+            disabled={isDisabled}
+            className={classes.button}
+          >
             {text}
           </MuiButton>
         </Link>
       ) : (
         <MuiButton
+          variant="contained"
           onClick={onClick}
           disabled={isDisabled}
           className={classes.button}

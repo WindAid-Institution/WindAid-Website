@@ -1,33 +1,30 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
 import Button from "./Button";
 import TextSection from "./TextSection";
 import SectionWrapper from "./SectionWrapper";
 
-const useStyles = makeStyles(() => {
-  const theme = useTheme();
-  return {
-    textSection: {
-      paddingBottom: "97px",
+const useStyles = makeStyles((theme) => ({
+  textSection: {
+    paddingBottom: "97px",
+  },
+  image: {
+    position: "absolute",
+    bottom: "0",
+    right: "0",
+    height: "35%",
+    [theme.breakpoints.up("sm")]: {
+      height: "50%",
     },
-    image: {
-      position: "absolute",
-      bottom: "0",
-      right: "0",
-      height: "35%",
-      [theme.breakpoints.up("sm")]: {
-        height: "50%",
-      },
-      [theme.breakpoints.up("lg")]: {
-        height: "60%",
-      },
+    [theme.breakpoints.up("lg")]: {
+      height: "60%",
     },
-  };
-});
+  },
+}));
 
 const Separator = ({ route, title, body, bodyTwo, image, children }) => {
   const {

@@ -29,16 +29,17 @@ const Sidebar = ({ isOpen, handleSidebarClose }) => {
       >
         <NavLinks isSidebar />
         <ApplyButton isSidebar />
-        <Typography
+        <Box
           sx={{
             position: "absolute",
             bottom: 0,
             marginBottom: theme.spacing(2),
           }}
-          variant="subtitle1"
         >
-          &copy; WindAid Institute {new Date().getFullYear()}
-        </Typography>
+          <Typography variant="subtitle1">
+            &copy; WindAid Institute {new Date().getFullYear()}
+          </Typography>
+        </Box>
       </Box>
     </Drawer>
   );

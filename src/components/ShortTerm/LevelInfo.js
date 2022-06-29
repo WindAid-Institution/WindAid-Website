@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Grid } from "@mui/material";
+import { makeStyles, useTheme } from "@mui/styles";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "../../shared/TextSection";

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
 import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,14 +34,14 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main,
     },
 
-    "& > span > p": {
+    "& > p": {
       color: theme.palette.secondary.main,
       fontWeight: theme.typography.fontWeightBold,
     },
   },
 
   buttonText: {
-    color: "#828282",
+    color: theme.palette.primary.dark,
     fontWeight: theme.typography.fontWeightRegular,
   },
 

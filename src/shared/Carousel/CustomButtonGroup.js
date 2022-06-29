@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import clsx from "clsx";
 
 import rightArrowCircle from "../../images/rightArrowCircle.svg";

@@ -1,8 +1,8 @@
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Grid from "@material-ui/core/Grid";
+import { makeStyles, useTheme } from "@mui/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Grid from "@mui/material/Grid";
 import clsx from "clsx";
 
 import SectionWrapper from "shared/SectionWrapper";

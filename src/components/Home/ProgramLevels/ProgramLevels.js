@@ -1,6 +1,6 @@
 import React from "react";
 
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import useHomepageData from "queries/homepage";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";

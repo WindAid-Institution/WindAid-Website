@@ -1,6 +1,6 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Grid, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import PeruOutline from "images/Trujillo/peru.svg";
 
 import SectionWrapper from "shared/SectionWrapper";
