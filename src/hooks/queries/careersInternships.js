@@ -13,6 +13,7 @@ const useCIData = () => {
       careerInternships: allContentfulCareerInternshipPosting {
         careerInternshipsContent: nodes {
           title
+          slugId
           description
           jobPurpose {
             jobPurpose

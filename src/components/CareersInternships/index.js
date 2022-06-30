@@ -86,6 +86,7 @@ const CareersInternships = () => {
         {careerInternshipsContent.map(
           ({
             title: position,
+            slugId,
             description,
             jobPurpose: { jobPurpose },
             dutiesResponsibilities: { dutiesResponsibilities },
@@ -110,7 +111,7 @@ const CareersInternships = () => {
             >
               <AccordionSummary
                 aria-controls={`panel${orderNumber}-content`}
-                id={`panel${orderNumber}-header`}
+                id={slugId}
                 className={classes.accordionSummary}
               >
                 <Typography variant="h5" className={classes.openIndicator}>
