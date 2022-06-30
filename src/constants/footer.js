@@ -10,24 +10,25 @@ import { ROUTES } from "src/constants/routes";
 const LINKS = {
   WHO_WE_ARE: {
     name: "Who We Are",
-    links: [ROUTES.ABOUT_US, ROUTES.AMBASSADORS, ROUTES.FAQ],
+    links: [ROUTES.ABOUT_US, ROUTES.AMBASSADORS],
   },
   OUR_WORK: {
     name: "Our Work",
-    links: [ROUTES.OUR_IMPACT, ROUTES.OUR_PROJECTS],
+    links: [ROUTES.OUR_IMPACT],
   },
   JOIN_US: {
     name: "Join Us",
     links: [
-      ROUTES.VOLUNTEER_PROGRAMS,
-      ROUTES.PARTNERSHIP,
-      ROUTES.CAREERS,
+      ROUTES.LEVEL_1,
+      ROUTES.LEVEL_2,
+      ROUTES.LEVEL_3,
       ROUTES.TRUJILLO,
+      ROUTES.FAQ,
     ],
   },
   CONTACT_US: {
     name: "Contact Us",
-    links: [ROUTES.GENERAL_CONTACT, ROUTES.PROGRAM_APPLICATION],
+    links: [ROUTES.CAREERS],
   },
 };
 const { WHO_WE_ARE, OUR_WORK, JOIN_US, CONTACT_US } = LINKS;

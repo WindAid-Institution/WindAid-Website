@@ -70,8 +70,8 @@ export const ROUTES = {
   },
 
   CAREERS: {
-    name: "Careers",
-    path: "/application",
+    name: "Careers & Internships",
+    path: "/careers-internships",
   },
 
   TRUJILLO: {
@@ -119,6 +119,7 @@ const {
   LEVEL_1,
   LEVEL_2,
   LEVEL_3,
+  CAREERS,
   TRUJILLO,
   FAQ,
   GENERAL_CONTACT,
@@ -152,6 +153,10 @@ export const MENU_ROUTES = [
       TRUJILLO,
       FAQ,
     ],
+  },
+  {
+    main: GENERAL_CONTACT,
+    submenu: [CAREERS],
   },
   { main: DONATE },
 ];

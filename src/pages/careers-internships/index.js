@@ -4,9 +4,9 @@ import { graphql } from "gatsby";
 
 import MainLayout from "src/layout/MainLayout";
 import Hero from "components/Hero/Hero";
-import Faq from "components/Faq/index";
+import CareersInternships from "components/CareersInternships/index";
 
-const FAQ = ({
+const Careers = ({
   data: {
     hero: { title, image },
   },
@@ -14,14 +14,14 @@ const FAQ = ({
   <MainLayout>
     <Hero image={image.gatsbyImageData} alt={title} title={title} />
     <>
-      <Faq />
+      <CareersInternships />
     </>
   </MainLayout>
 );
 
 export const query = graphql`
   {
-    hero: contentfulPageHero(contentId: { eq: "faq" }) {
+    hero: contentfulPageHero(contentId: { eq: "careers" }) {
       title
       image {
         gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
@@ -30,4 +30,4 @@ export const query = graphql`
   }
 `;
 
-export default FAQ;
+export default Careers;

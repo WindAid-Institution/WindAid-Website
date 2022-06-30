@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
@@ -53,6 +54,23 @@ const useStyles = makeStyles(() => {
           ...textStyle,
         },
       },
+      "& > ul > li": {
+        fontFamily: theme.typography.fontFamily,
+        fontSize: "14px",
+        lineHeight: "28px",
+        [theme.breakpoints.up("sm")]: {
+          fontSize: "16px",
+        },
+        maxWidth: size === "sm" ? "560px" : "850px",
+        color: "#282828",
+        marginBottom: theme.spacing(1),
+        ...textStyle,
+
+        [theme.breakpoints.up("sm")]: {
+          fontSize: "16px",
+          ...textStyle,
+        },
+      },
 
       "& > p > a": {
         color: theme.palette.primary.main,
@@ -67,7 +85,9 @@ const Body = ({ body, style, size }) => {
   const classes = useStyles({ size, rootStyle, textStyle });
   return (
     <Box className={classes.root}>
-      <ReactMarkdown className={classes.text}>{body}</ReactMarkdown>
+      <ReactMarkdown className={classes.text} remarkPlugins={[remarkGfm]}>
+        {body}
+      </ReactMarkdown>
     </Box>
   );
 };
