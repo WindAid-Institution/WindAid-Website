@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 const useLongTermData = () => {
   const data = useStaticQuery(graphql`
     {
-      offering: contentfulSection(contentId: { eq: "longTerm-offering" }) {
+      offering: contentfulSection(contentId: { eq: "levelThree-offering" }) {
         title
         header
         body {
@@ -12,7 +12,7 @@ const useLongTermData = () => {
       }
 
       offeringCards: allContentfulSimpleCard(
-        filter: { contentId: { eq: "longTerm-offering-card" } }
+        filter: { contentId: { eq: "levelThree-offering-card" } }
         sort: { fields: orderNumber }
       ) {
         offeringCardsContent: nodes {
@@ -23,7 +23,7 @@ const useLongTermData = () => {
         }
       }
 
-      areas: contentfulSection(contentId: { eq: "longTerm-areas" }) {
+      areas: contentfulSection(contentId: { eq: "levelThree-areas" }) {
         header
         listItems {
           listItems
@@ -31,7 +31,7 @@ const useLongTermData = () => {
       }
 
       exampleProjects: contentfulSection(
-        contentId: { eq: "longTerm-example-projects" }
+        contentId: { eq: "levelThree-example-projects" }
       ) {
         title: header
         body {
@@ -39,7 +39,7 @@ const useLongTermData = () => {
         }
       }
 
-      apply: contentfulSection(contentId: { eq: "longTerm-apply" }) {
+      apply: contentfulSection(contentId: { eq: "levelThree-apply" }) {
         title: header
         body {
           body
@@ -51,7 +51,7 @@ const useLongTermData = () => {
       }
 
       projectsCards: allContentfulCard(
-        filter: { contentId: { eq: "longTerm-projects-card" } }
+        filter: { contentId: { eq: "levelThree-projects-card" } }
         sort: { fields: orderNumber }
         limit: 3
       ) {
@@ -71,7 +71,7 @@ const useLongTermData = () => {
         }
       }
 
-      infoCard: contentfulInfoCard(contentId: { eq: "longTerm-applyInfo" }) {
+      infoCard: contentfulInfoCard(contentId: { eq: "levelThree-applyInfo" }) {
         title {
           title
         }
@@ -100,7 +100,7 @@ const useLongTermData = () => {
         }
       }
 
-      structure: contentfulSection(contentId: { eq: "longTerm-structure" }) {
+      structure: contentfulSection(contentId: { eq: "levelThree-structure" }) {
         title
         body {
           body

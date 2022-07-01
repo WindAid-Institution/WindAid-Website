@@ -6,13 +6,10 @@ import clsx from "clsx";
 
 import Title from "shared/Title";
 import SectionWrapper from "shared/SectionWrapper";
-import ShortTimeVolunteer from "./ShortTimeVolunteer";
-import LongTimeVolunteer from "./LongTimeVolunteer";
-
-const sectionData = {
-  title1: "We offer two types of volunteer program:",
-  title2: "Short-term & Long-term volunteer opportunities",
-};
+import useGeneralProgramData from "queries/generalProgram";
+import Level1Program from "./Level1Program";
+import Level2Program from "./Level2Program";
+import Level3Program from "./Level3Program";
 
 const useStyles = makeStyles((theme) => ({
   wrapperBox: {
@@ -20,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(4),
     },
     [theme.breakpoints.up("lg")]: {
-      marginBottom: theme.spacing(6),
+      marginBottom: 0,
     },
   },
   title: {
@@ -88,9 +85,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const VolunteerProgram = () => {
+const CertificationProgram = () => {
   const classes = useStyles();
   const theme = useTheme();
+
+  const {
+    volunteerMain: { titleOne, titleTwo },
+  } = useGeneralProgramData();
 
   return (
     <Box className={classes.wrapperBox}>
@@ -99,13 +100,30 @@ const VolunteerProgram = () => {
           sectionStyle: { paddingBottom: theme.spacing(4), paddingTop: 0 },
         }}
       >
-        <Title title={sectionData.title1} className={classes.title} />
+        <Title title={titleOne} className={classes.title} />
         <Title
-          title={sectionData.title2}
+          title={titleTwo}
           style={{ textStyle: { color: theme.palette.primary.dark } }}
           className={clsx(classes.title, classes.titleBlack)}
         />
       </SectionWrapper>
+      <Box className={clsx(classes.box, classes.mobileGreen)}>
+        <Grid
+          container
+          className={classes.background}
+          justifyContent="space-between"
+        >
+          <Grid
+            item
+            className={clsx(classes.leftBackground, classes.backgroundGreen)}
+          />
+          <Grid
+            item
+            className={clsx(classes.rightBackground, classes.backgroundBeige)}
+          />
+        </Grid>
+        <Level1Program />
+      </Box>
       <Box className={clsx(classes.box, classes.mobileBeige)}>
         <Grid
           container
@@ -124,7 +142,7 @@ const VolunteerProgram = () => {
             )}
           />
         </Grid>
-        <ShortTimeVolunteer />
+        <Level2Program />
       </Box>
       <Box className={clsx(classes.box, classes.mobileGreen)}>
         <Grid
@@ -141,10 +159,10 @@ const VolunteerProgram = () => {
             className={clsx(classes.rightBackground, classes.backgroundBeige)}
           />
         </Grid>
-        <LongTimeVolunteer />
+        <Level3Program />
       </Box>
     </Box>
   );
 };
 
-export default VolunteerProgram;
+export default CertificationProgram;

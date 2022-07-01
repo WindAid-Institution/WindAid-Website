@@ -47,14 +47,14 @@ const useGeneralProgramData = () => {
       }
 
       volunteerMain: contentfulSection(
-        contentId: { eq: "generalProgram-types-of-volunteer" }
+        contentId: { eq: "generalProgram-types-of-programs" }
       ) {
         titleOne: header
         titleTwo: title
       }
 
-      volunteerShort: contentfulSection(
-        contentId: { eq: "generalProgram-short-term" }
+      volunteerLevel1: contentfulSection(
+        contentId: { eq: "generalProgram-level-1" }
       ) {
         title: header
         body {
@@ -67,8 +67,22 @@ const useGeneralProgramData = () => {
         }
       }
 
-      volunteerLong: contentfulSection(
-        contentId: { eq: "generalProgram-long-term" }
+      volunteerLevel2: contentfulSection(
+        contentId: { eq: "generalProgram-level-2" }
+      ) {
+        title: header
+        body {
+          body
+        }
+        image {
+          title
+          description
+          gatsbyImageData(quality: 100, placeholder: BLURRED)
+        }
+      }
+
+      volunteerLevel3: contentfulSection(
+        contentId: { eq: "generalProgram-level-3" }
       ) {
         title: header
         body {
@@ -103,8 +117,9 @@ const useGeneralProgramData = () => {
     impact,
     experience,
     volunteerMain,
-    volunteerShort,
-    volunteerLong,
+    volunteerLevel1,
+    volunteerLevel2,
+    volunteerLevel3,
     adventure,
   } = data;
   return {
@@ -112,8 +127,9 @@ const useGeneralProgramData = () => {
     impact,
     experience,
     volunteerMain,
-    volunteerShort,
-    volunteerLong,
+    volunteerLevel1,
+    volunteerLevel2,
+    volunteerLevel3,
     adventure,
   };
 };

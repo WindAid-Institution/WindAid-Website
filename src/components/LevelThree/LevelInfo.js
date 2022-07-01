@@ -1,7 +1,7 @@
 import React from "react";
 
 import SectionWrapper from "shared/SectionWrapper";
-import useLongTermData from "queries/longTerm";
+import useLongTermData from "queries/levelThree";
 import InfoCard from "../../shared/InfoCard/InfoCard";
 
 const LevelInfo = () => {

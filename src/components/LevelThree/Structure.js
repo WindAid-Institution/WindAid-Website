@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@mui/material";
 import { makeStyles, useTheme } from "@mui/styles";
 
-import useLongTermData from "../../hooks/queries/longTerm";
+import useLongTermData from "../../hooks/queries/levelThree";
 import SectionWrapper from "../../shared/SectionWrapper";
 import TextSection from "../../shared/TextSection";
 

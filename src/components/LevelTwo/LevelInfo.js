@@ -5,7 +5,7 @@ import { makeStyles, useTheme } from "@mui/styles";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "../../shared/TextSection";
 import InfoCard from "../../shared/InfoCard/InfoCard";
-import useShortTermData from "../../hooks/queries/shortTerm";
+import useShortTermData from "../../hooks/queries/levelTwo";
 
 const useStyles = makeStyles(() => ({
   infoContainer: {

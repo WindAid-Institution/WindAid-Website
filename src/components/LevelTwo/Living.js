@@ -4,7 +4,7 @@ import { makeStyles, useTheme } from "@mui/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { ROUTES } from "src/constants/routes";
-import useShortTermData from "../../hooks/queries/shortTerm";
+import useShortTermData from "../../hooks/queries/levelTwo";
 import SectionWrapper from "../../shared/SectionWrapper";
 import TextSection from "../../shared/TextSection";
 import Button from "../../shared/Button";

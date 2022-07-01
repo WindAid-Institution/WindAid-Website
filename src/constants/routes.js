@@ -39,16 +39,16 @@ export const ROUTES = {
 
   PROGRAMS: {
     name: "Programs",
-    path: "/level-2",
+    path: "/",
   },
 
   VOLUNTEER_PROGRAMS: {
     name: "Volunteer",
-    path: "/general-program",
+    path: "/",
   },
   CERTIFICATE_PROGRAMS: {
     name: "Certificate Programs",
-    path: "/",
+    path: "/general-program",
   },
   LEVEL_1: {
     name: "Level 1: E-learning",

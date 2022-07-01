@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
-import useLongTermData from "queries/longTerm";
+import useLongTermData from "queries/levelThree";
 
 import ExampleProjectsTabs from "./ExampleProjectsTabs";
 import ExampleProjectsCard from "./ExampleProjectsCard";
