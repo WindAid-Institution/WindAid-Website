@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ROUTES } from "src/constants/routes";
-import useShortTermData from "queries/shortTerm";
+import useShortTermData from "queries/levelTwo";
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Separator from "../../shared/Separator";

@@ -5,7 +5,7 @@ import { makeStyles, useTheme } from "@mui/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import TextSection from "shared/TextSection";
-import useShortTermData from "queries/shortTerm";
+import useShortTermData from "queries/levelTwo";
 import CustomCarousel from "../../shared/Carousel/CustomCarousel";
 import SectionWrapper from "../../shared/SectionWrapper";
 

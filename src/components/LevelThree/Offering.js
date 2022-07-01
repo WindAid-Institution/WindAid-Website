@@ -6,7 +6,7 @@ import SectionWrapper from "shared/SectionWrapper";
 import { ROUTES } from "src/constants/routes";
 import Button from "../../shared/Button";
 import TextSection from "../../shared/TextSection";
-import useLongTermData from "../../hooks/queries/longTerm";
+import useLongTermData from "../../hooks/queries/levelThree";
 
 const useStyles = makeStyles((theme) => ({
   mainWrapper: {

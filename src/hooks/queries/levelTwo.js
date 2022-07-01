@@ -4,7 +4,7 @@ const useShortTermData = () => {
   const data = useStaticQuery(graphql`
     {
       structureCards: allContentfulSimpleCard(
-        filter: { contentId: { eq: "shortTerm-structure" } }
+        filter: { contentId: { eq: "levelTwo-structure" } }
         sort: { fields: orderNumber }
       ) {
         structureCardsContent: nodes {
@@ -16,7 +16,7 @@ const useShortTermData = () => {
         }
       }
 
-      volunteers: contentfulSection(contentId: { eq: "shortTerm-volunteers" }) {
+      volunteers: contentfulSection(contentId: { eq: "levelTwo-volunteers" }) {
         header
         body {
           body
@@ -24,13 +24,13 @@ const useShortTermData = () => {
       }
 
       hearFromPrev: contentfulSection(
-        contentId: { eq: "shortTerm-hear-from-previous" }
+        contentId: { eq: "levelTwo-hear-from-previous" }
       ) {
         header
       }
 
       volunteersCards: allContentfulCard(
-        filter: { contentId: { eq: "shortTerm-volunteers-card" } }
+        filter: { contentId: { eq: "levelTwo-volunteers-card" } }
         sort: { fields: orderNumber }
         limit: 3
       ) {
@@ -48,7 +48,7 @@ const useShortTermData = () => {
         }
       }
 
-      apply: contentfulSeparationImage(contentId: { eq: "shortTerm-apply" }) {
+      apply: contentfulSeparationImage(contentId: { eq: "levelTwo-apply" }) {
         title
         body {
           body
@@ -64,7 +64,7 @@ const useShortTermData = () => {
         }
       }
 
-      infoCard: contentfulInfoCard(contentId: { eq: "shortTerm-applyInfo" }) {
+      infoCard: contentfulInfoCard(contentId: { eq: "levelTwo-applyInfo" }) {
         title {
           title
         }
@@ -94,7 +94,7 @@ const useShortTermData = () => {
       }
 
       structureImages: contentfulSection(
-        contentId: { eq: "shortTerm-structureImages" }
+        contentId: { eq: "levelTwo-structureImages" }
       ) {
         images {
           description
@@ -103,13 +103,13 @@ const useShortTermData = () => {
       }
 
       applyDescription: contentfulSimpleCard(
-        contentId: { eq: "shortTerm-applyDescription" }
+        contentId: { eq: "levelTwo-applyDescription" }
       ) {
         title
         header
       }
 
-      living: contentfulSection(contentId: { eq: "shortTerm-living" }) {
+      living: contentfulSection(contentId: { eq: "levelTwo-living" }) {
         title
         body {
           body

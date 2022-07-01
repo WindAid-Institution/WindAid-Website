@@ -12,22 +12,10 @@ import SectionWrapper from "shared/SectionWrapper";
 import useGeneralProgramData from "queries/generalProgram";
 
 const useStyles = makeStyles((theme) => ({
-  contrast: {
-    color: theme.palette.secondary.main,
-    "& h3": {
-      color: theme.palette.secondary.main,
-    },
-  },
-  buttonContrast: {
-    "& .custom-button": {
-      color: theme.palette.primary.main,
-      background: theme.palette.secondary.main,
-    },
-  },
   wrapper: {
     height: "auto",
     [theme.breakpoints.only("xs")]: {
-      background: theme.palette.primary.main,
+      background: theme.palette.secondary.dark,
     },
   },
   spacing: {
@@ -74,9 +62,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-
     [theme.breakpoints.only("sm")]: {
-      background: theme.palette.secondary.dark,
+      background: theme.palette.primary.main,
     },
   },
   gridAreaTitle: {
@@ -98,14 +85,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LongTimeVolunteer = () => {
+const Level2Program = () => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const whiteTextStyle = { textStyle: { color: theme.palette.secondary.main } };
-
   const {
-    volunteerLong: {
+    volunteerLevel2: {
       title,
       body: { body },
       image,
@@ -113,32 +98,23 @@ const LongTimeVolunteer = () => {
   } = useGeneralProgramData();
 
   return (
-    <SectionWrapper bgColor="primary">
+    <SectionWrapper
+      bgColor="secondary"
+      style={{ sectionStyle: { marginBottom: theme.spacing(4) } }}
+    >
       <div spacing={2} className={clsx(classes.wrapper, classes.gridLayout)}>
         <div className={clsx(classes.content, classes.gridAreaTitle)}>
           <Title
             title={title}
-            className={classes.contrast}
-            style={whiteTextStyle}
+            style={{ textStyle: { color: theme.palette.primary.dark } }}
           />
         </div>
-        <div
-          className={clsx(
-            classes.content,
-            classes.gridAreaBody,
-            classes.buttonContrast
-          )}
-        >
-          <Body
-            body={body}
-            className={classes.contrast}
-            style={whiteTextStyle}
-          />
+        <div className={clsx(classes.content, classes.gridAreaBody)}>
+          <Body body={body} />
           <Button
-            inverted
             text="Learn about the program"
             style={{ marginTop: theme.spacing(2) }}
-            route={ROUTES.LONG_TERM_PROGRAM}
+            route={ROUTES.LEVEL_2}
           />
         </div>
         <div className={classes.gridAreaImg}>
@@ -155,4 +131,4 @@ const LongTimeVolunteer = () => {
   );
 };
 
-export default LongTimeVolunteer;
+export default Level2Program;

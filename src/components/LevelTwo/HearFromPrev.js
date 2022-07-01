@@ -10,7 +10,7 @@ import CommunityCard from "components/OurImpact/Community/Carousel/CommunityCard
 import { ROUTES } from "src/constants/routes";
 import Button from "src/shared/Button";
 
-import useShortTermData from "queries/shortTerm";
+import useShortTermData from "queries/levelTwo";
 
 // eslint-disable-next-line no-unused-vars
 const useStyles = makeStyles(() => ({

@@ -12,7 +12,7 @@ import Impact from "components/GeneralProgram/Impact";
 import BackgroundSeparator from "components/BackgroundSeparator/BackgroundSeparator";
 import ExperienceSection from "components/GeneralProgram/ExperienceSection";
 import AdventureSection from "components/GeneralProgram/AdventureSection";
-import VolunteerProgram from "components/GeneralProgram/VolunteerProgram";
+import CertificationProgram from "components/GeneralProgram/CertificationProgram";
 
 import theme from "../../../theme";
 
@@ -34,7 +34,7 @@ function GeneralProgram({
       <MainLayout>
         <Hero
           image={image.gatsbyImageData}
-          alt="Peru Electrification Program"
+          alt="Certificate Programs"
           title={title}
         />
         <>
@@ -45,7 +45,7 @@ function GeneralProgram({
             paragraphText={separationParagraph}
           />
           <ExperienceSection />
-          <VolunteerProgram />
+          <CertificationProgram />
           <AdventureSection />
         </>
       </MainLayout>
