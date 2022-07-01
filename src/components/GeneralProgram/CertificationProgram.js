@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: theme.spacing(4),
     },
     [theme.breakpoints.up("lg")]: {
-      marginBottom: theme.spacing(6),
+      marginBottom: 0,
     },
   },
   title: {
