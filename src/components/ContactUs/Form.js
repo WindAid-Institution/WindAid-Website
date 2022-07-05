@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles, useTheme } from "@mui/styles";
 import { TextField } from "@mui/material";
 import validator from "validator";
@@ -190,37 +189,12 @@ const ContactForm = () => {
     }
   };
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     let submit = true;
-  //     // eslint-disable-next-line no-restricted-syntax
-  //     for (const value of Object.values(error)) {
-  //       if (!value.errorState) {
-  //         // eslint-disable-next-line no-restricted-syntax
-  //         for (const [keyInner, valueInner] of Object.entries(values)) {
-  //           if (valueInner === "" && keyInner !== "phone_number") {
-  //             submit = false;
-  //             break;
-  //           }
-  //         }
-  //       }
-  //     }
-  //     if (submit) {
-  //       setSubmitted(true);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     if (submitted) {
-  //       console.log("Contact form submitted");
-  //     }
-  //   }, [submitted]);
-
   return (
     <form
       name="contact-form"
       data-netlify="true"
       method="POST"
+      action="/thank-you"
       className={classes.formContainer}
       netlify-honeypot="bot-field"
     >
