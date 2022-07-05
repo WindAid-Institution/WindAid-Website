@@ -9,6 +9,7 @@ const theme = createTheme({
     secondary: {
       main: "#ffffff",
       dark: "#fff9f5",
+      footer: "#FBF6EE"
     },
     info: {
       main: "#015B90",

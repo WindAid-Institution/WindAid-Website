@@ -19,6 +19,7 @@ const LINKS = {
   JOIN_US: {
     name: "Join Us",
     links: [
+      ROUTES.CERTIFICATE_PROGRAMS,
       ROUTES.LEVEL_1,
       ROUTES.LEVEL_2,
       ROUTES.LEVEL_3,
@@ -27,8 +28,8 @@ const LINKS = {
     ],
   },
   CONTACT_US: {
-    name: "Contact Us",
-    links: [ROUTES.CAREERS],
+    name: "Contact",
+    links: [ROUTES.CONTACT_US, ROUTES.CAREERS],
   },
 };
 const { WHO_WE_ARE, OUR_WORK, JOIN_US, CONTACT_US } = LINKS;

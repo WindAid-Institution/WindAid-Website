@@ -48,7 +48,7 @@ export const ROUTES = {
   },
   CERTIFICATE_PROGRAMS: {
     name: "Certificate Programs",
-    path: "/general-program",
+    path: "/certificate-programs",
   },
   LEVEL_1: {
     name: "Level 1: E-learning",
@@ -123,6 +123,7 @@ const {
   TRUJILLO,
   FAQ,
   GENERAL_CONTACT,
+  CONTACT_US,
   DONATE,
 } = ROUTES;
 export const NAVBAR_ROUTES = [
@@ -156,7 +157,7 @@ export const MENU_ROUTES = [
   },
   {
     main: GENERAL_CONTACT,
-    submenu: [CAREERS],
+    submenu: [CONTACT_US, CAREERS],
   },
   { main: DONATE },
 ];
