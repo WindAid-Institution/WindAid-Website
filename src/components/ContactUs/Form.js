@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles, useTheme } from "@mui/styles";
-import { TextField } from "@mui/material";
+import { Input } from "@mui/material";
 import validator from "validator";
 import "react-phone-number-input/style.css";
 import PhoneInput, { isPossiblePhoneNumber } from "react-phone-number-input";
@@ -203,7 +203,6 @@ const ContactForm = () => {
         }
       }
     }
-    console.log({ submit });
     if (submit) {
       setSubmitted(true);
     }
@@ -225,7 +224,7 @@ const ContactForm = () => {
     >
       {/* This is needed when using gatsby to generate the form submissions https://www.netlify.com/blog/2017/07/20/how-to-integrate-netlifys-form-handling-in-a-react-app/#form-handling-with-static-site-generators */}
       <input type="hidden" name="form-name" value="contact-form" />
-      <TextField
+      <Input
         label="First Name"
         name="first_name"
         id="first_name"
@@ -235,7 +234,7 @@ const ContactForm = () => {
         error={error.first_name.errorState}
         helperText={error.first_name.helperText}
       />
-      <TextField
+      <Input
         label="Last Name"
         name="last_name"
         id="last_name"
@@ -245,7 +244,7 @@ const ContactForm = () => {
         error={error.last_name.errorState}
         helperText={error.last_name.helperText}
       />
-      <TextField
+      <Input
         label="Email"
         name="email"
         id="email"
@@ -256,6 +255,8 @@ const ContactForm = () => {
         helperText={error.email.helperText}
       />
       <PhoneInput
+        name="phone_number"
+        id="phone_number"
         international
         countryCallingCodeEditable={false}
         defaultCountry="PE"
@@ -271,7 +272,7 @@ const ContactForm = () => {
       {values.phone_number && !isPossiblePhoneNumber(values.phone_number) && (
         <TextSection body="Invalid Phone Number" style={helperTextStyle} />
       )}
-      <TextField
+      <Input
         label="Reason for Contact"
         name="reason"
         id="reason"
@@ -280,7 +281,7 @@ const ContactForm = () => {
         required
         className={classes.inputBox}
       />
-      <TextField
+      <Input
         label="Message"
         name="message_input"
         id="message_input"
@@ -292,11 +293,7 @@ const ContactForm = () => {
         className={classes.inputBox}
       />
       {!submitted ? (
-        <button
-          type="submit"
-          className={classes.button}
-          onSubmit={handleSubmit}
-        >
+        <button type="submit" className={classes.button}>
           Submit
         </button>
       ) : (
