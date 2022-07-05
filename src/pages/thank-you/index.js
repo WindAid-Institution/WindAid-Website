@@ -1,11 +1,11 @@
 import React from "react";
 import { MainLayout } from "../../layout";
-import ContactUs from "../../components/ContactUs";
+import ThankYou from "../../components/ThankYou";
 
 export default function Contact() {
   return (
     <MainLayout>
-      <ContactUs />
+      <ThankYou />
     </MainLayout>
   );
 }

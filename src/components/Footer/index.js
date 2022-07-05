@@ -7,7 +7,7 @@ import BottomFooter from "./BottomFooter";
 const useStyles = makeStyles((theme) => ({
   footer: {
     borderTop: "1px solid #056839",
-    background: theme.palette.secondary.dark,
+    background: theme.palette.secondary.footer,
 
     "& a:hover": {
       textDecoration: "none",
