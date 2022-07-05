@@ -217,12 +217,13 @@ const ContactForm = () => {
 
   return (
     <form
-      name="Contact Form"
+      name="contact-form"
       data-netlify="true"
       method="post"
       onSubmit={handleSubmit}
       className={classes.formContainer}
     >
+      <input type="hidden" name="form-name" value="contact-form" />
       <TextField
         label="First Name"
         name="first_name"
