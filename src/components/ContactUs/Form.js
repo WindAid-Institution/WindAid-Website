@@ -1,6 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import { makeStyles, useTheme } from "@mui/styles";
-import { Input } from "@mui/material";
+import { TextField } from "@mui/material";
 import validator from "validator";
 import "react-phone-number-input/style.css";
 import PhoneInput, { isPossiblePhoneNumber } from "react-phone-number-input";
@@ -66,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
 const ContactForm = () => {
   const theme = useTheme();
   const classes = useStyles();
+  // eslint-disable-next-line no-unused-vars
   const [submitted, setSubmitted] = useState(false);
   const errorDict = {
     first_name: { errorState: false, helperText: "" },
@@ -188,43 +190,43 @@ const ContactForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let submit = true;
-    // eslint-disable-next-line no-restricted-syntax
-    for (const value of Object.values(error)) {
-      if (!value.errorState) {
-        // eslint-disable-next-line no-restricted-syntax
-        for (const [keyInner, valueInner] of Object.entries(values)) {
-          if (valueInner === "" && keyInner !== "phone_number") {
-            submit = false;
-            break;
-          }
-        }
-      }
-    }
-    if (submit) {
-      setSubmitted(true);
-    }
-  };
+  //   const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     let submit = true;
+  //     // eslint-disable-next-line no-restricted-syntax
+  //     for (const value of Object.values(error)) {
+  //       if (!value.errorState) {
+  //         // eslint-disable-next-line no-restricted-syntax
+  //         for (const [keyInner, valueInner] of Object.entries(values)) {
+  //           if (valueInner === "" && keyInner !== "phone_number") {
+  //             submit = false;
+  //             break;
+  //           }
+  //         }
+  //       }
+  //     }
+  //     if (submit) {
+  //       setSubmitted(true);
+  //     }
+  //   };
 
-  useEffect(() => {
-    if (submitted) {
-      console.log("Contact form submitted");
-    }
-  }, [submitted]);
+  //   useEffect(() => {
+  //     if (submitted) {
+  //       console.log("Contact form submitted");
+  //     }
+  //   }, [submitted]);
 
   return (
     <form
       name="contact-form"
       data-netlify="true"
       method="POST"
-      onSubmit={handleSubmit}
       className={classes.formContainer}
+      netlify-honeypot="bot-field"
     >
       {/* This is needed when using gatsby to generate the form submissions https://www.netlify.com/blog/2017/07/20/how-to-integrate-netlifys-form-handling-in-a-react-app/#form-handling-with-static-site-generators */}
       <input type="hidden" name="form-name" value="contact-form" />
-      <Input
+      <TextField
         label="First Name"
         name="first_name"
         id="first_name"
@@ -234,7 +236,7 @@ const ContactForm = () => {
         error={error.first_name.errorState}
         helperText={error.first_name.helperText}
       />
-      <Input
+      <TextField
         label="Last Name"
         name="last_name"
         id="last_name"
@@ -244,7 +246,7 @@ const ContactForm = () => {
         error={error.last_name.errorState}
         helperText={error.last_name.helperText}
       />
-      <Input
+      <TextField
         label="Email"
         name="email"
         id="email"
@@ -272,7 +274,7 @@ const ContactForm = () => {
       {values.phone_number && !isPossiblePhoneNumber(values.phone_number) && (
         <TextSection body="Invalid Phone Number" style={helperTextStyle} />
       )}
-      <Input
+      <TextField
         label="Reason for Contact"
         name="reason"
         id="reason"
@@ -281,7 +283,7 @@ const ContactForm = () => {
         required
         className={classes.inputBox}
       />
-      <Input
+      <TextField
         label="Message"
         name="message_input"
         id="message_input"
