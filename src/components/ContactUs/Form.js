@@ -219,10 +219,11 @@ const ContactForm = () => {
     <form
       name="contact-form"
       data-netlify="true"
-      method="post"
+      method="POST"
       onSubmit={handleSubmit}
       className={classes.formContainer}
     >
+      {/* This is needed when using gatsby to generate the form submissions https://www.netlify.com/blog/2017/07/20/how-to-integrate-netlifys-form-handling-in-a-react-app/#form-handling-with-static-site-generators */}
       <input type="hidden" name="form-name" value="contact-form" />
       <TextField
         label="First Name"
