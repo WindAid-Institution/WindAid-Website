@@ -192,14 +192,10 @@ const ContactForm = () => {
     e.preventDefault();
     let submit = true;
     // eslint-disable-next-line no-restricted-syntax
-    console.log({ error });
     for (const value of Object.values(error)) {
       if (!value.errorState) {
-        console.log({ value });
         // eslint-disable-next-line no-restricted-syntax
         for (const [keyInner, valueInner] of Object.entries(values)) {
-          console.log({ keyInner });
-          console.log({ valueInner });
           if (valueInner === "" && keyInner !== "phone_number") {
             submit = false;
             break;
@@ -222,7 +218,8 @@ const ContactForm = () => {
   return (
     <form
       name="Contact Form"
-      netlify
+      data-netlify="true"
+      method="post"
       onSubmit={handleSubmit}
       className={classes.formContainer}
     >
