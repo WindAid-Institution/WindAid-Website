@@ -22,7 +22,7 @@ export const ROUTES = {
   },
   OUR_PROJECTS: {
     name: "Our projects",
-    path: "/our-projects",
+    path: "/projects",
   },
   PROJECT_ONE: {
     name: "Project one",
@@ -44,7 +44,7 @@ export const ROUTES = {
 
   VOLUNTEER_PROGRAMS: {
     name: "Volunteer",
-    path: "/",
+    path: "/volunteer",
   },
   CERTIFICATE_PROGRAMS: {
     name: "Certificate Programs",
@@ -52,7 +52,7 @@ export const ROUTES = {
   },
   LEVEL_1: {
     name: "Level 1: E-learning",
-    path: "#",
+    path: "/level-1",
   },
 
   LEVEL_2: {
@@ -113,6 +113,7 @@ const {
   ABOUT_US,
   AMBASSADORS,
   OUR_WORK,
+  OUR_PROJECTS,
   OUR_IMPACT,
   PROGRAMS,
   CERTIFICATE_PROGRAMS,
@@ -125,6 +126,7 @@ const {
   GENERAL_CONTACT,
   CONTACT_US,
   DONATE,
+  VOLUNTEER_PROGRAMS,
 } = ROUTES;
 export const NAVBAR_ROUTES = [
   WHO_WE_ARE,
@@ -141,7 +143,7 @@ export const MENU_ROUTES = [
   },
   {
     main: OUR_WORK,
-    submenu: [OUR_IMPACT],
+    submenu: [OUR_PROJECTS, OUR_IMPACT],
   },
 
   {
@@ -157,7 +159,7 @@ export const MENU_ROUTES = [
   },
   {
     main: GENERAL_CONTACT,
-    submenu: [CONTACT_US, CAREERS],
+    submenu: [CONTACT_US, CAREERS, VOLUNTEER_PROGRAMS],
   },
   { main: DONATE },
 ];

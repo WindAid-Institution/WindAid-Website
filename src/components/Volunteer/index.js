@@ -8,7 +8,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import { AiOutlineMinus } from "@react-icons/all-files/ai/AiOutlineMinus";
 import { AiOutlinePlus } from "@react-icons/all-files/ai/AiOutlinePlus";
 
-import useCIData from "queries/careersInternships";
+import useVolunteerData from "queries/volunteer";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import { ROUTES } from "src/constants/routes";
@@ -51,14 +51,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CareersInternships = () => {
+const Volunteer = () => {
   const {
     find: {
       title,
       body: { body },
     },
-    careerInternshipsContent,
-  } = useCIData();
+    volunteerContent,
+  } = useVolunteerData();
   const classes = useStyles();
 
   const [expanded, setExpanded] = useState(false);
@@ -72,7 +72,6 @@ const CareersInternships = () => {
     bodyStyle: { textStyle: { lineHeight: "28px" } },
     rootStyle: { marginBottom: "30px" },
   };
-
   return (
     <SectionWrapper>
       <TextSection title={title} size="lg" />
@@ -83,9 +82,9 @@ const CareersInternships = () => {
         route={ROUTES.APPLY}
       />{" "}
       <Box className={classes.accordionContainer}>
-        {careerInternshipsContent.map((fields) => (
+        {volunteerContent.map((fields) => (
           <>
-            {fields.orderNumber > 0 && (
+            {fields.orderNumber > 0 && ( // Doing this so that it ignores the dummy post. Dummy post is there to query all fields without an error.
               <Accordion
                 square
                 expanded={expanded === fields.orderNumber}
@@ -150,12 +149,13 @@ const CareersInternships = () => {
                       size="full"
                     />
                   )}
-                  {fields.benefitsOfCoOpinternship && (
+                  {fields.benefitsOfVolunteeringPosition && (
                     <TextSection
                       style={contentStyles}
                       subHeader="Benefits of Co-op/Internship"
                       body={
-                        fields.benefitsOfCoOpinternship.benefitsOfCoOpinternship
+                        fields.benefitsOfVolunteeringPosition
+                          .benefitsOfVolunteeringPosition
                       }
                       size="full"
                     />
@@ -176,27 +176,11 @@ const CareersInternships = () => {
                       size="full"
                     />
                   )}
-                  {fields.windaidFeeOptional && (
-                    <TextSection
-                      style={contentStyles}
-                      subHeader="Windaid Fee (optional)"
-                      body={fields.windaidFeeOptional.windaidFeeOptional}
-                      size="full"
-                    />
-                  )}
                   {fields.otherBenefits && (
                     <TextSection
                       style={contentStyles}
                       subHeader="Other Benefits"
                       body={fields.otherBenefits.otherBenefits}
-                      size="full"
-                    />
-                  )}
-                  {fields.majorsConsidered && (
-                    <TextSection
-                      style={contentStyles}
-                      subHeader="Majors Considered"
-                      body={fields.majorsConsidered}
                       size="full"
                     />
                   )}
@@ -230,4 +214,4 @@ const CareersInternships = () => {
     </SectionWrapper>
   );
 };
-export default CareersInternships;
+export default Volunteer;
