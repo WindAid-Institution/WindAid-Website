@@ -14,7 +14,7 @@ const LINKS = {
   },
   OUR_WORK: {
     name: "Our Work",
-    links: [ROUTES.OUR_IMPACT],
+    links: [ROUTES.OUR_WORK, ROUTES.OUR_IMPACT],
   },
   JOIN_US: {
     name: "Join Us",
@@ -29,7 +29,7 @@ const LINKS = {
   },
   CONTACT_US: {
     name: "Contact",
-    links: [ROUTES.CONTACT_US, ROUTES.CAREERS],
+    links: [ROUTES.CONTACT_US, ROUTES.CAREERS, ROUTES.VOLUNTEER_PROGRAMS],
   },
 };
 const { WHO_WE_ARE, OUR_WORK, JOIN_US, CONTACT_US } = LINKS;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import { Grid, Typography, Box } from "@mui/material";
 import PropTypes from "prop-types";
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -42,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
   imgContainer: {
     height: "350px",
   },
+  link: {
+    textDecoration: "none",
+    color: theme.palette.primary.dark,
+  },
   text: {
     color: theme.palette.secondary.main,
     textAlign: "left",
@@ -65,59 +70,62 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Card = ({ image, imageText, children, style }) => {
+const Card = ({ image, imageText, urlSlug, children, style }) => {
   const { textContainerStyle, contentContainerStyle } = style || {};
   const { gatsbyImageData, description } = image;
   const classes = useStyles({ textContainerStyle, contentContainerStyle });
   const theme = useTheme();
-
+  console.log({ urlSlug });
   return (
-    <Grid container className={classes.contentContainer}>
-      <Box className={classes.imgContainer}>
-        <GatsbyImage
-          image={gatsbyImageData}
-          alt={description}
-          className={classes.image}
-        />
-      </Box>
-      <Box className={classes.root}>
-        {imageText && (
-          <Box className={classes.imageText}>
-            <Typography variant="h5" className={classes.text}>
-              {imageText.header}
-            </Typography>
-            <Typography variant="h6" className={classes.text}>
-              {imageText.location}
-            </Typography>
-            <Typography variant="subtitle1" className={classes.text}>
-              {imageText.date}
-            </Typography>
-          </Box>
-        )}
-      </Box>
-      <Grid container className={classes.textContainer}>
-        {children}
-        <Grid className={classes.textItem}>
-          <TextSection
-            body={"Find out more &gt;"}
-            style={{
-              bodyStyle: {
-                textStyle: {
-                  textAlign: "right",
-                  color: theme.palette.primary.main,
-                },
-              },
-            }}
+    <Link to={`/projects/${urlSlug}`} className={classes.link}>
+      <Grid container className={classes.contentContainer}>
+        <Box className={classes.imgContainer}>
+          <GatsbyImage
+            image={gatsbyImageData}
+            alt={description}
+            className={classes.image}
           />
+        </Box>
+        <Box className={classes.root}>
+          {imageText && (
+            <Box className={classes.imageText}>
+              <Typography variant="h5" className={classes.text}>
+                {imageText.header}
+              </Typography>
+              <Typography variant="h6" className={classes.text}>
+                {imageText.location}
+              </Typography>
+              <Typography variant="subtitle1" className={classes.text}>
+                {imageText.date}
+              </Typography>
+            </Box>
+          )}
+        </Box>
+        <Grid container className={classes.textContainer}>
+          {children}
+          <Grid className={classes.textItem}>
+            <TextSection
+              body={"Find out more &gt;"}
+              style={{
+                bodyStyle: {
+                  textStyle: {
+                    textAlign: "right",
+                    color: theme.palette.primary.main,
+                  },
+                },
+              }}
+            />
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </Link>
   );
 };
 
 Card.propTypes = {
   image: PropTypes.object.isRequired,
   imageText: PropTypes.object,
+  urlSlug: PropTypes.string.isRequired,
   children: PropTypes.object.isRequired,
   style: PropTypes.object,
 };

@@ -37,8 +37,8 @@ const additionalStyle = {
   contentContainerStyle: {
     margin: "0px",
     [theme.breakpoints.up("sm")]: {
-      width: "85%",
-      margin: "8%",
+      width: "95%",
+      margin: "5%",
     },
   },
 };
@@ -47,12 +47,14 @@ const ProjectCard = ({ data }) => {
   const classes = useStyles();
   const {
     header,
+    urlSlug,
     location,
     date,
     status,
     body: { body },
     householdNumber,
     windturbineNumber,
+    windturbineTotalNumber,
     image,
   } = data;
 
@@ -63,7 +65,12 @@ const ProjectCard = ({ data }) => {
   };
 
   return (
-    <Card image={image} imageText={imageText} style={additionalStyle}>
+    <Card
+      image={image}
+      imageText={imageText}
+      urlSlug={urlSlug}
+      style={additionalStyle}
+    >
       <>
         <Grid item>
           <Typography variant="body1" className={classes.status}>
@@ -103,7 +110,7 @@ const ProjectCard = ({ data }) => {
           </Grid>
           <Grid item xs={2} lg={3}>
             <Typography variant="body1" className={classes.number}>
-              {windturbineNumber}
+              {windturbineNumber} / {windturbineTotalNumber}
             </Typography>
           </Grid>
         </Grid>

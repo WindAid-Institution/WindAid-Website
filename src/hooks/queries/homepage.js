@@ -74,6 +74,7 @@ const useHomepageData = () => {
         currentProjectCardsContent: nodes {
           orderNumber
           header
+          urlSlug
           location
           date
           status
@@ -82,6 +83,7 @@ const useHomepageData = () => {
           }
           householdNumber
           windturbineNumber
+          windturbineTotalNumber
           image {
             gatsbyImageData(quality: 100, placeholder: BLURRED)
             description
