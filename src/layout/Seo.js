@@ -23,10 +23,10 @@ const Seo = () => {
       <title itemProp="name" lang="en">
         {title}
       </title>
-      <meta name="description" content={description} />
+      <meta name="description" content={description.description} />
       <meta property="og:title" content={title} />
       <meta property="og:url" content="https://windaid.org" />
-      <meta name="og:description" content={description} />
+      <meta name="og:description" content={description.description} />
       <meta name="og:type" content="website" />
       <meta property="og:image:url" content={img} />
       <meta property="og:image:type" content="image/png" />
