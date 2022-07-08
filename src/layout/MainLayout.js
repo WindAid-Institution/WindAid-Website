@@ -6,10 +6,12 @@ import theme from "../../theme";
 // import ClientSideRendering from "../utils/ClientRendering";
 import NavBar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Seo from "./Seo";
 
 const MainLayout = ({ children }) => (
   <StyledEngineProvider injectFirst>
     <ThemeProvider theme={theme}>
+      <Seo />
       <NavBar />
       {children}
       <Footer />
