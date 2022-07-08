@@ -1,11 +1,11 @@
 {
-  "name": "windaid-institute",
-  "version": "1.0.0",
+  "name": "WindAid Institute",
+  "version": "2.0.0",
   "private": true,
   "description": "WindaidInstitute",
   "author": "Rishi Khan",
   "keywords": [
-    "gatsby"
+    "renewable", "education", "wind turbines", "peru", "travel", "volunteer", "social entrepreneurship"
   ],
   "babel": {
     "presets": [
