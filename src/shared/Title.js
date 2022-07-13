@@ -64,9 +64,34 @@ const Title = ({ title, style, size }) => {
   const updatedStyles = styles({ size, rootStyle, textStyle, theme });
   const classes = useClasses(updatedStyles);
 
+  const additionalTextStyle = {
+    fontSize: "20px",
+    lineHeight: "30px",
+    color: theme.palette.primary.main,
+    fontWeight: theme.typography.fontWeightBold,
+    marginBottom: theme.spacing(1),
+    fontFamily: theme.typography.fontFamily,
+    ...textStyle,
+
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "26px",
+      lineHeight: "40px",
+      fontFamily: theme.typography.fontFamily,
+      ...textStyle,
+    },
+
+    [theme.breakpoints.up("md")]: {
+      fontSize: "28px",
+      lineHeight: "40px",
+      fontFamily: theme.typography.fontFamily,
+
+      ...textStyle,
+    },
+  };
+
   return (
     <Box className={classes.root} style={style}>
-      <Typography variant="h3" className={classes.text}>
+      <Typography variant="h3" sx={additionalTextStyle}>
         {title}
       </Typography>
     </Box>
