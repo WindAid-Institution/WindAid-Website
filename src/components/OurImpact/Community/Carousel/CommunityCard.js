@@ -1,14 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@mui/material/Grid";
 import { GatsbyImage } from "gatsby-plugin-image";
 import clsx from "clsx";
+import useClasses from "../../../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   root: {
-    width: "100%",
-
     "-webkit-touch-callout": "none",
     "-webkit-user-select": "none",
     "-khtml-user-select": "none",
@@ -18,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.up("md")]: {
       display: "flex",
+      flexDirection: "row",
       alignItems: "center",
     },
   },
@@ -28,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imageContainer: {
-    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     background: theme.palette.primary.main,
@@ -56,8 +54,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   contentContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "20px",
     background: theme.palette.secondary.dark,
-    width: "100%",
     padding: "16px",
     position: "relative",
     height: "fit-content",
@@ -140,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "flex-end",
     fontWeight: theme.typography.fontWeightLight,
   },
-}));
+});
 
 const CommunityCard = ({
   name,
@@ -151,13 +151,13 @@ const CommunityCard = ({
   image,
   isTopAligned,
 }) => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
   return (
     <Grid
       container
       className={clsx(classes.root, isTopAligned && classes.rootTopAligned)}
     >
-      <Grid container className={classes.imageContainer}>
+      <Grid item className={classes.imageContainer}>
         <GatsbyImage
           image={image.gatsbyImageData}
           alt={name}
@@ -165,7 +165,11 @@ const CommunityCard = ({
         />
       </Grid>
 
-      <Grid className={classes.contentContainer} container>
+      <Grid
+        className={classes.contentContainer}
+        item
+        sx={{ flexDirection: "column" }}
+      >
         <Grid
           item
           xs={12}
@@ -173,7 +177,7 @@ const CommunityCard = ({
         >
           {name}
         </Grid>
-        <Grid container>
+        <Grid item>
           <Grid
             item
             xs={12}
@@ -183,7 +187,7 @@ const CommunityCard = ({
             <span className={classes.date}>{date}</span>
           </Grid>
         </Grid>
-        <Grid item container className={classes.textContainer}>
+        <Grid item className={classes.textContainer}>
           <Grid
             item
             xs={12}

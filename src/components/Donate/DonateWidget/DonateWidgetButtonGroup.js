@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
 import clsx from "clsx";
+import useClasses from "../../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   button: {
     minWidth: 0,
     width: "114px",
@@ -34,14 +34,14 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.main,
     },
 
-    "& > span > p": {
+    "& > p": {
       color: theme.palette.secondary.main,
       fontWeight: theme.typography.fontWeightBold,
     },
   },
 
   buttonText: {
-    color: "#828282",
+    color: theme.palette.primary.dark,
     fontWeight: theme.typography.fontWeightRegular,
   },
 
@@ -65,9 +65,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "2px",
     },
   },
-}));
+});
 const ValueButton = ({ value, handleButtonClick, isActive }) => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
   return (
     <Button
       value={value}
@@ -80,7 +80,7 @@ const ValueButton = ({ value, handleButtonClick, isActive }) => {
 };
 
 const ValueInput = ({ value, handleInputChange }) => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
 
   const [isFocused, setIsFocused] = useState(false);
   const isAdornmentVisible = isFocused || Number.isInteger(value);
@@ -117,7 +117,7 @@ const DonateWidgetButtonGroup = ({
   inputValue,
   buttonsValues,
 }) => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
 
   return (
     <Grid container spacing={2}>

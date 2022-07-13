@@ -1,10 +1,9 @@
 /* eslint-disable one-var */
 /* eslint-disable max-len */
 import React, { useState } from "react";
-import Box from "@material-ui/core/Box";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 
 import DonateWidgetHeader from "./DonateWidgetHeader";
 import DonateWidgetButton from "./DonateWidgetButton";
@@ -12,10 +11,11 @@ import DonateWidgetButton from "./DonateWidgetButton";
 import DonateWidgetFirstStep from "./Steps/DonateWidgetFirstStep";
 import DonateWidgetSecondStep from "./Steps/DonateWidgetSecondStep";
 import DonateWidgetSuccess from "./Steps/DonateWidgetSuccess";
+import useClasses from "../../../styles/useClasses";
 
 const BUTTONS_VALUES = [10, 20, 40, 50];
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   container: {
     width: "442px",
   },
@@ -34,10 +34,10 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "24px",
     textAlign: "center",
   },
-}));
+});
 
 const DonateWidget = () => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
 
   const [donationValue, setDonationValue] = useState(10);
 

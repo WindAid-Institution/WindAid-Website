@@ -1,17 +1,18 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 import { getSrc } from "gatsby-plugin-image";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useTheme } from "@mui/styles";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useDonateData from "hooks/queries/donate";
 import { getImage } from "src/utils/utils";
+import useClasses from "../../styles/useClasses";
 
 import DonateWidget from "./DonateWidget";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   backgroundFilter: {
     position: "absolute",
     top: 0,
@@ -62,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "0px",
     },
   },
-}));
+});
 
 const Donate = () => {
   const {
@@ -73,7 +74,7 @@ const Donate = () => {
     },
   } = useDonateData();
 
-  const classes = useStyles();
+  const classes = useClasses(styles);
   const theme = useTheme();
 
   const sectionStyle = {
@@ -104,11 +105,7 @@ const Donate = () => {
   const backgroundPicture = getImage(images, "donate-background");
   const bgImageSrc = getSrc(backgroundPicture);
   return (
-    <SectionWrapper
-      bgColor="secondary"
-      bgUrl={bgImageSrc}
-      style={{ sectionStyle }}
-    >
+    <SectionWrapper bgColor="secondary" bgUrl={bgImageSrc} style={sectionStyle}>
       <Grid container>
         <Grid item xs={12} lg={6} className={classes.textContainer}>
           <TextSection

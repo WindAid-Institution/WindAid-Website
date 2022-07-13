@@ -1,32 +1,31 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useGeneralProgramData from "queries/generalProgram";
 import { splitQueriedList } from "src/utils/utils";
 
-const useStyles = makeStyles((theme) => ({
-  list: {
-    paddingTop: theme.spacing(3),
-    paddingLeft: "18px",
-  },
-
-  listItem: {
-    padding: theme.spacing(1),
-
-    [theme.breakpoints.up("md")]: {
-      padding: "24px 24px 16px 16px",
-    },
-  },
-}));
-
 const Impact = () => {
-  const classes = useStyles();
   const theme = useTheme();
+
+  const classes = {
+    list: {
+      paddingTop: theme.spacing(3),
+      paddingLeft: "18px",
+    },
+
+    listItem: {
+      padding: theme.spacing(1),
+
+      [theme.breakpoints.up("md")]: {
+        padding: "24px 24px 16px 16px",
+      },
+    },
+  };
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const subHeaderStyle = {
@@ -52,10 +51,10 @@ const Impact = () => {
         size="lg"
         style={isUpMd ? subHeaderStyle : {}}
       />
-      <Grid container component="ul" className={classes.list}>
+      <Grid container component="ul" sx={classes.list}>
         {dataList.map((data) => (
           <Grid
-            className={classes.listItem}
+            sx={classes.listItem}
             item
             component="li"
             md={6}

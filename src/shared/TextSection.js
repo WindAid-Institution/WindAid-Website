@@ -1,18 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 
 import Header from "./Header";
 import SubHeader from "./SubHeader";
 import Title from "./Title";
 import Body from "./Body";
-
-const useStyles = makeStyles({
-  root: (rootStyle) => ({
-    ...rootStyle,
-  }),
-});
 
 const TextSection = ({
   header,
@@ -23,12 +16,11 @@ const TextSection = ({
   size,
   style,
 }) => {
-  const { rootStyle, headerStyle, titleStyle, subHeaderStyle, bodyStyle } =
+  const { headerStyle, titleStyle, subHeaderStyle, bodyStyle, rootStyle } =
     style || {};
 
-  const classes = useStyles(rootStyle);
   return (
-    <Box className={classes.root}>
+    <Box style={rootStyle}>
       {header && <Header header={header} style={headerStyle} />}
       {title && <Title title={title} style={titleStyle} size={size} />}
       {subHeader && <SubHeader subHeader={subHeader} style={subHeaderStyle} />}

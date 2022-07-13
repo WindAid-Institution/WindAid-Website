@@ -1,28 +1,25 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 
 import useHomepageData from "queries/homepage";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import ProjectsCarousel from "./ProjectsCarousel";
 
-const useStyles = makeStyles(() => ({
-  mainWrapper: {},
-  textRow: {
-    textAlign: "center",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-  },
-  row: {
-    textAlign: "center",
-    width: "100%",
-  },
-}));
-
 const CurrentProjects = () => {
-  const classes = useStyles();
+  const classes = {
+    mainWrapper: {},
+    textRow: {
+      textAlign: "center",
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+    },
+    row: {
+      textAlign: "center",
+      width: "100%",
+    },
+  };
   const {
     currentProjects: {
       title,
@@ -47,12 +44,12 @@ const CurrentProjects = () => {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        className={classes.mainWrapper}
+        sx={classes.mainWrapper}
       >
-        <Grid item xs={12} className={classes.textRow}>
+        <Grid item xs={12} sx={classes.textRow}>
           <TextSection title={title} body={body} />
         </Grid>
-        <Grid item xs={12} className={classes.row}>
+        <Grid item xs={12} sx={classes.row}>
           <ProjectsCarousel carouselData={currentProjectCardsContent} />
         </Grid>
       </Grid>

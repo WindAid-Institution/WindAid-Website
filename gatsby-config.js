@@ -5,13 +5,16 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: "WindaidInstitute",
+    title: "Windaid Institute | Education, Empowerment, Electricity",
+    siteUrl: "https://windaid.org",
+    author: "Rishi Khan",
   },
   plugins: [
-    "gatsby-plugin-styled-components",
+    "gatsby-plugin-react-helmet",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-recaptcha",
       options: {
@@ -59,6 +62,15 @@ module.exports = {
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-google-gtag",
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          process.env.GTAG_MEASUREMENT_ID, // Google Analytics / GA
+        ],
       },
     },
   ],

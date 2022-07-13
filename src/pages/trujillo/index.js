@@ -12,7 +12,7 @@ import Immerse from "components/Trujillo/Immerse";
 import Entertainment from "components/Trujillo/Entertainment";
 import Accommodation from "components/Trujillo/Accommodation";
 import DayInLife from "../../components/Trujillo/DayInLife";
-import Apply from "../../components/ShortTerm/Apply";
+import Apply from "../../components/LevelTwo/Apply";
 
 const Trujillo = ({
   data: {

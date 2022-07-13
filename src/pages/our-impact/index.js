@@ -2,7 +2,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { getSrc } from "gatsby-plugin-image";
-import { ThemeProvider } from "@material-ui/core/styles";
 
 import MainLayout from "src/layout/MainLayout";
 import Overview from "components/Overview";
@@ -14,8 +13,6 @@ import Community from "components/OurImpact/Community/index";
 import JoinProgram from "components/OurImpact/JoinProgram";
 import PartnerWithUs from "components/OurImpact/PartnerWithUs";
 import SpreadTheWord from "components/OurImpact/SpreadTheWord";
-
-import theme from "../../../theme";
 
 const OurImpact = ({
   data: {
@@ -31,28 +28,26 @@ const OurImpact = ({
   const sunsetImageSrc = getSrc(sunsetImage);
 
   return (
-    <ThemeProvider theme={theme}>
-      <MainLayout>
-        <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
-        <>
-          <Overview
-            header={theProblem.header}
-            title={theProblem.title}
-            body={theProblem.body.body}
-          />
-          <WhoWereServing />
-          <BackgroundSeparator
-            imageSrc={sunsetImageSrc}
-            headingText={sunsetHeading}
-            paragraphText={sunsetParagraph}
-          />
-          <Community />
-          <JoinProgram />
-          <PartnerWithUs />
-          <SpreadTheWord />
-        </>
-      </MainLayout>
-    </ThemeProvider>
+    <MainLayout>
+      <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
+      <>
+        <Overview
+          header={theProblem.header}
+          title={theProblem.title}
+          body={theProblem.body.body}
+        />
+        <WhoWereServing />
+        <BackgroundSeparator
+          imageSrc={sunsetImageSrc}
+          headingText={sunsetHeading}
+          paragraphText={sunsetParagraph}
+        />
+        <Community />
+        <JoinProgram />
+        <PartnerWithUs />
+        <SpreadTheWord />
+      </>
+    </MainLayout>
   );
 };
 

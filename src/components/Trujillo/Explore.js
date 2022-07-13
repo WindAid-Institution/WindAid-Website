@@ -1,17 +1,18 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import { getSrc } from "gatsby-plugin-image";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@mui/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useTrujilloData from "hooks/queries/trujillo";
 import { getImage } from "src/utils/utils";
+import useClasses from "../../styles/useClasses";
 
 import ExploreCarousel from "./TrujilloCarousel/TrujilloCarousel";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   textContainer: {
     "& > div > div > h3": {
       textAlign: "center",
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-}));
+});
 
 const Explore = () => {
   const {
@@ -39,24 +40,26 @@ const Explore = () => {
     },
   } = useTrujilloData();
 
-  const classes = useStyles();
+  const classes = useClasses(styles);
   const theme = useTheme();
 
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const sectionStyle = {
-    height: "600px",
-    backgroundSize: "contain",
-    backgroundPosition: "bottom",
+    sectionStyle: {
+      height: "600px",
+      backgroundSize: "contain",
+      backgroundPosition: "bottom",
 
-    [theme.breakpoints.up("sm")]: {
-      height: "740px",
-    },
-    [theme.breakpoints.up("md")]: {
-      height: "810px",
-    },
-    [theme.breakpoints.up("xl")]: {
-      height: "920px",
+      [theme.breakpoints.up("sm")]: {
+        height: "740px",
+      },
+      [theme.breakpoints.up("md")]: {
+        height: "810px",
+      },
+      [theme.breakpoints.up("xl")]: {
+        height: "920px",
+      },
     },
   };
 
@@ -75,7 +78,7 @@ const Explore = () => {
     <SectionWrapper
       bgColor="secondary"
       bgUrl={bgImageSrc}
-      style={{ sectionStyle }}
+      style={{ ...sectionStyle }}
     >
       <Grid container>
         <Grid item xs={12} lg={6} className={classes.textContainer}>

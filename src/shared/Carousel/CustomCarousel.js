@@ -1,18 +1,18 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
+import useClasses from "../../styles/useClasses";
 
 import CustomButtonGroup from "./CustomButtonGroup";
 
-const useStyles = makeStyles(() => ({
-  carouselContainer: ({ carouselContainerStyle }) => ({
+const styles = ({ carouselContainerStyle, carouselSliderStyle }) => ({
+  carouselContainer: {
     ...carouselContainerStyle,
-  }),
-  carouselSlider: ({ carouselSliderStyle }) => ({
+  },
+  carouselSlider: {
     ...carouselSliderStyle,
-  }),
-}));
+  },
+});
 
 const CustomCarousel = ({
   responsive,
@@ -23,7 +23,8 @@ const CustomCarousel = ({
   showedSlides,
 }) => {
   const { carouselContainerStyle, carouselSliderStyle } = style || {};
-  const classes = useStyles({ carouselContainerStyle, carouselSliderStyle });
+  const udpatedStyle = styles({ carouselContainerStyle, carouselSliderStyle });
+  const classes = useClasses(udpatedStyle);
 
   return (
     <Carousel

@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FormGroup from "@material-ui/core/FormGroup";
+import FormGroup from "@mui/material/FormGroup";
 
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import useClasses from "../../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   container: {
     width: "100%",
     display: "flex",
@@ -17,15 +17,16 @@ const useStyles = makeStyles((theme) => ({
 
   label: {
     color: "#4F4F4F",
+    textAlign: "left",
   },
 
   labelChecked: {
     fontWeight: theme.typography.fontWeightBold,
   },
-}));
+});
 
 const DonateWidgetCheckbox = ({ handleCheckboxToggle, isChecked }) => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
   return (
     <Box className={classes.container}>
       <FormGroup row>

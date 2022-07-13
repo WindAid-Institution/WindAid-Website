@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
-import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
+import remarkGfm from "remark-gfm";
+import Box from "@mui/material/Box";
+import useTheme from "@mui/material/styles/useTheme";
+import useClasses from "../styles/useClasses";
 
 const getBoxSize = (size) => {
   switch (size) {
@@ -26,14 +28,31 @@ const getBoxSize = (size) => {
   }
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: ({ size, rootStyle }) => ({
+const styles = ({ size, rootStyle, textStyle, theme }) => ({
+  root: {
     width: getBoxSize(size),
     ...rootStyle,
-  }),
+  },
 
-  text: ({ size, textStyle }) => ({
+  text: {
     "& > p": {
+      fontFamily: theme.typography.fontFamily,
+      fontSize: "14px",
+      lineHeight: "28px",
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "16px",
+      },
+      maxWidth: size === "sm" ? "560px" : "850px",
+      color: "#282828",
+      marginBottom: theme.spacing(1),
+      ...textStyle,
+
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "16px",
+        ...textStyle,
+      },
+    },
+    "& > ul > li": {
       fontFamily: theme.typography.fontFamily,
       fontSize: "14px",
       lineHeight: "28px",
@@ -54,16 +73,20 @@ const useStyles = makeStyles((theme) => ({
     "& > p > a": {
       color: theme.palette.primary.main,
     },
-  }),
-}));
+  },
+});
 
 const Body = ({ body, style, size }) => {
   const { rootStyle, textStyle } = style || {};
+  const theme = useTheme();
 
-  const classes = useStyles({ size, rootStyle, textStyle });
+  const updatedStyles = styles({ size, rootStyle, textStyle, theme });
+  const classes = useClasses(updatedStyles);
   return (
     <Box className={classes.root}>
-      <ReactMarkdown className={classes.text}>{body}</ReactMarkdown>
+      <ReactMarkdown className={classes.text} remarkPlugins={[remarkGfm]}>
+        {body}
+      </ReactMarkdown>
     </Box>
   );
 };

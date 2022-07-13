@@ -1,38 +1,35 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
-
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useTheme from "@mui/material/styles/useTheme";
 import Button from "./Button";
 import TextSection from "./TextSection";
 import SectionWrapper from "./SectionWrapper";
-
-const useStyles = makeStyles((theme) => ({
-  textSection: {
-    paddingBottom: "97px",
-  },
-  image: {
-    position: "absolute",
-    bottom: "0",
-    right: "0",
-    height: "35%",
-    [theme.breakpoints.up("sm")]: {
-      height: "50%",
-    },
-    [theme.breakpoints.up("lg")]: {
-      height: "60%",
-    },
-  },
-}));
 
 const Separator = ({ route, title, body, bodyTwo, image, children }) => {
   const {
     description,
     file: { url },
   } = image;
-
-  const classes = useStyles();
   const theme = useTheme();
+
+  const classes = {
+    textSection: {
+      paddingBottom: "97px",
+    },
+    image: {
+      position: "absolute",
+      bottom: "0",
+      right: "0",
+      height: "35%",
+      [theme.breakpoints.up("sm")]: {
+        height: "50%",
+      },
+      [theme.breakpoints.up("lg")]: {
+        height: "60%",
+      },
+    },
+  };
 
   const style = {
     sectionStyle: {
@@ -47,13 +44,13 @@ const Separator = ({ route, title, body, bodyTwo, image, children }) => {
   return (
     <SectionWrapper style={style}>
       <Grid container direction="row">
-        <Grid item xs={12} className={classes.textSection}>
+        <Grid item xs={12} sx={classes.textSection}>
           <TextSection title={title} body={body} />
           {children}
           <Button text={bodyTwo} style={{ marginTop: "24px" }} route={route} />
         </Grid>
       </Grid>
-      <img src={url} alt={description} className={classes.image} />
+      <img src={url} alt={description} style={classes.image} />
     </SectionWrapper>
   );
 };

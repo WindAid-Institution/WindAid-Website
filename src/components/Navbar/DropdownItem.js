@@ -1,13 +1,14 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import useTheme from "@mui/material/styles/useTheme";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import useClasses from "../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   navItem: {
     maxHeight: "40px",
     padding: "16px 0",
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: "16px",
       color: theme.palette.secondary.main,
       fontWeight: theme.typography.fontWeightBold,
+      fontFamily: theme.typography.fontFamily,
     },
 
     [theme.breakpoints.between(1200, 1251)]: {
@@ -197,12 +199,12 @@ const useStyles = makeStyles((theme) => ({
       background: theme.palette.primary.main,
     },
   },
-}));
+});
 
 const DropdownItem = ({ route, isSidebar }) => {
-  const { main, submenu } = route || {};
-  const classes = useStyles();
   const theme = useTheme();
+  const classes = useClasses(styles);
+  const { main, submenu } = route || {};
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
@@ -236,7 +238,6 @@ const DropdownItem = ({ route, isSidebar }) => {
         isSecondary && classes.secondary,
         isSidebar && classes.navItemSidebar
       )}
-      activeClassName={classes.navItemActive}
       onMouseEnter={() => {
         if (isPrimary && hasSubmenu) {
           return handleSecondSubmenuOpen();
@@ -318,7 +319,19 @@ const DropdownItem = ({ route, isSidebar }) => {
 
   return (
     <Box
-      className={classes.root}
+      sx={{
+        display: "flex",
+        position: "relative",
+        flexDirection: { xxs: "column", lg: "row" },
+        width: { xxs: "100%", lg: "auto" },
+        alignItems: "center",
+        cursor: "pointer",
+
+        // [theme.breakpoints.up("lg")]: {
+        //   flexDirection: "row",
+        //   width: "auto",
+        // },
+      }}
       onMouseOver={handleMainMouseOver}
       onMouseLeave={handleMainMouseLeave}
       onClick={handleMainClick}
@@ -330,7 +343,27 @@ const DropdownItem = ({ route, isSidebar }) => {
       )}
       {isSubmenuOpen && submenu?.length && (
         <Box
-          className={classes.subMenu}
+          sx={{
+            position: { md: "relative", lg: "absolute" },
+
+            display: "flex",
+            flexDirection: "column",
+            left: { lg: "0" },
+            top: { lg: "82px" },
+            width: { xxs: "100%", lg: "250px" },
+            textAlign: { xxs: "center", lg: "left" },
+            height: { lg: "auto" },
+            boxShadow: { lg: "rgb(0, 0 ,0) 5px 5px 80px 5px" },
+
+            // [theme.breakpoints.up("lg")]: {
+            //   position: "absolute",
+            //   left: 0,
+            //   top: "82px",
+            //   width: "250px",
+            //   height: "auto",
+            //   boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
+            // },
+          }}
           onMouseLeave={isUpLg ? handleSubmenuClose : null}
         >
           {submenu.map((item) => {
@@ -347,7 +380,21 @@ const DropdownItem = ({ route, isSidebar }) => {
                 />
                 {isSecondSubmenuOpen && isSubSubmenu && (
                   <Box
-                    className={classes.subSubMenu}
+                    sx={{
+                      position: { md: "relative", lg: "absolute" },
+                      display: "flex",
+                      flexDirection: "column",
+                      left: { lg: "250px" },
+                      width: { lg: "250px" },
+                      boxShadow: { lg: "rgb(0, 0 ,0) 5px 5px 80px 5px" },
+
+                      // [theme.breakpoints.up("lg")]: {
+                      //   position: "absolute",
+                      //   left: "250px",
+                      //   width: "250px",
+                      //   boxShadow: "rgb(0, 0 ,0) 5px 5px 80px 5px",
+                      // },
+                    }}
                     onMouseLeave={handleSecondSubmenuClose}
                   >
                     {item.subSubmenu.map(({ name, path }) => (

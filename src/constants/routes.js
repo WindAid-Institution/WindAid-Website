@@ -22,7 +22,7 @@ export const ROUTES = {
   },
   OUR_PROJECTS: {
     name: "Our projects",
-    path: "/our-projects",
+    path: "/projects",
   },
   PROJECT_ONE: {
     name: "Project one",
@@ -39,20 +39,20 @@ export const ROUTES = {
 
   PROGRAMS: {
     name: "Programs",
-    path: "/level-2",
+    path: "/",
   },
 
   VOLUNTEER_PROGRAMS: {
     name: "Volunteer",
-    path: "/general-program",
+    path: "/volunteer",
   },
   CERTIFICATE_PROGRAMS: {
     name: "Certificate Programs",
-    path: "/",
+    path: "/certificate-programs",
   },
   LEVEL_1: {
     name: "Level 1: E-learning",
-    path: "#",
+    path: "/level-1",
   },
 
   LEVEL_2: {
@@ -70,8 +70,8 @@ export const ROUTES = {
   },
 
   CAREERS: {
-    name: "Careers",
-    path: "/application-program",
+    name: "Careers & Internships",
+    path: "/careers-internships",
   },
 
   TRUJILLO: {
@@ -96,11 +96,11 @@ export const ROUTES = {
 
   PROGRAM_APPLICATION: {
     name: "Program Application",
-    path: "/application-program",
+    path: "/application",
   },
   APPLY: {
     name: "Apply",
-    path: "/application-program",
+    path: "/application",
   },
   DONATE: {
     name: "Donate",
@@ -113,16 +113,20 @@ const {
   ABOUT_US,
   AMBASSADORS,
   OUR_WORK,
+  OUR_PROJECTS,
   OUR_IMPACT,
   PROGRAMS,
   CERTIFICATE_PROGRAMS,
   LEVEL_1,
   LEVEL_2,
   LEVEL_3,
+  CAREERS,
   TRUJILLO,
   FAQ,
   GENERAL_CONTACT,
+  CONTACT_US,
   DONATE,
+  VOLUNTEER_PROGRAMS,
 } = ROUTES;
 export const NAVBAR_ROUTES = [
   WHO_WE_ARE,
@@ -139,7 +143,7 @@ export const MENU_ROUTES = [
   },
   {
     main: OUR_WORK,
-    submenu: [OUR_IMPACT],
+    submenu: [OUR_PROJECTS, OUR_IMPACT],
   },
 
   {
@@ -152,6 +156,10 @@ export const MENU_ROUTES = [
       TRUJILLO,
       FAQ,
     ],
+  },
+  {
+    main: GENERAL_CONTACT,
+    submenu: [CONTACT_US, CAREERS, VOLUNTEER_PROGRAMS],
   },
   { main: DONATE },
 ];

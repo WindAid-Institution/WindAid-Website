@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
+import useClasses from "../../styles/useClasses";
 
 import rightArrowCircle from "../../images/rightArrowCircle.svg";
 import arrowHover from "../../images/arrowHover.svg";
 
-const useStyles = makeStyles({
+const styles = ({ counterColor }) => ({
   arrow: {
     position: "absolute",
     width: "32px",
@@ -38,12 +38,12 @@ const useStyles = makeStyles({
     marginTop: "15px",
   },
 
-  counter: ({ counterColor }) => ({
+  counter: {
     position: "relative",
     left: "50%",
     transform: "translateX(-50%)",
     color: counterColor,
-  }),
+  },
 });
 
 const Arrow = ({ onClick, style, alt }) => {
@@ -71,7 +71,8 @@ const CustomButtonGroup = ({ next, previous, ...rest }) => {
     showedSlides,
   } = rest;
 
-  const classes = useStyles({ counterColor });
+  const updatedStyles = styles({ counterColor });
+  const classes = useClasses(updatedStyles);
 
   return (
     <div className={classes.buttonGroup}>

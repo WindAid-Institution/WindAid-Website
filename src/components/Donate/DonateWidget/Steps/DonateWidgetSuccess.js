@@ -1,10 +1,10 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import SuccessIcon from "images/icons/success.svg";
+import useClasses from "../../../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   container: {
     padding: "24px 12px",
   },
@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
   lowerText: {
     textAlign: "center",
   },
-}));
+});
 
 const DonateWidgetSuccess = () => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
 
   return (
     <Box className={classes.container}>

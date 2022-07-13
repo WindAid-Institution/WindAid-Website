@@ -1,72 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { AppBar, Toolbar, Box } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { AppBar, Toolbar, Box, useMediaQuery } from "@mui/material";
 import { Link } from "gatsby";
 
 import Logo from "images/navbar/logo.svg";
 import Toggle from "images/navbar/toggle.svg";
 
+import useTheme from "@mui/material/styles/useTheme";
 import NavLinks from "./Navlinks";
 import ApplyButton from "./ApplyButton";
 import Sidebar from "./Sidebar";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxHeight: "80px",
-    padding: "0 12px",
-    backgroundColor: theme.palette.primary.main,
-
-    [theme.breakpoints.up("xl")]: {
-      padding: "0 calc(12.6vw - 75px)",
-    },
-  },
-  toolbar: {
-    width: "auto",
-    display: "flex",
-    justifyContent: "space-between",
-  },
-  itemsContainer: {
-    maxHeight: "80px",
-  },
-
-  logo: {
-    height: "48px",
-
-    [theme.breakpoints.up("sm")]: {
-      height: "auto",
-    },
-  },
-
-  buttonsContainer: {
-    display: "flex",
-    alignItems: "center",
-    paddingTop: "16px",
-    paddingBottom: "16px",
-    marginRight: "26px",
-
-    [theme.breakpoints.up("lg")]: {
-      marginRight: 0,
-    },
-  },
-
-  toggleButton: {
-    cursor: "pointer",
-    [theme.breakpoints.up("lg")]: {
-      display: "none",
-    },
-  },
-}));
-
 const Navbar = () => {
-  const classes = useStyles();
-  const theme = useTheme();
-
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleSidebarOpen = () => setIsSidebarOpen(true);
   const handleSidebarClose = () => setIsSidebarOpen(false);
-
+  const theme = useTheme();
   const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   useEffect(() => {
@@ -77,25 +26,77 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar position="fixed" color="default" className={classes.root}>
-        <Toolbar className={classes.toolbar} variant="dense" disableGutters>
+      <AppBar
+        position="fixed"
+        color="default"
+        sx={{
+          maxHeight: "80px",
+          padding: { xxs: "0 12px", xl: "0 calc(12.6vw - 75px)" },
+          backgroundColor: theme.palette.primary.main,
+
+          // [theme.breakpoints.up("xl")]: {
+          //   padding: "0 calc(12.6vw - 75px)",
+          // },})
+        }}
+      >
+        <Toolbar
+          sx={{
+            width: "auto",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+          variant="dense"
+          disableGutters
+        >
           <Link to="/">
-            <Logo alt="windaid logo" className={classes.logo} />
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContet: "center",
+                height: "48px",
+              }}
+            >
+              <Logo
+                alt="windaid logo"
+                style={{ height: "100%" }}
+
+                // [theme.breakpoints.up("sm")]: {
+                //   height: "auto",
+                // },
+              />
+            </Box>
           </Link>
           <Box
-            className={classes.itemsContainer}
+            sx={{
+              maxHeight: "80px",
+            }}
             display="flex"
             alignItems="center"
           >
             <NavLinks />
 
-            <Box className={classes.buttonsContainer}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                paddingTop: "16px",
+                paddingBottom: "16px",
+                marginRight: { xxs: "26px", lg: 0 },
+
+                // [theme.breakpoints.up("lg")]: {
+                //   marginRight: 0,
+                // },
+              }}
+            >
               <ApplyButton />
-              <Toggle
-                role="button"
-                className={classes.toggleButton}
-                onClick={handleSidebarOpen}
-              />
+              {!isLgScreen && (
+                <Toggle
+                  role="button"
+                  cursor="pointer"
+                  onClick={handleSidebarOpen}
+                />
+              )}
             </Box>
           </Box>
         </Toolbar>

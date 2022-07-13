@@ -1,6 +1,5 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@mui/material/Grid";
 
 import { ROUTES } from "src/constants/routes";
 import SectionWrapper from "shared/SectionWrapper";
@@ -11,21 +10,6 @@ import useHomepageData from "queries/homepage";
 
 import StatisticsItem from "./StatisticsItem";
 
-const useStyles = makeStyles(() => ({
-  text: {
-    textAlign: "center",
-    marginTop: "calc(5.28vw + 21px)",
-  },
-
-  row: {
-    textAlign: "center",
-  },
-
-  iconRow: {
-    width: "100%",
-  },
-}));
-
 const Stats = () => {
   const {
     statistics: {
@@ -35,18 +19,21 @@ const Stats = () => {
       images,
     },
   } = useHomepageData();
-
-  const classes = useStyles();
   return (
     <SectionWrapper
       style={{ containerStyle: { display: "flex", justifyContent: "center" } }}
       bgColor="secondary"
     >
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid item className={classes.row}>
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item textAlign="center">
           <Title title={title} />
         </Grid>
-        <Grid item className={classes.iconRow}>
+        <Grid item width="100%">
           <Grid
             container
             direction="row"
@@ -60,7 +47,11 @@ const Stats = () => {
             ))}
           </Grid>
         </Grid>
-        <Grid item className={classes.text}>
+        <Grid
+          item
+          textAlign="center"
+          style={{ marginTop: "calc(5.28vw + 21px)" }}
+        >
           <TextSection body={body} header={header} />
         </Grid>
         <Button

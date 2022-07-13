@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { Link } from "gatsby";
 
 import MainLayout from "src/layout/MainLayout";

@@ -1,32 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { PayPalButton } from "react-paypal-button-v2";
-// const useStyles = makeStyles((theme) => ({
-//   tab: {
-//     "& > span": {
-//       textTransform: "none",
-//       fontSize: "18px",
-//     },
-
-//     "&.Mui-selected > span": {
-//       fontWeight: theme.typography.fontWeightBold,
-//     },
-//   },
-
-//   form: {
-//     margin: "24px 0",
-//   },
-//   filed: {
-//     padding: "6px 0",
-//     "& > div": {
-//       borderRadius: "5px",
-//     },
-
-//     "& > label": {
-//       top: "5px",
-//     },
-//   },
-// }));
 
 const DonateWidgetSecondStep = ({
   donationValue,
@@ -45,7 +19,6 @@ const DonateWidgetSecondStep = ({
       quantity: quant,
     });
   };
-
   const paypalOnError = (err) => {
     console.log(err);
     alert("Transaction could not be completed. Please try again later.");
@@ -98,7 +71,7 @@ const DonateWidgetSecondStep = ({
         <PayPalButton
           amount={donation}
           currency={process.env.GATSBY_PAYPAL_CURRENCY}
-          createSubscription={paypalSubscribe}
+          createSubscription={(data, actions) => paypalSubscribe(data, actions)}
           onApprove={() => {
             goToNextStep();
             paypalOnApprove();

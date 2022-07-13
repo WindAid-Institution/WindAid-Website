@@ -1,13 +1,14 @@
 import React from "react";
-import { Grid, Box } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import useTheme from "@mui/material/styles/useTheme";
+import useClasses from "../styles/useClasses";
 
 import TextSection from "./TextSection";
 
-const useStyles = makeStyles((theme) => ({
-  contentContainer: ({ contentContainerStyle }) => ({
+const styles = ({ theme, contentContainerStyle, textContainerStyle }) => ({
+  contentContainer: {
     direction: "column",
     marginTop: "calc(4.16vw + 17px)",
     borderRadius: "10px",
@@ -18,33 +19,29 @@ const useStyles = makeStyles((theme) => ({
         cursor: "pointer",
       },
       "&:last-child > div:last-child > div:last-child": {
-        fontWeight: "bold",
         transition: "0.1s ease",
       },
     },
     ...contentContainerStyle,
-  }),
+  },
   root: {
     position: "relative",
     width: "100%",
   },
   image: {
-    width: "100%",
     height: "100%",
+    width: "100%",
     borderRadius: "10px 0px 0 10px",
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("lg")]: {
       borderRadius: "10px 10px 0 0px",
     },
-  },
-  imgContainer: {
-    height: "100%",
   },
   text: {
     color: theme.palette.secondary.main,
     textAlign: "left",
     padding: "0 16px",
   },
-  textContainer: ({ textContainerStyle }) => ({
+  textContainer: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -54,33 +51,37 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     width: "100%",
     backgroundColor: theme.palette.secondary.main,
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("lg")]: {
       borderRadius: "0px 0px 10px 10px",
     },
     ...textContainerStyle,
-  }),
+  },
   textItem: {
     alignSelf: "end",
     width: "100%",
   },
-}));
+});
 
 const StackedCards = ({ image, children, style }) => {
   const { textContainerStyle, contentContainerStyle } = style || {};
   const { gatsbyImageData, description } = image;
-  const classes = useStyles({ textContainerStyle, contentContainerStyle });
   const theme = useTheme();
+  const updatedStyle = styles({
+    theme,
+    textContainerStyle,
+    contentContainerStyle,
+  });
+  const classes = useClasses(updatedStyle);
 
   return (
     <Grid container className={classes.contentContainer}>
       <Grid item lg={4}>
-        <Box className={classes.imgContainer}>
-          <GatsbyImage
-            image={gatsbyImageData}
-            alt={description}
-            className={classes.image}
-          />
-        </Box>
+        <GatsbyImage
+          image={gatsbyImageData}
+          alt={description}
+          className={classes.image}
+          objectFit="cover"
+        />
       </Grid>
       <Grid item lg={8}>
         <Grid container className={classes.textContainer}>

@@ -12,7 +12,7 @@
     "import/prefer-default-export": 0,
     "semi": "error",
     "quotes": ["error", "double"],
-    "max-len": ["warn", { "code": 80 }],
+    "max-len": ["warn", { "code": 180 }],
     "no-console": "off",
     "import/extensions": [
       "error",

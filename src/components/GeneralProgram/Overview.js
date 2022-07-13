@@ -1,57 +1,13 @@
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import Grid from "@material-ui/core/Grid";
-import clsx from "clsx";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Grid from "@mui/material/Grid";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useGeneralProgramData from "queries/generalProgram";
 import { getImage } from "src/utils/utils";
-
-const useStyles = makeStyles((theme) => ({
-  smallImageBox: {
-    display: "flex",
-    justifyContent: "flex-end",
-    width: "100%",
-    margin: "auto",
-    height: "calc(10vw + 200px)",
-    "& div": {
-      width: "100%",
-    },
-    [theme.breakpoints.up("md")]: {
-      width: "calc(10vw + 240px)",
-      margin: 0,
-      height: "auto",
-    },
-  },
-  text: {
-    paddingBottom: theme.spacing(2),
-  },
-  spacingRight: {
-    [theme.breakpoints.up("md")]: {
-      paddingRight: theme.spacing(1),
-    },
-  },
-  spacingLeft: {
-    [theme.breakpoints.up("md")]: {
-      paddingLeft: theme.spacing(1),
-    },
-  },
-  hideOnSm: {
-    [theme.breakpoints.only("sm")]: {
-      display: "none",
-    },
-  },
-  img: {
-    marginTop: theme.spacing(2),
-    width: "100%",
-    "& div": {
-      width: "100%",
-    },
-  },
-}));
 
 const textSectionStyle = {
   titleStyle: { textStyle: { maxWidth: "740px" } },
@@ -59,6 +15,8 @@ const textSectionStyle = {
 };
 
 const Overview = () => {
+  const theme = useTheme();
+
   const {
     overview: {
       header,
@@ -69,8 +27,48 @@ const Overview = () => {
     },
   } = useGeneralProgramData();
 
-  const classes = useStyles();
-  const theme = useTheme();
+  const classes = {
+    smallImageBox: {
+      display: "flex",
+      justifyContent: "flex-end",
+      width: "100%",
+      margin: "auto",
+      height: "calc(10vw + 200px)",
+      "& div": {
+        width: "100%",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: "calc(10vw + 240px)",
+        margin: 0,
+        height: "auto",
+      },
+    },
+    text: {
+      paddingBottom: theme.spacing(2),
+    },
+    spacingRight: {
+      [theme.breakpoints.up("md")]: {
+        paddingRight: theme.spacing(1),
+      },
+    },
+    spacingLeft: {
+      [theme.breakpoints.up("md")]: {
+        paddingLeft: theme.spacing(1),
+      },
+    },
+    hideOnSm: {
+      [theme.breakpoints.only("sm")]: {
+        display: "none",
+      },
+    },
+    img: {
+      marginTop: theme.spacing(2),
+      width: "100%",
+      "& div": {
+        width: "100%",
+      },
+    },
+  };
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const groupOnePicture = getImage(images, "group 1");
@@ -80,7 +78,7 @@ const Overview = () => {
   return (
     <SectionWrapper>
       <Grid container justifyContent="space-between">
-        <Grid item className={classes.text} sm={12} md={8}>
+        <Grid item sx={classes.text} sm={12} md={8}>
           <TextSection
             header={header}
             title={textTitle}
@@ -90,7 +88,7 @@ const Overview = () => {
             size={isUpMd ? "md" : "lg"}
           />
         </Grid>
-        <Grid item sm={12} md={4} className={classes.smallImageBox}>
+        <Grid item sm={12} md={4} sx={classes.smallImageBox}>
           <GatsbyImage
             image={groupOnePicture.gatsbyImageData}
             alt={groupOnePicture.description}
@@ -99,7 +97,7 @@ const Overview = () => {
         <Grid
           item
           md={6}
-          className={clsx(classes.spacingRight, classes.img, classes.hideOnSm)}
+          sx={{ ...classes.spacingRight, ...classes.img, ...classes.hideOnSm }}
         >
           <GatsbyImage
             image={groupTwoPicture.gatsbyImageData}
@@ -110,7 +108,7 @@ const Overview = () => {
           item
           md={6}
           sm={12}
-          className={clsx(classes.spacingLeft, classes.img)}
+          sx={{ ...classes.spacingLeft, ...classes.img }}
         >
           <GatsbyImage
             image={groupThreePicture.gatsbyImageData}

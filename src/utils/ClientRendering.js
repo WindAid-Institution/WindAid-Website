@@ -1,6 +1,6 @@
 import React from "react";
 
-import App from "pages/index";
+import App from "../pages/index";
 
 // eslint-disable-next-line react/prop-types
 function ClientSideRendering({ children, ...delegated }) {
