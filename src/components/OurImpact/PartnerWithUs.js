@@ -1,6 +1,5 @@
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
 
 import { ROUTES } from "src/constants/routes";
@@ -8,8 +7,9 @@ import useOurImpactData from "queries/ourImpact";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import Button from "shared/Button";
+import useClasses from "../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   container: {
     display: "flex",
     flexDirection: "column",
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
       height: "368px",
     },
   },
-}));
+});
 
 const PartnerWithUs = () => {
   const {
@@ -55,16 +55,16 @@ const PartnerWithUs = () => {
     },
   } = useOurImpactData();
 
-  const classes = useStyles();
+  const classes = useClasses(styles);
   return (
     <SectionWrapper>
       <Box className={classes.container}>
         <Box className={classes.contentContainer}>
           <TextSection title={title} body={body} size="auto" />
           <Button
-            text="View Our Programs"
+            text="Contact Us"
             style={{ marginTop: "26px" }}
-            route={ROUTES.PARTNERSHIP}
+            route={ROUTES.CONTACT_US}
           />
         </Box>
 

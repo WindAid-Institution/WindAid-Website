@@ -3,12 +3,11 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
-import { makeStyles } from "@mui/styles";
 import clsx from "clsx";
-
 import WindTurbineLogo from "images/icons/wind_turbine.svg";
+import useClasses from "../../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   tabs: {
     paddingTop: theme.spacing(3),
     "& > div >  div[role=tablist] + span": {
@@ -55,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     bottom: "-1px",
   },
-}));
+});
 
 const tabLabels = [
   "Thesis Experiment",
@@ -64,14 +63,14 @@ const tabLabels = [
 ];
 
 const WindTurbineImage = () => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
   return (
     <img className={classes.logo} src={WindTurbineLogo} alt="Wind turbine" />
   );
 };
 
 const ExampleProjectsTabs = ({ currentTab, handleChange }) => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
 
   return (
     <>

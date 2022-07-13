@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from "react";
 import PropTypes from "prop-types";
-import { useTheme } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 
 import Button from "shared/Button";

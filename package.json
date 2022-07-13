@@ -1,11 +1,17 @@
 {
-  "name": "windaid-institute",
-  "version": "1.0.0",
+  "name": "WindAid Institute",
+  "version": "2.0.0",
   "private": true,
   "description": "WindaidInstitute",
   "author": "Rishi Khan",
   "keywords": [
-    "gatsby"
+    "renewable",
+    "education",
+    "wind turbines",
+    "peru",
+    "travel",
+    "volunteer",
+    "social entrepreneurship"
   ],
   "babel": {
     "presets": [
@@ -28,21 +34,24 @@
     "lint:fix": "npx eslint src/**/*.{js,jsx} --fix"
   },
   "dependencies": {
+    "@emotion/css": "^11.9.0",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
-    "@mui/material": "^5.8.6",
-    "@mui/styled-engine": "^5.4.2",
-    "@mui/styles": "^5.8.6",
-    "@mui/system": "^5.8.6",
+    "@mui/material": "^5.8.7",
+    "@mui/styled-engine": "^5.8.7",
+    "@mui/styles": "^5.8.7",
+    "@mui/system": "^5.8.7",
     "@react-icons/all-files": "^4.1.0",
     "ajv": "^7.2.4",
     "ajv-formats": "^2.0.2",
+    "axios": "^0.27.2",
     "babel-plugin-styled-components": "^1.12.0",
     "clsx": "^1.1.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "gatsby": "^4.0.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-plugin-google-gtag": "^4.18.0",
     "gatsby-plugin-image": "^2.6.0",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
     "gatsby-plugin-react-helmet": "^5.12.1",
@@ -70,7 +79,6 @@
     "react-router-dom": "^5.2.0",
     "react-visibility-sensor": "^5.1.1",
     "remark-gfm": "^3.0.1",
-    "styled-components": "^5.2.1",
     "uniforms": "^3.4.0",
     "uniforms-bridge-json-schema": "^3.3.0",
     "uniforms-material": "^3.3.0",

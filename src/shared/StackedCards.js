@@ -2,13 +2,13 @@ import React from "react";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
+import useClasses from "../styles/useClasses";
 
 import TextSection from "./TextSection";
 
-const useStyles = makeStyles((theme) => ({
-  contentContainer: ({ contentContainerStyle }) => ({
+const styles = ({ theme, contentContainerStyle, textContainerStyle }) => ({
+  contentContainer: {
     direction: "column",
     marginTop: "calc(4.16vw + 17px)",
     borderRadius: "10px",
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     ...contentContainerStyle,
-  }),
+  },
   root: {
     position: "relative",
     width: "100%",
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     padding: "0 16px",
   },
-  textContainer: ({ textContainerStyle }) => ({
+  textContainer: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -55,18 +55,23 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: "0px 0px 10px 10px",
     },
     ...textContainerStyle,
-  }),
+  },
   textItem: {
     alignSelf: "end",
     width: "100%",
   },
-}));
+});
 
 const StackedCards = ({ image, children, style }) => {
   const { textContainerStyle, contentContainerStyle } = style || {};
   const { gatsbyImageData, description } = image;
-  const classes = useStyles({ textContainerStyle, contentContainerStyle });
   const theme = useTheme();
+  const updatedStyle = styles({
+    theme,
+    textContainerStyle,
+    contentContainerStyle,
+  });
+  const classes = useClasses(updatedStyle);
 
   return (
     <Grid container className={classes.contentContainer}>

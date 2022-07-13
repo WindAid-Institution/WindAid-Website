@@ -6,9 +6,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { makeStyles } from "@mui/styles";
+import useClasses from "../../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   container: {
     width: "100%",
     display: "flex",
@@ -17,15 +17,16 @@ const useStyles = makeStyles((theme) => ({
 
   label: {
     color: "#4F4F4F",
+    textAlign: "left",
   },
 
   labelChecked: {
     fontWeight: theme.typography.fontWeightBold,
   },
-}));
+});
 
 const DonateWidgetCheckbox = ({ handleCheckboxToggle, isChecked }) => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
   return (
     <Box className={classes.container}>
       <FormGroup row>

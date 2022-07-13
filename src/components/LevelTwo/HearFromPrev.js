@@ -1,6 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { makeStyles, useTheme } from "@mui/styles";
+import { useTheme } from "@mui/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import SectionWrapper from "shared/SectionWrapper";
@@ -9,11 +9,11 @@ import TextSection from "shared/TextSection";
 import CommunityCard from "components/OurImpact/Community/Carousel/CommunityCard";
 import { ROUTES } from "src/constants/routes";
 import Button from "src/shared/Button";
-
 import useShortTermData from "queries/levelTwo";
+import useClasses from "../../styles/useClasses";
 
 // eslint-disable-next-line no-unused-vars
-const useStyles = makeStyles(() => ({
+const styles = (theme) => ({
   cardContainer: {
     margin: "32px 0",
   },
@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
   },
-}));
+});
 
 const HearFromPrev = () => {
   const {
@@ -29,7 +29,7 @@ const HearFromPrev = () => {
     volunteersCardsContent,
   } = useShortTermData();
 
-  const classes = useStyles();
+  const classes = useClasses(styles);
   const theme = useTheme();
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
 

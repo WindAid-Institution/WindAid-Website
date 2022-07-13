@@ -1,6 +1,6 @@
 import React from "react";
 
-import { makeStyles, useTheme } from "@mui/styles";
+import { useTheme } from "@mui/styles";
 import { GatsbyImage } from "gatsby-plugin-image";
 import clsx from "clsx";
 
@@ -10,8 +10,9 @@ import Title from "shared/Title";
 import Button from "shared/Button";
 import SectionWrapper from "shared/SectionWrapper";
 import useGeneralProgramData from "queries/generalProgram";
+import useClasses from "../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   contrast: {
     color: theme.palette.secondary.main,
     "& h3": {
@@ -96,10 +97,10 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: "560px",
     },
   },
-}));
+});
 
 const Level1Program = () => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
   const theme = useTheme();
 
   const whiteTextStyle = { textStyle: { color: theme.palette.secondary.main } };
