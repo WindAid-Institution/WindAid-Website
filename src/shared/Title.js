@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Box, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
+import useClasses from "../styles/useClasses";
 
 const getBoxSize = (size) => {
   switch (size) {
@@ -26,44 +26,43 @@ const getBoxSize = (size) => {
   }
 };
 
-const useStyles = makeStyles(() => {
-  const theme = useTheme();
-  return {
-    root: ({ size, rootStyle }) => ({
-      width: getBoxSize(size),
-      marginBottom: theme.spacing(1),
-      ...rootStyle,
-    }),
-    text: ({ textStyle }) => ({
-      fontSize: "20px",
-      lineHeight: "30px",
-      color: theme.palette.primary.main,
-      fontWeight: theme.typography.fontWeightBold,
-      marginBottom: theme.spacing(1),
+const styles = ({ size, rootStyle, textStyle, theme }) => ({
+  root: {
+    width: getBoxSize(size),
+    marginBottom: theme.spacing(1),
+    ...rootStyle,
+  },
+  text: {
+    fontSize: "20px",
+    lineHeight: "30px",
+    color: theme.palette.primary.main,
+    fontWeight: theme.typography.fontWeightBold,
+    marginBottom: theme.spacing(1),
+    fontFamily: theme.typography.fontFamily,
+    ...textStyle,
+
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "26px",
+      lineHeight: "40px",
       fontFamily: theme.typography.fontFamily,
       ...textStyle,
+    },
 
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "26px",
-        lineHeight: "40px",
-        fontFamily: theme.typography.fontFamily,
-        ...textStyle,
-      },
+    [theme.breakpoints.up("md")]: {
+      fontSize: "28px",
+      lineHeight: "40px",
+      fontFamily: theme.typography.fontFamily,
 
-      [theme.breakpoints.up("md")]: {
-        fontSize: "28px",
-        lineHeight: "40px",
-        fontFamily: theme.typography.fontFamily,
-
-        ...textStyle,
-      },
-    }),
-  };
+      ...textStyle,
+    },
+  },
 });
 
 const Title = ({ title, style, size }) => {
   const { rootStyle, textStyle } = style || {};
-  const classes = useStyles({ size, rootStyle, textStyle });
+  const theme = useTheme();
+  const updatedStyles = styles({ size, rootStyle, textStyle, theme });
+  const classes = useClasses(updatedStyles);
 
   return (
     <Box className={classes.root} style={style}>

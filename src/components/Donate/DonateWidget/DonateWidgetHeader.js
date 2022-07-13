@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import CardHeader from "@mui/material/CardHeader";
-import { makeStyles } from "@mui/styles";
+import useClasses from "../../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   header: {
     backgroundColor: theme.palette.secondary.dark,
     maxHeight: "72px",
@@ -32,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
   editAmountContent: {
     color: theme.palette.primary.main,
   },
-}));
+});
 
 const DonateWidgetHeader = ({ donationValue, isFirstStep, goBack, isDone }) => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
 
   return (
     <CardHeader
