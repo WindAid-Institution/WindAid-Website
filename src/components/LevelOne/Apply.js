@@ -2,7 +2,7 @@ import React from "react";
 
 import { ROUTES } from "src/constants/routes";
 import useLevelOneData from "queries/levelOne";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/styles";
 import SectionWrapper from "../../shared/SectionWrapper";
 import TextSection from "../../shared/TextSection";
 import Button from "../../shared/Button";
@@ -25,9 +25,6 @@ const Apply = () => {
       flexDirection: "column",
       alignItems: "center",
       gap: "24px",
-    },
-    sectionStyle: {
-      paddingTop: 0,
     },
   };
   return (

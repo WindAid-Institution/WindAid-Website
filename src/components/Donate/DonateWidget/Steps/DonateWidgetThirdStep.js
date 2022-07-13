@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { AutoForm, AutoField } from "uniforms-material";
 import Box from "@mui/material/Box";
-import { cardFormAddressSchemaBridge } from "src/schemas/cardFormSchema";
-import useClasses from "../../../../styles/useClasses";
+import { makeStyles } from "@mui/styles";
 
-const styles = (theme) => ({
+import { cardFormAddressSchemaBridge } from "src/schemas/cardFormSchema";
+
+const useStyles = makeStyles((theme) => ({
   form: {
     margin: "12px 0 24px 0 ",
 
@@ -47,7 +48,7 @@ const styles = (theme) => ({
     opacity: "0.54",
     marginRight: "12px",
   },
-});
+}));
 
 const DonateWidgetThirdStep = ({
   cardAddressData,
@@ -56,7 +57,7 @@ const DonateWidgetThirdStep = ({
   goToNextStep,
   goToPrevStep,
 }) => {
-  const classes = useClasses(styles);
+  const classes = useStyles();
 
   const handleSubmit = (data) => {
     setCardAddressData(data);

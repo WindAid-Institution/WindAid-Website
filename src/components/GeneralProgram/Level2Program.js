@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useTheme } from "@mui/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import { GatsbyImage } from "gatsby-plugin-image";
 import clsx from "clsx";
 
@@ -10,9 +10,8 @@ import Title from "shared/Title";
 import Button from "shared/Button";
 import SectionWrapper from "shared/SectionWrapper";
 import useGeneralProgramData from "queries/generalProgram";
-import useClasses from "../../styles/useClasses";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   wrapper: {
     height: "auto",
     [theme.breakpoints.only("xs")]: {
@@ -84,10 +83,10 @@ const styles = (theme) => ({
       maxWidth: "560px",
     },
   },
-});
+}));
 
 const Level2Program = () => {
-  const classes = useClasses(styles);
+  const classes = useStyles();
   const theme = useTheme();
 
   const {
@@ -99,7 +98,10 @@ const Level2Program = () => {
   } = useGeneralProgramData();
 
   return (
-    <SectionWrapper bgColor="secondary">
+    <SectionWrapper
+      bgColor="secondary"
+      style={{ sectionStyle: { marginBottom: theme.spacing(4) } }}
+    >
       <div spacing={2} className={clsx(classes.wrapper, classes.gridLayout)}>
         <div className={clsx(classes.content, classes.gridAreaTitle)}>
           <Title

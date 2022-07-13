@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 
 import { ROUTES } from "src/constants/routes";
 import SectionWrapper from "shared/SectionWrapper";
@@ -9,9 +9,24 @@ import InfoCard from "../../shared/InfoCard/InfoCard";
 import useLevelOneData from "../../hooks/queries/levelOne";
 import Button from "../../shared/Button";
 
-const LevelInfo = () => {
-  const theme = useTheme();
+const useStyles = makeStyles(() => ({
+  infoContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "80px",
+  },
+  topTextContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    flexGrow: 1,
+    width: "100%",
+    maxWidth: "1200px",
+    textAlign: "center",
+  },
+}));
 
+const LevelInfo = () => {
   const {
     infoCard: {
       title: { title },
@@ -24,22 +39,8 @@ const LevelInfo = () => {
     },
   } = useLevelOneData();
 
-  const classes = {
-    infoContainer: {
-      display: "flex",
-      flexDirection: "column",
-      gap: "80px",
-      alignItems: "center",
-    },
-    topTextContainer: {
-      display: "flex",
-      flexDirection: "column",
-      flexGrow: 1,
-      width: "100%",
-      maxWidth: "1200px",
-      textAlign: "center",
-    },
-  };
+  const classes = useStyles();
+  const theme = useTheme();
 
   const data = {
     title,
@@ -65,8 +66,8 @@ const LevelInfo = () => {
 
   return (
     <SectionWrapper bgColor="secondary">
-      <Grid container sx={classes.infoContainer}>
-        <Grid item xs={12} lg={6} sx={classes.topTextContainer}>
+      <Grid container className={classes.infoContainer}>
+        <Grid item xs={12} lg={6} className={classes.topTextContainer}>
           <TextSection
             header="Have more questions about this program?"
             style={textStyle}

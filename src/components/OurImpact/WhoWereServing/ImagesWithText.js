@@ -2,13 +2,13 @@ import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import { makeStyles } from "@mui/styles";
 
 import useOurImpactData from "queries/ourImpact";
 import Body from "shared/Body";
 import { getImage } from "src/utils/utils";
-import useClasses from "../../../styles/useClasses";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     paddingTop: 0,
 
@@ -40,10 +40,10 @@ const styles = (theme) => ({
       height: "260px",
     },
   },
-});
+}));
 
 const ImagesWithText = () => {
-  const classes = useClasses(styles);
+  const classes = useStyles();
 
   const {
     whoWereServing: {

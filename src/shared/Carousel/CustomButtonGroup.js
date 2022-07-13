@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { makeStyles } from "@mui/styles";
 import clsx from "clsx";
-import useClasses from "../../styles/useClasses";
 
 import rightArrowCircle from "../../images/rightArrowCircle.svg";
 import arrowHover from "../../images/arrowHover.svg";
 
-const styles = ({ counterColor }) => ({
+const useStyles = makeStyles({
   arrow: {
     position: "absolute",
     width: "32px",
@@ -38,12 +38,12 @@ const styles = ({ counterColor }) => ({
     marginTop: "15px",
   },
 
-  counter: {
+  counter: ({ counterColor }) => ({
     position: "relative",
     left: "50%",
     transform: "translateX(-50%)",
     color: counterColor,
-  },
+  }),
 });
 
 const Arrow = ({ onClick, style, alt }) => {
@@ -71,8 +71,7 @@ const CustomButtonGroup = ({ next, previous, ...rest }) => {
     showedSlides,
   } = rest;
 
-  const updatedStyles = styles({ counterColor });
-  const classes = useClasses(updatedStyles);
+  const classes = useStyles({ counterColor });
 
   return (
     <div className={classes.buttonGroup}>

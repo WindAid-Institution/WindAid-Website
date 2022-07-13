@@ -9,16 +9,14 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
 
 import { FOOTER_SOCIALS, FOOTER_LINKS } from "src/constants/footer";
 
-const ExternalLink = ({ to, children }) => <a href={to}>{children}</a>;
-
-const TopFooter = () => {
+const useStyles = makeStyles(() => {
   const theme = useTheme();
-
-  const classes = {
+  return {
     linksHeader: {
       fontFamily: theme.typography.fontFamily,
       fontStyle: "normal",
@@ -74,8 +72,6 @@ const TopFooter = () => {
       background: theme.palette.primary.main,
       color: theme.palette.secondary.main,
       textDecoration: "none",
-      justifyContent: "center",
-      alignItems: "center",
 
       [theme.breakpoints.up("lg")]: {
         padding: "4px",
@@ -95,9 +91,15 @@ const TopFooter = () => {
       display: "flex",
     },
   };
+});
+
+const ExternalLink = ({ to, children }) => <a href={to}>{children}</a>;
+
+const TopFooter = () => {
+  const classes = useStyles();
 
   return (
-    <Grid container span={1} sx={classes.grid}>
+    <Grid container span={1} className={classes.grid}>
       {FOOTER_LINKS.map((item) => (
         <Grid
           item
@@ -105,20 +107,23 @@ const TopFooter = () => {
           xs={6}
           sm={4}
           md={2}
-          sx={classes.spacingBottom}
+          className={classes.spacingBottom}
         >
           <Box>
-            <Typography variant="h2" sx={classes.linksHeader}>
+            <Typography variant="h2" className={classes.linksHeader}>
               {item.name}
             </Typography>
-            <List sx={classes.padding}>
+            <List className={classes.padding}>
               {item.links.map((link) => {
                 const LinkComponent = link?.external ? ExternalLink : Link;
 
                 return (
-                  <ListItem sx={classes.listItem} key={link.name}>
+                  <ListItem className={classes.listItem} key={link.name}>
                     <LinkComponent key={link.name} to={link.path}>
-                      <ListItemText primary={link.name} sx={classes.linkText} />
+                      <ListItemText
+                        primary={link.name}
+                        className={classes.linkText}
+                      />
                     </LinkComponent>
                   </ListItem>
                 );
@@ -128,15 +133,15 @@ const TopFooter = () => {
         </Grid>
       ))}
       <Grid item xs={6} sm={4} md={4}>
-        <Typography variant="h2" sx={classes.linksHeader}>
+        <Typography variant="h2" className={classes.linksHeader}>
           {FOOTER_SOCIALS.name}
         </Typography>
-        <Box sx={classes.socials}>
+        <Box className={classes.socials}>
           {FOOTER_SOCIALS.links.map((item) => (
             <a
               key={item.name}
               href={item.link}
-              style={classes.socialsLink}
+              className={classes.socialsLink}
               target="blank"
             >
               {item.icon}

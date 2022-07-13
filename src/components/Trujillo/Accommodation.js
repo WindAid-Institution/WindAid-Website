@@ -1,14 +1,14 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
+import { makeStyles } from "@mui/styles";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useTrujilloData from "hooks/queries/trujillo";
 import { getImage } from "src/utils/utils";
-import useClasses from "../../styles/useClasses";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   textContainer: {
     margin: "0 auto",
     paddingBottom: theme.spacing(4),
@@ -26,7 +26,7 @@ const styles = (theme) => ({
       height: "228px",
     },
   },
-});
+}));
 
 const Accommodation = () => {
   const {
@@ -37,19 +37,16 @@ const Accommodation = () => {
     },
   } = useTrujilloData();
 
-  const classes = useClasses(styles);
+  const classes = useStyles();
 
   const textStyle = {
-    rootStyle: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
+    textStyle: {
       textAlign: "center",
     },
   };
 
   const textSectionStyle = {
-    titleStyle: { textAlign: "center" },
+    titleStyle: { ...textStyle },
     bodyStyle: { ...textStyle },
   };
 

@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { makeStyles } from "@mui/styles";
+import clsx from "clsx";
 
 const handleKeyDown = (e, onClickMethod) => {
   if (e.key === "Enter") {
@@ -7,26 +9,28 @@ const handleKeyDown = (e, onClickMethod) => {
   }
 };
 
-const CustomRightArrow = ({ onClick }) => {
-  const classes = {
-    screenArrow: {
-      position: "absolute",
-      width: "50%",
-      height: "100%",
-      outline: "none",
-    },
+const useStyles = makeStyles({
+  screenArrow: {
+    position: "absolute",
+    width: "50%",
+    height: "100%",
+    outline: "none",
+  },
 
-    screenArrowRight: {
-      right: 0,
-    },
-  };
+  screenArrowRight: {
+    right: 0,
+  },
+});
+
+const CustomRightArrow = ({ onClick }) => {
+  const classes = useStyles();
 
   return (
     <div
       type="button"
       aria-label="Next slide"
       role="button"
-      style={{ ...classes.screenArrow, ...classes.screenArrowRight }}
+      className={clsx(classes.screenArrow, classes.screenArrowRight)}
       onClick={() => onClick()}
       onKeyDown={(e) => handleKeyDown(e, onClick)}
       tabIndex={0}
@@ -35,24 +39,14 @@ const CustomRightArrow = ({ onClick }) => {
 };
 
 const CustomLeftArrow = ({ onClick }) => {
-  const classes = {
-    screenArrow: {
-      position: "absolute",
-      width: "50%",
-      height: "100%",
-      outline: "none",
-    },
+  const classes = useStyles();
 
-    screenArrowRight: {
-      right: 0,
-    },
-  };
   return (
     <div
       type="button"
       aria-label="Previous slide"
       role="button"
-      style={classes.screenArrow}
+      className={classes.screenArrow}
       onClick={() => onClick()}
       onKeyDown={(e) => handleKeyDown(e, onClick)}
       tabIndex={0}

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
 import { useCountUp } from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 
-const StatisticsItem = ({ title, statsNumbers, file, isPlusSign }) => {
+const useStyles = makeStyles(() => {
   const theme = useTheme();
-
-  const classes = {
+  return {
     numbers: {
       fontFamily: theme.typography.fontFamily,
       fontSize: "45px",
@@ -33,6 +33,10 @@ const StatisticsItem = ({ title, statsNumbers, file, isPlusSign }) => {
       paddingTop: "calc(4.4vw + 16px)",
     },
   };
+});
+
+const StatisticsItem = ({ title, statsNumbers, file, isPlusSign }) => {
+  const classes = useStyles();
   const [isElementVisible, setIsElementVisible] = useState(false);
 
   const { countUp, start } = useCountUp({
@@ -53,14 +57,14 @@ const StatisticsItem = ({ title, statsNumbers, file, isPlusSign }) => {
         flexDirection="column"
         alignItems="center"
         display="flex"
-        sx={classes.contentContainer}
+        className={classes.contentContainer}
       >
         <img src={file.url} alt={title} />
-        <p style={classes.numbers}>
+        <p className={classes.numbers}>
           {countUp}
           {isPlusSign && "+"}
         </p>
-        <p style={classes.iconText}>{title}</p>
+        <p className={classes.iconText}>{title}</p>
       </Box>
     </VisibilitySensor>
   );

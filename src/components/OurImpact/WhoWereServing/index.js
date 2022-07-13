@@ -1,15 +1,15 @@
 import React from "react";
 import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
 
 import Body from "shared/Body";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useOurImpactData from "queries/ourImpact";
-import useClasses from "../../../styles/useClasses";
 
 import ImagesWithText from "./ImagesWithText";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   textContainer: {
     paddingBottom: "24px",
   },
@@ -20,7 +20,7 @@ const styles = (theme) => ({
       display: "block",
     },
   },
-});
+}));
 
 const WhoWereServing = () => {
   const {
@@ -32,7 +32,7 @@ const WhoWereServing = () => {
     },
   } = useOurImpactData();
 
-  const classes = useClasses(styles);
+  const classes = useStyles();
 
   return (
     <SectionWrapper bgColor="secondary">

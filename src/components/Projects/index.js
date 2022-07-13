@@ -1,32 +1,33 @@
 import React from "react";
+import { makeStyles } from "@mui/styles";
 import Grid from "@mui/material/Grid";
-import useTheme from "@mui/material/styles/useTheme";
 
 import useHomepageData from "queries/homepage";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import ProjectCard from "../Home/CurrentProjects/ProjectCard";
 
+const useStyles = makeStyles((theme) => ({
+  mainWrapper: {},
+  textRow: {
+    textAlign: "center",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+  },
+  cards: {
+    width: "100%",
+    display: "grid",
+    gap: "5px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(550px, 1fr))",
+    [theme.breakpoints.down("md")]: {
+      gridTemplateColumns: "1fr",
+    },
+  },
+}));
+
 const CurrentProjects = () => {
-  const theme = useTheme();
-  const classes = {
-    mainWrapper: {},
-    textRow: {
-      textAlign: "center",
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
-    },
-    cards: {
-      width: "100%",
-      display: "grid",
-      gap: "5px",
-      gridTemplateColumns: "repeat(auto-fit, minmax(550px, 1fr))",
-      [theme.breakpoints.down("md")]: {
-        gridTemplateColumns: "1fr",
-      },
-    },
-  };
+  const classes = useStyles();
   const {
     currentProjects: {
       title,
@@ -51,12 +52,12 @@ const CurrentProjects = () => {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        sx={classes.mainWrapper}
+        className={classes.mainWrapper}
       >
-        <Grid item xs={12} sx={classes.textRow}>
+        <Grid item xs={12} className={classes.textRow}>
           <TextSection title={title} body={body} />
         </Grid>
-        <Grid item xs={12} sx={classes.cards}>
+        <Grid item xs={12} className={classes.cards}>
           {currentProjectCardsContent.map((projectData) => (
             <ProjectCard key={projectData.orderNumber} data={projectData} />
           ))}

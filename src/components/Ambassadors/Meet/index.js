@@ -1,34 +1,34 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
-import useTheme from "@mui/material/styles/useTheme";
+import { makeStyles } from "@mui/styles";
 import useAmbassadorsData from "queries/ambassadors";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 
 import MeetCard from "./MeetCard";
 
-const Meet = () => {
-  const theme = useTheme();
+const useStyles = makeStyles((theme) => ({
+  cardsContainer: {
+    paddingTop: theme.spacing(2),
 
+    [theme.breakpoints.up("md")]: {
+      padddingTop: theme.spacing(1),
+    },
+  },
+}));
+
+const Meet = () => {
   const {
     meet: { title },
 
     ambassadorsCardsContent,
   } = useAmbassadorsData();
 
-  const classes = {
-    cardsContainer: {
-      paddingTop: theme.spacing(2),
-
-      [theme.breakpoints.up("md")]: {
-        padddingTop: theme.spacing(1),
-      },
-    },
-  };
+  const classes = useStyles();
   return (
     <SectionWrapper bgColor="secondary">
       <TextSection title={title} size="lg" />
-      <Grid container spacing={2} sx={classes.cardsContainer}>
+      <Grid container spacing={2} className={classes.cardsContainer}>
         {ambassadorsCardsContent.map((cardData) => (
           <MeetCard {...cardData} key={cardData.orderNumber} />
         ))}

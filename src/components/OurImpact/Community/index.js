@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import SectionWrapper from "shared/SectionWrapper";

@@ -1,16 +1,15 @@
 import React from "react";
 import { Grid, Box, Typography } from "@mui/material";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { useTheme } from "@mui/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import TextSection from "shared/TextSection";
 import useShortTermData from "queries/levelTwo";
 import CustomCarousel from "../../shared/Carousel/CustomCarousel";
 import SectionWrapper from "../../shared/SectionWrapper";
-import useClasses from "../../styles/useClasses";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   containerWrapper: {
     direction: "column",
   },
@@ -47,7 +46,7 @@ const styles = (theme) => ({
       height: "100%",
     },
   },
-});
+}));
 
 const Structure = () => {
   const {
@@ -55,7 +54,7 @@ const Structure = () => {
     structureImages: { images },
   } = useShortTermData();
 
-  const classes = useClasses(styles);
+  const classes = useStyles();
   const theme = useTheme();
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));

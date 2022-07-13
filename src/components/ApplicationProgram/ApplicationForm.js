@@ -8,7 +8,7 @@ import {
   RadioField,
   BoolField,
 } from "uniforms-material";
-import useTheme from "@mui/material/styles/useTheme";
+import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -35,6 +35,62 @@ const errorMessages = {
   form: "There are errors in your form. Please follow instructions under the fields to send your form.",
 };
 
+const useStyles = makeStyles((theme) => ({
+  formSection: {
+    marginBottom: theme.spacing(6),
+  },
+  emptyItem: {
+    display: "none",
+    padding: 0,
+    [theme.breakpoints.up("md")]: {
+      display: "block",
+    },
+  },
+
+  employeedFieldContainer: {
+    "& > fieldset > legend": {
+      color: "#333333",
+      fontWeight: theme.typography.fontWeightBold,
+      fontSize: "13px",
+
+      lineHeight: "28px",
+      position: "relative",
+
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "16px",
+      },
+    },
+  },
+
+  employeedField: {
+    color: "#BDBDBD",
+
+    "&:hover": {
+      color: theme.palette.primary.main,
+    },
+  },
+
+  error: {
+    padding: "16px 0",
+    color: "red",
+  },
+
+  beforeCheckText: {
+    color: "#333333",
+    fontWeight: theme.typography.fontWeightBold,
+    marginTop: theme.spacing(2),
+  },
+
+  recaptcha: {
+    margin: "16px 0 24px",
+  },
+
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: theme.palette.secondary.main,
+  },
+}));
+
 const titleStyle = {
   textStyle: {
     margin: "24px 0",
@@ -45,63 +101,8 @@ const ApplicationForm = () => {
   const [isVerified, setIsVerified] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const theme = useTheme();
 
-  const classes = {
-    formSection: {
-      marginBottom: theme.spacing(6),
-    },
-    emptyItem: {
-      display: "none",
-      padding: 0,
-      [theme.breakpoints.up("md")]: {
-        display: "block",
-      },
-    },
-
-    employeedFieldContainer: {
-      "& > fieldset > legend": {
-        color: "#333333",
-        fontWeight: theme.typography.fontWeightBold,
-        fontSize: "13px",
-
-        lineHeight: "28px",
-        position: "relative",
-
-        [theme.breakpoints.up("sm")]: {
-          fontSize: "16px",
-        },
-      },
-    },
-
-    employeedField: {
-      color: "#BDBDBD",
-
-      "&:hover": {
-        color: theme.palette.primary.main,
-      },
-    },
-
-    error: {
-      padding: "16px 0",
-      color: "red",
-    },
-
-    beforeCheckText: {
-      color: "#333333",
-      fontWeight: theme.typography.fontWeightBold,
-      marginTop: theme.spacing(2),
-    },
-
-    recaptcha: {
-      margin: "16px 0 24px",
-    },
-
-    backdrop: {
-      zIndex: theme.zIndex.drawer + 1,
-      color: theme.palette.secondary.main,
-    },
-  };
+  const classes = useStyles();
 
   const handleSubmit = async (data) => {
     if (!isVerified) {
@@ -144,9 +145,9 @@ const ApplicationForm = () => {
         onSubmit={handleSubmit}
         showInlineError
       >
-        <Grid sx={classes.root} container>
+        <Grid className={classes.root} container>
           <Title style={titleStyle} title={pageData.generalTitle} size="lg" />
-          <Grid container spacing={3} sx={classes.formSection}>
+          <Grid container spacing={3} className={classes.formSection}>
             <Grid item xs={12} md={6}>
               <AutoField name="firstName" component={CustomAutoField} />
             </Grid>
@@ -158,7 +159,7 @@ const ApplicationForm = () => {
             </Grid>
           </Grid>
 
-          <Grid container spacing={3} sx={classes.formSection}>
+          <Grid container spacing={3} className={classes.formSection}>
             <Grid item xs={12} md={6}>
               <AutoField name="country" component={CustomAutoField} />
             </Grid>
@@ -173,7 +174,7 @@ const ApplicationForm = () => {
             </Grid>
           </Grid>
 
-          <Grid container spacing={3} sx={classes.formSection}>
+          <Grid container spacing={3} className={classes.formSection}>
             <Grid item xs={12} md={7}>
               <AutoField name="higherEducation" component={CustomAutoField} />
             </Grid>
@@ -187,8 +188,11 @@ const ApplicationForm = () => {
                 <AutoField name="fieldOfStudy" component={CustomAutoField} />
               </DisplayIf>
             </Grid>
-            <Grid item xs={12} sx={classes.employeedFieldContainer}>
-              <RadioField name="isEmployeed" style={classes.employeedField} />
+            <Grid item xs={12} className={classes.employeedFieldContainer}>
+              <RadioField
+                name="isEmployeed"
+                className={classes.employeedField}
+              />
             </Grid>
 
             <DisplayIf
@@ -202,7 +206,7 @@ const ApplicationForm = () => {
 
           <Title style={titleStyle} title={pageData.health} size="lg" />
 
-          <Grid container spacing={3} sx={classes.formSection}>
+          <Grid container spacing={3} className={classes.formSection}>
             <Grid item xs={12} md={7}>
               <AutoField name="specialDietary" component={CustomAutoField} />
             </Grid>
@@ -219,11 +223,11 @@ const ApplicationForm = () => {
             size="lg"
           />
 
-          <Grid container spacing={3} sx={classes.formSection}>
+          <Grid container spacing={3} className={classes.formSection}>
             <Grid item xs={12} md={6}>
               <AutoField name="programToApply" component={CustomAutoField} />
             </Grid>
-            <Grid item xs={12} md={6} sx={classes.emptyItem} />
+            <Grid item xs={12} md={6} className={classes.emptyItem} />
             <Grid item xs={12} md={6}>
               <AutoField
                 name="startDateOne"
@@ -247,7 +251,7 @@ const ApplicationForm = () => {
             <Grid item xs={12} md={6}>
               <AutoField name="howHear" component={CustomAutoField} />
             </Grid>
-            <Grid item xs={12} md={6} sx={classes.emptyItem} />
+            <Grid item xs={12} md={6} className={classes.emptyItem} />
 
             <DisplayIf
               condition={(context) => context.model.howHear === "Ambassador"}
@@ -269,7 +273,7 @@ const ApplicationForm = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography sx={classes.beforeCheckText}>
+            <Typography className={classes.beforeCheckText}>
               You must check this box to submit your application.
             </Typography>
             <BoolField name="termAndConditions" required />
@@ -280,7 +284,7 @@ const ApplicationForm = () => {
           sitekey={process.env.CAPTCHA_SITE_KEY}
           render="explicit"
           verifyCallback={handleCaptchaVerification}
-          style={classes.recaptcha}
+          className={classes.recaptcha}
         />
 
         {!isVerified && isError && (
@@ -294,7 +298,7 @@ const ApplicationForm = () => {
         <FormError errorMessage={errorMessages.form} />
         <SubmitField />
       </AutoForm>
-      <Backdrop sx={classes.backdrop} open={isLoading}>
+      <Backdrop className={classes.backdrop} open={isLoading}>
         <CircularProgress color="inherit" />
       </Backdrop>
     </>

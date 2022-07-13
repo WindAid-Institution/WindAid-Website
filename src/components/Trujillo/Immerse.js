@@ -1,12 +1,33 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
-import { useTheme } from "@mui/material/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import { GatsbyImage } from "gatsby-plugin-image";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useTrujilloData from "hooks/queries/trujillo";
+
+const useStyles = makeStyles((theme) => ({
+  textContainer: {
+    paddingBottom: theme.spacing(4),
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+      alignItems: "center",
+      paddingRight: theme.spacing(2),
+      paddingBottom: 0,
+    },
+  },
+
+  imageContainer: {
+    display: "flex",
+    alignItems: "center",
+  },
+  image: {
+    width: "100%",
+    maxHeight: "380px",
+  },
+}));
 
 const Immerse = () => {
   const {
@@ -16,28 +37,9 @@ const Immerse = () => {
       image,
     },
   } = useTrujilloData();
+
+  const classes = useStyles();
   const theme = useTheme();
-
-  const classes = {
-    textContainer: {
-      paddingBottom: theme.spacing(4),
-      [theme.breakpoints.up("md")]: {
-        display: "flex",
-        alignItems: "center",
-        paddingRight: theme.spacing(2),
-        paddingBottom: 0,
-      },
-    },
-
-    imageContainer: {
-      display: "flex",
-      alignItems: "center",
-    },
-    image: {
-      width: "100%",
-      maxHeight: "380px",
-    },
-  };
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const textStyle = {
@@ -54,7 +56,7 @@ const Immerse = () => {
   return (
     <SectionWrapper bgColor="primary">
       <Grid container>
-        <Grid item xs={12} md={6} sx={classes.textContainer}>
+        <Grid item xs={12} md={6} className={classes.textContainer}>
           <TextSection
             title={title}
             body={body}
@@ -62,9 +64,9 @@ const Immerse = () => {
             size={isUpMd ? "full" : "lg"}
           />
         </Grid>
-        <Grid sx={classes.imageContainer} item xs={12} md={6}>
+        <Grid className={classes.imageContainer} item xs={12} md={6}>
           <GatsbyImage
-            style={classes.image}
+            className={classes.image}
             image={image.gatsbyImageData}
             alt={image.description}
           />

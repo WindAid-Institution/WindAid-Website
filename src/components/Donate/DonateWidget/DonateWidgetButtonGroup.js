@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import clsx from "clsx";
-import useClasses from "../../../styles/useClasses";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     minWidth: 0,
     width: "114px",
@@ -65,9 +65,9 @@ const styles = (theme) => ({
       marginTop: "2px",
     },
   },
-});
+}));
 const ValueButton = ({ value, handleButtonClick, isActive }) => {
-  const classes = useClasses(styles);
+  const classes = useStyles();
   return (
     <Button
       value={value}
@@ -80,7 +80,7 @@ const ValueButton = ({ value, handleButtonClick, isActive }) => {
 };
 
 const ValueInput = ({ value, handleInputChange }) => {
-  const classes = useClasses(styles);
+  const classes = useStyles();
 
   const [isFocused, setIsFocused] = useState(false);
   const isAdornmentVisible = isFocused || Number.isInteger(value);
@@ -117,7 +117,7 @@ const DonateWidgetButtonGroup = ({
   inputValue,
   buttonsValues,
 }) => {
-  const classes = useClasses(styles);
+  const classes = useStyles();
 
   return (
     <Grid container spacing={2}>

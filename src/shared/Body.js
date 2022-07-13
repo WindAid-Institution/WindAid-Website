@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
-import useClasses from "../styles/useClasses";
 
 const getBoxSize = (size) => {
   switch (size) {
@@ -28,60 +28,61 @@ const getBoxSize = (size) => {
   }
 };
 
-const styles = ({ size, rootStyle, textStyle, theme }) => ({
-  root: {
-    width: getBoxSize(size),
-    ...rootStyle,
-  },
+const useStyles = makeStyles(() => {
+  const theme = useTheme();
+  return {
+    root: ({ size, rootStyle }) => ({
+      width: getBoxSize(size),
+      ...rootStyle,
+    }),
 
-  text: {
-    "& > p": {
-      fontFamily: theme.typography.fontFamily,
-      fontSize: "14px",
-      lineHeight: "28px",
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "16px",
-      },
-      maxWidth: size === "sm" ? "560px" : "850px",
-      color: "#282828",
-      marginBottom: theme.spacing(1),
-      ...textStyle,
-
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "16px",
+    text: ({ size, textStyle }) => ({
+      "& > p": {
+        fontFamily: theme.typography.fontFamily,
+        fontSize: "14px",
+        lineHeight: "28px",
+        [theme.breakpoints.up("sm")]: {
+          fontSize: "16px",
+        },
+        maxWidth: size === "sm" ? "560px" : "850px",
+        color: "#282828",
+        marginBottom: theme.spacing(1),
         ...textStyle,
-      },
-    },
-    "& > ul > li": {
-      fontFamily: theme.typography.fontFamily,
-      fontSize: "14px",
-      lineHeight: "28px",
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "16px",
-      },
-      maxWidth: size === "sm" ? "560px" : "850px",
-      color: "#282828",
-      marginBottom: theme.spacing(1),
-      ...textStyle,
 
-      [theme.breakpoints.up("sm")]: {
-        fontSize: "16px",
+        [theme.breakpoints.up("sm")]: {
+          fontSize: "16px",
+          ...textStyle,
+        },
+      },
+      "& > ul > li": {
+        fontFamily: theme.typography.fontFamily,
+        fontSize: "14px",
+        lineHeight: "28px",
+        [theme.breakpoints.up("sm")]: {
+          fontSize: "16px",
+        },
+        maxWidth: size === "sm" ? "560px" : "850px",
+        color: "#282828",
+        marginBottom: theme.spacing(1),
         ...textStyle,
-      },
-    },
 
-    "& > p > a": {
-      color: theme.palette.primary.main,
-    },
-  },
+        [theme.breakpoints.up("sm")]: {
+          fontSize: "16px",
+          ...textStyle,
+        },
+      },
+
+      "& > p > a": {
+        color: theme.palette.primary.main,
+      },
+    }),
+  };
 });
 
 const Body = ({ body, style, size }) => {
   const { rootStyle, textStyle } = style || {};
-  const theme = useTheme();
 
-  const updatedStyles = styles({ size, rootStyle, textStyle, theme });
-  const classes = useClasses(updatedStyles);
+  const classes = useStyles({ size, rootStyle, textStyle });
   return (
     <Box className={classes.root}>
       <ReactMarkdown className={classes.text} remarkPlugins={[remarkGfm]}>

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import { makeStyles } from "@mui/styles";
 
 import DonateWidgetHeader from "./DonateWidgetHeader";
 import DonateWidgetButton from "./DonateWidgetButton";
@@ -11,11 +12,10 @@ import DonateWidgetButton from "./DonateWidgetButton";
 import DonateWidgetFirstStep from "./Steps/DonateWidgetFirstStep";
 import DonateWidgetSecondStep from "./Steps/DonateWidgetSecondStep";
 import DonateWidgetSuccess from "./Steps/DonateWidgetSuccess";
-import useClasses from "../../../styles/useClasses";
 
 const BUTTONS_VALUES = [10, 20, 40, 50];
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     width: "442px",
   },
@@ -34,10 +34,10 @@ const styles = (theme) => ({
     lineHeight: "24px",
     textAlign: "center",
   },
-});
+}));
 
 const DonateWidget = () => {
-  const classes = useClasses(styles);
+  const classes = useStyles();
 
   const [donationValue, setDonationValue] = useState(10);
 

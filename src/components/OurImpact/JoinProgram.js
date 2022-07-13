@@ -1,6 +1,6 @@
 import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { useTheme } from "@mui/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import Box from "@mui/material/Box";
 
 import { ROUTES } from "src/constants/routes";
@@ -8,9 +8,8 @@ import useOurImpactData from "queries/ourImpact";
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import Button from "shared/Button";
-import useClasses from "../../styles/useClasses";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexDirection: "column",
@@ -45,7 +44,7 @@ const styles = (theme) => ({
       height: "368px",
     },
   },
-});
+}));
 
 const JoinProgram = () => {
   const {
@@ -56,7 +55,7 @@ const JoinProgram = () => {
     },
   } = useOurImpactData();
 
-  const classes = useClasses(styles);
+  const classes = useStyles();
   const theme = useTheme();
 
   return (

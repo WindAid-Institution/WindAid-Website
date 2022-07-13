@@ -1,10 +1,25 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 
 import useLongTermData from "../../hooks/queries/levelThree";
 import SectionWrapper from "../../shared/SectionWrapper";
 import TextSection from "../../shared/TextSection";
+
+const useStyles = makeStyles((theme) => ({
+  containerStyle: {
+    direction: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  image: {
+    width: "100%",
+    objectFit: "cover",
+    [theme.breakpoints.up("sm")]: {
+      height: "290px",
+    },
+  },
+}));
 
 const Structure = () => {
   const {
@@ -15,22 +30,9 @@ const Structure = () => {
       image,
     },
   } = useLongTermData();
-  const theme = useTheme();
 
-  const classes = {
-    containerStyle: {
-      direction: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-    },
-    image: {
-      width: "100%",
-      objectFit: "cover",
-      [theme.breakpoints.up("sm")]: {
-        height: "290px",
-      },
-    },
-  };
+  const classes = useStyles();
+  const theme = useTheme();
 
   const style = {
     bodyStyle: {
@@ -50,7 +52,7 @@ const Structure = () => {
       bgColor="primary"
       style={{ containerStyle: { display: "flex", justifyContent: "center" } }}
     >
-      <Grid container sx={classes.containerStyle} spacing={6}>
+      <Grid container className={classes.containerStyle} spacing={6}>
         <Grid item xs={12} md={6}>
           <TextSection
             title={title}
@@ -63,7 +65,7 @@ const Structure = () => {
           <img
             src={image.file.url}
             alt={image.description}
-            style={classes.image}
+            className={classes.image}
           />
         </Grid>
       </Grid>

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
 import Container from "./Container";
-import useClasses from "../styles/useClasses";
 
 const getBackgroundColor = ({ theme, bgColor }) => {
   if (bgColor === "primary") {
@@ -24,8 +24,8 @@ const getBackgroundColor = ({ theme, bgColor }) => {
   return theme.palette.secondary.main;
 };
 
-const styles = ({ sectionStyle, theme, bgColor, bgUrl }) => ({
-  root: {
+const useStyles = makeStyles(() => ({
+  root: ({ sectionStyle, theme, bgColor, bgUrl }) => ({
     backgroundColor: getBackgroundColor({ theme, bgColor }),
     paddingTop: "calc(2.96vw + 21.3px)",
     paddingBottom: "calc(2.96vw + 21.3px)",
@@ -36,14 +36,13 @@ const styles = ({ sectionStyle, theme, bgColor, bgUrl }) => ({
     position: "relative",
     overflow: "hidden",
     ...sectionStyle,
-  },
-});
+  }),
+}));
 
 const SectionWrapper = ({ children, style, bgColor, bgUrl }) => {
   const { sectionStyle, containerStyle } = style || {};
   const theme = useTheme();
-  const updatedStyles = styles({ theme, bgColor, bgUrl, sectionStyle });
-  const classes = useClasses(updatedStyles);
+  const classes = useStyles({ theme, bgColor, bgUrl, sectionStyle });
 
   return (
     <section className={`${classes.root} ${classes.sectionStyle}`}>

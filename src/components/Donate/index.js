@@ -2,17 +2,16 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { getSrc } from "gatsby-plugin-image";
-import { useTheme } from "@mui/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import useDonateData from "hooks/queries/donate";
 import { getImage } from "src/utils/utils";
-import useClasses from "../../styles/useClasses";
 
 import DonateWidget from "./DonateWidget";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   backgroundFilter: {
     position: "absolute",
     top: 0,
@@ -63,7 +62,7 @@ const styles = (theme) => ({
       marginTop: "0px",
     },
   },
-});
+}));
 
 const Donate = () => {
   const {
@@ -74,7 +73,7 @@ const Donate = () => {
     },
   } = useDonateData();
 
-  const classes = useClasses(styles);
+  const classes = useStyles();
   const theme = useTheme();
 
   const sectionStyle = {
@@ -105,7 +104,11 @@ const Donate = () => {
   const backgroundPicture = getImage(images, "donate-background");
   const bgImageSrc = getSrc(backgroundPicture);
   return (
-    <SectionWrapper bgColor="secondary" bgUrl={bgImageSrc} style={sectionStyle}>
+    <SectionWrapper
+      bgColor="secondary"
+      bgUrl={bgImageSrc}
+      style={{ sectionStyle }}
+    >
       <Grid container>
         <Grid item xs={12} lg={6} className={classes.textContainer}>
           <TextSection

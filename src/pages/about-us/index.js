@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { graphql } from "gatsby";
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/styles";
 
 import MainLayout from "src/layout/MainLayout";
 import Hero from "components/Hero/Hero";

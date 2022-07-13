@@ -2,15 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useTheme } from "@mui/styles";
+import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
 import { GatsbyImage } from "gatsby-plugin-image";
-import useClasses from "../../../styles/useClasses";
 
 import CustomButtonGroup from "./TrujilloButtonGroup";
 
-const styles = ({ isBeachSection, theme }) => ({
-  carouselContainer: {
+const useStyles = makeStyles((theme) => ({
+  carouselContainer: ({ isBeachSection }) => ({
     paddingBottom: isBeachSection ? theme.spacing(5) : theme.spacing(2),
     maxWidth: "600px",
     margin: "0 auto",
@@ -19,7 +18,7 @@ const styles = ({ isBeachSection, theme }) => ({
     [theme.breakpoints.up("lg")]: {
       maxWidth: isBeachSection ? "100%" : "600px",
     },
-  },
+  }),
   imageContainer: {
     width: "100%",
     height: "100%",
@@ -27,7 +26,7 @@ const styles = ({ isBeachSection, theme }) => ({
     justifyContent: "center",
     alignItems: "center",
   },
-  image: {
+  image: ({ isBeachSection }) => ({
     width: "100%",
     height: "100%",
     maxHeight: "250px",
@@ -40,13 +39,11 @@ const styles = ({ isBeachSection, theme }) => ({
       width: isBeachSection ? "368px" : "100%",
       height: isBeachSection ? "304px" : "100%",
     },
-  },
-});
+  }),
+}));
 
 const TrujilloCarousel = ({ carouselImages, isBeachSection }) => {
-  const theme = useTheme();
-  const updatedStyles = styles({ isBeachSection, theme });
-  const classes = useClasses(updatedStyles);
+  const classes = useStyles({ isBeachSection });
 
   return (
     <Carousel

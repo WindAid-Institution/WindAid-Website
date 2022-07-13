@@ -3,16 +3,16 @@ import React from "react";
 import { ROUTES } from "src/constants/routes";
 import useShortTermData from "queries/levelTwo";
 import { Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import Separator from "../../shared/Separator";
-import useClasses from "../../styles/useClasses";
 
-const styles = () => ({
+const useStyles = makeStyles(() => ({
   link: {
     textDecoration: "none",
     fontWeight: "bold",
     color: "black",
   },
-});
+}));
 
 const Apply = () => {
   const {
@@ -22,7 +22,7 @@ const Apply = () => {
       image,
     },
   } = useShortTermData();
-  const classes = useClasses(styles);
+  const classes = useStyles();
   const data = {
     route: ROUTES.APPLY,
     title,

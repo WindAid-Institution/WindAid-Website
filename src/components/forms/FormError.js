@@ -3,18 +3,21 @@ import PropTypes from "prop-types";
 import { useForm } from "uniforms";
 import Alert from "@mui/material/Alert";
 import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  alert: {
+    margin: "32px 0",
+  },
+});
 
 const FormError = ({ isError, errorMessage }) => {
   const { error } = useForm();
-  const classes = {
-    alert: {
-      margin: "32px 0",
-    },
-  };
+  const classes = useStyles();
 
   if (error || isError) {
     return (
-      <Alert sx={classes.alert} severity="error">
+      <Alert className={classes.alert} severity="error">
         <Typography>{errorMessage}</Typography>
       </Alert>
     );

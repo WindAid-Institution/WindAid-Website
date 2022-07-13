@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
 import Hidden from "@mui/material/Hidden";
-import { useTheme } from "@mui/styles";
+import { makeStyles, useTheme } from "@mui/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { GatsbyImage } from "gatsby-plugin-image";
 import clsx from "clsx";
@@ -12,9 +12,8 @@ import TextSection from "shared/TextSection";
 import Body from "shared/Body";
 import useTrujilloData from "hooks/queries/trujillo";
 import { getImage } from "src/utils/utils";
-import useClasses from "../../styles/useClasses";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   image: {
     width: "100%",
     height: "260px",
@@ -57,10 +56,10 @@ const styles = (theme) => ({
   lastImage: {
     height: "100%",
   },
-});
+}));
 
 const Image = ({ image, customClass }) => {
-  const classes = useClasses(styles);
+  const classes = useStyles();
   const { gatsbyImageData, description } = image;
   return (
     <GatsbyImage
@@ -85,7 +84,7 @@ const Entertainment = () => {
     },
   } = useTrujilloData();
 
-  const classes = useClasses(styles);
+  const classes = useStyles();
   const theme = useTheme();
 
   const isUpMd = useMediaQuery(theme.breakpoints.up("md"));

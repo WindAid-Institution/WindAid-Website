@@ -1,24 +1,25 @@
 import React from "react";
-import useTheme from "@mui/material/styles/useTheme";
+import { makeStyles } from "@mui/styles";
 
 import TopFooter from "./TopFooter";
 import BottomFooter from "./BottomFooter";
 
-const Footer = () => {
-  const theme = useTheme();
-  const classes = {
-    footer: {
-      borderTop: "1px solid #056839",
-      background: theme.palette.secondary.footer,
+const useStyles = makeStyles((theme) => ({
+  footer: {
+    borderTop: "1px solid #056839",
+    background: theme.palette.secondary.footer,
 
-      "& a:hover": {
-        textDecoration: "none",
-      },
+    "& a:hover": {
+      textDecoration: "none",
     },
-  };
+  },
+}));
+
+const Footer = () => {
+  const classes = useStyles();
 
   return (
-    <footer style={classes.footer}>
+    <footer className={classes.footer}>
       <TopFooter />
       <BottomFooter />
     </footer>
