@@ -7,8 +7,6 @@ import useClasses from "../../../../styles/useClasses";
 
 const styles = (theme) => ({
   root: {
-    width: "100%",
-
     "-webkit-touch-callout": "none",
     "-webkit-user-select": "none",
     "-khtml-user-select": "none",
@@ -18,6 +16,7 @@ const styles = (theme) => ({
 
     [theme.breakpoints.up("md")]: {
       display: "flex",
+      flexDirection: "row",
       alignItems: "center",
     },
   },
@@ -28,7 +27,6 @@ const styles = (theme) => ({
     },
   },
   imageContainer: {
-    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     background: theme.palette.primary.main,
@@ -56,8 +54,10 @@ const styles = (theme) => ({
   },
 
   contentContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "20px",
     background: theme.palette.secondary.dark,
-    width: "100%",
     padding: "16px",
     position: "relative",
     height: "fit-content",
@@ -157,7 +157,7 @@ const CommunityCard = ({
       container
       className={clsx(classes.root, isTopAligned && classes.rootTopAligned)}
     >
-      <Grid container className={classes.imageContainer}>
+      <Grid item className={classes.imageContainer}>
         <GatsbyImage
           image={image.gatsbyImageData}
           alt={name}
@@ -165,7 +165,11 @@ const CommunityCard = ({
         />
       </Grid>
 
-      <Grid className={classes.contentContainer} container>
+      <Grid
+        className={classes.contentContainer}
+        item
+        sx={{ flexDirection: "column" }}
+      >
         <Grid
           item
           xs={12}
@@ -173,7 +177,7 @@ const CommunityCard = ({
         >
           {name}
         </Grid>
-        <Grid container>
+        <Grid item>
           <Grid
             item
             xs={12}
@@ -183,7 +187,7 @@ const CommunityCard = ({
             <span className={classes.date}>{date}</span>
           </Grid>
         </Grid>
-        <Grid item container className={classes.textContainer}>
+        <Grid item className={classes.textContainer}>
           <Grid
             item
             xs={12}
