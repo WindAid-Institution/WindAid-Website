@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
-import { makeStyles } from "@mui/styles";
 import { GatsbyImage } from "gatsby-plugin-image";
 import clsx from "clsx";
+import useClasses from "../../../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   root: {
     width: "100%",
 
@@ -140,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "flex-end",
     fontWeight: theme.typography.fontWeightLight,
   },
-}));
+});
 
 const CommunityCard = ({
   name,
@@ -151,7 +151,7 @@ const CommunityCard = ({
   image,
   isTopAligned,
 }) => {
-  const classes = useStyles();
+  const classes = useClasses(styles);
   return (
     <Grid
       container

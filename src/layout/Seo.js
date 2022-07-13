@@ -15,8 +15,6 @@ const Seo = () => {
     seoProperties: { title, description, keywords, image },
   } = useSeoData();
   const img = getSrc(image);
-  console.log({ title });
-  console.log({ title, description, keywords, image });
   return (
     <Helmet>
       <html lang="en" amp />

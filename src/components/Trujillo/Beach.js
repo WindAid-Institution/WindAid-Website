@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { getSrc, GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles, useTheme } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import BusIcon from "images/icons/bus.svg";
@@ -15,100 +15,22 @@ import { getImage } from "src/utils/utils";
 
 import ExploreCarousel from "./TrujilloCarousel/TrujilloCarousel";
 
-const useStyles = makeStyles((theme) => ({
-  backgroundFilter: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "70%",
-    background:
-      "linear-gradient(180deg, #fff 0%, #fff 50%, rgba(255,255,255,0) 100%)",
-    zIndex: "1",
-    transition: "height 0.2s ease",
-
-    [theme.breakpoints.up("sm")]: {
-      height: "50%",
-      background:
-        "linear-gradient(180deg, #fff 0%, #fff 40%, rgba(255,255,255,0) 100%)",
-    },
-
-    [theme.breakpoints.up("lg")]: {
-      background:
-        "linear-gradient(180deg, #fff 0%, #fff 45%, rgba(255,255,255,0) 100%)",
-    },
-  },
-
-  contentContainer: {
-    position: "relative",
-    zIndex: 2,
-    "& > div > div > h3": {
-      textAlign: "center",
-    },
-
-    [theme.breakpoints.up("lg")]: {
-      "& > div > div > h3": {
-        textAlign: "left",
-      },
-    },
-  },
-
-  subHeaderContainer: {
-    display: "flex",
-    justifyContent: "center",
-    width: "100%",
-    marginTop: theme.spacing(5),
-
-    [theme.breakpoints.up("lg")]: {
-      width: "calc(30.4vw + 219px)",
-    },
-  },
-
-  subHeader: {
-    fontWeight: theme.typography.fontWeightBold,
-    fontSize: "16px",
-    lineHeight: "28px",
-    color: theme.palette.info.main,
-    paddingLeft: theme.spacing(1),
-    textAlign: "center",
-
-    [theme.breakpoints.up("sm")]: {
-      fontSize: "18px",
-      lineHeight: "24px",
-    },
-
-    [theme.breakpoints.up("lg")]: {
-      textAlign: "left",
-    },
-  },
-
-  imagesContainer: {
-    marginTop: theme.spacing(2),
-
-    [theme.breakpoints.up("sm")]: {
-      marginTop: theme.spacing(5),
-    },
-    [theme.breakpoints.up("lg")]: {
-      marginTop: theme.spacing(8),
-    },
-  },
-  imageContainer: {
-    display: "flex",
-    justifyContent: "center",
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    maxWidth: "500px",
-  },
-}));
-
 const GridItem = ({ image, description }) => {
-  const classes = useStyles();
+  const classes = {
+    imageContainer: {
+      display: "flex",
+      justifyContent: "center",
+    },
+    image: {
+      width: "100%",
+      height: "100%",
+      maxWidth: "500px",
+    },
+  };
 
   return (
-    <Grid className={classes.imageContainer} item xs={12} lg={4}>
-      <GatsbyImage className={classes.image} image={image} alt={description} />
+    <Grid sx={classes.imageContainer} item xs={12} lg={4}>
+      <GatsbyImage style={classes.image} image={image} alt={description} />
     </Grid>
   );
 };
@@ -122,10 +44,86 @@ const Beach = () => {
       images,
     },
   } = useTrujilloData();
-
-  const classes = useStyles();
   const theme = useTheme();
 
+  const classes = {
+    backgroundFilter: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "70%",
+      background:
+        "linear-gradient(180deg, #fff 0%, #fff 50%, rgba(255,255,255,0) 100%)",
+      zIndex: "1",
+      transition: "height 0.2s ease",
+
+      [theme.breakpoints.up("sm")]: {
+        height: "50%",
+        background:
+          "linear-gradient(180deg, #fff 0%, #fff 40%, rgba(255,255,255,0) 100%)",
+      },
+
+      [theme.breakpoints.up("lg")]: {
+        background:
+          "linear-gradient(180deg, #fff 0%, #fff 45%, rgba(255,255,255,0) 100%)",
+      },
+    },
+
+    contentContainer: {
+      position: "relative",
+      zIndex: 2,
+      "& > div > div > h3": {
+        textAlign: "center",
+      },
+
+      [theme.breakpoints.up("lg")]: {
+        "& > div > div > h3": {
+          textAlign: "left",
+        },
+      },
+    },
+
+    subHeaderContainer: {
+      display: "flex",
+      justifyContent: "center",
+      width: "100%",
+      marginTop: theme.spacing(5),
+
+      [theme.breakpoints.up("lg")]: {
+        width: "calc(30.4vw + 219px)",
+      },
+    },
+
+    subHeader: {
+      fontWeight: theme.typography.fontWeightBold,
+      fontSize: "16px",
+      lineHeight: "28px",
+      color: theme.palette.info.main,
+      paddingLeft: theme.spacing(1),
+      textAlign: "center",
+
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "18px",
+        lineHeight: "24px",
+      },
+
+      [theme.breakpoints.up("lg")]: {
+        textAlign: "left",
+      },
+    },
+
+    imagesContainer: {
+      marginTop: theme.spacing(2),
+
+      [theme.breakpoints.up("sm")]: {
+        marginTop: theme.spacing(5),
+      },
+      [theme.breakpoints.up("lg")]: {
+        marginTop: theme.spacing(8),
+      },
+    },
+  };
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   const sectionStyle = {
@@ -160,7 +158,7 @@ const Beach = () => {
 
   return (
     <SectionWrapper bgUrl={imageSrc} style={{ sectionStyle }}>
-      <Grid className={classes.contentContainer} container>
+      <Grid sx={classes.contentContainer} container>
         <Grid item xs={12}>
           <TextSection
             title={textTitle}
@@ -171,18 +169,18 @@ const Beach = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <Box className={classes.subHeaderContainer}>
-            <img className={classes.busIcon} src={BusIcon} alt="Bus sign" />
-            <Typography className={classes.subHeader} variant="h5">
+          <Box sx={classes.subHeaderContainer}>
+            <img style={classes.busIcon} src={BusIcon} alt="Bus sign" />
+            <Typography sx={classes.subHeader} variant="h5">
               {header}
             </Typography>
           </Box>
         </Grid>
-        <Grid className={classes.imagesContainer} item xs={12}>
+        <Grid sx={classes.imagesContainer} item xs={12}>
           <ExploreCarousel carouselImages={pictures} isBeachSection />
         </Grid>
       </Grid>
-      <Box className={classes.backgroundFilter} />
+      <Box sx={classes.backgroundFilter} />
     </SectionWrapper>
   );
 };

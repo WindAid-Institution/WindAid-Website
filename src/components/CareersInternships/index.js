@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Accordion from "@mui/material/Accordion";
@@ -13,8 +12,9 @@ import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "shared/TextSection";
 import { ROUTES } from "src/constants/routes";
 import Button from "../../shared/Button";
+import useClasses from "../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   link: {
     textDecoration: "none",
     color: theme.palette.primary.main,
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   openIndicator: {
     paddingRight: theme.spacing(1),
   },
-}));
+});
 
 const CareersInternships = () => {
   const {
@@ -59,7 +59,7 @@ const CareersInternships = () => {
     },
     careerInternshipsContent,
   } = useCIData();
-  const classes = useStyles();
+  const classes = useClasses(styles);
 
   const [expanded, setExpanded] = useState(false);
 

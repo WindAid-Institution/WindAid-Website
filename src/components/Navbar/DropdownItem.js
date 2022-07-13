@@ -4,11 +4,11 @@ import { Link } from "gatsby";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import clsx from "clsx";
-import { makeStyles } from "@mui/styles";
 import useTheme from "@mui/material/styles/useTheme";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import useClasses from "../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   navItem: {
     maxHeight: "40px",
     padding: "16px 0",
@@ -199,11 +199,11 @@ const useStyles = makeStyles((theme) => ({
       background: theme.palette.primary.main,
     },
   },
-}));
+});
 
 const DropdownItem = ({ route, isSidebar }) => {
   const theme = useTheme();
-  const styles = useStyles();
+  const classes = useClasses(styles);
   const { main, submenu } = route || {};
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
@@ -233,10 +233,10 @@ const DropdownItem = ({ route, isSidebar }) => {
     <Link
       to={linkPath}
       className={clsx(
-        styles.navItem,
-        isPrimary && styles.primary,
-        isSecondary && styles.secondary,
-        isSidebar && styles.navItemSidebar
+        classes.navItem,
+        isPrimary && classes.primary,
+        isSecondary && classes.secondary,
+        isSidebar && classes.navItemSidebar
       )}
       onMouseEnter={() => {
         if (isPrimary && hasSubmenu) {
@@ -275,7 +275,7 @@ const DropdownItem = ({ route, isSidebar }) => {
 
   const NavItem = ({ linkName, hasSubmenu }) => (
     <Box
-      className={clsx(styles.navItem, isSidebar && styles.navItemSidebar)}
+      className={clsx(classes.navItem, isSidebar && classes.navItemSidebar)}
       onMouseEnter={() => {
         if (hasSubmenu && isUpLg) {
           return handleSubmenuOpen();

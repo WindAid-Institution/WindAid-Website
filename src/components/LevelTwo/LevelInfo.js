@@ -1,17 +1,11 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import { makeStyles, useTheme } from "@mui/styles";
+import { useTheme } from "@mui/material/styles";
 
 import SectionWrapper from "shared/SectionWrapper";
 import TextSection from "../../shared/TextSection";
 import InfoCard from "../../shared/InfoCard/InfoCard";
 import useShortTermData from "../../hooks/queries/levelTwo";
-
-const useStyles = makeStyles(() => ({
-  infoContainer: {
-    direction: "column",
-  },
-}));
 
 const LevelInfo = () => {
   const {
@@ -27,7 +21,11 @@ const LevelInfo = () => {
     applyDescription,
   } = useShortTermData();
 
-  const classes = useStyles();
+  const classes = {
+    infoContainer: {
+      direction: "column",
+    },
+  };
   const theme = useTheme();
 
   const data = {
@@ -55,7 +53,7 @@ const LevelInfo = () => {
   return (
     <SectionWrapper bgColor="secondary">
       <Grid container>
-        <Grid container className={classes.infoContainer} spacing={4}>
+        <Grid container sx={classes.infoContainer} spacing={4}>
           <Grid item xs={12} lg={6}>
             <TextSection
               subHeader={applyDescription.header}

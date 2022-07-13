@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { makeStyles, useTheme } from "@mui/styles";
+import { useTheme } from "@mui/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import clsx from "clsx";
 import { GrLinkedin } from "@react-icons/all-files/gr/GrLinkedin";
 
 import Body from "shared/Body";
+import useClasses from "../../../styles/useClasses";
 
-const useStyles = makeStyles((theme) => ({
+const styles = ({ isCardExpanded, theme }) => ({
   root: {
     color: theme.palette.secondary.main,
   },
@@ -37,10 +38,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
-  bodyContainer: ({ isCardExpanded }) => ({
+  bodyContainer: {
     height: isCardExpanded ? "auto" : "300px",
     paddingTop: isCardExpanded ? theme.spacing(2) : 0,
-  }),
+  },
 
   title: {
     fontSize: "18px",
@@ -133,7 +134,7 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: theme.typography.fontWeightBold,
     },
   },
-}));
+});
 
 const ExampleProjectsCard = ({
   image,
@@ -149,14 +150,15 @@ const ExampleProjectsCard = ({
   const toggleCard = () => {
     setIsCardExpanded((value) => !value);
   };
-  const classes = useStyles({ isCardExpanded });
   const theme = useTheme();
+  const updatedStyles = styles({ isCardExpanded, theme });
+  const classes = useClasses(updatedStyles);
 
   const bodyTextStyle = {
     overflow: "hidden",
     textOverflow: "ellipsis",
     display: isCardExpanded ? "inline" : "-webkit-box",
-    "-webkit-line-clamp": 10,
+    "-webkit-line-clamp": "10",
     "-webkit-box-orient": "vertical",
     color: theme.palette.secondary.main,
   };
