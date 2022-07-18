@@ -11,6 +11,12 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-react-helmet",
+    {
+      resolve: "gatsby-plugin-react-helmet-canonical-urls",
+      options: {
+        siteUrl: "https://windaid.org",
+      },
+    },
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
@@ -71,6 +77,13 @@ module.exports = {
         trackingIds: [
           process.env.GTAG_MEASUREMENT_ID, // Google Analytics / GA
         ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-html2amp",
+      options: {
+        files: ["**/*.html"],
+        dist: "public/amp",
       },
     },
   ],
