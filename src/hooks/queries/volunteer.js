@@ -42,6 +42,7 @@ const useVolunteerData = () => {
             locationInformation
           }
           orderNumber
+          applyUrl
         }
       }
     }

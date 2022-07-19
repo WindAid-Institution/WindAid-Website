@@ -201,11 +201,12 @@ const Volunteer = () => {
                       size="full"
                     />
                   )}
-                  <Button
-                    text="Apply"
-                    style={{ marginTop: "24px", marginBottom: "24px" }}
-                    route={ROUTES.APPLY}
-                  />{" "}
+                  <a href={fields.applyUrl} target="_blank" rel="noreferrer">
+                    <Button
+                      text="Apply"
+                      style={{ marginTop: "24px", marginBottom: "24px" }}
+                    />
+                  </a>
                 </AccordionDetails>
               </Accordion>
             )}
