@@ -54,7 +54,7 @@ const useGeneralProgramData = () => {
       }
 
       volunteerLevel1: contentfulSection(
-        contentId: { eq: "generalProgram-level-1" }
+        contentId: { eq: "generalProgram-eLearning" }
       ) {
         title: header
         body {
@@ -68,7 +68,7 @@ const useGeneralProgramData = () => {
       }
 
       volunteerLevel2: contentfulSection(
-        contentId: { eq: "generalProgram-level-2" }
+        contentId: { eq: "generalProgram-Engineering" }
       ) {
         title: header
         body {

@@ -71,13 +71,21 @@ const useLongTermData = () => {
         }
       }
 
-      infoCard: contentfulInfoCard(contentId: { eq: "levelThree-applyInfo" }) {
+      infoCard: contentfulInfoCard(
+        contentId: { eq: "other-programs-applyInfo" }
+      ) {
         title {
           title
         }
         price
         note {
           note
+        }
+        priceImage {
+          description
+          file {
+            url
+          }
         }
         programDates {
           heading

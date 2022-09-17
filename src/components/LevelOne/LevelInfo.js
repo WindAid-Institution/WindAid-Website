@@ -16,13 +16,15 @@ const LevelInfo = () => {
     infoCard: {
       title: { title },
       price,
-      note: { note },
       programDates: { heading: programHeading, data: programDates },
       included: { included },
       notIncluded: { notIncluded },
       image,
     },
   } = useLevelOneData();
+
+  const note = useLevelOneData()?.infoCard?.note?.note;
+  const priceImage = useLevelOneData()?.infoCard?.priceImage;
 
   const classes = {
     infoContainer: {
@@ -45,6 +47,7 @@ const LevelInfo = () => {
     title,
     price,
     note,
+    priceImage,
     programDates,
     programHeading,
     included,

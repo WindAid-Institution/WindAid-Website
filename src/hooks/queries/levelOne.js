@@ -4,7 +4,7 @@ const useLevelOneData = () => {
   const data = useStaticQuery(graphql`
     {
       structureContent: contentfulSection(
-        contentId: { eq: "levelOne-Structure" }
+        contentId: { eq: "eLearning-Structure" }
       ) {
         header
         body {
@@ -28,13 +28,21 @@ const useLevelOneData = () => {
         }
       }
 
-      infoCard: contentfulInfoCard(contentId: { eq: "levelOne-applyInfo" }) {
+      infoCard: contentfulInfoCard(
+        contentId: { eq: "eLearning-program-applyInfo" }
+      ) {
         title {
           title
         }
         price
         note {
           note
+        }
+        priceImage {
+          description
+          file {
+            url
+          }
         }
         programDates {
           heading
@@ -57,7 +65,7 @@ const useLevelOneData = () => {
         }
       }
       applyDescription: contentfulSimpleCard(
-        contentId: { eq: "levelOne-applyDescription" }
+        contentId: { eq: "eLearning-applyDescription" }
       ) {
         header
       }

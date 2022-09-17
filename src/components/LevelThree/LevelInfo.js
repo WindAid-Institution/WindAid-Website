@@ -9,7 +9,6 @@ const LevelInfo = () => {
     infoCard: {
       title: { title },
       price,
-      note: { note },
       programDates: { heading: programHeading, data: programDates },
       included: { included },
       notIncluded: { notIncluded },
@@ -17,10 +16,14 @@ const LevelInfo = () => {
     },
   } = useLongTermData();
 
+  const note = useLongTermData()?.infoCard?.note?.note;
+  const priceImage = useLongTermData()?.infoCard?.priceImage;
+
   const data = {
     title,
     price,
     note,
+    priceImage,
     programDates,
     programHeading,
     included,

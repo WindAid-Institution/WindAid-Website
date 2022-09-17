@@ -64,13 +64,21 @@ const useShortTermData = () => {
         }
       }
 
-      infoCard: contentfulInfoCard(contentId: { eq: "levelTwo-applyInfo" }) {
+      infoCard: contentfulInfoCard(
+        contentId: { eq: "engineering-program-applyInfo" }
+      ) {
         title {
           title
         }
         price
         note {
           note
+        }
+        priceImage {
+          description
+          file {
+            url
+          }
         }
         programDates {
           heading

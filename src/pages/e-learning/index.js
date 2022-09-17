@@ -6,14 +6,14 @@ import MainLayout from "src/layout/MainLayout";
 
 import Overview from "components/Overview";
 import Hero from "components/Hero/Hero";
-import Structure from "components/LevelTwo/Structure";
-import LevelInfo from "components/LevelTwo/LevelInfo";
-import Apply from "components/LevelTwo/Apply";
-import HearFromPrev from "components/LevelTwo/HearFromPrev";
-import Living from "../../components/LevelTwo/Living";
+import Structure from "components/LevelOne/Structure";
+import LevelInfo from "components/LevelOne/LevelInfo";
+import Apply from "components/LevelOne/Apply";
+// import HearFromPrev from "components/LevelTwo/HearFromPrev";
+// import Living from "../../components/LevelTwo/Living";
 // eslint-disable-next-line max-len
 
-const ShortTermProgram = ({
+const Level1Program = ({
   data: {
     hero: { title, image },
     overview,
@@ -24,36 +24,26 @@ const ShortTermProgram = ({
     <Overview header="" title={overview.title} body={overview.body.body} />
     <Structure />
     <LevelInfo />
-    <Living />
     <Apply />
-    <HearFromPrev />
   </MainLayout>
 );
 
 export const query = graphql`
   {
-    hero: contentfulPageHero(contentId: { eq: "levelTwo" }) {
+    hero: contentfulPageHero(contentId: { eq: "eLearning" }) {
       title
       image {
         gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
       }
     }
 
-    overview: contentfulSection(contentId: { eq: "levelTwo-overview" }) {
+    overview: contentfulSection(contentId: { eq: "eLearning-overview" }) {
       title
       body {
         body
       }
     }
-
-    separationElement: contentfulSeparationImage(
-      contentId: { eq: "levelTwo-workshop" }
-    ) {
-      workshopImage: image {
-        gatsbyImageData(quality: 100, placeholder: BLURRED, layout: FULL_WIDTH)
-      }
-    }
   }
 `;
 
-export default ShortTermProgram;
+export default Level1Program;
