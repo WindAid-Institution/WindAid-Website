@@ -12,7 +12,6 @@ const LevelInfo = () => {
     infoCard: {
       title: { title },
       price,
-      note: { note },
       programDates: { heading: programHeading, data: programDates },
       included: { included },
       notIncluded: { notIncluded },
@@ -20,6 +19,9 @@ const LevelInfo = () => {
     },
     applyDescription,
   } = useShortTermData();
+
+  const note = useShortTermData()?.infoCard?.note?.note;
+  const priceImage = useShortTermData()?.infoCard?.priceImage;
 
   const classes = {
     infoContainer: {
@@ -32,6 +34,7 @@ const LevelInfo = () => {
     title,
     price,
     note,
+    priceImage,
     programDates,
     programHeading,
     included,

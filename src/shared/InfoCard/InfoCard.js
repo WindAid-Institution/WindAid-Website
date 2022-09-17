@@ -7,6 +7,7 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  Box,
 } from "@mui/material";
 import PropTypes from "prop-types";
 import { useTheme } from "@mui/material/styles";
@@ -21,6 +22,7 @@ const InfoCard = ({
   title,
   price,
   note,
+  priceImage,
   programHeading,
   programDates,
   included,
@@ -76,16 +78,22 @@ const InfoCard = ({
     },
   };
 
-  const [noteArray, includedArray, notIncludedArray] = [
-    note,
-    included,
-    notIncluded,
-  ].map((data) => splitQueriedList(data));
+  let noteArray = [];
+  if (note !== null) {
+    [noteArray] = [note].map((data) => splitQueriedList(data));
+  }
+
+  const [includedArray, notIncludedArray] = [included, notIncluded].map(
+    (data) => splitQueriedList(data)
+  );
 
   const {
     description,
     file: { url },
   } = image;
+
+  const priceImagedescription = priceImage?.description;
+  const priceImageUrl = priceImage?.file?.url;
 
   const tableStyle = {
     borderBottom: "none",
@@ -126,14 +134,26 @@ const InfoCard = ({
           <Typography variant="h4" sx={classes.price}>
             {price}
           </Typography>
-          <TextSection subHeader="Note" style={textStyle} />
-          <ul>
-            {noteArray.map((item) => (
-              <li key={item}>
-                <TextSection body={item} style={textStyle} />
-              </li>
-            ))}
-          </ul>
+          {noteArray.length > 0 && (
+            <>
+              <TextSection subHeader="Note" style={textStyle} />
+              <ul>
+                {noteArray.map((item) => (
+                  <li key={item}>
+                    <TextSection body={item} style={textStyle} />
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          {priceImage !== null && <TextSection subHeader="Cost Breakdown" />}
+          <Box>
+            <img
+              src={priceImageUrl}
+              alt={priceImagedescription}
+              style={{ height: "100%", width: "100%", maxWidth: "400px" }}
+            />
+          </Box>
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextSection title={programHeading} />
@@ -184,12 +204,18 @@ const InfoCard = ({
 InfoCard.propTypes = {
   title: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
-  note: PropTypes.string.isRequired,
+  note: PropTypes.string,
   included: PropTypes.string.isRequired,
   notIncluded: PropTypes.string.isRequired,
   programDates: PropTypes.array.isRequired,
   programHeading: PropTypes.string.isRequired,
   image: PropTypes.object.isRequired,
+  priceImage: PropTypes.object,
+};
+
+InfoCard.defaultProps = {
+  note: null,
+  priceImage: null,
 };
 
 export default InfoCard;

@@ -39,7 +39,7 @@ export const ROUTES = {
 
   PROGRAMS: {
     name: "Programs",
-    path: "/",
+    path: "/certificate-programs",
   },
 
   VOLUNTEER_PROGRAMS: {
@@ -50,18 +50,18 @@ export const ROUTES = {
     name: "Certificate Programs",
     path: "/certificate-programs",
   },
-  LEVEL_1: {
-    name: "Level 1: E-learning",
-    path: "/level-1",
+  E_LEARNING: {
+    name: "E-learning",
+    path: "/e-learning",
   },
 
-  LEVEL_2: {
-    name: "Level 2: In Person Practical Training",
-    path: "/level-2",
+  ENGINEERING_PROGRAM: {
+    name: "Engineering Program",
+    path: "/engineering-program",
   },
-  LEVEL_3: {
-    name: "Level 3: Project Focused Career Development",
-    path: "/level-3",
+  OTHER_PROGRAMS: {
+    name: "Other Programs",
+    path: "/other-programs",
   },
 
   PARTNERSHIP: {
@@ -117,9 +117,9 @@ const {
   OUR_IMPACT,
   PROGRAMS,
   CERTIFICATE_PROGRAMS,
-  LEVEL_1,
-  LEVEL_2,
-  LEVEL_3,
+  E_LEARNING,
+  ENGINEERING_PROGRAM,
+  OTHER_PROGRAMS,
   CAREERS,
   TRUJILLO,
   FAQ,
@@ -151,7 +151,7 @@ export const MENU_ROUTES = [
     submenu: [
       {
         ...CERTIFICATE_PROGRAMS,
-        subSubmenu: [LEVEL_1, LEVEL_2, LEVEL_3],
+        subSubmenu: [E_LEARNING, ENGINEERING_PROGRAM, OTHER_PROGRAMS],
       },
       TRUJILLO,
       FAQ,

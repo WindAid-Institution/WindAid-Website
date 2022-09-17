@@ -20,9 +20,9 @@ const LINKS = {
     name: "Join Us",
     links: [
       ROUTES.CERTIFICATE_PROGRAMS,
-      ROUTES.LEVEL_1,
-      ROUTES.LEVEL_2,
-      ROUTES.LEVEL_3,
+      ROUTES.E_LEARNING,
+      ROUTES.ENGINEERING_PROGRAM,
+      ROUTES.OTHER_PROGRAMS,
       ROUTES.TRUJILLO,
       ROUTES.FAQ,
     ],
