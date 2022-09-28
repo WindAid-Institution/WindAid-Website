@@ -10,12 +10,14 @@ const Structure = () => {
   const {
     structure: {
       title,
-      body: { body },
-      bodyTwo: { bodyTwo },
+
       image,
     },
   } = useLongTermData();
   const theme = useTheme();
+
+  const body = useLongTermData()?.structure?.body?.body;
+  const bodyTwo = useLongTermData()?.structure?.bodyTwo?.bodyTwo;
 
   const classes = {
     containerStyle: {

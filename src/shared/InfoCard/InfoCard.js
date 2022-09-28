@@ -79,13 +79,19 @@ const InfoCard = ({
   };
 
   let noteArray = [];
+  let includedArray = [];
+  let notIncludedArray = [];
   if (note !== null) {
     [noteArray] = [note].map((data) => splitQueriedList(data));
   }
 
-  const [includedArray, notIncludedArray] = [included, notIncluded].map(
-    (data) => splitQueriedList(data)
-  );
+  if (typeof included !== "undefined") {
+    [includedArray] = [included].map((data) => splitQueriedList(data));
+  }
+
+  if (typeof notIncluded !== "undefined") {
+    [notIncludedArray] = [notIncluded].map((data) => splitQueriedList(data));
+  }
 
   const {
     description,
@@ -180,14 +186,18 @@ const InfoCard = ({
         </Grid>
       </Grid>
       <div style={{ marginTop: "32px" }}>
-        <InfoCardDropDown
-          descriptionArray={includedArray}
-          title={"What's included"}
-        />
-        <InfoCardDropDown
-          descriptionArray={notIncludedArray}
-          title={"What's NOT included"}
-        />
+        {includedArray.length > 0 && (
+          <InfoCardDropDown
+            descriptionArray={includedArray}
+            title={"What's included"}
+          />
+        )}
+        {notIncludedArray.length > 0 && (
+          <InfoCardDropDown
+            descriptionArray={notIncludedArray}
+            title={"What's NOT included"}
+          />
+        )}
       </div>
       <Grid item xs={12}>
         <Button
