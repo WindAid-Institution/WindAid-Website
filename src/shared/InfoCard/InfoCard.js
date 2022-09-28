@@ -81,6 +81,7 @@ const InfoCard = ({
   let noteArray = [];
   let includedArray = [];
   let notIncludedArray = [];
+
   if (note !== null) {
     [noteArray] = [note].map((data) => splitQueriedList(data));
   }
