@@ -18,19 +18,21 @@ const LongTermProgram = ({
   },
 }) => (
   <MainLayout>
-    <Hero image={image.gatsbyImageData} alt="hero image" title={title} />
-    <>
-      <Overview
-        header=""
-        title={overview.title}
-        body={overview.body.body}
-        bodyTwo={overview.bodyTwo.bodyTwo}
-      />
-      <Offering />
-      <Structure />
-      <ExampleProjects />
-      <LevelInfo />
-    </>
+    <Hero
+      image={image.gatsbyImageData}
+      alt="hero image"
+      title={title || "No Title"}
+    />
+    <Overview
+      header=""
+      title={overview.title}
+      body={overview.body.body}
+      bodyTwo={overview.bodyTwo.bodyTwo}
+    />
+    <Offering />
+    <Structure />
+    <ExampleProjects />
+    <LevelInfo />
   </MainLayout>
 );
 

@@ -214,19 +214,22 @@ const InfoCard = ({
 
 InfoCard.propTypes = {
   title: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
   note: PropTypes.string,
-  included: PropTypes.string.isRequired,
-  notIncluded: PropTypes.string.isRequired,
+  price: PropTypes.string,
   programDates: PropTypes.array.isRequired,
   programHeading: PropTypes.string.isRequired,
+  included: PropTypes.string,
+  notIncluded: PropTypes.string,
   image: PropTypes.object.isRequired,
   priceImage: PropTypes.object,
 };
 
 InfoCard.defaultProps = {
   note: null,
+  price: null,
   priceImage: null,
+  included: undefined,
+  notIncluded: undefined,
 };
 
 export default InfoCard;
