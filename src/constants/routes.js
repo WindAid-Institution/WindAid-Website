@@ -120,13 +120,13 @@ const {
   E_LEARNING,
   ENGINEERING_PROGRAM,
   OTHER_PROGRAMS,
-  CAREERS,
+  // CAREERS,
   TRUJILLO,
   FAQ,
   GENERAL_CONTACT,
   CONTACT_US,
   DONATE,
-  VOLUNTEER_PROGRAMS,
+  // VOLUNTEER_PROGRAMS,
 } = ROUTES;
 export const NAVBAR_ROUTES = [
   WHO_WE_ARE,
@@ -158,8 +158,7 @@ export const MENU_ROUTES = [
     ],
   },
   {
-    main: GENERAL_CONTACT,
-    submenu: [CONTACT_US, CAREERS, VOLUNTEER_PROGRAMS],
+    main: CONTACT_US,
   },
   { main: DONATE },
 ];
