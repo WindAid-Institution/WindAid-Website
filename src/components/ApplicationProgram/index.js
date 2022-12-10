@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import Checkbox from "@mui/material/Checkbox";
+// import Checkbox from "@mui/material/Checkbox";
 import SectionWrapper from "shared/SectionWrapper";
 import Title from "shared/Title";
 // import ApplicationForm from "./ApplicationForm";
@@ -13,25 +13,24 @@ const handleClick = () => {
   window.open("https://bit.ly/windaidapplication");
 };
 
-const ApplicationProgram = () => {
-  const [checked, setChecked] = React.useState(false);
-  const [buttonDisabled, setButtonDisabled] = React.useState(true);
+const ApplicationProgram = () => (
+  // const [checked, setChecked] = React.useState(false);
+  // const [buttonDisabled, setButtonDisabled] = React.useState(true);
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-    setButtonDisabled(checked);
-  };
+  // const handleChange = (event) => {
+  //   setChecked(event.target.checked);
+  //   setButtonDisabled(checked);
+  // };
 
-  return (
-    <SectionWrapper bgColor="secondary">
-      <Title title={title} size="lg" />
-      <Typography style={{ maxWidth: "700px" }}>
-        {
-          "Whether you have a question or are just being curious, we are always keen to hear from you. You can always drop us a line via email at: "
-        }
-        <Link href="mailto:volunteer@windaid.org">volunteer@windaid.org</Link>
-      </Typography>
-      <Typography
+  <SectionWrapper bgColor="secondary">
+    <Title title={title} size="lg" />
+    <Typography style={{ maxWidth: "700px" }}>
+      {
+        "Whether you have a question or are just being curious, we are always keen to hear from you. You can always drop us a line via email at: "
+      }
+      <Link href="mailto:volunteer@windaid.org">volunteer@windaid.org</Link>
+    </Typography>
+    {/* <Typography
         style={{ maxWidth: "700px", paddingTop: "30px", fontWeight: 700 }}
       >
         You must check this box to submit your application.
@@ -57,16 +56,14 @@ const ApplicationProgram = () => {
           {" "}
           terms and conditions.
         </a>
-      </Typography>
-      <Button
-        text="Application Form"
-        style={{ marginTop: "32px" }}
-        onClick={handleClick}
-        isDisabled={buttonDisabled}
-      />
-      {/* <ApplicationForm /> */}
-    </SectionWrapper>
-  );
-};
-
+      </Typography> */}
+    <Button
+      text="Application Form"
+      style={{ marginTop: "32px" }}
+      onClick={handleClick}
+      // isDisabled={buttonDisabled}
+    />
+    {/* <ApplicationForm /> */}
+  </SectionWrapper>
+);
 export default ApplicationProgram;
