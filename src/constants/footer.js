@@ -1,11 +1,11 @@
 import React from "react";
-import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
-import { FaTwitter } from "@react-icons/all-files/fa/FaTwitter";
-import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
-import { FaLinkedinIn } from "@react-icons/all-files/fa/FaLinkedinIn";
-import { FaYoutube } from "@react-icons/all-files/fa/FaYoutube";
 
 import { ROUTES } from "src/constants/routes";
+
+import { FaFacebookF } from "@react-icons/all-files/fa/FaFacebookF";
+import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
+import { FaLinkedinIn } from "@react-icons/all-files/fa/FaLinkedinIn";
+import { FaYoutube } from "@react-icons/all-files/fa/FaYoutube";
 
 const LINKS = {
   WHO_WE_ARE: {
@@ -22,14 +22,14 @@ const LINKS = {
       ROUTES.CERTIFICATE_PROGRAMS,
       ROUTES.E_LEARNING,
       ROUTES.ENGINEERING_PROGRAM,
-      ROUTES.OTHER_PROGRAMS,
+      ROUTES.INTERNSHIP_PROGRAM,
       ROUTES.TRUJILLO,
       ROUTES.FAQ,
     ],
   },
   CONTACT_US: {
     name: "Contact",
-    links: [ROUTES.CONTACT_US, ROUTES.CAREERS, ROUTES.VOLUNTEER_PROGRAMS],
+    links: [ROUTES.CONTACT_US, ROUTES.VOLUNTEER_PROGRAMS],
   },
 };
 const { WHO_WE_ARE, OUR_WORK, JOIN_US, CONTACT_US } = LINKS;
@@ -41,12 +41,6 @@ export const BASIC_SOCIAL_LINKS = [
     accName: "@windaidinstitute",
     icon: <FaInstagram />,
     link: "https://www.instagram.com/windaidinstitute",
-  },
-  {
-    name: "Twitter",
-    accName: "@WindAid",
-    icon: <FaTwitter />,
-    link: "https://twitter.com/windaid?",
   },
   {
     name: "Facebook",

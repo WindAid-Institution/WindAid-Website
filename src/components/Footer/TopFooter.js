@@ -1,17 +1,18 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import { FOOTER_LINKS, FOOTER_SOCIALS } from "src/constants/footer";
+
 import {
-  Grid,
   Box,
-  Typography,
+  Grid,
   List,
   ListItem,
   ListItemText,
+  Typography,
 } from "@mui/material";
 import useTheme from "@mui/material/styles/useTheme";
-
-import { FOOTER_SOCIALS, FOOTER_LINKS } from "src/constants/footer";
 
 const ExternalLink = ({ to, children }) => <a href={to}>{children}</a>;
 
