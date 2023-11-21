@@ -59,19 +59,9 @@ export const ROUTES = {
     name: "Engineering Program",
     path: "/engineering-program",
   },
-  OTHER_PROGRAMS: {
-    name: "Other Programs",
-    path: "/other-programs",
-  },
-
-  PARTNERSHIP: {
-    name: "Partnership",
-    path: "/level-2",
-  },
-
-  CAREERS: {
-    name: "Careers & Internships",
-    path: "/careers-internships",
+  INTERNSHIP_PROGRAM: {
+    name: "Internship Program",
+    path: "/internship-program",
   },
 
   TRUJILLO: {
@@ -87,11 +77,6 @@ export const ROUTES = {
   CONTACT_US: {
     name: "Contact Us",
     path: "/contact-us",
-  },
-
-  GENERAL_CONTACT: {
-    name: "Contact",
-    path: "/contact",
   },
 
   PROGRAM_APPLICATION: {
@@ -117,13 +102,11 @@ const {
   OUR_IMPACT,
   PROGRAMS,
   CERTIFICATE_PROGRAMS,
-  E_LEARNING,
   ENGINEERING_PROGRAM,
-  OTHER_PROGRAMS,
+  INTERNSHIP_PROGRAM,
   // CAREERS,
   TRUJILLO,
   FAQ,
-  GENERAL_CONTACT,
   CONTACT_US,
   DONATE,
   // VOLUNTEER_PROGRAMS,
@@ -132,7 +115,7 @@ export const NAVBAR_ROUTES = [
   WHO_WE_ARE,
   OUR_WORK,
   PROGRAMS,
-  GENERAL_CONTACT,
+  CONTACT_US,
   DONATE,
 ];
 
@@ -151,7 +134,7 @@ export const MENU_ROUTES = [
     submenu: [
       {
         ...CERTIFICATE_PROGRAMS,
-        subSubmenu: [E_LEARNING, ENGINEERING_PROGRAM, OTHER_PROGRAMS],
+        subSubmenu: [ENGINEERING_PROGRAM, INTERNSHIP_PROGRAM],
       },
       TRUJILLO,
       FAQ,

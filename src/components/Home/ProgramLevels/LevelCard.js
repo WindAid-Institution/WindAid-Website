@@ -1,10 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import StackedCards from "shared/StackedCards";
+import TextSection from "shared/TextSection";
 import { ROUTES } from "src/constants/routes";
 
-import TextSection from "shared/TextSection";
-import StackedCards from "shared/StackedCards";
 import theme from "../../../../theme";
 
 const additionalStyle = {
